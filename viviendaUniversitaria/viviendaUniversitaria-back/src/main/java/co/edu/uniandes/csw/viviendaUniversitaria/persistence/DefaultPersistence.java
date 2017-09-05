@@ -42,7 +42,7 @@ public class DefaultPersistence {
 
     private static final Logger LOGGER = Logger.getLogger(DefaultPersistence.class.getName());
 
-    @PersistenceContext(unitName = "defaultPU")
+    @PersistenceContext(unitName = "viviendaUniversitariaPU")
     protected EntityManager em;
 
     /**
