@@ -37,9 +37,9 @@ public class PersistenceGeneric<T>
         return em.find(clase, id);
     }
     
-    public T actualizar(Long id)
+    public T actualizar(T entidad)
     {
-        return em.merge(consultarID(id));
+        return em.merge(entidad);
     }
     
     public void eliminar(Long id)
