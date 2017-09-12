@@ -1,4 +1,3 @@
-
 /*
 MIT License
 
@@ -124,5 +123,3 @@ public class EstudiantePersistence {
         return query.getResultList();
     }
 }
-
-
