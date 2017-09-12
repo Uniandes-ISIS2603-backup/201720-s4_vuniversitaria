@@ -1,3 +1,4 @@
+
 /*
 MIT License
 
@@ -72,6 +73,5 @@ public class EstudianteLogic {
         LOGGER.info("Termina proceso de consultar todas las Defaultes");
         return Default;
     }
-
 
 }

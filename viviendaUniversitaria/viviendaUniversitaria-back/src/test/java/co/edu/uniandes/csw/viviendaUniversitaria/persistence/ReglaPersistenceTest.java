@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,7 +5,7 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -28,16 +27,18 @@ import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-
 /**
  *
- * @author a.eslava
+ * @author ws.duarte
  */
 @RunWith(Arquillian.class)
-public class OrigenPersistenceTest {
+public class ReglaPersistenceTest {
+    
+    public ReglaPersistenceTest() {
+    }
     
     @Inject
-    private OrigenPersistence persistence;
+    private ReglaPersistence persistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -45,13 +46,13 @@ public class OrigenPersistenceTest {
     @Inject
     UserTransaction utx;
     
-    private List<OrigenEntity> data = new ArrayList<OrigenEntity>();
+    private List<ReglaEntity> data = new ArrayList<ReglaEntity>();
     
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(OrigenEntity.class.getPackage())
-                .addPackage(OrigenPersistence.class.getPackage())
+                .addPackage(ReglaEntity.class.getPackage())
+                .addPackage(ReglaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -75,104 +76,93 @@ public class OrigenPersistenceTest {
     }
     
     private void clearData() {
-        em.createQuery("delete from OrigenEntity").executeUpdate();
+        em.createQuery("delete from ReglaEntity").executeUpdate();
     }
 
 
  private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {                    
-            OrigenEntity entity = factory.manufacturePojo(OrigenEntity.class);
-            System.out.println(i);
+            ReglaEntity entity = factory.manufacturePojo(ReglaEntity.class);
+
             em.persist(entity);
             data.add(entity);
         }
     }
     
-    public OrigenPersistenceTest() {
-        
-    }
-    
     @BeforeClass
     public static void setUpClass() {
-        
     }
     
     @AfterClass
     public static void tearDownClass() {
-        
     }
-
     
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of create method, of class OrigenPersistence.
+     * Test of create method, of class ReglaPersistence.
      */
     @Test
     public void testCreate() throws Exception {
-PodamFactory factory = new PodamFactoryImpl();
-    OrigenEntity newEntity = factory.manufacturePojo(OrigenEntity.class);
-    OrigenEntity result = persistence.create(newEntity);
+        PodamFactory factory = new PodamFactoryImpl();
+    ReglaEntity newEntity = factory.manufacturePojo(ReglaEntity.class);
+    ReglaEntity result = persistence.create(newEntity);
 
     Assert.assertNotNull(result);
-    OrigenEntity entity = em.find(OrigenEntity.class, result.getId());
+    ReglaEntity entity = em.find(ReglaEntity.class, result.getId());
     Assert.assertNotNull(entity);
-    Assert.assertEquals(newEntity.getId(), entity.getId());
+    Assert.assertEquals(newEntity.getRegla(), entity.getRegla());
     }
 
     /**
-     * Test of update method, of class OrigenPersistence.
+     * Test of update method, of class ReglaPersistence.
      */
     @Test
     public void testUpdate() throws Exception {
-        OrigenEntity entity = data.get(0);
+        ReglaEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        OrigenEntity newEntity = factory.manufacturePojo(OrigenEntity.class);
-
+        ReglaEntity newEntity = factory.manufacturePojo(ReglaEntity.class);
         newEntity.setId(entity.getId());
-
         persistence.update(newEntity);
-
-        OrigenEntity resp = em.find(OrigenEntity.class, entity.getId());
-
-        Assert.assertEquals(newEntity.getId(), resp.getId());
+        ReglaEntity resp = em.find(ReglaEntity.class, entity.getId());
+        Assert.assertEquals(newEntity.getRegla(), resp.getRegla());
     }
 
     /**
-     * Test of delete method, of class OrigenPersistence.
+     * Test of delete method, of class ReglaPersistence.
      */
     @Test
     public void testDelete() throws Exception {
-        OrigenEntity entity = data.get(0);
+        ReglaEntity entity = data.get(0);
         persistence.delete(entity.getId());
-        OrigenEntity deleted = em.find(OrigenEntity.class, entity.getId());
+        ReglaEntity deleted = em.find(ReglaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Test of find method, of class OrigenPersistence.
+     * Test of find method, of class ReglaPersistence.
      */
     @Test
     public void testFind() throws Exception {
-        OrigenEntity entity = data.get(0);
-        OrigenEntity newEntity = persistence.find(entity.getId());
+        ReglaEntity entity = data.get(0);
+        ReglaEntity newEntity = persistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getRegla(), newEntity.getRegla());
     }
 
     /**
-     * Test of findAll method, of class OrigenPersistence.
+     * Test of findAll method, of class ReglaPersistence.
      */
     @Test
     public void testFindAll() throws Exception {
-        List<OrigenEntity> list = persistence.findAll();
+        List<ReglaEntity> list = persistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (OrigenEntity ent : list) {
+        for (ReglaEntity ent : list) {
             boolean found = false;
-            for (OrigenEntity entity : data) {
+            for (ReglaEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -180,6 +170,5 @@ PodamFactory factory = new PodamFactoryImpl();
             Assert.assertTrue(found);
         }
     }
-
+    
 }
-

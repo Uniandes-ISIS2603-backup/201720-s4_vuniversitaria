@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,7 +5,7 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -28,34 +27,36 @@ import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-
 /**
  *
- * @author a.eslava
+ * @author ws.duarte
  */
 @RunWith(Arquillian.class)
-public class OrigenPersistenceTest {
-    
+public class HospedajePersistenceTest {
+
+    public HospedajePersistenceTest() {
+    }
+
     @Inject
-    private OrigenPersistence persistence;
-    
+    private HospedajePersistence persistence;
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Inject
     UserTransaction utx;
-    
-    private List<OrigenEntity> data = new ArrayList<OrigenEntity>();
-    
+
+    private List<HospedajeEntity> data = new ArrayList<HospedajeEntity>();
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(OrigenEntity.class.getPackage())
-                .addPackage(OrigenPersistence.class.getPackage())
+                .addPackage(HospedajeEntity.class.getPackage())
+                .addPackage(HospedajePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     @Before
     public void setUp() {
         try {
@@ -73,106 +74,94 @@ public class OrigenPersistenceTest {
             }
         }
     }
-    
+
     private void clearData() {
-        em.createQuery("delete from OrigenEntity").executeUpdate();
+        em.createQuery("delete from HospedajeEntity").executeUpdate();
     }
 
-
- private void insertData() {
+    private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) {                    
-            OrigenEntity entity = factory.manufacturePojo(OrigenEntity.class);
-            System.out.println(i);
+        for (int i = 0; i < 3; i++) {
+            HospedajeEntity entity = factory.manufacturePojo(HospedajeEntity.class);
+
             em.persist(entity);
             data.add(entity);
         }
     }
-    
-    public OrigenPersistenceTest() {
-        
-    }
-    
+
     @BeforeClass
     public static void setUpClass() {
-        
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-        
     }
 
-    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of create method, of class OrigenPersistence.
+     * Test of create method, of class HospedajePersistence.
      */
     @Test
     public void testCreate() throws Exception {
-PodamFactory factory = new PodamFactoryImpl();
-    OrigenEntity newEntity = factory.manufacturePojo(OrigenEntity.class);
-    OrigenEntity result = persistence.create(newEntity);
+        PodamFactory factory = new PodamFactoryImpl();
+        HospedajeEntity newEntity = factory.manufacturePojo(HospedajeEntity.class);
+        HospedajeEntity result = persistence.create(newEntity);
 
-    Assert.assertNotNull(result);
-    OrigenEntity entity = em.find(OrigenEntity.class, result.getId());
-    Assert.assertNotNull(entity);
-    Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertNotNull(result);
+        HospedajeEntity entity = em.find(HospedajeEntity.class, result.getId());
+        Assert.assertNotNull(entity);
+        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
     }
 
     /**
-     * Test of update method, of class OrigenPersistence.
+     * Test of update method, of class HospedajePersistence.
      */
     @Test
     public void testUpdate() throws Exception {
-        OrigenEntity entity = data.get(0);
+        HospedajeEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        OrigenEntity newEntity = factory.manufacturePojo(OrigenEntity.class);
-
+        HospedajeEntity newEntity = factory.manufacturePojo(HospedajeEntity.class);
         newEntity.setId(entity.getId());
-
         persistence.update(newEntity);
-
-        OrigenEntity resp = em.find(OrigenEntity.class, entity.getId());
-
-        Assert.assertEquals(newEntity.getId(), resp.getId());
+        HospedajeEntity resp = em.find(HospedajeEntity.class, entity.getId());
+        Assert.assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
     }
 
     /**
-     * Test of delete method, of class OrigenPersistence.
+     * Test of delete method, of class HospedajePersistence.
      */
     @Test
     public void testDelete() throws Exception {
-        OrigenEntity entity = data.get(0);
+        HospedajeEntity entity = data.get(0);
         persistence.delete(entity.getId());
-        OrigenEntity deleted = em.find(OrigenEntity.class, entity.getId());
+        HospedajeEntity deleted = em.find(HospedajeEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Test of find method, of class OrigenPersistence.
+     * Test of findId method, of class HospedajePersistence.
      */
     @Test
-    public void testFind() throws Exception {
-        OrigenEntity entity = data.get(0);
-        OrigenEntity newEntity = persistence.find(entity.getId());
+    public void testFindId() throws Exception {
+        HospedajeEntity entity = data.get(0);
+        HospedajeEntity newEntity = persistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());
     }
 
     /**
-     * Test of findAll method, of class OrigenPersistence.
+     * Test of findAll method, of class HospedajePersistence.
      */
     @Test
     public void testFindAll() throws Exception {
-        List<OrigenEntity> list = persistence.findAll();
+        List<HospedajeEntity> list = persistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (OrigenEntity ent : list) {
+        for (HospedajeEntity ent : list) {
             boolean found = false;
-            for (OrigenEntity entity : data) {
+            for (HospedajeEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -182,4 +171,3 @@ PodamFactory factory = new PodamFactoryImpl();
     }
 
 }
-
