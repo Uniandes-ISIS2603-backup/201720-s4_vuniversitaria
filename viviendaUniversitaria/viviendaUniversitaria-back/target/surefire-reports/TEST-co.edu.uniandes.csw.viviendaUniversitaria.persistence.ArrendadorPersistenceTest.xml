@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReglaPersistenceTest" time="13.265" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ArrendadorPersistenceTest" time="17.702" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_144\jre\bin"/>
@@ -62,9 +62,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReglaPersistenceTest" name="testFindAll" time="0.125"/>
-  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReglaPersistenceTest" name="testFind" time="0.079"/>
-  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReglaPersistenceTest" name="testCreate" time="0.128"/>
-  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReglaPersistenceTest" name="testDelete" time="0.076"/>
-  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReglaPersistenceTest" name="testUpdate" time="0.128"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ArrendadorPersistenceTest" name="testFindAll" time="1.441"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ArrendadorPersistenceTest" name="testFind" time="0.163"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ArrendadorPersistenceTest" name="testCreate" time="0.217"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ArrendadorPersistenceTest" name="testDelete" time="0.123"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ArrendadorPersistenceTest" name="testUpdate" time="0.207"/>
 </testsuite>
