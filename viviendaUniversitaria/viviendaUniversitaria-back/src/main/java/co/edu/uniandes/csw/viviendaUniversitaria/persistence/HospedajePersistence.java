@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReglaEntity;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -20,37 +22,36 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class HospedajePersistence 
 {
-    private static final Logger LOGGER = Logger.getLogger(DefaultPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(EstudiantePersistence.class.getName());
 
     @PersistenceContext(unitName = "viviendaUniversitariaPU")
     protected EntityManager em;
     
-    public HospedajeEntity create(HospedajeEntity entidad)
-    {
-        em.persist(entidad);
-        LOGGER.info("Nuevo hospedaje creado");
-        return entidad;
+    public HospedajeEntity create(HospedajeEntity entity) {
+        LOGGER.info("Creando un hospedaje nuevo");
+        em.persist(entity);
+        LOGGER.info("Creando un hospedaje nuevo");
+        return entity;
     }
-    
-    public HospedajeEntity update(HospedajeEntity entidad)
-    {
-        LOGGER.info("Actualizando hospedaje con id: "+entidad.getId());
-        return em.merge(entidad);
+
+    public HospedajeEntity update(HospedajeEntity entity) {
+        LOGGER.log(Level.INFO, "Actualizando un hospedaje con id={0}", entity.getId());
+        return em.merge(entity);
     }
-    
-    public void delete(HospedajeEntity entidad)
-    {
-        em.remove(entidad);
+
+    public void delete(Long id) {
+        LOGGER.log(Level.INFO, "Borrando hospedaje con id={0}", id);
+        em.remove(em.find(HospedajeEntity.class, id));
     }
-    
-    public HospedajeEntity findId(Long id)
-    {
+
+    public HospedajeEntity find(Long id) {
+        LOGGER.log(Level.INFO, "Consultando hospedaje con id={0}", id);
         return em.find(HospedajeEntity.class, id);
     }
-    
-    public List<HospedajeEntity> findAll()
-    {
-        return em.createQuerty("select u from HospedajeEntity u", HospedajeEntity.class).getResultList();
+
+    public List<HospedajeEntity> findAll() {
+        LOGGER.info("Consultando todas los hospedaje");
+        return em.createQuery("select u from HospedajeEntity u", HospedajeEntity.class).getResultList();
     }
     
     
