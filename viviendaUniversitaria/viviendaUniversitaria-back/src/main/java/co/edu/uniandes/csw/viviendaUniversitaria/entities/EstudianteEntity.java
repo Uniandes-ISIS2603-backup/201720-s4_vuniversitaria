@@ -53,4 +53,3 @@ public class EstudianteEntity extends BaseEntity implements Serializable {
         this.cedula = cedula;
     }
 }
-

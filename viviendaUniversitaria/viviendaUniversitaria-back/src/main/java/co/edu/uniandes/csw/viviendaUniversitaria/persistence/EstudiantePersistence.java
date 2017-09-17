@@ -123,4 +123,3 @@ public class EstudiantePersistence {
         return query.getResultList();
     }
 }
-

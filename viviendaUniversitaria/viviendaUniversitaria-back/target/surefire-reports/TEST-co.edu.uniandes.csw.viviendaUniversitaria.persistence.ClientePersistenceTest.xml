@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReglaPersistenceTest" time="13.427" errors="0" skipped="0">
+<testsuite tests="10" failures="0" name="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ClientePersistenceTest" time="44.053" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_144\jre\bin"/>
@@ -14,7 +14,7 @@
     <property name="user.country" value="CO"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
-    <property name="test" value="co.edu.uniandes.csw.viviendaUniversitaria.persistence.**.*Test"/>
+    <property name="test" value="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ClientePersistenceTest"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.dir" value="C:\Users\ws.duarte\Desktop\Nueva carpeta\s4_vuniversitaria\viviendaUniversitaria\viviendaUniversitaria-back"/>
     <property name="java.runtime.version" value="1.8.0_144-b01"/>
@@ -45,7 +45,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_144\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=co.edu.uniandes.csw.viviendaUniversitaria.persistence.**.*Test -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 surefire:test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=co.edu.uniandes.csw.viviendaUniversitaria.persistence.ClientePersistenceTest -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 surefire:test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="es"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -62,9 +62,14 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReglaPersistenceTest" name="testFindAll" time="0.141"/>
-  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReglaPersistenceTest" name="testFind" time="0.078"/>
-  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReglaPersistenceTest" name="testCreate" time="0.14"/>
-  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReglaPersistenceTest" name="testDelete" time="0.078"/>
-  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReglaPersistenceTest" name="testUpdate" time="0.141"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ClientePersistenceTest" name="updateClienteTest" time="6.428"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ClientePersistenceTest" name="testFindAll" time="0.609"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ClientePersistenceTest" name="testFind" time="0.461"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ClientePersistenceTest" name="getClienteTest" time="0.484"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ClientePersistenceTest" name="deleteClienteTest" time="0.515"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ClientePersistenceTest" name="createClienteEntityTest" time="0.719"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ClientePersistenceTest" name="testCreate" time="0.343"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ClientePersistenceTest" name="testDelete" time="0.422"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ClientePersistenceTest" name="testUpdate" time="0.343"/>
+  <testcase classname="co.edu.uniandes.csw.viviendaUniversitaria.persistence.ClientePersistenceTest" name="getClienteEntityTest" time="0.39"/>
 </testsuite>
