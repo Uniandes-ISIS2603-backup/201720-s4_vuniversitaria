@@ -34,6 +34,13 @@ public class DetalleReservaEntity implements Serializable
     @PodamExclude
     @ManyToOne
     private FacturaEntity factura;
+    
+    /**
+     * Relacion con reserva
+     */
+    @PodamExclude
+    @ManyToOne
+    private ReservaEntity reserva;
 
     /**
      * Retorna el identificador del detalle de reserva.
@@ -81,6 +88,22 @@ public class DetalleReservaEntity implements Serializable
      */
     public void setFactura(FacturaEntity factura) {
         this.factura = factura;
+    }
+
+    /**
+     * Retorna la relacion con reserva.
+     * @return Relacion con reserva.
+     */
+    public ReservaEntity getReserva() {
+        return reserva;
+    }
+
+    /**
+     * Cambia la relacion con reserva.
+     * @param reserva Nueva relacion con reserva.
+     */
+    public void setReserva(ReservaEntity reserva) {
+        this.reserva = reserva;
     }
     
     /**

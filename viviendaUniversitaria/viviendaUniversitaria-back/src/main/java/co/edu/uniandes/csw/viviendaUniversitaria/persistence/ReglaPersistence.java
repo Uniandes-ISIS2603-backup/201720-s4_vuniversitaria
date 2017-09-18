@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 /**
  *
  * @author NOA_WERMEID
@@ -21,7 +20,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class ReglaPersistence 
 {
-    private static final Logger LOGGER = Logger.getLogger(EstudiantePersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ReglaPersistence.class.getName());
 
     @PersistenceContext(unitName = "viviendaUniversitariaPU")
     protected EntityManager em;

@@ -39,6 +39,13 @@ public class DetalleServicioEntity implements Serializable
     @PodamExclude
     @ManyToOne
     private FacturaEntity factura;
+    
+    /**
+     * Relacion con servicio.
+     */
+    @PodamExclude
+    @ManyToOne
+    private ServiciosEntity servicio;
 
     /**
      * Retorna el identificador del detalle del servicio.
@@ -102,6 +109,22 @@ public class DetalleServicioEntity implements Serializable
      */
     public void setFactura(FacturaEntity factura) {
         this.factura = factura;
+    }
+
+    /**
+     * Retorna la relacion con servicio.
+     * @return Relacion con servicio.
+     */
+    public ServiciosEntity getServicio() {
+        return servicio;
+    }
+
+    /**
+     * Cambia la relacion con servicio.
+     * @param servicio Nueva relacion con servicio.
+     */
+    public void setServicio(ServiciosEntity servicio) {
+        this.servicio = servicio;
     }
     
     /**

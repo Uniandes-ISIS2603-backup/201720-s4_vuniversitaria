@@ -6,7 +6,11 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -17,6 +21,9 @@ public class ArrendadorEntity extends BaseEntity implements Serializable{
 
     private String nombre;// Nombre asociado al arrendador
     
+    @PodamExclude
+    @OneToMany(mappedBy = "arrendador", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HospedajeEntity> hospedaje;
     
     /**
      * Retorna el nombre de un arrendador
@@ -33,5 +40,14 @@ public class ArrendadorEntity extends BaseEntity implements Serializable{
      */
     public void setNombre(String nombre){
         this.nombre= nombre;
+    }
+    
+    public List<HospedajeEntity> getHospedajes()
+    {
+        return this.hospedaje;
+    }
+    
+    public void setHospedajes(List<HospedajeEntity> hospedaje){
+        this.hospedaje= hospedaje;
     }
 }
