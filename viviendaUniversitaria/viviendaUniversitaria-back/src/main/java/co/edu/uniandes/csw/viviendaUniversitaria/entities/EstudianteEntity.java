@@ -26,6 +26,10 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -36,7 +40,15 @@ public class EstudianteEntity extends BaseEntity implements Serializable {
     
     String nombre;
     int cedula;
-
+    
+    @PodamExclude
+    @OneToOne(fetch=FetchType.EAGER)
+    OrigenEntity origen;
+    
+    @PodamExclude
+    @ManyToOne
+    HospedajeEntity hospedaje;
+    
     public String getNombre() {
         return nombre;
     }
