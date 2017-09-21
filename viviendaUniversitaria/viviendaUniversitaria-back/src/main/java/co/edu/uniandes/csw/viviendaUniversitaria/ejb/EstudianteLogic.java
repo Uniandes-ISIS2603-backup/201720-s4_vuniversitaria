@@ -40,10 +40,10 @@ import javax.inject.Inject;
 @Stateless
 public class EstudianteLogic {
 
-    private static final Logger LOGGER = Logger.getLogger(EstudianteLogic.class.getName());
+        private static final Logger LOGGER = Logger.getLogger(EstudianteLogic.class.getName());
 
-    @Inject
-    private EstudiantePersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+        @Inject
+        private EstudiantePersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     /**
      *
@@ -72,6 +72,38 @@ public class EstudianteLogic {
         LOGGER.info("Termina proceso de consultar todas las Defaultes");
         return Default;
     }
-
+ /**
+     * Obtiene los datos de una instancia de Estudiante a partir de su ID.
+     *
+     * @param id Identificador de la instancia a consultar
+     * @return Instancia de EstudianteEntity con los datos del Estudiante consultado.
+     * @generated
+     */
+    public EstudianteEntity getEstudiante(Long id) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un estudiante con id = {0}", id);
+        return persistence.find(id);
+    }
+ /**
+     * Actualiza la información de una instancia de Estudiante.
+     *
+     * @param entity Instancia de EstudianteEntity con los nuevos datos.
+     * @return Instancia de EstudianteEntity con los datos actualizados.
+     * @generated
+     */
+    public EstudianteEntity updateEstudiante(EstudianteEntity entity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar un estudiante ");
+        return persistence.update(entity);
+    }
+    
+        /**
+     * Elimina una instancia de Estudiante de la base de datos.
+     *
+     * @param id Identificador de la instancia a eliminar.
+     * @generated
+     */
+    public void deleteEstudiante(Long id) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un estudiante ");
+        persistence.delete(id);
+    }
 
 }
