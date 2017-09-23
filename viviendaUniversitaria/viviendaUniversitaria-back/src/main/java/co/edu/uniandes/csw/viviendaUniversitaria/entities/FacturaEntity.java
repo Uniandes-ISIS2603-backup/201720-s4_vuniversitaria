@@ -7,10 +7,16 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -21,9 +27,26 @@ public class FacturaEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    
     private Date fecha;
     private double total;
     private double iva;
+    
+    @PodamExclude
+    @OneToMany (mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true))
+    private List<DetalleReservaEntity> detallesReserva;
+    
+    @PodamExclude
+    @ManyToOne
+    private HospedajeEntity hospedaje;
+    
+    @PodamExclude
+    @OneToOne
+    private EstudianteEntity estudiante;
+    
+    @OneToMany (mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true))
+    private List<DetalleServicioEntity> listaServicios;
 
     public Long getId() {
         return id;
