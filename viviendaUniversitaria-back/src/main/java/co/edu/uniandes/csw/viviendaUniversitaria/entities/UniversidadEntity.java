@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -14,8 +16,16 @@ import javax.persistence.Entity;
  */
 @Entity
 public class UniversidadEntity extends BaseEntity implements Serializable {
-    
-  
-}
-    
 
+    @PodamExclude
+    @OneToOne(mappedBy = "universidad", orphanRemoval = true)
+    private UbicacionEntity ubicacion;
+
+    public UbicacionEntity getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(UbicacionEntity ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+}

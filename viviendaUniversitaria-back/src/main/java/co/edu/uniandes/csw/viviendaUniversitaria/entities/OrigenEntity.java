@@ -7,9 +7,12 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -23,6 +26,10 @@ public class OrigenEntity implements Serializable{
     private Long id;
     
     private String name;
+    
+    @PodamExclude
+    @OneToOne
+    private EstudianteEntity estudiante;
 
     public String getName() {
         return name;
@@ -30,6 +37,14 @@ public class OrigenEntity implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public EstudianteEntity getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(EstudianteEntity estudiante) {
+        this.estudiante = estudiante;
     }
 
     /**

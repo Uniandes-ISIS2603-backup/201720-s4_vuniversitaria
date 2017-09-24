@@ -116,7 +116,8 @@ public class UbicacionPersistenceTest {
         Assert.assertNotNull(result);
         UbicacionEntity entity = em.find(UbicacionEntity.class, result.getId());
         Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
+        Assert.assertEquals(newEntity.getLatitud(), entity.getLatitud());
     }
 
     /**
@@ -129,12 +130,14 @@ public class UbicacionPersistenceTest {
         UbicacionEntity newEntity = factory.manufacturePojo(UbicacionEntity.class);
 
         newEntity.setId(entity.getId());
-
+        newEntity.setDireccion(entity.getDireccion());
+        newEntity.setLatitud(entity.getLatitud());
         persistence.update(newEntity);
 
         UbicacionEntity resp = em.find(UbicacionEntity.class, entity.getId());
-
-        Assert.assertEquals(newEntity.getName(), resp.getName());
+        Assert.assertNotNull(resp);
+        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
+        Assert.assertEquals(newEntity.getLatitud(), entity.getLatitud());
     }
 
     /**
@@ -156,7 +159,8 @@ public class UbicacionPersistenceTest {
         UbicacionEntity entity = data.get(0);
         UbicacionEntity newEntity = persistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
+        Assert.assertEquals(newEntity.getLatitud(), entity.getLatitud());
     }
 
     /**

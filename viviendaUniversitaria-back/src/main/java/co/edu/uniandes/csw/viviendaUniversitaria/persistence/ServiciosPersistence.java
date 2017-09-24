@@ -34,7 +34,7 @@ public class ServiciosPersistence {
     }
 
     public ServiciosEntity update(ServiciosEntity entidad) {
-        LOGGER.info("Actualizando servicio con id: " + entidad.getId());
+        LOGGER.info("Actualizando servicio en persistencia");
         return em.merge(entidad);
     }
 

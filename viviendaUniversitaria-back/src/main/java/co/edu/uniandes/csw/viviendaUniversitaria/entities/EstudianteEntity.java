@@ -25,9 +25,12 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -38,25 +41,45 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class EstudianteEntity extends BaseEntity implements Serializable {
     
-    String nombre;
     int cedula;
     
     @PodamExclude
-    @OneToOne(fetch=FetchType.EAGER)
-    OrigenEntity origen;
+    @OneToOne(mappedBy = "estudiante", fetch=FetchType.EAGER)
+    private OrigenEntity origen;
     
     @PodamExclude
-    @ManyToOne
-    HospedajeEntity hospedaje;
+    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FacturaEntity> facturas;
     
-    public String getNombre() {
-        return nombre;
+    @PodamExclude
+    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FacturaEntity> reservas;
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "estudiante")
+    private List<FacturaEntity> calificaciones;
+    
+    public List<FacturaEntity> getReservas() {
+        return reservas;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+//    @PodamExclude
+//    @ManyToOne
+//    HospedajeEntity hospedaje;
+    public void setReservas(List<FacturaEntity> reservas) {
+        this.reservas = reservas;
     }
 
+    public List<FacturaEntity> getCalificaciones() {
+        return calificaciones;
+    }
+
+    public void setCalificaciones(List<FacturaEntity> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+
+    
+    
     public int getCedula() {
         return cedula;
     }
@@ -64,4 +87,22 @@ public class EstudianteEntity extends BaseEntity implements Serializable {
     public void setCedula(int cedula) {
         this.cedula = cedula;
     }
+
+    public OrigenEntity getOrigen() {
+        return origen;
+    }
+
+    public void setOrigen(OrigenEntity origen) {
+        this.origen = origen;
+    }
+
+    public List<FacturaEntity> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<FacturaEntity> facturas) {
+        this.facturas = facturas;
+    }
+    
+    
 }

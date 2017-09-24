@@ -7,10 +7,16 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -18,9 +24,53 @@ import javax.persistence.Id;
  */
 @Entity
 public class ReservaEntity implements Serializable {
-       @Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private int cedulaHuesped;
+    private int idHospedaje;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaInicio;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaFin;
+
+    @PodamExclude
+    @ManyToOne
+    private EstudianteEntity estudiante;
+    
+    @PodamExclude
+    @ManyToOne
+    private HospedajeEntity hospedaje;
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "reserva", fetch = FetchType.LAZY)
+    private List<DetalleReservaEntity> detalleReserva;
+
+    public List<DetalleReservaEntity> getDetalleReserva() {
+        return detalleReserva;
+    }
+
+    public HospedajeEntity getHospedaje() {
+        return hospedaje;
+    }
+
+    public void setHospedaje(HospedajeEntity hospedaje) {
+        this.hospedaje = hospedaje;
+    }
+
+    public EstudianteEntity getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(EstudianteEntity estudiante) {
+        this.estudiante = estudiante;
+    }
+
+    public void setDetalleReserva(List<DetalleReservaEntity> detalleReserva) {
+        this.detalleReserva = detalleReserva;
+    }
 
     public Long getId() {
         return id;
@@ -52,6 +102,7 @@ public class ReservaEntity implements Serializable {
 
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
+
     }
 
     public Date getFechaFin() {
@@ -61,9 +112,5 @@ public class ReservaEntity implements Serializable {
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
-       
-       private int cedulaHuesped;
-       private int idHospedaje;
-       private Date fechaInicio;
-       private Date fechaFin;
+
 }

@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReglaEntity;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -22,7 +21,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class HospedajePersistence 
 {
-    private static final Logger LOGGER = Logger.getLogger(EstudiantePersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(HospedajePersistence.class.getName());
 
     @PersistenceContext(unitName = "viviendaUniversitariaPU")
     protected EntityManager em;

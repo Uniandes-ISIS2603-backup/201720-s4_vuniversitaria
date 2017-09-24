@@ -26,16 +26,52 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author ISIS2603
  */
 @Entity
-public class UbicacionEntity extends BaseEntity implements Serializable {
-    
+public class UbicacionEntity  implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     String direccion;
+    Long latitud;
+    Long altitud;
 
+    @PodamExclude
+    @OneToOne
+    private LugaresInteresEntity lugaresInteres;
+    
+    @PodamExclude
+    @OneToOne
+    private UniversidadEntity universidad;
+    
+    @PodamExclude
+    @OneToOne
+    private HospedajeEntity hospedaje;
+
+    public LugaresInteresEntity getLugaresInteres() {
+        return lugaresInteres;
+    }
+
+    public void setLugaresInteres(LugaresInteresEntity lugaresInteres) {
+        this.lugaresInteres = lugaresInteres;
+    }
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     public Long getLatitud() {
         return latitud;
     }
@@ -51,15 +87,29 @@ public class UbicacionEntity extends BaseEntity implements Serializable {
     public void setAltitud(Long altitud) {
         this.altitud = altitud;
     }
-    Long latitud;
-    Long altitud;
-
+    
     public String getDireccion() {
         return direccion;
     }
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public UniversidadEntity getUniversidad() {
+        return universidad;
+    }
+
+    public void setUniversidad(UniversidadEntity universidad) {
+        this.universidad = universidad;
+    }
+
+    public HospedajeEntity getHospedaje() {
+        return hospedaje;
+    }
+
+    public void setHospedaje(HospedajeEntity hospedaje) {
+        this.hospedaje = hospedaje;
     }
     
 }

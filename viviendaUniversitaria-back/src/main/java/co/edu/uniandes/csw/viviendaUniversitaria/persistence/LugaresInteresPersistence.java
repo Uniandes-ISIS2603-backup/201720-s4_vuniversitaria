@@ -35,7 +35,7 @@ public class LugaresInteresPersistence {
     }
 
     public LugaresInteresEntity update(LugaresInteresEntity entidad) {
-        LOGGER.info("Actualizando lugar de interes con id: " + entidad.getId());
+        LOGGER.info("Actualizando lugar de interes en persistencia");
         return em.merge(entidad);
     }
 

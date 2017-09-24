@@ -6,18 +6,61 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
- * @author Juan Camilo Sanguino
+ * Clase que modela un servicio prestado por un hospedaje
  */
 @Entity
 public class ServiciosEntity extends BaseEntity implements Serializable {
-    
 
+    /**
+     * Asociacion con detalle de facuctura
+     */
+    @PodamExclude
+    @OneToMany(mappedBy = "servicio", fetch = FetchType.LAZY)
+    private List<DetalleServicioEntity> detalleServicio;
+    
+    @PodamExclude
+    @ManyToOne
+    private HospedajeEntity hospedaje;
+    /**
+     * Descripcion del servicio prestado
+     */
     private String descripcion;
+    /**
+     * Costo por adquirir el servicio, 0 en caso de venir incluido con el
+     * hospedaje
+     */
     private double costo;
+
+
+    public List<DetalleServicioEntity> getDetalleServicio() {
+        return detalleServicio;
+    }
+
+    //--------------------------------------------//
+    //--------------GETTERS AND SETTERS-----------//
+    //--------------------------------------------//
+    public void setDetalleServicio(List<DetalleServicioEntity> detalleServicio) {
+        this.detalleServicio = detalleServicio;
+    }
+
+    public HospedajeEntity getHospedaje() {
+        return hospedaje;
+    }
+
+    public void setHospedaje(HospedajeEntity hospedaje) {
+        this.hospedaje = hospedaje;
+    }
+    
 
     public String getDescripcion() {
         return descripcion;
@@ -34,6 +77,5 @@ public class ServiciosEntity extends BaseEntity implements Serializable {
     public void setCosto(double costo) {
         this.costo = costo;
     }
-    
-    
+
 }

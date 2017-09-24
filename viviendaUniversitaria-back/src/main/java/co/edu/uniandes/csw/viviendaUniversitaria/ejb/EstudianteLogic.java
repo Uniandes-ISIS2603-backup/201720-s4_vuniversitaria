@@ -54,6 +54,9 @@ public class EstudianteLogic {
     public EstudianteEntity createEstudiante(EstudianteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Default");
         // Invoca la persistencia para crear la Default
+        if(validate(entity.getId())!=false){
+            throw new BusinessLogicException("el id es invalido para crear un estudiante");
+        }
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Default");
         return entity;
@@ -68,6 +71,7 @@ public class EstudianteLogic {
     public List<EstudianteEntity> getEstudiantes() {
         LOGGER.info("Inicia proceso de consultar todas las Defaultes");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
+        
         List<EstudianteEntity> Default = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todas las Defaultes");
         return Default;
@@ -79,8 +83,11 @@ public class EstudianteLogic {
      * @return Instancia de EstudianteEntity con los datos del Estudiante consultado.
      * @generated
      */
-    public EstudianteEntity getEstudiante(Long id) {
+    public EstudianteEntity getEstudiante(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar un estudiante con id = {0}", id);
+        if(validate(id)==false){
+            throw new BusinessLogicException("el id es invalido para buscar un estudiante");
+        }
         return persistence.find(id);
     }
  /**
@@ -90,8 +97,11 @@ public class EstudianteLogic {
      * @return Instancia de EstudianteEntity con los datos actualizados.
      * @generated
      */
-    public EstudianteEntity updateEstudiante(EstudianteEntity entity) {
+    public EstudianteEntity updateEstudiante(EstudianteEntity entity) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un estudiante ");
+         if(validate(entity.getId())==false){
+            throw new BusinessLogicException("el id es invalido para update un estudiante");
+        }
         return persistence.update(entity);
     }
     
@@ -101,9 +111,18 @@ public class EstudianteLogic {
      * @param id Identificador de la instancia a eliminar.
      * @generated
      */
-    public void deleteEstudiante(Long id) {
+    public void deleteEstudiante(Long id) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un estudiante ");
+         if(validate(id)==false){
+            throw new BusinessLogicException("el id es invalido para buscar un estudiante");
+        }
         persistence.delete(id);
     }
 
+     private boolean validate(Long id) {
+        if (id == null) {
+            return false;
+        }
+        return true;
+    }
 }
