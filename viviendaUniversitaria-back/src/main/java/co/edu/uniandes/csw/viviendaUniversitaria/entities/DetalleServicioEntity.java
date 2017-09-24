@@ -134,7 +134,7 @@ public class DetalleServicioEntity implements Serializable
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof DetalleServicioEntity && this.id != null && ((DetalleServicioEntity)obj).getId() != null) return this.id.equals(((DetalleServicioEntity)obj).getId());
+        if(obj != null && obj instanceof DetalleServicioEntity && this.id != null && ((DetalleServicioEntity)obj).getId() != null) return this.id.equals(((DetalleServicioEntity)obj).getId());
         return super.equals(obj); 
     }
 
