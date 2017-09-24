@@ -6,15 +6,17 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.persistence.CalificacionPersistence;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.junit.Assert;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.junit.After;
@@ -37,6 +39,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class CalificacionPersistenceTest {
+    private static final Logger LOGGER = Logger.getLogger(CalificacionPersistenceTest.class.getName());
     
     @Inject
     private CalificacionPersistence persistence;
@@ -81,10 +84,12 @@ public class CalificacionPersistenceTest {
             utx.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            LOGGER.log(Level.INFO, e.getMessage());
             try {
                 utx.rollback();
-            } catch (Exception e1) {
+            } catch (IllegalStateException | SecurityException | SystemException e1) {
                 e1.printStackTrace();
+                LOGGER.log(Level.INFO, e1.getMessage());
             }
         }
     }
@@ -112,7 +117,7 @@ public class CalificacionPersistenceTest {
      * Test of create method, of class ArrendadorPersistence.
      */
     @Test
-    public void testCreate() throws Exception {
+    public void testCreate() {
         PodamFactory factory = new PodamFactoryImpl();
         CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
         CalificacionEntity result = persistence.create(newEntity);
@@ -130,7 +135,7 @@ public class CalificacionPersistenceTest {
      * Test of update method, of class ArrendadorPersistence.
      */
     @Test
-    public void testUpdate() throws Exception {
+    public void testUpdate(){
         CalificacionEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
@@ -149,7 +154,7 @@ public class CalificacionPersistenceTest {
      * Test of delete method, of class ArrendadorPersistence.
      */
     @Test
-    public void testDelete() throws Exception {
+    public void testDelete(){
         CalificacionEntity entity = data.get(0);
         persistence.delete(entity.getId());
         CalificacionEntity deleted = em.find(CalificacionEntity.class, entity.getId());
@@ -160,7 +165,7 @@ public class CalificacionPersistenceTest {
      * Test of find method, of class ArrendadorPersistence.
      */
     @Test
-    public void testFind() throws Exception {
+    public void testFind() {
         CalificacionEntity entity = data.get(0);
         CalificacionEntity newEntity = persistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
@@ -172,7 +177,7 @@ public class CalificacionPersistenceTest {
      * Test of findAll method, of class ArrendadorPersistence.
      */
     @Test
-    public void testFindAll() throws Exception {
+    public void testFindAll(){
         List<CalificacionEntity> list = persistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (CalificacionEntity ent : list) {

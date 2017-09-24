@@ -1,10 +1,10 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -13,7 +13,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author ws.duarte
  */
 @Entity
-public class HospedajeLugarEntity 
+public class HospedajeLugarEntity implements Serializable
 {
     /**
      * Código unico de la relacíón.
@@ -112,7 +112,7 @@ public class HospedajeLugarEntity
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof HospedajeEntity && this.id != null && ((HospedajeEntity)obj).getId() != null) return this.id.equals(((HospedajeEntity)obj).getId());
+        if(obj != null && obj instanceof HospedajeEntity && this.id != null && ((HospedajeEntity)obj).getId() != null) return this.id.equals(((HospedajeEntity)obj).getId());
         return super.equals(obj); 
     }
 

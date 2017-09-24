@@ -88,7 +88,7 @@ public class ReglaEntity implements Serializable
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof ReglaEntity && this.id != null && ((ReglaEntity)obj).getId() != null) return this.id.equals(((ReglaEntity)obj).getId());
+        if(obj != null && obj instanceof ReglaEntity && this.id != null && ((ReglaEntity)obj).getId() != null) return this.id.equals(((ReglaEntity)obj).getId());
         return super.equals(obj); 
     }
 

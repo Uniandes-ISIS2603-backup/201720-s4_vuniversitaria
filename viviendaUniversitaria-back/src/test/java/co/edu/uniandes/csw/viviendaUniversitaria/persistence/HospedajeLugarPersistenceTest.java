@@ -99,6 +99,18 @@ public class HospedajeLugarPersistenceTest {
     @After
     public void tearDown() {
     }
+    
+    @Test
+    public void testCreate() throws Exception {
+PodamFactory factory = new PodamFactoryImpl();
+    HospedajeLugarEntity newEntity = factory.manufacturePojo(HospedajeLugarEntity.class);
+    HospedajeLugarEntity result = persistence.create(newEntity);
+
+    Assert.assertNotNull(result);
+    HospedajeLugarEntity entity = em.find(HospedajeLugarEntity.class, result.getId());
+    Assert.assertNotNull(entity);
+    Assert.assertEquals(newEntity.getId(), entity.getId());
+    }
 
     /**
      * Test of create method, of class HospedajeLugarPersistence.

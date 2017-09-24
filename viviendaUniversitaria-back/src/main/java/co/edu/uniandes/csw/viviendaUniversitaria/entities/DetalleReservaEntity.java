@@ -114,7 +114,7 @@ public class DetalleReservaEntity implements Serializable
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof DetalleReservaEntity && this.id != null && ((DetalleReservaEntity)obj).getId() != null) return this.id.equals(((DetalleReservaEntity)obj).getId());
+        if(obj != null && obj instanceof DetalleReservaEntity && this.id != null && ((DetalleReservaEntity)obj).getId() != null) return this.id.equals(((DetalleReservaEntity)obj).getId());
         return super.equals(obj); 
     }
 

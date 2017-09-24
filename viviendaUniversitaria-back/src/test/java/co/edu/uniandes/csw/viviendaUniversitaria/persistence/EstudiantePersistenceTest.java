@@ -117,9 +117,9 @@ PodamFactory factory = new PodamFactoryImpl();
     EstudianteEntity result = persistence.create(newEntity);
 
     Assert.assertNotNull(result);
-    EstudianteEntity entity = em.find(EstudianteEntity.class, result.getId());
+    EstudianteEntity entity = em.find(EstudianteEntity.class, result.getCedula());
     Assert.assertNotNull(entity);
-    Assert.assertEquals(newEntity.getName(), entity.getName());
+    Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
 
     /**
@@ -131,13 +131,13 @@ PodamFactory factory = new PodamFactoryImpl();
         PodamFactory factory = new PodamFactoryImpl();
         EstudianteEntity newEntity = factory.manufacturePojo(EstudianteEntity.class);
 
-        newEntity.setId(entity.getId());
+        newEntity.setCedula(entity.getCedula());
 
         persistence.update(newEntity);
 
-        EstudianteEntity resp = em.find(EstudianteEntity.class, entity.getId());
+        EstudianteEntity resp = em.find(EstudianteEntity.class, entity.getCedula());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
+        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
     }
 
     /**
@@ -146,8 +146,8 @@ PodamFactory factory = new PodamFactoryImpl();
     @Test
     public void testDelete() throws Exception {
         EstudianteEntity entity = data.get(0);
-        persistence.delete(entity.getId());
-        EstudianteEntity deleted = em.find(EstudianteEntity.class, entity.getId());
+        persistence.delete(entity.getCedula());
+        EstudianteEntity deleted = em.find(EstudianteEntity.class, entity.getCedula());
         Assert.assertNull(deleted);
     }
 
@@ -157,9 +157,9 @@ PodamFactory factory = new PodamFactoryImpl();
     @Test
     public void testFind() throws Exception {
         EstudianteEntity entity = data.get(0);
-        EstudianteEntity newEntity = persistence.find(entity.getId());
+        EstudianteEntity newEntity = persistence.find(entity.getCedula());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
     }
 
     /**
@@ -172,7 +172,7 @@ PodamFactory factory = new PodamFactoryImpl();
         for (EstudianteEntity ent : list) {
             boolean found = false;
             for (EstudianteEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
+                if (ent.getCedula().equals(entity.getCedula())) {
                     found = true;
                 }
             }

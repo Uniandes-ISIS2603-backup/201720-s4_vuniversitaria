@@ -68,7 +68,7 @@ public class EstudiantePersistence {
      * @return un default con los cambios aplicados.
      */
     public EstudianteEntity update(EstudianteEntity entity) {
-        LOGGER.log(Level.INFO, "Actualizando Estudiante con id={0}", entity.getId());
+        LOGGER.log(Level.INFO, "Actualizando Estudiante con id={0}", entity.getCedula());
         /* Note que hacemos uso de un método propio del EntityManager llamado merge() que recibe como argumento
         la Default con los cambios, esto es similar a 
         "UPDATE table_codigo SET column1 = value1, column2 = value2, ... WHERE condition;" en SQL.
