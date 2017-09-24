@@ -19,7 +19,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class LugaresInteresPersistence {
 
-    private static final Logger LOGGER = Logger.getLogger(DefaultPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(LugaresInteresPersistence.class.getName());
 
     @PersistenceContext(unitName = "viviendaUniversitariaPU")
     protected EntityManager em;

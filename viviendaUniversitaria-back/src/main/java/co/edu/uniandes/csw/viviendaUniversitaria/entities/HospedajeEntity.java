@@ -69,7 +69,7 @@ public class HospedajeEntity implements Serializable
     
     @PodamExclude
     @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<HospedajeLugarEntity> facturas;
+    private List<FacturaEntity> facturas;
     
     /**
      * Relación con reserva.
@@ -275,11 +275,11 @@ public class HospedajeEntity implements Serializable
         this.ubicacion = ubicacion;
     }
 
-    public List<HospedajeLugarEntity> getFacturas() {
+    public List<FacturaEntity> getFacturas() {
         return facturas;
     }
 
-    public void setFacturas(List<HospedajeLugarEntity> facturas) {
+    public void setFacturas(List<FacturaEntity> facturas) {
         this.facturas = facturas;
     }
     

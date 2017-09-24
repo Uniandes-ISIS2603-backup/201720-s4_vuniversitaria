@@ -29,7 +29,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -39,9 +39,13 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author ISIS2603
  */
 @Entity
-public class EstudianteEntity extends BaseEntity implements Serializable {
+public class EstudianteEntity  implements Serializable //extends BaseEntity
+{
+
+    @Id
+    private Long cedula;
     
-    int cedula;
+    private String nombre;
     
     @PodamExclude
     @OneToOne(mappedBy = "estudiante", fetch=FetchType.EAGER)
@@ -63,9 +67,6 @@ public class EstudianteEntity extends BaseEntity implements Serializable {
         return reservas;
     }
 
-//    @PodamExclude
-//    @ManyToOne
-//    HospedajeEntity hospedaje;
     public void setReservas(List<FacturaEntity> reservas) {
         this.reservas = reservas;
     }
@@ -78,13 +79,21 @@ public class EstudianteEntity extends BaseEntity implements Serializable {
         this.calificaciones = calificaciones;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     
     
-    public int getCedula() {
+    public Long getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(Long cedula) {
         this.cedula = cedula;
     }
 

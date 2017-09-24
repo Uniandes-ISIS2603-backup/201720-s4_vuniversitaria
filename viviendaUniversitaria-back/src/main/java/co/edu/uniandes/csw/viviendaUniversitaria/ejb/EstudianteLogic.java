@@ -54,7 +54,7 @@ public class EstudianteLogic {
     public EstudianteEntity createEstudiante(EstudianteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Default");
         // Invoca la persistencia para crear la Default
-        if(validate(entity.getId())!=false){
+        if(validate(entity.getCedula())!=false){
             throw new BusinessLogicException("el id es invalido para crear un estudiante");
         }
         persistence.create(entity);
@@ -99,7 +99,7 @@ public class EstudianteLogic {
      */
     public EstudianteEntity updateEstudiante(EstudianteEntity entity) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un estudiante ");
-         if(validate(entity.getId())==false){
+         if(validate(entity.getCedula())==false){
             throw new BusinessLogicException("el id es invalido para update un estudiante");
         }
         return persistence.update(entity);
