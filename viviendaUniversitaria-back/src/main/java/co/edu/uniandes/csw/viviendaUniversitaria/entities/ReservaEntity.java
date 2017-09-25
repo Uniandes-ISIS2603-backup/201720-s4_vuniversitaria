@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -41,7 +42,7 @@ public class ReservaEntity implements Serializable {
     private EstudianteEntity estudiante;
     
     @PodamExclude
-    @ManyToOne
+    @OneToOne
     private HospedajeEntity hospedaje;
     
     @PodamExclude
