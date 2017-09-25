@@ -32,7 +32,7 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class HospedajeResource {
-    private static final Logger LOGGER = Logger.getLogger(ReglaResource.class.getName());
+    
     
     @Inject
     private HospedajeLogic logic;

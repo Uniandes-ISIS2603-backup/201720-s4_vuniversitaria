@@ -36,14 +36,14 @@ public class HospedajeLogic
             LOGGER.log(Level.WARNING, "Intento de creacion fallido.\nLa entidad ya existe\nId:{1}", entidad.getId());
             throw new WebApplicationException("Creacion: La entidad ya existe", 405);
         }
-        return persistence.create(entidad);
+        return persistence.create((entidad));
     }
     
     public HospedajeEntity update(HospedajeEntity entidad) throws WebApplicationException
     {
         LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", entidad.getId());
         validar(entidad, "Actualización");
-        return persistence.update(validarEntidad(entidad));
+        return persistence.update((entidad));
     }
     
     public void delete(Long id) throws WebApplicationException
@@ -82,11 +82,11 @@ public class HospedajeLogic
         }
     }
     
-    private HospedajeEntity validarEntidad(HospedajeEntity entidad) throws WebApplicationException
-    {
-        if(entidad == null || entidad.getArrendador() != null || entidad.getDescripcion() != null || entidad.getTipoArrendamiento()!= null )
-            throw new WebApplicationException("El parametro enviado no cumple con las caracteristicas especificadas",407);
-        return entidad;
-    }
+//    private HospedajeEntity validarEntidad(HospedajeEntity entidad) throws WebApplicationException
+//    {
+//        if(entidad == null || entidad.getArrendador() != null || entidad.getDescripcion() != null || entidad.getTipoArrendamiento()!= null )
+//            throw new WebApplicationException("El parametro enviado no cumple con las caracteristicas especificadas",407);
+//        return entidad;
+//    }
     
 }

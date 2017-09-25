@@ -50,9 +50,7 @@ public class ReglaPersistence
 
     public List<ReglaEntity> findAll() {
         LOGGER.info("Consultando todas las regla");
-        List<ReglaEntity> ret = em.createQuery("select u from ReglaEntity u", ReglaEntity.class).getResultList();
-        if(ret == null) return new ArrayList<>();
-        return ret;
+        return em.createQuery("select u from ReglaEntity u", ReglaEntity.class).getResultList();
     }
     
 }

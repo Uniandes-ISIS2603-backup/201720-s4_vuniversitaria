@@ -34,7 +34,7 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class ReglaResource 
 {
-    private static final Logger LOGGER = Logger.getLogger(ReglaResource.class.getName());
+   
     
     @Inject
     private ReglaLogic logic;
