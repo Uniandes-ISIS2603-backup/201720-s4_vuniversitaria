@@ -5,10 +5,8 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.LugaresInteresEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.UbicacionEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.UniversidadEntity;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -18,54 +16,10 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 
 public class UbicacionDTO {
-    private Long id;
-    private Long latitud;
-    private Long altitud;
-    private String direccion;
-    
-    /**
-     * Relación con el hospedaje.
-     */
-    @PodamExclude
-    @OneToOne(mappedBy = "ubicacion", orphanRemoval = true)
-    private HospedajeEntity  hospedaje;
- /**
-     * Relación con LugaresInteres
-     */
-    @PodamExclude
-    @OneToOne(mappedBy = "ubicacion", orphanRemoval = true)
-    private LugaresInteresEntity lugarInteres;
-/**
-     * Relación con Universidad.
-     */
-    @PodamExclude
-    @OneToOne(mappedBy = "ubicacion", orphanRemoval = true)
-    private UniversidadEntity  universidad;
 
-    public HospedajeEntity getHospedaje() {
-        return hospedaje;
-    }
-
-    public void setHospedaje(HospedajeEntity hospedaje) {
-        this.hospedaje = hospedaje;
-    }
-
-    public LugaresInteresEntity getLugarInteres() {
-        return lugarInteres;
-    }
-
-    public void setLugarInteres(LugaresInteresEntity lugarInteres) {
-        this.lugarInteres = lugarInteres;
-    }
-
-    public UniversidadEntity getUniversidad() {
-        return universidad;
-    }
-
-    public void setUniversidad(UniversidadEntity universidad) {
-        this.universidad = universidad;
-    }
-    
+    //@PodamExclude
+//@OneToOne("LugarInteres")
+//private LugaresInteresEntity lugares;
     public Long getId() {
         return id;
     }
@@ -98,6 +52,10 @@ public class UbicacionDTO {
         this.direccion = direccion;
     }
     
+    private Long id;
+    private Long latitud;
+    private Long altitud;
+    private String direccion;
     
     public UbicacionDTO(){
         
