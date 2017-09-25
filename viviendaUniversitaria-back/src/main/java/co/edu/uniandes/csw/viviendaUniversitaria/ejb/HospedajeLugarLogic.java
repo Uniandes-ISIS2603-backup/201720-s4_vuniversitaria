@@ -43,7 +43,7 @@ public class HospedajeLugarLogic
     {
         LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", entidad.getId());
         validar(entidad, "Actualización");
-        return persistence.update(validarEntidad(entidad));
+        return persistence.update((entidad));
     }
     
     public void delete(Long id) throws WebApplicationException
@@ -82,11 +82,11 @@ public class HospedajeLugarLogic
         }
     }
     
-    private HospedajeLugarEntity validarEntidad(HospedajeLugarEntity entidad) throws WebApplicationException
-    {
-        if(entidad == null || entidad.getDistancia().intValue() <= 0 || entidad.getHospedaje() != null || entidad.getLugarInteres() != null)
-            throw new WebApplicationException("El parametro enviado no cumple con las caracteristicas especificadas",407);
-        return entidad;
-    }
+//    private HospedajeLugarEntity validarEntidad(HospedajeLugarEntity entidad) throws WebApplicationException
+//    {
+//        if(entidad == null || entidad.getDistancia().intValue() <= 0 || entidad.getHospedaje() != null || entidad.getLugarInteres() != null)
+//            throw new WebApplicationException("El parametro enviado no cumple con las caracteristicas especificadas",407);
+//        return entidad;
+//    }
     
 }

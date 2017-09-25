@@ -5,13 +5,12 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.dtos.*;
-import co.edu.uniandes.csw.viviendaUniversitaria.ejb.*;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.*;
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.DetalleServicioDTO;
+import co.edu.uniandes.csw.viviendaUniversitaria.ejb.DetalleServicioLogic;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.DetalleServicioEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -28,41 +27,40 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author ws.duarte
  */
-@Path("hospedaje")
+@Path("detalleServicio")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class HospedajeResource {
-    
+public class DetalleServicioResourse {
     
     @Inject
-    private HospedajeLogic logic;
+    private DetalleServicioLogic logic;
     
     @POST
-    public HospedajeDTO post(HospedajeDTO entidad) throws WebApplicationException, BusinessLogicException
+    public DetalleServicioDTO post(DetalleServicioDTO entidad) throws WebApplicationException, BusinessLogicException
     {
-        return new HospedajeDTO(logic.create(entidad.toEntity()));
+        return new DetalleServicioDTO(logic.create(entidad.toEntity()));
     }
     
     @GET
-    public List<HospedajeDTO> getAll() throws WebApplicationException, BusinessLogicException
+    public List<DetalleServicioDTO> getAll() throws WebApplicationException, BusinessLogicException
     {
         return construir(logic.findAll());
     }
     
     @GET
     @Path("{id: [0-9][0-9]*}")
-    public HospedajeDTO get(@PathParam("id") Long id) throws WebApplicationException, BusinessLogicException
+    public DetalleServicioDTO get(@PathParam("id") Long id) throws WebApplicationException, BusinessLogicException
     {
-        return new HospedajeDTO(logic.find(id));
+        return new DetalleServicioDTO(logic.find(id));
     }
     
     @PUT
     @Path("{id: [0-9][0-9]*}")
-    public HospedajeDTO put(@PathParam("id") Long id, HospedajeDTO dto) throws WebApplicationException, BusinessLogicException
+    public DetalleServicioDTO put(@PathParam("id") Long id, DetalleServicioDTO dto) throws WebApplicationException, BusinessLogicException
     {
         dto.setId(id);
-        return new HospedajeDTO(logic.update(dto.toEntity()));
+        return new DetalleServicioDTO(logic.update(dto.toEntity()));
     }
     
     @DELETE
@@ -72,10 +70,10 @@ public class HospedajeResource {
         logic.delete(id);
     }
     
-    private List<HospedajeDTO> construir(List<HospedajeEntity> list)
+    private List<DetalleServicioDTO> construir(List<DetalleServicioEntity> list)
     {
-        List<HospedajeDTO> ret = new ArrayList<>();
-        for(HospedajeEntity r : list) ret.add(new HospedajeDTO(r));
+        List<DetalleServicioDTO> ret = new ArrayList<>();
+        for(DetalleServicioEntity r : list) ret.add(new DetalleServicioDTO(r));
         return ret;
     }
     

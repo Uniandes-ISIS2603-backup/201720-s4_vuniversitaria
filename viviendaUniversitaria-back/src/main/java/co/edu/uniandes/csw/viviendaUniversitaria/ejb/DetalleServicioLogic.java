@@ -36,14 +36,14 @@ public class DetalleServicioLogic
             LOGGER.log(Level.WARNING, "Intento de creacion fallido.\nLa entidad ya existe\nId:{1}", entidad.getId());
             throw new WebApplicationException("Creacion: La entidad ya existe",405);
         }
-        return persistence.create(validarEntidad(entidad));
+        return persistence.create((entidad));
     }
     
     public DetalleServicioEntity update(DetalleServicioEntity entidad) throws WebApplicationException
     {
         LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", entidad.getId());
         validar(entidad, "Actualización");
-        return persistence.update(validarEntidad(entidad));
+        return persistence.update((entidad));
     }
     
     public void delete(Long id) throws WebApplicationException
@@ -82,11 +82,11 @@ public class DetalleServicioLogic
         }
     }
     
-    private DetalleServicioEntity validarEntidad(DetalleServicioEntity entidad) throws WebApplicationException
-    {
-        if(entidad == null || entidad.getSubTotal().intValue() < 0 || entidad.getFactura() != null || entidad.getServicio()!= null || entidad.getCantidad().intValue() > 0)
-            throw new WebApplicationException("El parametro enviado no cumple con las caracteristicas especificadas",407);
-        return entidad;
-    }
+//    private DetalleServicioEntity validarEntidad(DetalleServicioEntity entidad) throws WebApplicationException
+//    {
+//        if(entidad == null || entidad.getSubTotal().intValue() < 0 || entidad.getFactura() != null || entidad.getServicio()!= null || entidad.getCantidad().intValue() > 0)
+//            throw new WebApplicationException("El parametro enviado no cumple con las caracteristicas especificadas",407);
+//        return entidad;
+//    }
     
 }
