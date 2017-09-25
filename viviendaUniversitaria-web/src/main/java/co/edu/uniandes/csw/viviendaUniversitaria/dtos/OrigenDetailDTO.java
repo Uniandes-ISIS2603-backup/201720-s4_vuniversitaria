@@ -34,6 +34,8 @@ public class OrigenDetailDTO extends OrigenDTO{
             if (entity.getEstudiante()!=null) {
                 estudiante = new EstudianteDTO(entity.getEstudiante());
             }
+        }else {
+            entity.setEstudiante(null);
         }
     }
 
