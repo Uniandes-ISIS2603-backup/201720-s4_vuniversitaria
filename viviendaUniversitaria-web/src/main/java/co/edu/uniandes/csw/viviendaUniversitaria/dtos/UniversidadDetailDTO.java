@@ -31,7 +31,7 @@ public class UniversidadDetailDTO extends UniversidadDTO{
      */
     @Override
     public UniversidadEntity toEntity() {
-        UniversidadEntity cityE = super.toEntity();
-        return cityE;
+        UniversidadEntity ubi = super.toEntity();
+        return ubi;
     }
 }
