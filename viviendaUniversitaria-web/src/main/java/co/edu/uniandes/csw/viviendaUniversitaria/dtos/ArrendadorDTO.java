@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ArrendadorEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
+import java.util.List;
 /**
  *
  * @author kk.penaranda
@@ -21,6 +23,13 @@ public class ArrendadorDTO {
      * Atributo que representa el nombre del arrendador
      */
     private String nombre;
+    
+    /**
+     * Lista de los hospedajes pertenecientes al arrendador
+     */
+    //@PodamExclude
+    //@OneToMany(mappedBy = "arrendador", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HospedajeEntity> hospedaje;
     
     
     public ArrendadorDTO(){
@@ -53,6 +62,22 @@ public class ArrendadorDTO {
     }
     
     /**
+     * Retorna los hospedajes del arrendador
+     * @return hospedaje
+     */
+    public List<HospedajeEntity> getHospedajes(){
+        return hospedaje;
+    }
+    
+    /**
+     * Establece los hospedajes del arrendador
+     * @param hospedajes 
+     */
+    public void setHospedajes(List<HospedajeEntity> hospedajes){
+        this.hospedaje = hospedajes;
+    }
+    
+    /**
      * Establece el identificador
      * @param id 
      */
@@ -77,6 +102,7 @@ public class ArrendadorDTO {
         ArrendadorEntity entity = new ArrendadorEntity();
         entity.setId(this.id);
         entity.setNombre(this.nombre);
+        entity.setHospedajes(this.hospedaje);
         return entity;
     }
     
