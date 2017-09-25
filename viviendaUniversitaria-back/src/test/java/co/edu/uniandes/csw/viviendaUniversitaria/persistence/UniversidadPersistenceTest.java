@@ -117,7 +117,7 @@ public class UniversidadPersistenceTest {
         Assert.assertNotNull(result);
         UniversidadEntity entity = em.find(UniversidadEntity.class, result.getId());
         Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
 
     /**
@@ -135,7 +135,7 @@ public class UniversidadPersistenceTest {
 
         UniversidadEntity resp = em.find(UniversidadEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
+        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
     }
 
     /**
@@ -157,7 +157,7 @@ public class UniversidadPersistenceTest {
         UniversidadEntity entity = data.get(0);
         UniversidadEntity newEntity = persistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
     }
 
     /**

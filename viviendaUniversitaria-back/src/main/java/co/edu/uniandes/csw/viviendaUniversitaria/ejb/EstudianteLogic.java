@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.EstudiantePersistence;
 import java.util.List;
@@ -52,13 +53,13 @@ public class EstudianteLogic {
      * @throws BusinessLogicException
      */
     public EstudianteEntity createEstudiante(EstudianteEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de Default");
+        LOGGER.info("Inicia proceso de creación de estudiante");
         // Invoca la persistencia para crear la Default
         if(validate(entity.getCedula())!=false){
-            throw new BusinessLogicException("el id es invalido para crear un estudiante");
+            throw new BusinessLogicException("ya existe");
         }
         persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de Default");
+        LOGGER.info("Termina proceso de creación de estudiante");
         return entity;
     }
 
@@ -69,12 +70,10 @@ public class EstudianteLogic {
      * @return una lista de Defaultes.
      */
     public List<EstudianteEntity> getEstudiantes() {
-        LOGGER.info("Inicia proceso de consultar todas las Defaultes");
-        // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
-        
-        List<EstudianteEntity> Default = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas las Defaultes");
-        return Default;
+        LOGGER.info("Inicia proceso de consultar todos los estudiantes");
+        List<EstudianteEntity> estudiante = persistence.findAll();
+        LOGGER.info("Termina proceso de consultar todos los estudiantes");
+        return estudiante;
     }
  /**
      * Obtiene los datos de una instancia de Estudiante a partir de su ID.
@@ -83,14 +82,19 @@ public class EstudianteLogic {
      * @return Instancia de EstudianteEntity con los datos del Estudiante consultado.
      * @generated
      */
-    public EstudianteEntity getEstudiante(Long id) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar un estudiante con id = {0}", id);
-        if(validate(id)==false){
-            throw new BusinessLogicException("el id es invalido para buscar un estudiante");
+    public EstudianteEntity getEstudiante(Long cedula) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un estudiante con id = {0}", cedula);
+        EstudianteEntity estudiante = persistence.find(cedula);
+        if (validate(cedula) == false) {
+            LOGGER.log(Level.SEVERE, "El estudiante con el id {0} no existe", cedula);
         }
-        return persistence.find(id);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar estudiante con id={0}", cedula);
+        return estudiante;
     }
- /**
+    
+    
+
+    /**
      * Actualiza la información de una instancia de Estudiante.
      *
      * @param entity Instancia de EstudianteEntity con los nuevos datos.
@@ -100,9 +104,11 @@ public class EstudianteLogic {
     public EstudianteEntity updateEstudiante(EstudianteEntity entity) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un estudiante ");
          if(validate(entity.getCedula())==false){
-            throw new BusinessLogicException("el id es invalido para update un estudiante");
+            throw new BusinessLogicException("no existe estudiante");
         }
-        return persistence.update(entity);
+        EstudianteEntity rta = persistence.update(entity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar estudiante", entity.getCedula());
+        return rta;
     }
     
         /**
@@ -111,12 +117,12 @@ public class EstudianteLogic {
      * @param id Identificador de la instancia a eliminar.
      * @generated
      */
-    public void deleteEstudiante(Long id) throws BusinessLogicException{
+    public void deleteEstudiante(Long cedula) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un estudiante ");
-         if(validate(id)==false){
-            throw new BusinessLogicException("el id es invalido para buscar un estudiante");
+         if(validate(cedula)==false){
+            throw new BusinessLogicException("la cedula es invalida para buscar un estudiante");
         }
-        persistence.delete(id);
+        persistence.delete(cedula);
     }
 
      private boolean validate(Long id) {

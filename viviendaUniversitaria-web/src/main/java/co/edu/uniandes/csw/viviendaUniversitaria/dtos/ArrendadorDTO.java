@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ArrendadorEntity;
+
 /**
  *
  * @author kk.penaranda
@@ -22,6 +23,7 @@ public class ArrendadorDTO {
      */
     private String nombre;
     
+        
     
     public ArrendadorDTO(){
         //Constructor por defecto
@@ -51,6 +53,7 @@ public class ArrendadorDTO {
     public String getNombre(){
         return nombre;
     }
+    
     
     /**
      * Establece el identificador

@@ -44,7 +44,7 @@ public class UniversidadDTO {
     }
     public UniversidadDTO(UniversidadEntity entity){
         this.id = entity.getId();
-        this.name = entity.getName();
+        this.name = entity.getNombre();
        
     }
       /**
@@ -54,7 +54,7 @@ public class UniversidadDTO {
     public UniversidadEntity toEntity() {
         UniversidadEntity entity = new UniversidadEntity();
         entity.setId(this.id);
-        entity.setName(this.name);
+        entity.setNombre(this.name);
        
         return entity;
     }
