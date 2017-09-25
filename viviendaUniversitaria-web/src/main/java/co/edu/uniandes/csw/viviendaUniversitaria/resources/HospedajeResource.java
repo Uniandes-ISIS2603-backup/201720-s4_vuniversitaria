@@ -78,5 +78,15 @@ public class HospedajeResource {
         for(HospedajeEntity r : list) ret.add(new HospedajeDTO(r));
         return ret;
     }
+    @Path("{idHospedaje: \\d+}/servicios")
+    public ServiciosResourse getServicios()
+    {
+        return new ServiciosResourse();
+    }
+    @Path("{idHospedaje: \\d+}/lugaresInteres")
+    public LugaresInteresResource getLugaresInteres()
+    {
+        return new LugaresInteresResource();
+    }
     
 }
