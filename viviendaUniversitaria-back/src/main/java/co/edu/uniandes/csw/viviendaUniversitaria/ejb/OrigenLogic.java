@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -26,31 +27,20 @@ public class OrigenLogic {
          private static final Logger LOGGER = Logger.getLogger(OrigenLogic.class.getName());
 
         @Inject
-        private OrigenPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+        private OrigenPersistence persistence;
+        @Inject
+        private EstudianteLogic estudianteLogic;
 
-    public OrigenEntity createOrigen(OrigenEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de origen");
-        if(validate(entity.getId())!=false){
-            throw new BusinessLogicException("no se puede crear ");
+    public OrigenEntity createOrigen(Long estuCed, OrigenEntity entity) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de crear review");
+        if (validate(entity.getId())!=false) {
+            throw new BusinessLogicException("error, ya existe");
         }
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de origen");
-        return entity;
+        EstudianteEntity estudiante = estudianteLogic.getEstudiante(estuCed);
+        entity.setEstudiante(estudiante);
+        return persistence.create(entity);
     }
 
-    /**
-     * 
-     * Obtener todas los origenes existentes en la base de datos.
-     *
-     * @return una lista de origenes.
-     */
-    public List<OrigenEntity> getOrigens() {
-        LOGGER.info("Inicia proceso de consultar todas los origenes");
-        
-        List<OrigenEntity> rta = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas los origenes");
-        return rta;
-    }
  /**
      * Obtiene los datos de una instancia de Origen a partir de su ID.
      *
@@ -65,6 +55,11 @@ public class OrigenLogic {
         }
         return persistence.find(id);
     }
+    
+    public OrigenEntity getOrigenEstudiante(Long cedula) throws BusinessLogicException
+    {
+        return estudianteLogic.getEstudiante(cedula).getOrigen();
+    }
  /**
      * Actualiza la información de una instancia de Origen.
      *
@@ -72,12 +67,12 @@ public class OrigenLogic {
      * @return Instancia de OrigenEntity con los datos actualizados.
      * @generated
      */
-    public OrigenEntity updateOrigen(OrigenEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar un Origen ");
-        if(validate(entity.getId())==false){
-            throw new BusinessLogicException("no se puede hacer update ");
-        }
-        return persistence.update(entity);
+    public OrigenEntity updateOrigen(Long cedula,OrigenEntity entity) throws BusinessLogicException {
+        EstudianteEntity add = estudianteLogic.getEstudiante(cedula);
+        add.setOrigen(entity);
+        estudianteLogic.updateEstudiante(add);
+        //EstudianteEntity entity = estudianteLogic.getEstudiante(cedula);
+        return entity;// persistence.update(entity);
     }
 
     /**
@@ -88,7 +83,7 @@ public class OrigenLogic {
      */
     public void deleteOrigen(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un Origen ");
-        if(validate(id)==false){
+        if(validate(id)!=false){
             throw new BusinessLogicException("no se puede borrar ");
         }
         persistence.delete(id);
