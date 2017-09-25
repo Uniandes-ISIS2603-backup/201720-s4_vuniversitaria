@@ -29,29 +29,27 @@ public class OrigenLogic {
         private OrigenPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     public OrigenEntity createOrigen(OrigenEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de Default");
+        LOGGER.info("Inicia proceso de creación de origen");
         if(validate(entity.getId())!=false){
             throw new BusinessLogicException("no se puede crear ");
         }
-// Invoca la persistencia para crear la Default
         persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de Default");
+        LOGGER.info("Termina proceso de creación de origen");
         return entity;
     }
 
     /**
      * 
-     * Obtener todas las Defaultes existentes en la base de datos.
+     * Obtener todas los origenes existentes en la base de datos.
      *
-     * @return una lista de Defaultes.
+     * @return una lista de origenes.
      */
     public List<OrigenEntity> getOrigens() {
-        LOGGER.info("Inicia proceso de consultar todas las Defaultes");
+        LOGGER.info("Inicia proceso de consultar todas los origenes");
         
-// Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
-        List<OrigenEntity> Default = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas las Defaultes");
-        return Default;
+        List<OrigenEntity> rta = persistence.findAll();
+        LOGGER.info("Termina proceso de consultar todas los origenes");
+        return rta;
     }
  /**
      * Obtiene los datos de una instancia de Origen a partir de su ID.
@@ -76,7 +74,7 @@ public class OrigenLogic {
      */
     public OrigenEntity updateOrigen(OrigenEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un Origen ");
-        if(validate(entity.getId())!=false){
+        if(validate(entity.getId())==false){
             throw new BusinessLogicException("no se puede hacer update ");
         }
         return persistence.update(entity);
@@ -90,7 +88,7 @@ public class OrigenLogic {
      */
     public void deleteOrigen(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un Origen ");
-        if(validate(id)!=false){
+        if(validate(id)==false){
             throw new BusinessLogicException("no se puede borrar ");
         }
         persistence.delete(id);

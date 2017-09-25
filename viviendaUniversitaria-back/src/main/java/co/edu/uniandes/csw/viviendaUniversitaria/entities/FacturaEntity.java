@@ -67,6 +67,22 @@ public class FacturaEntity implements Serializable {
         this.detallesReserva = detallesReserva;
     }
 
+    public HospedajeEntity getHospedaje() {
+        return hospedaje;
+    }
+
+    public void setHospedaje(HospedajeEntity hospedaje) {
+        this.hospedaje = hospedaje;
+    }
+
+    public EstudianteEntity getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(EstudianteEntity estudiante) {
+        this.estudiante = estudiante;
+    }
+
     
     
     public Long getId() {
