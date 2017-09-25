@@ -66,7 +66,10 @@ public class UbicacionLogic {
     
     /**
      * Modificar una ubicacion dado un id.
+     * @param id
      * @param entity, contiene la nueva información de la ubicacion
+     * @return 
+     * @throws co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException
      * @Return UbicacionEntity
      */
     public UbicacionEntity updateUbicacion(Long id,UbicacionEntity entity) throws BusinessLogicException{

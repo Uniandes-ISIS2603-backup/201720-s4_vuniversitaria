@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.UbicacionEntity;
+
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.UniversidadEntity;
 import java.util.List;
 import java.util.logging.Level;
