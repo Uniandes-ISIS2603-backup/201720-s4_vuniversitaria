@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.LugaresInteresEntity;
  */
 public class LuegaresInteresDetailDTO extends LugaresInteresDTO {
     public LuegaresInteresDetailDTO() {
+        //Constructor por defecto
     }
 
     /**
@@ -31,7 +32,6 @@ public class LuegaresInteresDetailDTO extends LugaresInteresDTO {
      */
     @Override
     public LugaresInteresEntity toEntity() {
-        LugaresInteresEntity lugarInteres = super.toEntity();
-        return lugarInteres;
+        return super.toEntity();
     }
 }

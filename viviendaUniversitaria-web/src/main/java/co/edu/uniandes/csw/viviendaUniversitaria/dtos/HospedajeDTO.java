@@ -30,7 +30,9 @@ public class HospedajeDTO
      */
     private double valoracion;
     
-    public HospedajeDTO() {}
+    public HospedajeDTO() {
+    //Constructor por defecto
+    }
     
     public HospedajeDTO(HospedajeEntity entidad) 
     {

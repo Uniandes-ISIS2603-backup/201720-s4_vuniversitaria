@@ -16,6 +16,7 @@ public class ServiciosDetailDTO extends ServiciosDTO {
      * Constructor por defecto
      */
     public ServiciosDetailDTO() {
+        //Vacio por default
     }
 
     /**
@@ -34,7 +35,6 @@ public class ServiciosDetailDTO extends ServiciosDTO {
      */
     @Override
     public ServiciosEntity toEntity() {
-        ServiciosEntity servicio = super.toEntity();
-        return servicio;
+        return super.toEntity();
     }
 }

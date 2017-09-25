@@ -17,6 +17,21 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 public class UbicacionDTO {
 
+    private Long id;
+    private Long latitud;
+    private Long altitud;
+    private String direccion;
+    
+    public UbicacionDTO(){
+        //Vacio por defecto        
+    }
+    public UbicacionDTO(UbicacionEntity entity){
+        this.id = entity.getId();
+        this.direccion = entity.getDireccion();
+        this.altitud = entity.getAltitud();
+        this.latitud = entity.getLatitud();
+    }
+    
     //@PodamExclude
 //@OneToOne("LugarInteres")
 //private LugaresInteresEntity lugares;
@@ -50,22 +65,9 @@ public class UbicacionDTO {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
+    }  
     
-    private Long id;
-    private Long latitud;
-    private Long altitud;
-    private String direccion;
     
-    public UbicacionDTO(){
-        
-    }
-    public UbicacionDTO(UbicacionEntity entity){
-        this.id = entity.getId();
-        this.direccion = entity.getDireccion();
-        this.altitud = entity.getAltitud();
-        this.latitud = entity.getLatitud();
-    }
       /**
      * Convertir DTO a Entity
      * @return Un Entity con los valores del DTO 
