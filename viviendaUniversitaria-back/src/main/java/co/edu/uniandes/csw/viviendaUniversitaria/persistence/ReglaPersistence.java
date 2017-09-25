@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +50,9 @@ public class ReglaPersistence
 
     public List<ReglaEntity> findAll() {
         LOGGER.info("Consultando todas las regla");
-        return em.createQuery("select u from ReglaEntity u", ReglaEntity.class).getResultList();
+        List<ReglaEntity> ret = em.createQuery("select u from ReglaEntity u", ReglaEntity.class).getResultList();
+        if(ret == null) return new ArrayList<>();
+        return ret;
     }
     
 }

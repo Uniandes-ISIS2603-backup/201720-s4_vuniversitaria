@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -28,54 +29,65 @@ public class DetalleReservaLogic
     private DetalleReservaPersistence persistence;
     
     
-    public DetalleReservaEntity create(DetalleReservaEntity entidad) throws BusinessLogicException
+    public DetalleReservaEntity create(DetalleReservaEntity entidad) throws WebApplicationException
     {
         LOGGER.info("Creación de un hospedaje");
         if(persistence.find(entidad.getId()) != null)
         {
             LOGGER.log(Level.WARNING, "Intento de creacion fallido.\nLa entidad ya existe\nId:{1}", entidad.getId());
-            throw new BusinessLogicException("Creacion: La entidad no existe");
+            throw new WebApplicationException("Creacion: La entidad ya existe",405);
         }
-        return persistence.create(entidad);
+        return persistence.create(validarEntidad(entidad));
     }
     
-    public DetalleReservaEntity update(DetalleReservaEntity entidad) throws BusinessLogicException
+    public DetalleReservaEntity update(DetalleReservaEntity entidad) throws WebApplicationException
     {
         LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", entidad.getId());
-        validar(entidad, "Actualización");
-        return persistence.update(entidad);
+        validar(validarEntidad(entidad), "Actualización");
+        return persistence.update(validarEntidad(entidad));
     }
     
-    public void delete(DetalleReservaEntity entidad) throws BusinessLogicException
+    public void delete(Long id) throws WebApplicationException
     {
-        LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", entidad.getId());
-        validar(entidad, "actualización");
-        persistence.delete(entidad.getId());
+        LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", id);
+        if(persistence.find(id) == null) 
+            {
+            LOGGER.log(Level.WARNING, "Intento de Eliminación fallido.\nLa entidad no existe\nId:{0}",  id);
+            throw new WebApplicationException("Eliminación: La entidad no existe", 405);
+        }
+        persistence.delete(id);
     }
     
-    public DetalleReservaEntity find(Long id)throws BusinessLogicException
+    public DetalleReservaEntity find(Long id)throws WebApplicationException
     {
         LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", id);
         DetalleReservaEntity ret = persistence.find(id);
-        if(ret == null) throw new BusinessLogicException("Consulta id: La entidad no existe");
+        if(ret == null) throw new WebApplicationException("Consulta id: La entidad no existe", 405);
         return ret;
     }
     
-    public List<DetalleReservaEntity> findAll()throws BusinessLogicException
+    public List<DetalleReservaEntity> findAll()throws WebApplicationException
     {
         LOGGER.info("Consultando todos los hospedajes");
         List<DetalleReservaEntity> ret = persistence.findAll();
-        if(ret.isEmpty()) throw new BusinessLogicException("Consulta : La entidad no existe");
-        return null;
+        if(ret.isEmpty()) throw new WebApplicationException("Actualmente no existen entidades registradas.",405);
+        return ret;
     }
     
-    private void validar(DetalleReservaEntity entidad, String proceso) throws BusinessLogicException
+    private void validar(DetalleReservaEntity entidad, String proceso) throws WebApplicationException
     {
         if(persistence.find(entidad.getId()) == null)
         {
             LOGGER.log(Level.WARNING, "Intento de {0} fallido.\nLa entidad no existe\nId:{1}", new Object[]{proceso, entidad.getId()});
-            throw new BusinessLogicException(proceso+": La entidad no existe");
+            throw new WebApplicationException(proceso+": La entidad no existe", 405);
         }
+    }
+    
+    private DetalleReservaEntity validarEntidad(DetalleReservaEntity entidad) throws WebApplicationException
+    {
+        if(entidad == null || entidad.getSubTotal().intValue() < 0 || entidad.getFactura() != null || entidad.getReserva() != null)
+            throw new WebApplicationException("El parametro enviado no cumple con las caracteristicas especificadas",407);
+        return entidad;
     }
     
 }

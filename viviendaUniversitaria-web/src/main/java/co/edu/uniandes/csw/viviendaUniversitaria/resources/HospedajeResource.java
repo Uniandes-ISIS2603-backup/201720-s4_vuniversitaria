@@ -27,7 +27,7 @@ import javax.ws.rs.Produces;
  *
  * @author ws.duarte
  */
-@Path("regla")
+@Path("hospedaje")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
