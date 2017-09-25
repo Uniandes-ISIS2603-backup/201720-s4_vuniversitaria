@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -21,8 +22,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -34,33 +33,33 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class ReglaResource 
 {
-   
+    private static final Logger LOGGER = Logger.getLogger(ReglaResource.class.getName());
     
     @Inject
     private ReglaLogic logic;
     
     @POST
-    public ReglaDTO post(ReglaDTO entidad) throws WebApplicationException, BusinessLogicException
+    public ReglaDTO post(ReglaDTO entidad) throws BusinessLogicException
     {
         return new ReglaDTO(logic.create(entidad.toEntity()));
     }
     
     @GET
-    public List<ReglaDTO> getAll() throws WebApplicationException, BusinessLogicException
+    public List<ReglaDTO> getAll() throws BusinessLogicException
     {
         return construir(logic.findAll());
     }
     
     @GET
     @Path("{id: [0-9][0-9]*}")
-    public ReglaDTO get(@PathParam("id") Long id) throws WebApplicationException, BusinessLogicException
+    public ReglaDTO get(@PathParam("id") Long id) throws BusinessLogicException
     {
         return new ReglaDTO(logic.find(id));
     }
     
     @PUT
     @Path("{id: [0-9][0-9]*}")
-    public ReglaDTO put(@PathParam("id") Long id, ReglaDTO dto) throws WebApplicationException, BusinessLogicException
+    public ReglaDTO put(@PathParam("id") Long id, ReglaDTO dto) throws BusinessLogicException
     {
         dto.setId(id);
         return new ReglaDTO(logic.update(dto.toEntity()));
@@ -68,7 +67,7 @@ public class ReglaResource
     
     @DELETE
     @Path("{id: [0-9][0-9]*}")
-    public void delete(@PathParam("id") Long id) throws WebApplicationException, BusinessLogicException
+    public void delete(@PathParam("id") Long id) throws BusinessLogicException
     {
         logic.delete(id);
     }

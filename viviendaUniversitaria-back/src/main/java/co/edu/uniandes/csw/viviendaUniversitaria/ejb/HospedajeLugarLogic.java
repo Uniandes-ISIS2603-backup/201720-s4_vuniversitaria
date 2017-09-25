@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -28,65 +27,54 @@ public class HospedajeLugarLogic
     private HospedajeLugarPersistence persistence;
     
     
-    public HospedajeLugarEntity create(HospedajeLugarEntity entidad) throws WebApplicationException
+    public HospedajeLugarEntity create(HospedajeLugarEntity entidad) throws BusinessLogicException
     {
         LOGGER.info("Creación de un hospedaje");
         if(persistence.find(entidad.getId()) != null)
         {
             LOGGER.log(Level.WARNING, "Intento de creacion fallido.\nLa entidad ya existe\nId:{1}", entidad.getId());
-            throw new WebApplicationException("Creacion: La entidad ya existe", 405);
+            throw new BusinessLogicException("Creacion: La entidad no existe");
         }
         return persistence.create(entidad);
     }
     
-    public HospedajeLugarEntity update(HospedajeLugarEntity entidad) throws WebApplicationException
+    public HospedajeLugarEntity update(HospedajeLugarEntity entidad) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", entidad.getId());
         validar(entidad, "Actualización");
-        return persistence.update((entidad));
+        return persistence.update(entidad);
     }
     
-    public void delete(Long id) throws WebApplicationException
+    public void delete(HospedajeLugarEntity entidad) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}",id);
-        if(persistence.find(id) == null) 
-            {
-            LOGGER.log(Level.WARNING, "Intento de Eliminación fallido.\nLa entidad no existe\nId:{0}",  id);
-            throw new WebApplicationException("Eliminación: La entidad no existe", 405);
-        }
-        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", entidad.getId());
+        validar(entidad, "actualización");
+        persistence.delete(entidad.getId());
     }
     
-    public HospedajeLugarEntity find(Long id)throws WebApplicationException
+    public HospedajeLugarEntity find(Long id)throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", id);
         HospedajeLugarEntity ret = persistence.find(id);
-        if(ret == null) throw new WebApplicationException("Consulta id: La entidad no existe",405);
+        if(ret == null) throw new BusinessLogicException("Consulta id: La entidad no existe");
         return ret;
     }
     
-    public List<HospedajeLugarEntity> findAll()throws WebApplicationException
+    public List<HospedajeLugarEntity> findAll()throws BusinessLogicException
     {
         LOGGER.info("Consultando todos los hospedajes");
         List<HospedajeLugarEntity> ret = persistence.findAll();
-        if(ret.isEmpty()) throw new WebApplicationException("Actualmente no existen registros.",405);
-        return ret;
+        if(ret.isEmpty()) throw new BusinessLogicException("Consulta : La entidad no existe");
+        return null;
     }
     
-    private void validar(HospedajeLugarEntity entidad, String proceso) throws WebApplicationException
+    private void validar(HospedajeLugarEntity entidad, String proceso) throws BusinessLogicException
     {
         if(persistence.find(entidad.getId()) == null)
         {
             LOGGER.log(Level.WARNING, "Intento de {0} fallido.\nLa entidad no existe\nId:{1}", new Object[]{proceso, entidad.getId()});
-            throw new WebApplicationException(proceso+": La entidad no existe",405);
+            throw new BusinessLogicException(proceso+": La entidad no existe");
         }
     }
-    
-//    private HospedajeLugarEntity validarEntidad(HospedajeLugarEntity entidad) throws WebApplicationException
-//    {
-//        if(entidad == null || entidad.getDistancia().intValue() <= 0 || entidad.getHospedaje() != null || entidad.getLugarInteres() != null)
-//            throw new WebApplicationException("El parametro enviado no cumple con las caracteristicas especificadas",407);
-//        return entidad;
-//    }
     
 }

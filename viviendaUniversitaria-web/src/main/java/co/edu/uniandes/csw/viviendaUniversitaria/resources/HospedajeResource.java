@@ -22,44 +22,43 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 
 /**
  *
  * @author ws.duarte
  */
-@Path("hospedaje")
+@Path("regla")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class HospedajeResource {
-    
+    private static final Logger LOGGER = Logger.getLogger(ReglaResource.class.getName());
     
     @Inject
     private HospedajeLogic logic;
     
     @POST
-    public HospedajeDTO post(HospedajeDTO entidad) throws WebApplicationException, BusinessLogicException
+    public HospedajeDTO post(HospedajeDTO entidad) throws BusinessLogicException
     {
         return new HospedajeDTO(logic.create(entidad.toEntity()));
     }
     
     @GET
-    public List<HospedajeDTO> getAll() throws WebApplicationException, BusinessLogicException
+    public List<HospedajeDTO> getAll() throws BusinessLogicException
     {
         return construir(logic.findAll());
     }
     
     @GET
     @Path("{id: [0-9][0-9]*}")
-    public HospedajeDTO get(@PathParam("id") Long id) throws WebApplicationException, BusinessLogicException
+    public HospedajeDTO get(@PathParam("id") Long id) throws BusinessLogicException
     {
         return new HospedajeDTO(logic.find(id));
     }
     
     @PUT
     @Path("{id: [0-9][0-9]*}")
-    public HospedajeDTO put(@PathParam("id") Long id, HospedajeDTO dto) throws WebApplicationException, BusinessLogicException
+    public HospedajeDTO put(@PathParam("id") Long id, HospedajeDTO dto) throws BusinessLogicException
     {
         dto.setId(id);
         return new HospedajeDTO(logic.update(dto.toEntity()));
@@ -67,7 +66,7 @@ public class HospedajeResource {
     
     @DELETE
     @Path("{id: [0-9][0-9]*}")
-    public void delete(@PathParam("id") Long id) throws WebApplicationException, BusinessLogicException
+    public void delete(@PathParam("id") Long id) throws BusinessLogicException
     {
         logic.delete(id);
     }

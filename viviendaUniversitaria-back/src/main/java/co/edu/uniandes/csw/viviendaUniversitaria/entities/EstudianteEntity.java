@@ -56,26 +56,26 @@ public class EstudianteEntity  implements Serializable //extends BaseEntity
     private List<FacturaEntity> facturas;
     
     @PodamExclude
-    @OneToOne(mappedBy = "estudiante", fetch=FetchType.LAZY)
-    private ReservaEntity reserva;
+    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FacturaEntity> reservas;
     
     @PodamExclude
     @OneToMany(mappedBy = "estudiante")
-    private List<CalificacionEntity> calificaciones;
+    private List<FacturaEntity> calificaciones;
     
-    public ReservaEntity getReserva() {
-        return reserva;
+    public List<FacturaEntity> getReservas() {
+        return reservas;
     }
 
-    public void setReserva(ReservaEntity reserva) {
-        this.reserva = reserva;
+    public void setReservas(List<FacturaEntity> reservas) {
+        this.reservas = reservas;
     }
 
-    public List<CalificacionEntity> getCalificaciones() {
+    public List<FacturaEntity> getCalificaciones() {
         return calificaciones;
     }
 
-    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+    public void setCalificaciones(List<FacturaEntity> calificaciones) {
         this.calificaciones = calificaciones;
     }
 

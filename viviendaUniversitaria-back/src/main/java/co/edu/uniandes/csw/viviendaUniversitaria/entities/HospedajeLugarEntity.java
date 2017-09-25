@@ -112,7 +112,7 @@ public class HospedajeLugarEntity implements Serializable
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj != null && obj instanceof HospedajeLugarEntity && this.id != null && ((HospedajeLugarEntity)obj).getId() != null) return this.id.equals(((HospedajeLugarEntity)obj).getId());
+        if(obj != null && obj instanceof HospedajeEntity && this.id != null && ((HospedajeEntity)obj).getId() != null) return this.id.equals(((HospedajeEntity)obj).getId());
         return super.equals(obj); 
     }
 
