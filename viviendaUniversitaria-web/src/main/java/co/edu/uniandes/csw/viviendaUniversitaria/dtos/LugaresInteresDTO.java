@@ -16,8 +16,10 @@ public class LugaresInteresDTO {
     /**
      * Atributo donde se describe la ubicacion de un lugar de interes
      */
-
     // private UbicacionEntity ubicacion;
+    /**
+     * atributo que modela el hsopedaje al que pertenece el LugarInteres
+     */
     //private List<HospedajeLugarEntity> hospedajesLugares;
     /**
      * id del Lugar de Interes
