@@ -31,9 +31,8 @@ public class OrigenDetailDTO extends OrigenDTO{
      *
      * @param entity
      */
-    public OrigenDetailDTO(OrigenEntity entity) {
+     public OrigenDetailDTO(OrigenEntity entity) {
         super(entity);
-                if (entity != null) {
         if (entity.getEstudiante() != null) {
             estudiantes=new ArrayList<>();
             for(EstudianteEntity ent:entity.getEstudiante()){
@@ -41,7 +40,6 @@ public class OrigenDetailDTO extends OrigenDTO{
             }
         }
     }
- }
 
     public List<EstudianteDTO> getEstudiantes() {
         return estudiantes;

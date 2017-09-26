@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.OrigenDTO;
-import co.edu.uniandes.csw.viviendaUniversitaria.dtos.OrigenDetailDTO;
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.OrigenDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.OrigenLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
@@ -41,25 +41,25 @@ public class OrigenResource {
     private static final Logger LOGGER = Logger.getLogger(OrigenPersistence.class.getName());
 
     @POST
-    public OrigenDTO createOrigen(OrigenDetailDTO Origen) throws BusinessLogicException {
+    public OrigenDTO createOrigen(OrigenDTO Origen) throws BusinessLogicException {
         OrigenEntity OrigenEntity = Origen.toEntity();
         OrigenEntity nuevoOrigen = OrigenLogic.createOrigen(OrigenEntity);
-        return new OrigenDetailDTO(nuevoOrigen);
+        return new OrigenDTO(nuevoOrigen);
     }
 
     @GET
     public List<OrigenDTO> getOrigens() throws BusinessLogicException {
-        return listEntity2DetailDTO(OrigenLogic.getOrigenes());
+        return listEntity2DTO(OrigenLogic.getOrigenes());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public OrigenDetailDTO getOrigen(@PathParam("id") Long id) throws BusinessLogicException {
+    public OrigenDTO getOrigen(@PathParam("id") Long id) throws BusinessLogicException {
         OrigenEntity entity = OrigenLogic.getOrigen(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /Origens/" + id + " no existe.", 404);
         }
-        return new OrigenDetailDTO(OrigenLogic.getOrigen(id));
+        return new OrigenDTO(OrigenLogic.getOrigen(id));
     }
     
     @Path("{OrigenesId: \\d+}/estudiantes")
@@ -75,13 +75,13 @@ public class OrigenResource {
 
     @PUT
     @Path("{id: \\d+}")
-    public OrigenDetailDTO updateOrigen(@PathParam("id") Long id, OrigenDetailDTO Origen) throws BusinessLogicException {
+    public OrigenDTO updateOrigen(@PathParam("id") Long id, OrigenDTO Origen) throws BusinessLogicException {
         Origen.setId(id);
         OrigenEntity entity = OrigenLogic.getOrigen(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /Origens/" + id + " no existe.", 404);
         }
-        return new OrigenDetailDTO(OrigenLogic.updateOrigen(id, Origen.toEntity()));
+        return new OrigenDTO(OrigenLogic.updateOrigen(id, Origen.toEntity()));
     }
 
     @DELETE
@@ -95,10 +95,10 @@ public class OrigenResource {
         OrigenLogic.deleteOrigen(id);
 
     }
-    private List<OrigenDTO> listEntity2DetailDTO(List<OrigenEntity> entityList) {
+    private List<OrigenDTO> listEntity2DTO(List<OrigenEntity> entityList) {
         List<OrigenDTO> list = new ArrayList<>();
         for (OrigenEntity entity : entityList) {
-            list.add(new OrigenDetailDTO(entity));
+            list.add(new OrigenDTO(entity));
         }
         return list;
     }
