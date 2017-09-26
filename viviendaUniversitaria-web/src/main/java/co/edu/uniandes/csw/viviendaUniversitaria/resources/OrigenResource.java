@@ -83,16 +83,6 @@ public class OrigenResource {
         OrigenLogic.deleteOrigen(id);
 
     }
-
-    @Path("{OrigensId: \\d+}/estudiantes")
-    public Class<OrigenEstudianteResource> getOrigenEstudiantesResource(@PathParam("OrigensId") Long OrigensId) throws BusinessLogicException {
-        OrigenEntity entity = OrigenLogic.getOrigen(OrigensId);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /Origens/" + OrigensId + " no existe.", 404);
-        }
-        return OrigenEstudianteResource.class;
-    }
-
     private List<OrigenDetailDTO> listEntity2DetailDTO(List<OrigenEntity> entityList) {
         List<OrigenDetailDTO> list = new ArrayList<>();
         for (OrigenEntity entity : entityList) {
