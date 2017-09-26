@@ -49,6 +49,8 @@ public class EstudianteResource {
     public List<EstudianteDetailDTO> getEstudiantes() throws Exception {
         return listEstudianteEntity2DetailDTO(estudiante.getEstudiantes());
     }
+    
+    
 
     @GET
     @Path("{cedula: \\d+}")
