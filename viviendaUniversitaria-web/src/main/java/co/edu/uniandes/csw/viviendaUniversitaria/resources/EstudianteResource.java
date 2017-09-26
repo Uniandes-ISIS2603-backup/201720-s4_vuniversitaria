@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.EstudianteLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
@@ -60,7 +61,7 @@ public class EstudianteResource {
     }
     
     @POST
-    public EstudianteDetailDTO createEstudiante(EstudianteDetailDTO estudiante) throws BusinessLogicException {        
+    public EstudianteDTO createEstudiante(EstudianteDTO estudiante) throws BusinessLogicException {        
          return new EstudianteDetailDTO(this.estudiante.createEstudiante(estudiante.toEntity()));
     }
 
@@ -76,13 +77,13 @@ public class EstudianteResource {
     
     @PUT
     @Path("{cedula: \\d+}")
-    public EstudianteDetailDTO updateEstudiante(@PathParam("cedula") Long cedula, EstudianteDetailDTO estu) throws BusinessLogicException {
+    public EstudianteDTO updateEstudiante(@PathParam("cedula") Long cedula, EstudianteDTO estu) throws BusinessLogicException {
         estu.setCedula(cedula);
         EstudianteEntity entity = estudiante.getEstudiante(cedula);
         if (entity == null) {
             throw new WebApplicationException("El recurso /estudiantes/" + cedula + " no existe.", 404);
         }
-        return new EstudianteDetailDTO(estudiante.updateEstudiante(estu.toEntity()));
+        return new EstudianteDTO(estudiante.updateEstudiante(estu.toEntity()));
     }
  
     @Path("{cedulaEstudiante: \\d+}/calificaciones")

@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,7 +16,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
  */
 public class OrigenDetailDTO extends OrigenDTO{
     
-    private EstudianteDTO estudiante;
+    private List<EstudianteDTO> estudiantes;
     
       /**
      * Constructor por defecto
@@ -30,22 +33,21 @@ public class OrigenDetailDTO extends OrigenDTO{
      */
     public OrigenDetailDTO(OrigenEntity entity) {
         super(entity);
-        if (entity != null) {
-            if (entity.getEstudiante()!=null) {
-                estudiante = new EstudianteDTO(entity.getEstudiante());
+        if (entity.getEstudiante() != null) {
+            estudiantes=new ArrayList<>();
+            for(EstudianteEntity ent:entity.getEstudiante()){
+                estudiantes.add(new EstudianteDTO(ent));
             }
-        }else {
-            entity.setEstudiante(null);
         }
     }
 
-    public EstudianteDTO getEstudiante() {
-        return estudiante;
+    public List<EstudianteDTO> getEstudiantes() {
+        return estudiantes;
     }
 
-    public void setEstudiante(EstudianteDTO estudiante) {
-        this.estudiante = estudiante;
+    public void setEstudiantes(List<EstudianteDTO> estudiantes) {
+        this.estudiantes = estudiantes;
     }
-    
+
     
 }

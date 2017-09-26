@@ -55,10 +55,11 @@ public class EstudianteLogic {
     public EstudianteEntity createEstudiante(EstudianteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de estudiante");
         // Invoca la persistencia para crear la Default
-        if(validate(entity.getCedula())!=false){
-            throw new BusinessLogicException("ya existe");
-        }
+        try{
         persistence.create(entity);
+        }catch(Exception e){
+            LOGGER.info(e.getMessage()+e.getLocalizedMessage()+e.toString());
+        }
         LOGGER.info("Termina proceso de creación de estudiante");
         return entity;
     }
@@ -85,7 +86,7 @@ public class EstudianteLogic {
     public EstudianteEntity getEstudiante(Long cedula) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar un estudiante con id = {0}", cedula);
         EstudianteEntity estudiante = persistence.find(cedula);
-        if (validate(cedula) == false) {
+        if (cedula == null) {
             LOGGER.log(Level.SEVERE, "El estudiante con el id {0} no existe", cedula);
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar estudiante con id={0}", cedula);
@@ -103,7 +104,7 @@ public class EstudianteLogic {
      */
     public EstudianteEntity updateEstudiante(EstudianteEntity entity) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un estudiante ");
-         if(validate(entity.getCedula())==false){
+         if(entity.getCedula()==null){
             throw new BusinessLogicException("no existe estudiante");
         }
         EstudianteEntity rta = persistence.update(entity);
@@ -119,16 +120,10 @@ public class EstudianteLogic {
      */
     public void deleteEstudiante(Long cedula) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un estudiante ");
-         if(validate(cedula)==false){
+         if(cedula==null){
             throw new BusinessLogicException("la cedula es invalida para buscar un estudiante");
         }
         persistence.delete(cedula);
     }
 
-     private boolean validate(Long id) {
-        if (id == null) {
-            return false;
-        }
-        return true;
-    }
 }
