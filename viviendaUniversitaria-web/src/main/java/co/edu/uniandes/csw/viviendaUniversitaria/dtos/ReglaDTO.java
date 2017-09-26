@@ -17,7 +17,6 @@ public class ReglaDTO
     private String regla;
 
     public ReglaDTO() {
-        //Vacio por defecto
     }
     
     public ReglaDTO(ReglaEntity regla) {
