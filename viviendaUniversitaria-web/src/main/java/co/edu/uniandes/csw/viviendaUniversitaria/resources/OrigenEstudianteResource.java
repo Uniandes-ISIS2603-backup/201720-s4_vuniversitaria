@@ -103,8 +103,8 @@ public class OrigenEstudianteResource {
     
     @POST
     @Path("{EstudiantesId: \\d+}")
-    public EstudianteDetailDTO addEstudiantes(@PathParam("OrigenesId") Long OrigensId, @PathParam("EstudiantesId") Long EstudiantesId) {
-        return new EstudianteDetailDTO(OrigenLogic.addEstudiante(EstudiantesId,OrigensId));
+    public EstudianteDTO addEstudiantes(@PathParam("OrigenesId") Long OrigensId, @PathParam("EstudiantesId") Long EstudiantesId) {
+        return new EstudianteDTO(OrigenLogic.addEstudiante(EstudiantesId,OrigensId));
     }
 
     /**

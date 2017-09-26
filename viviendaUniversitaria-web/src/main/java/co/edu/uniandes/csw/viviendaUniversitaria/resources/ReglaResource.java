@@ -42,51 +42,51 @@ public class ReglaResource
     @Inject
     private ReglaLogic logic;
     
-    @POST
-    public ReglaDTO post(@PathParam("idHospedaje") Long idHospedaje,ReglaDTO entidad) throws WebApplicationException, BusinessLogicException
-    {
-        return new ReglaDTO(logic.create(idHospedaje,entidad.toEntity()));
-    }
-    
-    @GET
-    public List<ReglaDTO> getAll(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException
-    {
-        return construir(logic.findAll(idHospedaje));
-    }
-    
-    @GET
-    @Path("{idRegla: [0-9][0-9]*}")
-    public ReglaDTO get(@PathParam("idHospedaje") Long idHospedaje,@PathParam("idRegla") Long id) throws WebApplicationException, BusinessLogicException
-    {
-        ReglaEntity regla = logic.find(idHospedaje, id);
-        if(regla == null) throw new WebApplicationException("Consulta id: La entidad no existe",405);
-        return new ReglaDTO(regla);
-    }
-    
-    @PUT
-    @Path("{idRegla: [0-9][0-9]*}")
-    public ReglaDTO put(@PathParam("idHospedaje") Long idHospedaje,@PathParam("idRegla") Long idRegla, ReglaDTO dto) throws WebApplicationException, BusinessLogicException
-    {
-        dto.setId(idRegla);
-        ReglaEntity regla = logic.find(idHospedaje, idRegla);
-        if(regla == null) throw new WebApplicationException("Consulta id: La entidad no existe",405);
-        return new ReglaDTO(logic.update(idHospedaje,dto.toEntity()));
-    }
-    
-    @DELETE
-    @Path("{idRegla: [0-9][0-9]*}")
-    public void delete(@PathParam("idHospedaje") Long idHospedaje,@PathParam("idRegla") Long idRegla) throws WebApplicationException, BusinessLogicException
-    {
-        ReglaEntity regla = logic.find(idHospedaje, idRegla);
-        if(regla == null) throw new WebApplicationException("Consulta id: La entidad no existe",405);
-        logic.delete(idHospedaje, idRegla);
-    }
-    
-    private List<ReglaDTO> construir(List<ReglaEntity> list)
-    {
-        List<ReglaDTO> ret = new ArrayList<>();
-        for(ReglaEntity r : list) ret.add(new ReglaDTO(r));
-        return ret;
-    }
-    
+//    @POST
+//    public ReglaDTO post(@PathParam("idHospedaje") Long idHospedaje,ReglaDTO entidad) throws WebApplicationException, BusinessLogicException
+//    {
+//        return new ReglaDTO(logic.create(idHospedaje,entidad.toEntity()));
+//    }
+//    
+//    @GET
+//    public List<ReglaDTO> getAll(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException
+//    {
+//        return construir(logic.findAll(idHospedaje));
+//    }
+//    
+//    @GET
+//    @Path("{idRegla: [0-9][0-9]*}")
+//    public ReglaDTO get(@PathParam("idHospedaje") Long idHospedaje,@PathParam("idRegla") Long id) throws WebApplicationException, BusinessLogicException
+//    {
+//        ReglaEntity regla = logic.find(idHospedaje, id);
+//        if(regla == null) throw new WebApplicationException("Consulta id: La entidad no existe",405);
+//        return new ReglaDTO(regla);
+//    }
+//    
+//    @PUT
+//    @Path("{idRegla: [0-9][0-9]*}")
+//    public ReglaDTO put(@PathParam("idHospedaje") Long idHospedaje,@PathParam("idRegla") Long idRegla, ReglaDTO dto) throws WebApplicationException, BusinessLogicException
+//    {
+//        dto.setId(idRegla);
+//        ReglaEntity regla = logic.find(idHospedaje, idRegla);
+//        if(regla == null) throw new WebApplicationException("Consulta id: La entidad no existe",405);
+//        return new ReglaDTO(logic.update(idHospedaje,dto.toEntity()));
+//    }
+//    
+//    @DELETE
+//    @Path("{idRegla: [0-9][0-9]*}")
+//    public void delete(@PathParam("idHospedaje") Long idHospedaje,@PathParam("idRegla") Long idRegla) throws WebApplicationException, BusinessLogicException
+//    {
+//        ReglaEntity regla = logic.find(idHospedaje, idRegla);
+//        if(regla == null) throw new WebApplicationException("Consulta id: La entidad no existe",405);
+//        logic.delete(idHospedaje, idRegla);
+//    }
+//    
+//    private List<ReglaDTO> construir(List<ReglaEntity> list)
+//    {
+//        List<ReglaDTO> ret = new ArrayList<>();
+//        for(ReglaEntity r : list) ret.add(new ReglaDTO(r));
+//        return ret;
+//    }
+//    
 }

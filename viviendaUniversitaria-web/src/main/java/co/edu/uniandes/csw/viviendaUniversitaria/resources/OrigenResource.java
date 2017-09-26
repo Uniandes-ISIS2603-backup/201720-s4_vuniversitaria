@@ -41,14 +41,14 @@ public class OrigenResource {
     private static final Logger LOGGER = Logger.getLogger(OrigenPersistence.class.getName());
 
     @POST
-    public OrigenDetailDTO createOrigen(OrigenDetailDTO Origen) throws BusinessLogicException {
+    public OrigenDTO createOrigen(OrigenDetailDTO Origen) throws BusinessLogicException {
         OrigenEntity OrigenEntity = Origen.toEntity();
         OrigenEntity nuevoOrigen = OrigenLogic.createOrigen(OrigenEntity);
         return new OrigenDetailDTO(nuevoOrigen);
     }
 
     @GET
-    public List<OrigenDetailDTO> getOrigens() throws BusinessLogicException {
+    public List<OrigenDTO> getOrigens() throws BusinessLogicException {
         return listEntity2DetailDTO(OrigenLogic.getOrigenes());
     }
     
@@ -95,8 +95,8 @@ public class OrigenResource {
         OrigenLogic.deleteOrigen(id);
 
     }
-    private List<OrigenDetailDTO> listEntity2DetailDTO(List<OrigenEntity> entityList) {
-        List<OrigenDetailDTO> list = new ArrayList<>();
+    private List<OrigenDTO> listEntity2DetailDTO(List<OrigenEntity> entityList) {
+        List<OrigenDTO> list = new ArrayList<>();
         for (OrigenEntity entity : entityList) {
             list.add(new OrigenDetailDTO(entity));
         }
