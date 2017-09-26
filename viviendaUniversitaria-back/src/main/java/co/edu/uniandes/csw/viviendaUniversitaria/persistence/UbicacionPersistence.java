@@ -37,6 +37,7 @@ import javax.persistence.TypedQuery;
  *
  * @author ISIS2603
  */
+
 @Stateless
 public class UbicacionPersistence {
 
