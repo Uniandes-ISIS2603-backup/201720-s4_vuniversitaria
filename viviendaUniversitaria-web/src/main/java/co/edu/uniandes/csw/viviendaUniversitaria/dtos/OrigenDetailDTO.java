@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
-import java.util.ArrayList;
 
 /**
  *
@@ -20,6 +19,7 @@ public class OrigenDetailDTO extends OrigenDTO{
      * Constructor por defecto
      */
     public OrigenDetailDTO() {
+        //Vacio por default
     }
 
     

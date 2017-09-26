@@ -16,9 +16,8 @@ public class EstudianteDTO {
     private String nombre;
     
     
-    //para crear solo el dto¿?
     public EstudianteDTO(){
-        
+        //Constructor por defecto        
     }
     
     public EstudianteDTO(EstudianteEntity estudiante) {

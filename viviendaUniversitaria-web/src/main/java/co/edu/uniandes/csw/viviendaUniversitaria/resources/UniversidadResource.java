@@ -51,13 +51,13 @@ public class UniversidadResource {
     }
     
     @GET
-    @Path("{id: \\+d}")
-    public UniversidadDetailDTO getUniversidad(@PathParam("id") Long id) throws BusinessLogicException{
+    @Path("/{idUni: [0-9][0-9]*}")
+    public UniversidadDetailDTO getUniversidad(@PathParam("idUni") Long id) throws BusinessLogicException{
         if(logic.getUniversidad(id)!= null){
             UniversidadEntity entity = logic.getUniversidad(id);
             return new UniversidadDetailDTO (entity);
         }else{
-            throw new WebApplicationException("La universidad con ese id no existe");
+            throw new WebApplicationException("La universidad con ese id no existe",404);
         }
     }
     @POST
@@ -67,8 +67,8 @@ public class UniversidadResource {
         return new UniversidadDetailDTO(newEntity);
     }
     @PUT
-    @Path("id: \\+d")
-    public UniversidadDetailDTO updateUniversidad(@PathParam("id") Long id,UniversidadDetailDTO ubi) throws BusinessLogicException{
+    @Path("/{idUni: [0-9][0-9]*}")
+    public UniversidadDetailDTO updateUniversidad(@PathParam("idUni") Long id,UniversidadDetailDTO ubi) throws BusinessLogicException{
         if(logic.getUniversidad(id)!= null && id.equals(ubi.getId())){
             UniversidadEntity entity = logic.updateUniversidad(id,ubi.toEntity());
             return new UniversidadDetailDTO (entity);
@@ -77,8 +77,8 @@ public class UniversidadResource {
         }
     }
     @DELETE
-    @Path("id: \\+d")
-    public void deleteUniversidad(@PathParam("id")Long id) throws BusinessLogicException{
+    @Path("/{idUni: [0-9][0-9]*}")
+    public void deleteUniversidad(@PathParam("idUni")Long id) throws BusinessLogicException{
         if(logic.getUniversidad(id)!= null){
             logic.deleteUniversidad(id);
         }else{

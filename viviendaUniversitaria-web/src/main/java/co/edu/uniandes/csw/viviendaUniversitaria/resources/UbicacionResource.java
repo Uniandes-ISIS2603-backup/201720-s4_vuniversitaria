@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
-
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.UbicacionDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.UbicacionLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.UbicacionEntity;
@@ -32,17 +31,22 @@ import javax.ws.rs.WebApplicationException;
 @Path("ubicaciones")
 @Produces("application/json")
 @Consumes("application/json")
-//@RequestScoped ----- Indica que va a iniciar una transacción antes de cada metodo de la clase
 @Stateless
+
 public class UbicacionResource {
-    @Inject 
-    UbicacionLogic logic;
-    
+
+    @Inject
+    private UbicacionLogic logic;
+
     @GET
-    public List<UbicacionDetailDTO> getUbicaciones(){
-        return listEntity2DetailDTO(logic.getUbicaciones());
+    public List<UbicacionDetailDTO> getUbicaciones() {
+        if (listEntity2DetailDTO(logic.getUbicaciones()) == null) {
+            throw new WebApplicationException("Por favor ingresar datos", 404);
+        } else {
+            return listEntity2DetailDTO(logic.getUbicaciones());
+        }
     }
-    
+
     private List<UbicacionDetailDTO> listEntity2DetailDTO(List<UbicacionEntity> entityList) {
         List<UbicacionDetailDTO> list = new ArrayList<>();
         for (UbicacionEntity entity : entityList) {
@@ -50,44 +54,47 @@ public class UbicacionResource {
         }
         return list;
     }
-    
+
     @GET
-    @Path("{id: \\+d}")
-    public UbicacionDetailDTO getUbicacion(@PathParam("id") Long id) throws BusinessLogicException{
-        if(logic.getUbicacion(id)!= null){
+    @Path("/{idUbicacion: [0-9][0-9]*}")
+    public UbicacionDetailDTO getUbicacion(@PathParam("idUbicacion") Long id) throws BusinessLogicException {
+        if (logic.getUbicacion(id) != null) {
             UbicacionEntity entity = logic.getUbicacion(id);
-            return new UbicacionDetailDTO (entity);
-        }else{
-            throw new WebApplicationException("La ubicacion con ese id no existe");
+            return new UbicacionDetailDTO(entity);
+        } else {
+            throw new WebApplicationException("La ubicacion con ese id no existe", 404);
         }
     }
+
     @POST
-    public UbicacionDetailDTO createUbicacion(UbicacionDetailDTO ubi) throws BusinessLogicException{
-        UbicacionEntity entity = ubi.toEntity();
-        UbicacionEntity newEntity = logic.createUbicacion(entity);
-        return new UbicacionDetailDTO(newEntity);
+    public UbicacionDetailDTO createUbicacion(UbicacionDetailDTO ubi) throws BusinessLogicException {
+        if (ubi == null) {
+            throw new WebApplicationException("Por favor ingresar datos", 404);
+        } else {
+            return new UbicacionDetailDTO(logic.createUbicacion(ubi.toEntity()));
+        }
     }
+
     @PUT
-    @Path("id: \\+d")
-    public UbicacionDetailDTO updateUbicacion(@PathParam("id") Long id,UbicacionDetailDTO ubi) throws BusinessLogicException{
-        if(logic.getUbicacion(id)!= null && id.equals(ubi.getId())){
-            UbicacionEntity entity = logic.updateUbicacion(id,ubi.toEntity());
-            return new UbicacionDetailDTO (entity);
-        }else{
+    @Path("/{idUbicacion: [0-9][0-9]*}")
+    public UbicacionDetailDTO updateUbicacion(@PathParam("idUbicacion") Long id, UbicacionDetailDTO ubi) throws BusinessLogicException {
+        if (logic.getUbicacion(id) != null && id.equals(ubi.getId())) {
+            UbicacionEntity entity = logic.updateUbicacion(id, ubi.toEntity());
+            return new UbicacionDetailDTO(entity);
+        } else {
             throw new WebApplicationException("La ubicacion con ese id no existe");
         }
     }
+
     @DELETE
-    @Path("id: \\+d")
-    public void deleteUbicacion(@PathParam("id")Long id) throws BusinessLogicException{
-        if(logic.getUbicacion(id)!= null){
+    @Path("/{idUbicacion: [0-9][0-9]*}")
+    public void deleteUbicacion(@PathParam("idUbicacion") Long id) throws BusinessLogicException {
+        if (logic.getUbicacion(id) != null) {
             logic.deleteUbicacion(id);
-        }else{
+        } else {
             throw new WebApplicationException("La ubicacion con ese id no existe");
         }
-        
+
     }
-    
-    
-    
+
 }

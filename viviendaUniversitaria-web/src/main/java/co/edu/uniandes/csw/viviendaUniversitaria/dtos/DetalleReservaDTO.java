@@ -17,6 +17,7 @@ public class DetalleReservaDTO
     private Double subTotal;
 
     public DetalleReservaDTO() {
+        //Constructor vacio por defecto
     }
     
     public DetalleReservaDTO(DetalleReservaEntity entidad) 

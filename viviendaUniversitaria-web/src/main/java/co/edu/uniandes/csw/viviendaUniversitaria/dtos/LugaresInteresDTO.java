@@ -43,6 +43,7 @@ public class LugaresInteresDTO {
      * Constructor por defecto
      */
     public LugaresInteresDTO() {
+        //Constructor vacío por default
 
     }
 

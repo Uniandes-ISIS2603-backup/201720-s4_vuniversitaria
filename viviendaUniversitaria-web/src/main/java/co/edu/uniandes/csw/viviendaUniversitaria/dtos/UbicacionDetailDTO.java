@@ -16,6 +16,7 @@ public class UbicacionDetailDTO extends UbicacionDTO {
      * Constructor por defecto
      */
     public UbicacionDetailDTO() {
+        //Vacio por default
     }
 
     /**
@@ -34,7 +35,6 @@ public class UbicacionDetailDTO extends UbicacionDTO {
      */
     @Override
     public UbicacionEntity toEntity() {
-        UbicacionEntity cityE = super.toEntity();
-        return cityE;
+        return super.toEntity();
     }
 }

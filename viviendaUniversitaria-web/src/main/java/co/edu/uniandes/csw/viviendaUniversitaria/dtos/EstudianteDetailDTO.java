@@ -8,7 +8,6 @@ package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.FacturaEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,6 +64,7 @@ public class EstudianteDetailDTO extends EstudianteDTO {
 //        }
     }
 
+    @Override
     public EstudianteEntity toEntity() {
         EstudianteEntity entity = super.toEntity();
         
