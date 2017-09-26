@@ -170,5 +170,19 @@ public class ServiciosPersistenceTest {
         ServiciosEntity deleted = em.find(ServiciosEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
+    @Test
+    public void testFindAll() {
+        List<ServiciosEntity> list = persistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (ServiciosEntity ent : list) {
+            boolean found = false;
+            for (ServiciosEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
 
 }
