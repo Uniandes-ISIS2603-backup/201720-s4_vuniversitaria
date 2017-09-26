@@ -40,8 +40,9 @@ public class ServiciosDTO {
      * Constructor por defecto
      */
     public ServiciosDTO() {
+        //vacio por default
 
-    }
+   }
 
     /**
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en

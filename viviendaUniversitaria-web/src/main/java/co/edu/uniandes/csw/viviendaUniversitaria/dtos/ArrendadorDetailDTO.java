@@ -18,6 +18,7 @@ public class ArrendadorDetailDTO extends ArrendadorDTO{
      * Constructor por defecto
      */
     public ArrendadorDetailDTO() {
+        //Vacío por default
     }
     
    
@@ -37,7 +38,6 @@ public class ArrendadorDetailDTO extends ArrendadorDTO{
      */
     @Override
     public ArrendadorEntity toEntity() {
-        ArrendadorEntity arrendadorEntity = super.toEntity();
-        return arrendadorEntity;
+        return super.toEntity();       
     }
 }

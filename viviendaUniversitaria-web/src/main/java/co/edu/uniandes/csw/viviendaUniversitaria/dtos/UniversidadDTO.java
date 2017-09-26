@@ -22,6 +22,16 @@ public class UniversidadDTO {
     //private UbicacionEntity ubicacion;
      private Long id;
     private String name;
+    
+    public UniversidadDTO(){
+        //Vacio por default
+        
+    }
+    public UniversidadDTO(UniversidadEntity entity){
+        this.id = entity.getId();
+        this.name = entity.getNombre();
+       
+    }
 
     public Long getId() {
         return id;
@@ -37,16 +47,8 @@ public class UniversidadDTO {
 
     public void setName(String name) {
         this.name = name;
-    }
+    }    
     
-    public UniversidadDTO(){
-        
-    }
-    public UniversidadDTO(UniversidadEntity entity){
-        this.id = entity.getId();
-        this.name = entity.getNombre();
-       
-    }
       /**
      * Convertir DTO a Entity
      * @return Un Entity con los valores del DTO 

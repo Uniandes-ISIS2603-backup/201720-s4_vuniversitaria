@@ -13,6 +13,8 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.UniversidadEntity;
  */
 public class UniversidadDetailDTO extends UniversidadDTO{
      public UniversidadDetailDTO() {
+         //Vacio por defecto
+       
     }
 
     /**
@@ -31,7 +33,6 @@ public class UniversidadDetailDTO extends UniversidadDTO{
      */
     @Override
     public UniversidadEntity toEntity() {
-        UniversidadEntity cityE = super.toEntity();
-        return cityE;
+        return super.toEntity();
     }
 }

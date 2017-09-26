@@ -22,6 +22,7 @@ public class OrigenDTO {
      * Constructor por defecto
      */
     public OrigenDTO() {
+        //Vacío por defecto
     }
      /**
      * Conviertir Entity a DTO
