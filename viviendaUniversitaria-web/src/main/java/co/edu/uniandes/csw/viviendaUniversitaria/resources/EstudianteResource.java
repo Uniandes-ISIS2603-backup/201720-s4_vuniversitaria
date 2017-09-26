@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.EstudianteLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,9 +67,18 @@ public class EstudianteResource {
     public EstudianteDTO createEstudiante(EstudianteDTO estudiante) throws BusinessLogicException {        
          return new EstudianteDetailDTO(this.estudiante.createEstudiante(estudiante.toEntity()));
     }
+    
+     @Path("{cedula: \\d+}/calificaciones")
+    public Class<CalificacionResource> getCalificacionResource(@PathParam("EstudianteId") Long idEstudiante) {
+        EstudianteEntity entity = estudiante.getEstudiante(idEstudiante);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /origenes/" + idEstudiante + "/origen no existe.", 404);
+        }
+        return CalificacionResource.class;
+    }
 
     @DELETE
-    @Path("{estudiantesCedula: \\d+}")
+    @Path("{cedula: \\d+}")
     public void deleteEstudiante(@PathParam("estudiantesCedula") Long cedula) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.getEstudiante(cedula);
         if (entity == null) {
@@ -87,16 +97,7 @@ public class EstudianteResource {
         }
         return new EstudianteDTO(estudiante.updateEstudiante(estu.toEntity()));
     }
- 
-    @Path("{cedulaEstudiante: \\d+}/calificaciones")
-    public Class<CalificacionResource> getCalificacionResource(@PathParam("cedulaEstudiante") Long cedula) throws BusinessLogicException {
-        EstudianteEntity entity = estudiante.getEstudiante(cedula);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /estudiantes/" + cedula + "/calificacion no existe.", 404);
-        }
-        return CalificacionResource.class;
-    }
-    
+
     
 
     private List<EstudianteDetailDTO> listEstudianteEntity2DetailDTO(List<EstudianteEntity> entityList) {
