@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.OrigenDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.OrigenDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.OrigenLogic;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.OrigenPersistence;
@@ -60,6 +61,17 @@ public class OrigenResource {
         }
         return new OrigenDetailDTO(OrigenLogic.getOrigen(id));
     }
+    
+    @Path("{OrigenesId: \\d+}/estudiantes")
+    public Class<OrigenEstudianteResource> getOrigenEstudianteResource(@PathParam("OrigenesId") Long idOrigen) {
+        OrigenEntity entity = OrigenLogic.getOrigen(idOrigen);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /origenes/" + idOrigen + "/origen no existe.", 404);
+        }
+        return OrigenEstudianteResource.class;
+    }
+    
+    
 
     @PUT
     @Path("{id: \\d+}")
