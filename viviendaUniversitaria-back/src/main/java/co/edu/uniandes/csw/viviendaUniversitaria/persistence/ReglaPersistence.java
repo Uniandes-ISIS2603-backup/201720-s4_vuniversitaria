@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 /**
  *
  * @author NOA_WERMEID
@@ -43,9 +44,23 @@ public class ReglaPersistence
         em.remove(em.find(ReglaEntity.class, id));
     }
 
-    public ReglaEntity find(Long id) {
+    public ReglaEntity find(Long idHospedaje, Long id) {
         LOGGER.log(Level.INFO, "Consultando regla con id={0}", id);
-        return em.find(ReglaEntity.class, id);
+        TypedQuery<ReglaEntity> q = em.createQuery("select p from ReglaEntity p where (p.hospedaje.id = :idHospedaje) and (p.id = :idRegla)", ReglaEntity.class);
+        q.setParameter("idHospedaje", idHospedaje);
+        q.setParameter("idRegla", id);
+        List<ReglaEntity> results = q.getResultList();
+        ReglaEntity regla = null;
+        if (results == null) {
+            regla = null;
+        } else if (results.isEmpty()) {
+            regla = null;
+        } else if (results.size() >= 1) {
+            regla = results.get(0);
+        }
+
+        return regla;
+        //return em.find(ReglaEntity.class, id);
     }
 
     public List<ReglaEntity> findAll() {

@@ -78,7 +78,8 @@ public class HospedajeResource {
     @Path("{idHospedaje: [0-9][0-9]*}/reglas")
     public Class<ReglaResource> getRegla(@PathParam("idHospedaje") Long idHospedaje ) throws WebApplicationException, BusinessLogicException
     {
-        hospedajeLogic.find(idHospedaje);
+        HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
+        if(hospedaje == null) throw new WebApplicationException("Acceso: La entidad no existe", 405);
         return ReglaResource.class;
     }
     
