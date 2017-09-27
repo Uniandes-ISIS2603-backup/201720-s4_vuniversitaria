@@ -22,7 +22,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -35,7 +34,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class LugaresInteresPersistenceTest {
 
     /**
-     * Inyección de la dependencia a la clase XYZPersistence cuyos métodos se
+     * Inyección de la dependencia a la clase LugaresInteresPersistence cuyos métodos se
      * van a probar.
      */
     @Inject
@@ -119,7 +118,7 @@ public class LugaresInteresPersistenceTest {
     /**
      * Test of findId method, of class LugaresInteresPersistence.
      */
-    @org.junit.Test
+    @Test
     public void testFindId() throws Exception {
         LugaresInteresEntity entity = data.get(0);
         LugaresInteresEntity newEntity = persistence.findId(entity.getId());
@@ -145,7 +144,7 @@ public class LugaresInteresPersistenceTest {
     /**
      * Test of update method, of class LugaresInteresPersistence.
      */
-    @org.junit.Test
+    @Test
     public void testUpdate() throws Exception {
         LugaresInteresEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
@@ -163,12 +162,27 @@ public class LugaresInteresPersistenceTest {
     /**
      * Test of delete method, of class LugaresInteresPersistence.
      */
-    @org.junit.Test
+    @Test
     public void testDelete() throws Exception {
         LugaresInteresEntity entity = data.get(0);
         persistence.delete(entity.getId());
         LugaresInteresEntity deleted = em.find(LugaresInteresEntity.class, entity.getId());
         Assert.assertNull(deleted);
+    }
+
+    @Test
+    public void testFindAll() {
+        List<LugaresInteresEntity> list = persistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (LugaresInteresEntity ent : list) {
+            boolean found = false;
+            for (LugaresInteresEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
     }
 
 }

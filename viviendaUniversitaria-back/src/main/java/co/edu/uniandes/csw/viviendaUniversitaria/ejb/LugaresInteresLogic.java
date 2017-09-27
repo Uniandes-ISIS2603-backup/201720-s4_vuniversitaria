@@ -8,8 +8,10 @@ package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.LugaresInteresEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.LugaresInteresPersistence;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
@@ -19,18 +21,33 @@ import javax.ejb.Stateless;
 public class LugaresInteresLogic {
 
     private static final Logger LOGGER = Logger.getLogger(LugaresInteresLogic.class.getName());
-    
+
+    @Inject
     private LugaresInteresPersistence persistence;
-    
+
+    public List<LugaresInteresEntity> findAll() throws BusinessLogicException {
+        LOGGER.info("Inicio proceso busqueda de Lugar de interes");
+        if (persistence.findAll() == null) {
+            throw new BusinessLogicException("no existen lugares de interes");
+        } else if (persistence.findAll().isEmpty()) {
+            throw new BusinessLogicException("no existen lugares de interes");
+        } else {
+            return persistence.findAll();
+        }
+    }
+
     public LugaresInteresEntity findIdLugarInteres(Long id) throws BusinessLogicException {
         LOGGER.info("Inicio proceso busqueda de Lugar de interes");
         LugaresInteresEntity respuesta = persistence.findId(id);
+        if (respuesta == null) {
+            throw new BusinessLogicException("no existe el lugar de interes con id:" + id);
+        }
         ValidacionNull(respuesta.getId());
         LOGGER.info("Fin de proceso de busqueda");
         return respuesta;
-        
+
     }
-    
+
     public LugaresInteresEntity createLugarInteres(LugaresInteresEntity entidad) throws BusinessLogicException {
         LOGGER.info("Inicio proceso creación de Lugar de interes");
         Long id = entidad.getId();
@@ -44,16 +61,22 @@ public class LugaresInteresLogic {
             return entidad;
         }
     }
-    
+
     public LugaresInteresEntity updateLugarInteres(LugaresInteresEntity entidad) throws BusinessLogicException {
+        if (entidad == null) {
+            throw new BusinessLogicException("ingrese un entity valido");
+        }
         LOGGER.info("Inicio proceso de actualizacion de Lugar de interes");
         Long id = entidad.getId();
         ValidacionNull(id);
+        if (findIdLugarInteres(id) == null) {
+            throw new BusinessLogicException("el lugar con el id: " + id + "no existe");
+        }
         LOGGER.info("Finalizando proceso de actualización");
         return persistence.update(entidad);
-        
+
     }
-    
+
     public void delete(Long id) throws BusinessLogicException {
         ValidacionNull(id);
         if (persistence.findId(id) == null) {
@@ -70,5 +93,5 @@ public class LugaresInteresLogic {
             throw new BusinessLogicException("Ingrese el id del Lugar de interes");
         }
     }
-    
+
 }

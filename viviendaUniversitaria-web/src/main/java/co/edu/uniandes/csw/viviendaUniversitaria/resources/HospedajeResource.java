@@ -11,7 +11,6 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.*;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -77,6 +76,10 @@ public class HospedajeResource {
         List<HospedajeDTO> ret = new ArrayList<>();
         for(HospedajeEntity r : list) ret.add(new HospedajeDTO(r));
         return ret;
+    }
+    public Class<ServiciosResourse> getServicios()
+    {
+        return ServiciosResourse.class;
     }
     
 }

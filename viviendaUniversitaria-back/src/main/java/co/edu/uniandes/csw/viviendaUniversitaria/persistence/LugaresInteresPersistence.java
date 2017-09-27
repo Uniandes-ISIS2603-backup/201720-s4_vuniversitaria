@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.LugaresInteresEntity;
+import java.util.List;
 
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -40,7 +42,13 @@ public class LugaresInteresPersistence {
     }
 
     public void delete(Long id) {
-        em.remove(findId(id));
+        LugaresInteresEntity entity = findId(id);
+        em.remove(entity);
+    }
+    public List<LugaresInteresEntity> findAll() {
+        LOGGER.info("Consultando todos los lugares de Interes");
+        Query q = em.createQuery("select u from LugaresInteresEntity u");
+        return q.getResultList();
     }
 
 }
