@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDTO;
-import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDTO;
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.OrigenLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -34,10 +34,10 @@ public class OrigenEstudianteResource {
     private OrigenLogic OrigenLogic;
 
     /**
-     * Convierte una lista de EstudianteEntity a una lista de EstudianteDTO.
+     * Convierte una lista de EstudianteEntity a una lista de EstudianteDetailDTO.
      *
      * @param entityList Lista de EstudianteEntity a convertir.
-     * @return Lista de EstudianteDTO convertida.
+     * @return Lista de EstudianteDetailDTO convertida.
      * 
      */
     private List<EstudianteDTO> EstudiantesListEntity2DTO(List<EstudianteEntity> entityList) {
@@ -49,9 +49,9 @@ public class OrigenEstudianteResource {
     }
 
     /**
-     * Convierte una lista de EstudianteDTO a una lista de EstudianteEntity.
+     * Convierte una lista de EstudianteDetailDTO a una lista de EstudianteEntity.
      *
-     * @param dtos Lista de EstudianteDTO a convertir.
+     * @param dtos Lista de EstudianteDetailDTO a convertir.
      * @return Lista de EstudianteEntity convertida.
      * 
      */
@@ -64,11 +64,11 @@ public class OrigenEstudianteResource {
     }
 
     /**
-     * Obtiene una colección de instancias de EstudianteDTO asociadas a una
+     * Obtiene una colección de instancias de EstudianteDetailDTO asociadas a una
      * instancia de Origen
      *
      * @param OrigensId Identificador de la instancia de Origen
-     * @return Colección de instancias de EstudianteDTO asociadas a la instancia
+     * @return Colección de instancias de EstudianteDetailDTO asociadas a la instancia
      * de Origen
      * 
      */
@@ -97,14 +97,14 @@ public class OrigenEstudianteResource {
      *
      * @param OrigensId Identificador de la instancia de Origen
      * @param EstudiantesId Identificador de la instancia de Estudiante
-     * @return Instancia de EstudianteDTO que fue asociada a Origen
+     * @return Instancia de EstudianteDetailDTO que fue asociada a Origen
      * 
      */
     
     @POST
     @Path("{EstudiantesId: \\d+}")
-    public EstudianteDTO addEstudiantes(@PathParam("OrigenesId") Long OrigensId, @PathParam("EstudiantesId") Long EstudiantesId) {
-        return new EstudianteDTO(OrigenLogic.addEstudiante(EstudiantesId,OrigensId));
+    public EstudianteDetailDTO addEstudiantes(@PathParam("OrigenesId") Long OrigensId, @PathParam("EstudiantesId") Long EstudiantesId) {
+        return new EstudianteDetailDTO(OrigenLogic.addEstudiante(EstudiantesId,OrigensId));
     }
 
     /**

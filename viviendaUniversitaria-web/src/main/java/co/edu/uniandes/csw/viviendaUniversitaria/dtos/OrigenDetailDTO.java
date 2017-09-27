@@ -31,7 +31,7 @@ public class OrigenDetailDTO extends OrigenDTO{
      *
      * @param entity
      */
-     public OrigenDetailDTO(OrigenEntity entity) {
+    public OrigenDetailDTO(OrigenEntity entity) {
         super(entity);
         if (entity.getEstudiante() != null) {
             estudiantes=new ArrayList<>();

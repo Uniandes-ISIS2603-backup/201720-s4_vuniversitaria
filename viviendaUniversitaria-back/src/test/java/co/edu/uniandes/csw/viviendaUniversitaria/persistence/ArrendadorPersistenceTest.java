@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ArrendadorEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.persistence.ArrendadorPersistence;
 
 import java.util.ArrayList;
 import java.util.List;

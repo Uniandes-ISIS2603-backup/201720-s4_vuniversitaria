@@ -26,7 +26,6 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class FacturaEntity implements Serializable {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
