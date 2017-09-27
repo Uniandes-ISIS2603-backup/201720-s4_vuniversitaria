@@ -55,12 +55,12 @@ public class EstudianteLogic {
     public EstudianteEntity createEstudiante(EstudianteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de estudiante");
         // Invoca la persistencia para crear la Default
-        try{
-        persistence.create(entity);
-        }catch(Exception e){
-            LOGGER.info(e.getMessage()+e.getLocalizedMessage()+e.toString());
+        if(entity.getCedula()==null){
+            throw new BusinessLogicException("la cedula no puede estar vacia");
         }
         LOGGER.info("Termina proceso de creación de estudiante");
+        persistence.create(entity);
+
         return entity;
     }
 

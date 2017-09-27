@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: co.edu.uniandes.csw.viviendaUniversitaria.entities.DetalleReservaEntityTest
--------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 28.869 sec
