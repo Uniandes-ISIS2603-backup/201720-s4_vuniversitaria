@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDTO;
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.OrigenDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.EstudianteLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -48,8 +49,6 @@ public class EstudianteResource {
     public List<EstudianteDTO> getEstudiantes() throws Exception {
         return listEstudianteEntity2DTO(estudiante.getEstudiantes());
     }
-    
-    
 
     @GET
     @Path("{cedula: \\d+}")
@@ -106,4 +105,12 @@ public class EstudianteResource {
         return list;
     }
     
+    
+    @GET
+    @Path("{cedula: \\d+}/origenes")
+    public OrigenDTO getOrigen(@PathParam("cedula") Long cedula){
+        return new OrigenDTO(estudiante.getOrigen(cedula));
+    }
+    
 }
+
