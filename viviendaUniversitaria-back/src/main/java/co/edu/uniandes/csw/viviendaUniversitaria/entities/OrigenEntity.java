@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class OrigenEntity implements Serializable{
     private String name;
     
     @PodamExclude
-    @OneToMany(mappedBy = "origen", fetch=FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REFRESH,orphanRemoval = true ,mappedBy = "origen", fetch=FetchType.LAZY)
     private List<EstudianteEntity> estudiante;
 
     public String getName() {

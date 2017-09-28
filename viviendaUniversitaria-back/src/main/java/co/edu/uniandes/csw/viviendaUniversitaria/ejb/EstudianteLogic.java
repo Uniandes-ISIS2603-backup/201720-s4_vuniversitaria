@@ -93,7 +93,9 @@ public class EstudianteLogic {
         return estudiante;
     }
     
-    
+        public OrigenEntity getOrigen(Long cedula){
+        return getEstudiante(cedula).getOrigen();
+    }
 
     /**
      * Actualiza la información de una instancia de Estudiante.
