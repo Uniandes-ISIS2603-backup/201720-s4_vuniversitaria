@@ -5,8 +5,9 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -146,8 +147,6 @@ public class CalificacionEntity implements Serializable {
      * @param fecha 
      */
     public void setFecha(Date fecha) {
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        date.format(fecha);
         this.fecha = fecha;
     }
 

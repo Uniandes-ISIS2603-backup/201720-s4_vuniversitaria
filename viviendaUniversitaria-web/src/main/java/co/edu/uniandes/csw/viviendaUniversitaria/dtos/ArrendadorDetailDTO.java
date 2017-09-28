@@ -5,7 +5,11 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.HospedajeDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ArrendadorEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,22 +17,23 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.ArrendadorEntity;
  */
 public class ArrendadorDetailDTO extends ArrendadorDTO{
     
-    
-    /**
-     * Constructor por defecto
+    private List<HospedajeDTO> hospedajes;
+            
+     /**
+     * Constructor 
      */
     public ArrendadorDetailDTO() {
-        //Vacío por default
+        super();
     }
     
-   
-    /**
-     * Constructor para transformar un Entity a un DTO
-     *
-     * @param entity
-     */
-    public ArrendadorDetailDTO(ArrendadorEntity entity) {
-        super(entity);
+    public ArrendadorDetailDTO(ArrendadorEntity arrendador){
+        super(arrendador);
+        if(arrendador!= null){
+            this.hospedajes = new ArrayList<>();
+            for(HospedajeEntity entity: arrendador.getHospedajes()){
+                hospedajes.add(new HospedajeDTO(entity));
+            }
+        }
     }
 
     /**
@@ -38,6 +43,22 @@ public class ArrendadorDetailDTO extends ArrendadorDTO{
      */
     @Override
     public ArrendadorEntity toEntity() {
-        return super.toEntity();       
+        ArrendadorEntity arrendadorEntity = super.toEntity();
+        if(hospedajes!= null){
+            List<HospedajeEntity> listaHospedajes= new ArrayList<>();
+            for(HospedajeDTO hospedajeDTO : hospedajes){
+                listaHospedajes.add(hospedajeDTO.toEntity());
+            }
+            arrendadorEntity.setHospedajes(listaHospedajes);
+        }
+        return arrendadorEntity;
+    }
+    
+    public List<HospedajeDTO> getHospedajes(){
+        return this.hospedajes;
+    }
+    
+    public void setHospedajes(List<HospedajeDTO> hospedajes){
+        this.hospedajes= hospedajes;
     }
 }

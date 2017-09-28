@@ -30,7 +30,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author kk.penaranda
  */
-@Path("calificacion")
+@Path("calificaciones")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -49,22 +49,24 @@ public class CalificacionResource {
 
     @GET
     public List<CalificacionDTO> getCalificaciones() throws BusinessLogicException {
+        if(listEntity2DetailDTO(calificacionLogic.getCalificacion()).isEmpty())
+            throw new WebApplicationException("La lista de calificaciones esta vacía", 404);
         return listEntity2DetailDTO(calificacionLogic.getCalificacion());
     }
 
     @GET
-    @Path("{id: \\d+}")
+    @Path("{id: [0-9][0-9]*}")
     public CalificacionDTO getCalificacion(@PathParam("id") Long id) throws BusinessLogicException {
         CalificacionEntity entity = calificacionLogic.getCalificacion(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /calificacion/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /calificacion/ " + id + " no existe.", 404);
         }
         return new CalificacionDTO(calificacionLogic.getCalificacion(id));
     }
 
     
     @PUT
-    @Path("{id: \\d+}")
+    @Path("{id: [0-9][0-9]*}")
     public CalificacionDTO updateCalificacion(@PathParam("id") Long id, CalificacionDTO calificacion) throws BusinessLogicException {
         calificacion.setId(id);
         CalificacionEntity entity = calificacionLogic.getCalificacion(id);
@@ -75,7 +77,7 @@ public class CalificacionResource {
     }
 
     @DELETE
-    @Path("{id: \\d+}")
+    @Path("{id: [0-9][0-9]*}")
     public void deleteCalificacion(@PathParam("id") Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar una calificacion con id {0}", id);
         CalificacionEntity entity = calificacionLogic.getCalificacion(id);

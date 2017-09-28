@@ -28,7 +28,7 @@ public class CalificacionLogic {
 
   
     public CalificacionEntity createCalificacion(CalificacionEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de city");
+        LOGGER.info("Inicia proceso de creación de calificacion");
         if (persistence.find(entity.getId())!= null)
             throw new BusinessLogicException("Ya existe una Calificacion con el id \"" + entity.getId()+ "\"");
         persistence.create(entity);

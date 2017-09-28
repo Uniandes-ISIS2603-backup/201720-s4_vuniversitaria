@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.ArrendadorDTO;
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.ArrendadorDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.ArrendadorLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ArrendadorEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -30,7 +31,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author kk.penaranda
  */
-@Path("arrendador")
+@Path("arrendadores")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -41,40 +42,39 @@ public class ArrendadorResource {
     private static final Logger LOGGER = Logger.getLogger(ArrendadorPersistence.class.getName());
     
     @POST
-    public ArrendadorDTO createArrendador(ArrendadorDTO arrendador) throws BusinessLogicException {
+    public ArrendadorDetailDTO createArrendador(ArrendadorDetailDTO arrendador) throws BusinessLogicException {
         ArrendadorEntity arrendadorEntity = arrendador.toEntity();
         ArrendadorEntity nuevoArrendador = arrendadorLogic.createArrendador(arrendadorEntity);
-        return new ArrendadorDTO(nuevoArrendador);
+        return new ArrendadorDetailDTO(nuevoArrendador);
     }
 
     @GET
-    public List<ArrendadorDTO> getArrendadores() throws BusinessLogicException {
+    public List<ArrendadorDetailDTO> getArrendadores() throws BusinessLogicException {
+         if(listEntity2DetailDTO(arrendadorLogic.getArrendadores()).isEmpty())
+            throw new WebApplicationException("La lista de arrendadores esta vacía", 404);
         return listEntity2DetailDTO(arrendadorLogic.getArrendadores());
     }
 
     @GET
     @Path("{id: [0-9][0-9]*}")
-    public ArrendadorDTO getArrendador(@PathParam("id") Long id) throws BusinessLogicException {
+    public ArrendadorDetailDTO getArrendador(@PathParam("id") Long id) throws BusinessLogicException {
         ArrendadorEntity entity = arrendadorLogic.getArrendador(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /arrendador/" + id + " no existe.", 404);
         }
-        else if(id < 99999){
-            throw new WebApplicationException("El id debe tener mas de 6 digitos", 412);     
-        }
-        return new ArrendadorDTO(arrendadorLogic.getArrendador(id));
+        return new ArrendadorDetailDTO(arrendadorLogic.getArrendador(id));
     }
 
     
     @PUT
     @Path("{id: [0-9][0-9]*}")
-    public ArrendadorDTO updateArrendador(@PathParam("id") Long id, ArrendadorDTO arrendador) throws BusinessLogicException {
+    public ArrendadorDetailDTO updateArrendador(@PathParam("id") Long id, ArrendadorDetailDTO arrendador) throws BusinessLogicException {
         arrendador.setId(id);
         ArrendadorEntity entity = arrendadorLogic.getArrendador(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /arrendador/" + id + " no existe.", 404);
         }
-        return new ArrendadorDTO(arrendadorLogic.updateArrendador(id, arrendador.toEntity()));
+        return new ArrendadorDetailDTO(arrendadorLogic.updateArrendador(id, arrendador.toEntity()));
     }
 
     @DELETE
@@ -87,11 +87,23 @@ public class ArrendadorResource {
         }
         arrendadorLogic.deleteArrendador(id);
     }
-    private List<ArrendadorDTO> listEntity2DetailDTO(List<ArrendadorEntity> entityList) {
-        List<ArrendadorDTO> list = new ArrayList<>();
+    private List<ArrendadorDetailDTO> listEntity2DetailDTO(List<ArrendadorEntity> entityList) {
+        List<ArrendadorDetailDTO> list = new ArrayList<>();
         for (ArrendadorEntity entity : entityList) {
-            list.add(new ArrendadorDTO(entity));
+            list.add(new ArrendadorDetailDTO(entity));
         }
         return list;
+    }
+    
+    @Path("{id: [0-9][0-9]*}/hospedajes")
+    public Class<ArrendadorHospedajeResource> getHospedajesArrendador(@PathParam("id") Long id) throws BusinessLogicException {
+        ArrendadorEntity entity = arrendadorLogic.getArrendador(id);
+        if (entity == null) {
+            throw new WebApplicationException("El arrendador no existe", 404);
+        }
+        if(entity.getHospedajes().isEmpty()){
+            throw new WebApplicationException("No hay hospedajes asociados al arrendador seleccionado", 404);
+        }
+        return ArrendadorHospedajeResource.class;
     }
 }

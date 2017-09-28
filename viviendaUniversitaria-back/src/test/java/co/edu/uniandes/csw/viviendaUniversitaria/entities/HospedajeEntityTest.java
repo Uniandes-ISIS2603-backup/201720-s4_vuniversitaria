@@ -376,7 +376,7 @@ public class HospedajeEntityTest {
     @Test
     public void testGetArrendador() {
         ArrendadorEntity arrendador = new ArrendadorEntity();
-        arrendador.setId(new Long(23));
+        arrendador.setId(new Long(235411521));
         HospedajeEntity hospedaje = new HospedajeEntity();
         hospedaje.setArrendador(arrendador);
         Assert.assertTrue(hospedaje.getArrendador().getId().equals(arrendador.getId()));
