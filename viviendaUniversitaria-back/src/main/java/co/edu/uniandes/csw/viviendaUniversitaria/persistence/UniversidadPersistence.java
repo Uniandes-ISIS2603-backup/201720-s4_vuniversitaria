@@ -19,6 +19,7 @@ import javax.persistence.TypedQuery;
  *
  * @author c.santacruza
  */
+
 @Stateless
 public class UniversidadPersistence {
      private static final Logger LOGGER = Logger.getLogger(UniversidadPersistence.class.getName());
@@ -49,7 +50,7 @@ public class UniversidadPersistence {
      * @return un default con los cambios aplicados.
      */
     public UniversidadEntity update(UniversidadEntity entity) {
-        LOGGER.log(Level.INFO, "Actualizando Estudiante con id={0}", entity.getId());
+        LOGGER.log(Level.INFO, "Actualizando Universidad con id={0}", entity.getId());
         /* Note que hacemos uso de un método propio del EntityManager llamado merge() que recibe como argumento
         la Default con los cambios, esto es similar a 
         "UPDATE table_codigo SET column1 = value1, column2 = value2, ... WHERE condition;" en SQL.

@@ -18,6 +18,7 @@ public class DetalleServicioDTO
     private Double subTotal;
 
     public DetalleServicioDTO() {
+        //Constructor por defecto
     }
     
     public DetalleServicioDTO(DetalleServicioEntity entidad) 

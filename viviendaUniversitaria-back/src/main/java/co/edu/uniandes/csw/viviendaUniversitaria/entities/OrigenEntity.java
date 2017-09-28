@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -20,7 +22,6 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class OrigenEntity implements Serializable{
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,8 +29,8 @@ public class OrigenEntity implements Serializable{
     private String name;
     
     @PodamExclude
-    @OneToOne
-    private EstudianteEntity estudiante;
+    @OneToMany(mappedBy = "origen", fetch=FetchType.EAGER)
+    private List<EstudianteEntity> estudiante;
 
     public String getName() {
         return name;
@@ -39,17 +40,14 @@ public class OrigenEntity implements Serializable{
         this.name = name;
     }
 
-    public EstudianteEntity getEstudiante() {
+    public List<EstudianteEntity> getEstudiante() {
         return estudiante;
     }
 
-    public void setEstudiante(EstudianteEntity estudiante) {
+    public void setEstudiante(List<EstudianteEntity> estudiante) {
         this.estudiante = estudiante;
     }
-
-    /**
-     * @return the id
-     */
+    
     public Long getId() {
         return id;
     }

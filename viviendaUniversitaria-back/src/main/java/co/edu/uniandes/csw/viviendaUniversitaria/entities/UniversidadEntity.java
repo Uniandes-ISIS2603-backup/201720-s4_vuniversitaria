@@ -40,15 +40,7 @@ public class UniversidadEntity  implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    @PodamExclude
-    @OneToOne(mappedBy = "universidad", orphanRemoval = true)
-    private UbicacionEntity ubicacion;
-
-    public UbicacionEntity getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(UbicacionEntity ubicacion) {
-        this.ubicacion = ubicacion;
-    }
+    //@PodamExclude
+    //@OneToOne(mappedBy = "universidad", orphanRemoval = true)
+    //private UbicacionEntity ubicacion;
 }

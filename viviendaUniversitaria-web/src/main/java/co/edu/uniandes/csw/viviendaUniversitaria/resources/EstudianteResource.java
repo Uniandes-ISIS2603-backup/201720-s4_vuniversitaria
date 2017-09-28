@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDetailDTO;
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.EstudianteLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -45,23 +45,25 @@ public class EstudianteResource {
     }
 
     @GET
-    public List<EstudianteDetailDTO> getEstudiantes() throws Exception {
-        return listEstudianteEntity2DetailDTO(estudiante.getEstudiantes());
+    public List<EstudianteDTO> getEstudiantes() throws Exception {
+        return listEstudianteEntity2DTO(estudiante.getEstudiantes());
     }
+    
+    
 
     @GET
     @Path("{cedula: \\d+}")
-    public EstudianteDetailDTO getEstudiante(@PathParam("cedula") Long cedula) throws BusinessLogicException {
+    public EstudianteDTO getEstudiante(@PathParam("cedula") Long cedula) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.getEstudiante(cedula);
         if (entity == null) {
             throw new WebApplicationException("El recurso /estudiantes/" + cedula + " no existe.", 404);
         }
-        return new EstudianteDetailDTO(entity);
+        return new EstudianteDTO(entity);
     }
     
     @POST
-    public EstudianteDetailDTO createEstudiante(EstudianteDetailDTO estudiante) throws BusinessLogicException {        
-         return new EstudianteDetailDTO(this.estudiante.createEstudiante(estudiante.toEntity()));
+    public EstudianteDTO createEstudiante(EstudianteDTO estudiante) throws BusinessLogicException {        
+         return new EstudianteDTO(this.estudiante.createEstudiante(estudiante.toEntity()));
     }
 
     @DELETE
@@ -76,13 +78,13 @@ public class EstudianteResource {
     
     @PUT
     @Path("{cedula: \\d+}")
-    public EstudianteDetailDTO updateEstudiante(@PathParam("cedula") Long cedula, EstudianteDetailDTO estu) throws BusinessLogicException {
+    public EstudianteDTO updateEstudiante(@PathParam("cedula") Long cedula, EstudianteDTO estu) throws BusinessLogicException {
         estu.setCedula(cedula);
         EstudianteEntity entity = estudiante.getEstudiante(cedula);
         if (entity == null) {
             throw new WebApplicationException("El recurso /estudiantes/" + cedula + " no existe.", 404);
         }
-        return new EstudianteDetailDTO(estudiante.updateEstudiante(estu.toEntity()));
+        return new EstudianteDTO(estudiante.updateEstudiante(estu.toEntity()));
     }
  
     @Path("{cedulaEstudiante: \\d+}/calificaciones")
@@ -96,19 +98,12 @@ public class EstudianteResource {
     
     
 
-    private List<EstudianteDetailDTO> listEstudianteEntity2DetailDTO(List<EstudianteEntity> entityList) {
-        List<EstudianteDetailDTO> list = new ArrayList<>();
+    private List<EstudianteDTO> listEstudianteEntity2DTO(List<EstudianteEntity> entityList) {
+        List<EstudianteDTO> list = new ArrayList<>();
         for (EstudianteEntity entity : entityList) {
-            list.add(new EstudianteDetailDTO(entity));
+            list.add(new EstudianteDTO(entity));
         }
         return list;
     }
-
-    @Path("{cedula: \\d+}/origen")
-    public OrigenResource getOrigen()
-    {             
-     return new OrigenResource();
-    }
     
-        
 }

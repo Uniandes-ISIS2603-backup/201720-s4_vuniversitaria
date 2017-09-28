@@ -22,6 +22,7 @@ public class HospedajeLugarDTO
     private Long distancia;
 
     public HospedajeLugarDTO() {
+        //Constructor por defecto
     }
     
     public HospedajeLugarDTO(HospedajeLugarEntity entidad) {

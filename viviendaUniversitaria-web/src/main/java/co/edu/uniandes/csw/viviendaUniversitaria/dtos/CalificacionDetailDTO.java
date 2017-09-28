@@ -19,6 +19,7 @@ public class CalificacionDetailDTO extends CalificacionDTO{
      * Constructor por defecto
      */
     public CalificacionDetailDTO() {
+        //Vacío por default
     }
     
    
@@ -39,8 +40,7 @@ public class CalificacionDetailDTO extends CalificacionDTO{
      */
     @Override
     public CalificacionEntity toEntity() {
-        CalificacionEntity calificacionEntity = super.toEntity();
-        return calificacionEntity;
+        return super.toEntity();
     }
     
 }

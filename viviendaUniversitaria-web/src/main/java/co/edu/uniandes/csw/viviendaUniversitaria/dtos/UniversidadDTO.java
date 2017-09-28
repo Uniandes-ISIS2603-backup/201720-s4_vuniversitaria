@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.UbicacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.UniversidadEntity;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -19,9 +20,18 @@ public class UniversidadDTO {
    // @PodamExclude
     //@OneToOne("Ubicacion")
     //private UbicacionEntity ubicacion;
-    
      private Long id;
     private String name;
+    
+    public UniversidadDTO(){
+        //Vacio por default
+        
+    }
+    public UniversidadDTO(UniversidadEntity entity){
+        this.id = entity.getId();
+        this.name = entity.getNombre();
+       
+    }
 
     public Long getId() {
         return id;
@@ -37,16 +47,8 @@ public class UniversidadDTO {
 
     public void setName(String name) {
         this.name = name;
-    }
+    }    
     
-    public UniversidadDTO(){
-        
-    }
-    public UniversidadDTO(UniversidadEntity entity){
-        this.id = entity.getId();
-        this.name = entity.getNombre();
-       
-    }
       /**
      * Convertir DTO a Entity
      * @return Un Entity con los valores del DTO 
