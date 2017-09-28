@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -79,11 +80,15 @@ public class OrigenLogic {
         return getOrigen(idOrigen).getEstudiante();
     }
 
-    public void removeEstudiante(Long cedula, Long idOrigen) {
-        OrigenEntity origenEntity = getOrigen(idOrigen);
-        EstudianteEntity estudiante = estudianteLogic.getEstudiante(cedula);
-        estudiante.setOrigen(null);
-        origenEntity.getEstudiante().remove(estudiante);
+    public void removeEstudiante(Long cedula, Long idOrigen) throws BusinessLogicException{
+        EstudianteEntity estuEntity = new EstudianteEntity();
+        estuEntity.setCedula(cedula);
+        List<EstudianteEntity> list = getOrigen(idOrigen).getEstudiante();
+        int i = list.indexOf(estuEntity);
+        if (i < 0) {
+            throw new BusinessLogicException("El recurso /origen/" + cedula + "/Estudiante no existe.");
+        }
+        list.remove(estuEntity);
     }
 
     public OrigenEntity updateEditorial(Long id, OrigenEntity entity) {

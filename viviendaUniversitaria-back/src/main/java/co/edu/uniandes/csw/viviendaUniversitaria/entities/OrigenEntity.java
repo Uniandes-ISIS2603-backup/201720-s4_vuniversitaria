@@ -30,7 +30,7 @@ public class OrigenEntity implements Serializable{
     private String name;
     
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH,orphanRemoval = true ,mappedBy = "origen", fetch=FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true ,mappedBy = "origen", fetch=FetchType.LAZY)
     private List<EstudianteEntity> estudiante;
 
     public String getName() {
