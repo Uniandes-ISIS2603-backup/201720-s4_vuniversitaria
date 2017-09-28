@@ -45,13 +45,16 @@ public class UbicacionEntity  implements Serializable {
     Long latitud;
     Long altitud;
 
- 
+    @PodamExclude
+    @OneToOne
     private LugaresInteresEntity lugaresInteres;
     
-    
+    @PodamExclude
+    @OneToOne
     private UniversidadEntity universidad;
     
-    
+    @PodamExclude
+    @OneToOne
     private HospedajeEntity hospedaje;
 
     public LugaresInteresEntity getLugaresInteres() {
