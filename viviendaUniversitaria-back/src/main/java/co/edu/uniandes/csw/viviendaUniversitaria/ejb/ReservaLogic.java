@@ -20,22 +20,26 @@ import javax.inject.Inject;
  *
  * @author je.bejarano10
  */
+
+/**
+ * Clase que permite gestionar y validar las reglas de negocio relacionadas con la reserva
+ * */
 @Stateless
 public class ReservaLogic {
-       private static final Logger LOGGER = Logger.getLogger(ReservaLogic.class.getName());
-       @Inject
-       private ReservaPersistence persistence;
-       public ReservaEntity createReserva( ReservaEntity entity) throws BusinessLogicException{
-           LOGGER.info("Se inició el proceso para crear la Reserva");
-           if(persistence.find(entity.getId())!=null || entity.getCedulaHuesped()<0 || (entity.getFechaInicio().compareTo(entity.getFechaFin())>0) ){
-               throw new BusinessLogicException("Ya existe una Reserva con ese id");
-           }
-           else{
-               persistence.create(entity);
-               LOGGER.info("Se creó la Reserva");
-           }
-           return entity;
-       }
+
+    private static final Logger LOGGER = Logger.getLogger(ReservaLogic.class.getName());
+
+    @Inject
+    private ReservaPersistence persistence;
+
+    public ReservaEntity createReserva(ReservaEntity entity) throws BusinessLogicException {
+        LOGGER.info("Se inició el proceso para crear la Reserva");
+
+        if (persistence.find(entity.getId()) != null) {
+            throw new BusinessLogicException("Ya existe una Reserva con ese id");
+        }
+        return persistence.create(entity);
+    }
        /**
      *
      * Obtener todas las Reservaes existentes en la base de datos.

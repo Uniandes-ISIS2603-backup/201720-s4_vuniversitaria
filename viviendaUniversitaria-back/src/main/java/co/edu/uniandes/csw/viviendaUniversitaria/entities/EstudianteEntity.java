@@ -113,15 +113,6 @@ public class EstudianteEntity  implements Serializable //extends BaseEntity
     public void setFacturas(List<FacturaEntity> facturas) {
         this.facturas = facturas;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this.getCedula() != null && ((EstudianteEntity) obj).getCedula()!= null) {
-            return this.getCedula().equals(((EstudianteEntity) obj).getCedula());
-        }
-        return super.equals(obj);
-    }
-    
     
     
 }

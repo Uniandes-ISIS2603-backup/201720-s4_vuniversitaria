@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
+
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -40,10 +41,10 @@ import javax.inject.Inject;
 @Stateless
 public class EstudianteLogic {
 
-    private static final Logger LOGGER = Logger.getLogger(EstudianteLogic.class.getName());
+        private static final Logger LOGGER = Logger.getLogger(EstudianteLogic.class.getName());
 
-    @Inject
-    private EstudiantePersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+        @Inject
+        private EstudiantePersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     /**
      *
@@ -54,11 +55,8 @@ public class EstudianteLogic {
     public EstudianteEntity createEstudiante(EstudianteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de estudiante");
         // Invoca la persistencia para crear la Default
-        if (entity.getCedula() == null) {
+        if(entity.getCedula()==null){
             throw new BusinessLogicException("la cedula no puede estar vacia");
-        }
-        if (getEstudiante(entity.getCedula()) != null) {
-            throw new BusinessLogicException("la cedula no estar repetida");
         }
         LOGGER.info("Termina proceso de creación de estudiante");
         persistence.create(entity);
@@ -67,7 +65,7 @@ public class EstudianteLogic {
     }
 
     /**
-     *
+     * 
      * Obtener todas las Defaultes existentes en la base de datos.
      *
      * @return una lista de Defaultes.
@@ -78,13 +76,11 @@ public class EstudianteLogic {
         LOGGER.info("Termina proceso de consultar todos los estudiantes");
         return estudiante;
     }
-
-    /**
+ /**
      * Obtiene los datos de una instancia de Estudiante a partir de su ID.
      *
      * @param id Identificador de la instancia a consultar
-     * @return Instancia de EstudianteEntity con los datos del Estudiante
-     * consultado.
+     * @return Instancia de EstudianteEntity con los datos del Estudiante consultado.
      * @generated
      */
     public EstudianteEntity getEstudiante(Long cedula) {
@@ -96,8 +92,8 @@ public class EstudianteLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar estudiante con id={0}", cedula);
         return estudiante;
     }
-
-    public OrigenEntity getOrigen(Long cedula) {
+    
+        public OrigenEntity getOrigen(Long cedula){
         return getEstudiante(cedula).getOrigen();
     }
 
@@ -108,25 +104,25 @@ public class EstudianteLogic {
      * @return Instancia de EstudianteEntity con los datos actualizados.
      * @generated
      */
-    public EstudianteEntity updateEstudiante(EstudianteEntity entity) throws BusinessLogicException {
+    public EstudianteEntity updateEstudiante(EstudianteEntity entity) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un estudiante ");
-        if (entity.getCedula() == null) {
+         if(entity.getCedula()==null){
             throw new BusinessLogicException("no existe estudiante");
         }
         EstudianteEntity rta = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar estudiante", entity.getCedula());
         return rta;
     }
-
-    /**
+    
+        /**
      * Elimina una instancia de Estudiante de la base de datos.
      *
      * @param id Identificador de la instancia a eliminar.
      * @generated
      */
-    public void deleteEstudiante(Long cedula) throws BusinessLogicException {
+    public void deleteEstudiante(Long cedula) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un estudiante ");
-        if (cedula == null) {
+         if(cedula==null){
             throw new BusinessLogicException("la cedula es invalida para buscar un estudiante");
         }
         persistence.delete(cedula);
