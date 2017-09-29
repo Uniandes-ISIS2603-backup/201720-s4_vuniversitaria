@@ -40,6 +40,8 @@ public class HospedajeResource {
     
     @Inject
     private HospedajeLogic hospedajeLogic;
+    @Inject
+    private ArrendadorLogic arrendadorLogic;
     
     @POST
     public HospedajeDetaillDTO post(HospedajeDetaillDTO entidad) throws WebApplicationException, BusinessLogicException
@@ -75,6 +77,13 @@ public class HospedajeResource {
         hospedajeLogic.delete(id);
     }
     
+    @POST
+    @Path("{idHospedaje: [0-9][0-9]*}/ubicacion/{idUbicacion: [0-9][0-9]*}")
+    public HospedajeDetaillDTO agreagrUbicacion(@PathParam("idHospedaje") Long idHospedaje, @PathParam("idUbicacion") Long idUbicacion)
+    {
+        return new HospedajeDetaillDTO(hospedajeLogic.agregarUbicacacion(idHospedaje, idUbicacion));
+    }
+    
     @Path("{idHospedaje: [0-9][0-9]*}/reglas")
     public Class<ReglaResource> getRegla(@PathParam("idHospedaje") Long idHospedaje ) throws WebApplicationException, BusinessLogicException
     {
@@ -89,11 +98,18 @@ public class HospedajeResource {
         for(HospedajeEntity r : list) ret.add(new HospedajeDetaillDTO(r));
         return ret;
     }
+    
     @Path("{idHospedaje: [0-9][0-9]*}/servicios")
     public Class<ServiciosResourse> getServicio(@PathParam("idHospedaje") Long idHospedaje ) throws WebApplicationException
     {
       HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
         if(hospedaje == null) throw new WebApplicationException("Acceso: La entidad no existe", 405);
         return ServiciosResourse.class;  
+    }
+    
+    @Path("{idHospedaje: [0-9][0-9]*}/arrendador")
+    public ArrendadorDTO darArrendador(@PathParam("idHospedaje") Long idHospedaje)
+    {
+        return new ArrendadorDTO(hospedajeLogic.find(idHospedaje).getArrendador());
     }
 }

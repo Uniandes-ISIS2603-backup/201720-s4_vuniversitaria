@@ -119,7 +119,7 @@ public class EstudianteResource {
 //        return EstudianteCalificacionResource.class;
 //    }
 
-    @Path("{cedulaEstudiante: \\d+}/calificaciones")
+    @Path("{cedulaEstudiante: \\d+}/reservas")
     public Class<ReservaResource> getReservaResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.getEstudiante(cedulaEstudiante);
         if (entity == null) {

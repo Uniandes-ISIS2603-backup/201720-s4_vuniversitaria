@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +45,12 @@ public class HospedajeEntity implements Serializable
     /**
      * Valoración total del hospadaje.
      */
-    private double valoracion;
+    private Double valoracion;
+    
+    /**
+     * Cantidad de votos totales.
+     */
+    private Integer cantidadVotaciones;
     
     /**
      * Relación con regla.
@@ -96,7 +102,7 @@ public class HospedajeEntity implements Serializable
      * Relación con ubicación.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "hospedaje", orphanRemoval = true)
+    @OneToOne(mappedBy = "hospedaje", orphanRemoval = true, fetch=FetchType.LAZY)
     private UbicacionEntity ubicacion;
     
     /**
@@ -151,7 +157,7 @@ public class HospedajeEntity implements Serializable
      * Retorna la valoración del hospadaje.
      * @return Valoración del hospadaje.
      */
-    public double getValoracion() {
+    public Double getValoracion() {
         return valoracion;
     }
 
@@ -159,7 +165,7 @@ public class HospedajeEntity implements Serializable
      * Cambiia la valoración del hospedaje.
      * @param valoracion Nueva valoración para el hospedaje.
      */
-    public void setValoracion(double valoracion) {
+    public void setValoracion(Double valoracion) {
         this.valoracion = valoracion;
     }
 
@@ -303,6 +309,20 @@ public class HospedajeEntity implements Serializable
         if(this.id != null) return this.id.hashCode();
         return super.hashCode(); 
     }
-    
-    
+
+    /**
+     * Retorna la cantidad de votos totales.
+     * @return Cantidad de votos totales. 
+     */
+    public Integer getCantidadVotaciones() {
+        return cantidadVotaciones;
+    }
+
+    /**
+     * Cambia el valor de la cantidad de realciones totales.
+     * @param cantidadVotaciones Nueva cantidad de realciones totales.
+     */
+    public void setCantidadVotaciones(Integer cantidadVotaciones) {
+        this.cantidadVotaciones = cantidadVotaciones;
+    }    
 }

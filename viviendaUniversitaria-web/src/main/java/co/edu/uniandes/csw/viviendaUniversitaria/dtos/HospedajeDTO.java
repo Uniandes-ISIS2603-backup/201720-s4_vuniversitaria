@@ -28,7 +28,9 @@ public class HospedajeDTO
     /**
      * Valoración total del hospadaje.
      */
-    private double valoracion;
+    private Double valoracion;
+    
+    private Integer cantidadVotaciones;
     
     public HospedajeDTO() {}
     
@@ -38,6 +40,7 @@ public class HospedajeDTO
         this.descripcion = entidad.getDescripcion();
         this.tipoArrendamiento = entidad.getTipoArrendamiento();
         this.valoracion = entidad.getValoracion();
+        this.cantidadVotaciones = entidad.getCantidadVotaciones();
     }
     
     public HospedajeEntity toEntity()
@@ -47,6 +50,7 @@ public class HospedajeDTO
         ret.setId(id);
         ret.setValoracion(valoracion);
         ret.setTipoArrendamiento(tipoArrendamiento);
+        ret.setCantidadVotaciones(cantidadVotaciones);
         return ret;
     }
 
@@ -74,12 +78,20 @@ public class HospedajeDTO
         this.descripcion = descripcion;
     }
 
-    public double getValoracion() {
+    public Double getValoracion() {
         return valoracion;
     }
 
-    public void setValoracion(double valoracion) {
+    public void setValoracion(Double valoracion) {
         this.valoracion = valoracion;
+    }
+
+    public Integer getCantidadVotaciones() {
+        return cantidadVotaciones;
+    }
+
+    public void setCantidadVotaciones(Integer cantidadVotaciones) {
+        this.cantidadVotaciones = cantidadVotaciones;
     }
     
     
