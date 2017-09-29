@@ -6,7 +6,9 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.DetalleReservaEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.DetalleServicioEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.FacturaEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.FacturaPersistence;
 import java.util.List;
@@ -35,6 +37,11 @@ public class FacturaLogic {
         * Representa la asociación con la persistencia
         * */
        private FacturaPersistence persistence;
+       @Inject
+       private EstudianteLogic estudianteLogic;
+       @Inject
+       private HospedajeLogic hospedajeLogic;
+       
        
        /**
         * Método que permite crear y guardar una nueva factura
@@ -188,6 +195,48 @@ public class FacturaLogic {
         }
         throw new BusinessLogicException("Detalle servicio no existe");
     }
-  
-    
+  public HospedajeEntity getHospedaje(Long idFactura) throws BusinessLogicException{
+      FacturaEntity factura=persistence.find(idFactura);
+      if (factura==null){
+          throw new BusinessLogicException("No se pudo encontrar una factura con ese id");
+      }
+      return factura.getHospedaje();
+  }
+  public HospedajeEntity setHospedaje(Long idFactura, HospedajeEntity hospedaje) throws BusinessLogicException{
+      FacturaEntity factura=persistence.find(idFactura);
+      if (factura==null){
+          throw new BusinessLogicException("No se pudo encontrar una factura con ese id");
+      }
+      factura.setHospedaje(hospedaje);
+      persistence.update(factura);
+      return hospedaje;
+  }
+  public EstudianteEntity getEstudiante(Long idFactura) throws BusinessLogicException{
+      FacturaEntity factura=persistence.find(idFactura);
+      if (factura==null){
+          throw new BusinessLogicException("No se pudo encontrar una factura con ese id");
+      }
+      return factura.getEstudiante();
+  }
+  public EstudianteEntity setEstudiante(Long idFactura, EstudianteEntity estudiante) throws BusinessLogicException{
+      FacturaEntity factura=persistence.find(idFactura);
+      if (factura==null){
+          throw new BusinessLogicException("No se pudo encontrar una factura con ese id");
+      }
+      factura.setEstudiante(estudiante);
+      persistence.update(factura);
+      return estudiante;
+}
+   public void asociateFacturaConHospedajeYEstudiante (Long idHospedaje, Long idEstudiante, FacturaEntity factura) throws BusinessLogicException{
+      EstudianteEntity estudiante= estudianteLogic.getEstudiante(idEstudiante);
+      HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
+      if(hospedaje==null || estudiante==null){
+          throw new BusinessLogicException("Usuario u hospedaje inválido");
+      }
+      factura.setEstudiante(estudiante);
+      factura.setHospedaje(hospedaje);
+      persistence.update(factura);
+      
+       
+   }
 }

@@ -1,10 +1,12 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDetailDTO;
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.HospedajeDetaillDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.ReservaDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.ReservaDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.ReservaLogic;
@@ -57,6 +59,10 @@ public class ReservaResource {
        
     @GET
     public List <ReservaDetailDTO> getReservas(){
+    List<ReservaEntity> reserva=reservaLogic.getReservas();
+     if (reserva == null) {
+            throw new WebApplicationException("No existan facturas", 404);
+        }
     return reservaListEntity2DetailDTO(reservaLogic.getReservas());
     }
     
@@ -69,9 +75,30 @@ public class ReservaResource {
         }
         return new ReservaDetailDTO(entity);
     }
+    @GET
+    @Path("{id: \\d+}/hospedaje")
+    public HospedajeDetaillDTO getHospedaje( @PathParam("id") Long id) throws BusinessLogicException {
+    ReservaEntity  entity = reservaLogic.getReserva(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso " + id + " no existe.", 404);
+        }
+        return new HospedajeDetaillDTO(entity.getHospedaje());
+    }
+    @GET
+    @Path("{id: \\d+}/estudiante")
+    public EstudianteDetailDTO getEstudiante( @PathParam("id") Long id) throws BusinessLogicException {
+        ReservaEntity  entity = reservaLogic.getReserva(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso " + id + " no existe.", 404);
+        }
+        return new EstudianteDetailDTO(entity.getEstudiante());
+    }
     @POST
-    public ReservaDetailDTO createReserva(ReservaDetailDTO reserva) throws BusinessLogicException {
-        return new ReservaDetailDTO(reservaLogic.createReserva(reserva.toEntity()));
+    @Path("{idEstudiante: \\d+}/{idHospedaje: \\d+}")
+    public ReservaDetailDTO createReserva(@PathParam("idEstudiante")Long idEstudiante,@PathParam("idHospedaje") Long idHospedaje, ReservaDetailDTO reserva) throws BusinessLogicException {
+         ReservaEntity reservaEntity=reservaLogic.createReserva(reserva.toEntity());
+        reservaLogic.asociateReservaConHospedajeYEstudiante(idHospedaje, idEstudiante, reservaEntity);
+        return reserva;
     }
     @PUT
     @Path("{id: \\d+}")
@@ -84,7 +111,7 @@ public class ReservaResource {
         return new ReservaDetailDTO(reservaLogic.updateReserva(id, reserva.toEntity()));
     }
     @DELETE
-    @Path("(id: \\d+}")
+    @Path("{id: \\d+}")
     public void deleteReserva(@PathParam("id") Long id) throws BusinessLogicException {
         ReservaEntity entity = reservaLogic.getReserva(id);
         if (entity == null) {
@@ -92,6 +119,13 @@ public class ReservaResource {
         }
         reservaLogic.deleteReserva(id);
     }
-    
+    @Path("{id: \\d+}/detalleServicio")
+    public Class<DetalleServicioResourse> getDetalleServicioResource(@PathParam("id") Long id) {
+        ReservaEntity entity = reservaLogic.getReserva(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso no existe.", 404);
+        }
+        return DetalleServicioResourse.class;
+    }
     
 }

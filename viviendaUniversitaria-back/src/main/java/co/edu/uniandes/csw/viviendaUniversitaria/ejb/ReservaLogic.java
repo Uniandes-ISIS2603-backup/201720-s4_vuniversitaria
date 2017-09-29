@@ -31,6 +31,10 @@ public class ReservaLogic {
 
     @Inject
     private ReservaPersistence persistence;
+    @Inject
+    private EstudianteLogic estudianteLogic;
+    @Inject
+    private HospedajeLogic hospedajeLogic;
 
     public ReservaEntity createReserva(ReservaEntity entity) throws BusinessLogicException {
         LOGGER.info("Se inició el proceso para crear la Reserva");
@@ -101,6 +105,49 @@ public class ReservaLogic {
 
             LOGGER.log(Level.INFO, "Termina proceso de borrar Reserva con id={0}", id);
         }
+    public HospedajeEntity getHospedaje(Long idReserva) throws BusinessLogicException{
+      ReservaEntity reserva=persistence.find(idReserva);
+      if (reserva==null){
+          throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
+      }
+      return reserva.getHospedaje();
+  }
+  public HospedajeEntity setHospedaje(Long idReserva, HospedajeEntity hospedaje) throws BusinessLogicException{
+      ReservaEntity reserva=persistence.find(idReserva);
+      if (reserva==null){
+          throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
+      }
+      reserva.setHospedaje(hospedaje);
+      persistence.update(reserva);
+      return hospedaje;
+  }
+  public EstudianteEntity getEstudiante(Long idReserva) throws BusinessLogicException{
+      ReservaEntity reserva=persistence.find(idReserva);
+      if (reserva==null){
+          throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
+      }
+      return reserva.getEstudiante();
+  }
+  public EstudianteEntity setEstudiante(Long idReserva, EstudianteEntity estudiante) throws BusinessLogicException{
+      ReservaEntity reserva=persistence.find(idReserva);
+      if (reserva==null){
+          throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
+      }
+      reserva.setEstudiante(estudiante);
+      persistence.update(reserva);
+      return estudiante;
+}
+   public void asociateReservaConHospedajeYEstudiante (Long idHospedaje, Long idEstudiante, ReservaEntity reserva) throws BusinessLogicException{
+      EstudianteEntity estudiante= estudianteLogic.getEstudiante(idEstudiante);
+      HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
+      if(hospedaje==null || estudiante==null){
+          throw new BusinessLogicException("Usuario u hospedaje inválido");
+      }
+      reserva.setEstudiante(estudiante);
+      reserva.setHospedaje(hospedaje);
+      persistence.update(reserva);
+      
+   }
     }
 
         /**
