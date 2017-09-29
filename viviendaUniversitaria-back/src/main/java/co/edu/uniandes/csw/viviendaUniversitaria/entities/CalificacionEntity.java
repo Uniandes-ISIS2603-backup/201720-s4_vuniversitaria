@@ -5,10 +5,6 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -158,6 +154,13 @@ public class CalificacionEntity implements Serializable {
      */
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+    
+    public boolean equals(Object obj) {
+        if (this.getId() != null && ((CalificacionEntity) obj).getId() != null) {
+            return this.getId().equals(((CalificacionEntity) obj).getId());
+        }
+        return super.equals(obj);
     }
 
 }

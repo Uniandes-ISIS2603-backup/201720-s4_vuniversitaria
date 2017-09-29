@@ -93,13 +93,10 @@ public class ArrendadorEntity implements Serializable {
     
     @Override
     public boolean equals(Object obj) {
-        if(obj != null && obj instanceof ArrendadorEntity && this.id != null && ((ArrendadorEntity)obj).getId() != null) return this.id.equals(((ArrendadorEntity)obj).getId());
-        return super.equals(obj); 
+        if (this.getId() != null && ((ArrendadorEntity) obj).getId() != null) {
+            return this.getId().equals(((ArrendadorEntity) obj).getId());
+        }
+        return super.equals(obj);
     }
 
-    @Override
-    public int hashCode() {
-        if(this.id != null) return this.id.hashCode();
-        return super.hashCode(); 
-    }
 }
