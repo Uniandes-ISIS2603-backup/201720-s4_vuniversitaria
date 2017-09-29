@@ -60,10 +60,10 @@ public class EstudianteResource {
         }
         return new EstudianteDTO(entity);
     }
-    
+
     @POST
-    public EstudianteDTO createEstudiante(EstudianteDTO estudiante) throws BusinessLogicException {        
-         return new EstudianteDTO(this.estudiante.createEstudiante(estudiante.toEntity()));
+    public EstudianteDTO createEstudiante(EstudianteDTO estudiante) throws BusinessLogicException {
+        return new EstudianteDTO(this.estudiante.createEstudiante(estudiante.toEntity()));
     }
 
     @DELETE
@@ -75,7 +75,7 @@ public class EstudianteResource {
         }
         estudiante.deleteEstudiante(cedula);
     }
-    
+
     @PUT
     @Path("{cedula: \\d+}")
     public EstudianteDTO updateEstudiante(@PathParam("cedula") Long cedula, EstudianteDTO estu) throws BusinessLogicException {
@@ -86,17 +86,15 @@ public class EstudianteResource {
         }
         return new EstudianteDTO(estudiante.updateEstudiante(estu.toEntity()));
     }
- 
-//    @Path("{cedulaEstudiante: \\d+}/calificaciones")
-//    public Class<CalificacionResource> getCalificacionResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
-//        EstudianteEntity entity = estudiante.getEstudiante(cedulaEstudiante);
-//        if (entity == null) {
-//            throw new WebApplicationException("El recurso /estudiantes/" + cedulaEstudiante + "/calificacion no existe.", 404);
-//        }
-//        return CalificacionResource.class;
-//    }
-    
-    
+
+    @Path("{cedulaEstudiante: \\d+}/calificaciones")
+    public Class<CalificacionResource> getCalificacionResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
+        EstudianteEntity entity = estudiante.getEstudiante(cedulaEstudiante);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /estudiantes/" + cedulaEstudiante + "/calificacion no existe.", 404);
+        }
+        return CalificacionResource.class;
+    }
 
     private List<EstudianteDTO> listEstudianteEntity2DTO(List<EstudianteEntity> entityList) {
         List<EstudianteDTO> list = new ArrayList<>();
@@ -105,23 +103,29 @@ public class EstudianteResource {
         }
         return list;
     }
-    
-    
+
     @GET
     @Path("{cedula: \\d+}/origenes")
-    public OrigenDTO getOrigen(@PathParam("cedula") Long cedula){
+    public OrigenDTO getOrigen(@PathParam("cedula") Long cedula) {
         return new OrigenDTO(estudiante.getOrigen(cedula));
     }
-    
-    @Path("{EstudiantesId: \\d+}/calificaciones")
-    public Class<EstudianteCalificacionResource> getEstudianteCalificacionResource(@PathParam("EstudiantesId") Long idEstudiantes) {
-        EstudianteEntity entity = estudiante.getEstudiante(idEstudiantes);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /origenes/" + idEstudiantes + "/origen no existe.", 404);
-        }
-        return EstudianteCalificacionResource.class;
-    }
-    
-    
-}
+//    
+//    @Path("{EstudiantesId: \\d+}/calificaciones")
+//    public Class<EstudianteCalificacionResource> getEstudianteCalificacionResource(@PathParam("EstudiantesId") Long idEstudiantes) {
+//        EstudianteEntity entity = estudiante.getEstudiante(idEstudiantes);
+//        if (entity == null) {
+//            throw new WebApplicationException("El recurso /origenes/" + idEstudiantes + "/origen no existe.", 404);
+//        }
+//        return EstudianteCalificacionResource.class;
+//    }
 
+    @Path("{cedulaEstudiante: \\d+}/calificaciones")
+    public Class<ReservaResource> getReservaResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
+        EstudianteEntity entity = estudiante.getEstudiante(cedulaEstudiante);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /estudiantes/" + cedulaEstudiante + "/reservas no existe.", 404);
+        }
+        return ReservaResource.class;
+    }
+
+}
