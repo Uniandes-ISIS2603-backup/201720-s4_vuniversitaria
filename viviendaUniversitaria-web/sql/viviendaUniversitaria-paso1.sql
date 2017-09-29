@@ -114,6 +114,9 @@ insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Eilis', 6
 insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Dorelle', 86, 39);
 insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Rhoda', 62, 3);
 
+update HOSPEDAJEENTITY set arrendador_id = 3177523825303 where id = 1;
+update HOSPEDAJEENTITY set arrendador_id = 3177523825303 where id = 2;
+update HOSPEDAJEENTITY set arrendador_id = 3177523825303 where id = 3;
 
 select * from APP.HOSPEDAJEENTITY;
 select * from APP.ARRENDADORENTITY;

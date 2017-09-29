@@ -30,8 +30,6 @@ import javax.ws.rs.core.MediaType;
  * @author ws.duarte
  */
 @Path("/hospedajes")
-//@Produces("application/json")
-//@Consumes("application/json")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
@@ -40,8 +38,6 @@ public class HospedajeResource {
     
     @Inject
     private HospedajeLogic hospedajeLogic;
-    @Inject
-    private ArrendadorLogic arrendadorLogic;
     
     @POST
     public HospedajeDetaillDTO post(HospedajeDetaillDTO entidad) throws WebApplicationException, BusinessLogicException
@@ -107,6 +103,7 @@ public class HospedajeResource {
         return ServiciosResourse.class;  
     }
     
+    @GET
     @Path("{idHospedaje: [0-9][0-9]*}/arrendador")
     public ArrendadorDTO darArrendador(@PathParam("idHospedaje") Long idHospedaje)
     {
