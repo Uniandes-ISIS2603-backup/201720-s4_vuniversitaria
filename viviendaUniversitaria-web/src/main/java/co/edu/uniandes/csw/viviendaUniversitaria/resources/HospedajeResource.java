@@ -120,7 +120,7 @@ public class HospedajeResource {
     private List<FacturaDTO> convertirFacturas(List<FacturaEntity> facturas)
     {
         List<FacturaDTO> ret = new ArrayList<>();
-        for(FacturaEntity factura : facturas) ret.add(new FacturaDTO(factura));
+        if(facturas != null) for(FacturaEntity factura : facturas) ret.add(new FacturaDTO(factura));
         return ret;
     }
     
@@ -131,10 +131,24 @@ public class HospedajeResource {
         return convertirReserva(hospedajeLogic.find(idHospedaje).getReservas());
     }
     
-    private List<ReservaDTO> convertirReserva(List<ReservaEntity> facturas)
+    private List<ReservaDTO> convertirReserva(List<ReservaEntity> reservas)
     {
         List<ReservaDTO> ret = new ArrayList<>();
-        for(ReservaEntity factura : facturas) ret.add(new ReservaDTO(factura));
+        if(reservas != null) for(ReservaEntity reserva : reservas) ret.add(new ReservaDTO(reserva));
+        return ret;
+    }
+    
+    @GET
+    @Path("{idHospedaje: [0-9][0-9]*}/calificaciones")
+    public List<CalificacionDTO> darCalificacion(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException
+    {
+        return convertirCalificacion(hospedajeLogic.find(idHospedaje).getCalificaciones());
+    }
+    
+    private List<CalificacionDTO> convertirCalificacion(List<CalificacionEntity> calificaciones)
+    {
+        List<CalificacionDTO> ret = new ArrayList<>();
+        if(calificaciones != null) for(CalificacionEntity calificacion : calificaciones) ret.add(new CalificacionDTO(calificacion));
         return ret;
     }
     
