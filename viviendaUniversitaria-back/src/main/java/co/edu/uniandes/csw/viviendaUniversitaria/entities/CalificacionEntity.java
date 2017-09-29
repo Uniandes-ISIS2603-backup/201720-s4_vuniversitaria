@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import java.io.Serializable;
 import java.util.Date;

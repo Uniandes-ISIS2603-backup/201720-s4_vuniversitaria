@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.dtos.HospedajeDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.HospedajeDetaillDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.ArrendadorLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
@@ -14,17 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
  * @author kk.penaranda
  */
-@Produces("application/json")
-@Consumes("application/json")
+
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class ArrendadorHospedajeResource {
 
     @Inject
@@ -38,14 +41,35 @@ public class ArrendadorHospedajeResource {
         return listaHospedaje;
     }
     
+    private List<HospedajeEntity> getListaHospedajesDTO(List<HospedajeDetaillDTO> listaHospedajesDTO){
+        List<HospedajeEntity> listaEntidades= new ArrayList<>();
+        for(HospedajeDetaillDTO hospedajesDTO : listaHospedajesDTO){
+            listaEntidades.add(hospedajesDTO.toEntity());
+        }
+        return listaEntidades;
+    }
+    
     @GET
     public List<HospedajeDetaillDTO> getHospedajes(@PathParam("id") Long id) {
         return getListaHospedajesArrendador(arrendadorLogic.getHospedajesArrendador(id));
     }
 
     @GET
-    @Path("{id: [0-9][0-9]*}")
+    @Path("{hospedajeId: [0-9][0-9]*}")
     public HospedajeDetaillDTO getHospedajePorId(@PathParam("id") Long id, @PathParam("hospedajeId") Long hospedajeId) {
         return new HospedajeDetaillDTO(arrendadorLogic.getHospedajeIdArrendador(id, hospedajeId));
     }
+    
+    @POST
+    @Path("{hospedajeId: [0-9][0-9]*}")
+    public HospedajeDetaillDTO addHospedajesArrendador(@PathParam("id") Long id, @PathParam("hospedajeId") Long hospedajeId) {
+        return new HospedajeDetaillDTO(arrendadorLogic.addHospedaje(id, hospedajeId));
+    }
+    
+    @DELETE
+    @Path("{hospedajeId: [0-9][0-9]*}")
+    public void deleteHospedajesArrendador(@PathParam("{id}") Long id, @PathParam("hospedajeId") Long hospedajeId){
+        arrendadorLogic.removerHospedajes(id, hospedajeId);
+    }
 }
+

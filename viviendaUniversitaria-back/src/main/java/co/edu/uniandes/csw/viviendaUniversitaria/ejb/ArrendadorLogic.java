@@ -25,8 +25,11 @@ public class ArrendadorLogic {
     private static final Logger LOGGER = Logger.getLogger(ArrendadorLogic.class.getName());
 
     @Inject
-    private ArrendadorPersistence persistence;       
+    private ArrendadorPersistence persistence;  
     
+    @Inject 
+    private HospedajeLogic hospedajeLogic;
+        
     public ArrendadorEntity createArrendador(ArrendadorEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de arrendador");
         if (persistence.find(entity.getId())!= null)
@@ -89,7 +92,23 @@ public class ArrendadorLogic {
             return listaHospedajes.get(i);
         }
         return null;
-    }    
+    }   
     
+    public HospedajeEntity addHospedaje(Long idArrendador, Long idHospedaje){
+        LOGGER.log(Level.INFO, "Inicia el proceso para agregar un hospedaje", idArrendador);
+        ArrendadorEntity arrendador = getArrendador(idArrendador);
+        hospedajeLogic.find(idHospedaje).setArrendador(arrendador);
+        return hospedajeLogic.find(idHospedaje);
+    }
+    
+    
+    public void removerHospedajes(Long arrendadorId, Long hospedajesId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un hospedaje del arrendador con id = {0}", arrendadorId);
+                
+        ArrendadorEntity arrendadorEntity = getArrendador(arrendadorId);
+        HospedajeEntity hospedaje = hospedajeLogic.find(hospedajesId);
+        hospedaje.setArrendador(null);
+        arrendadorEntity.getHospedajes().remove(hospedaje);
+    }
    
 }

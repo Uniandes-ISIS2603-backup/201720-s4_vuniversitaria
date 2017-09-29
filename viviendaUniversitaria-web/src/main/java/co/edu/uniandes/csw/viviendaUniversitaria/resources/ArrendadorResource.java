@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.dtos.ArrendadorDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.ArrendadorDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.ArrendadorLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ArrendadorEntity;

@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -89,5 +88,18 @@ public class ArrendadorEntity implements Serializable {
     public void setHospedajes(List<HospedajeEntity> hospedaje) {
         this.hospedaje = hospedaje;    
         
+    }
+    
+    
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && obj instanceof ArrendadorEntity && this.id != null && ((ArrendadorEntity)obj).getId() != null) return this.id.equals(((ArrendadorEntity)obj).getId());
+        return super.equals(obj); 
+    }
+
+    @Override
+    public int hashCode() {
+        if(this.id != null) return this.id.hashCode();
+        return super.hashCode(); 
     }
 }
