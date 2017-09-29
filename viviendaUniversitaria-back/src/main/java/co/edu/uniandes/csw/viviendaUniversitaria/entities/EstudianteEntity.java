@@ -61,7 +61,7 @@ public class EstudianteEntity  implements Serializable //extends BaseEntity
     private ReservaEntity reserva;
     
     @PodamExclude
-    @OneToMany(mappedBy = "estudiante")
+    @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true ,mappedBy = "estudiante", fetch=FetchType.LAZY)
     private List<CalificacionEntity> calificaciones;
     
     public ReservaEntity getReserva() {

@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -44,6 +45,9 @@ public class EstudianteLogic {
 
     @Inject
     private EstudiantePersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+
+    @Inject
+    private CalificacionLogic calificacionLogic;
 
     /**
      *
@@ -96,11 +100,9 @@ public class EstudianteLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar estudiante con id={0}", cedula);
         return estudiante;
     }
-
     public OrigenEntity getOrigen(Long cedula) {
         return getEstudiante(cedula).getOrigen();
     }
-
     /**
      * Actualiza la información de una instancia de Estudiante.
      *
@@ -132,4 +134,43 @@ public class EstudianteLogic {
         persistence.delete(cedula);
     }
 
+    public CalificacionEntity addCalificacion(Long idCalificacion, Long idEstudiante) throws BusinessLogicException {
+        EstudianteEntity estudianteEntity = getEstudiante(idEstudiante);
+        CalificacionEntity calificacionEntity = calificacionLogic.getCalificacion(idCalificacion);
+        if (calificacionEntity == null) {
+            throw new BusinessLogicException("no existe la calificacion");
+        }
+        calificacionEntity.setEstudiante(estudianteEntity);
+        return calificacionEntity;
+    }
+
+    public CalificacionEntity getCalificacion(Long estudianteId, Long idCalificacion) throws BusinessLogicException {
+        List<CalificacionEntity> calificaciones = getEstudiante(estudianteId).getCalificaciones();
+        CalificacionEntity calificacion = calificacionLogic.getCalificacion(idCalificacion);
+        int index = calificaciones.indexOf(calificacion);
+        if (index >= 0) {
+            return calificaciones.get(index);
+        }
+        throw new BusinessLogicException("la calificacion no está asociada al estudiante");
+
+    }
+
+    public List<CalificacionEntity> getCalificaciones(Long idCalificacion) throws BusinessLogicException {
+        return getEstudiante(idCalificacion).getCalificaciones();
+    }
+
+    public List<CalificacionEntity> listCalificaciones(Long cedula) {
+        return getEstudiante(cedula).getCalificaciones();
+    }
+
+    public void removeCalificaciones(Long idCalificacion, Long cedula) throws BusinessLogicException {
+        CalificacionEntity calificacionEntity = new CalificacionEntity();
+        calificacionEntity.setId(idCalificacion);
+        List<CalificacionEntity> list = getEstudiante(cedula).getCalificaciones();
+        int i = list.indexOf(calificacionEntity);
+        if (i < 0) {
+            throw new BusinessLogicException("El recurso /origen/" + idCalificacion + "/Estudiante no existe.");
+        }
+        list.remove(calificacionEntity);
+    }
 }

@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.OrigenDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.EstudianteLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,14 +87,14 @@ public class EstudianteResource {
         return new EstudianteDTO(estudiante.updateEstudiante(estu.toEntity()));
     }
  
-    @Path("{cedulaEstudiante: \\d+}/calificaciones")
-    public Class<CalificacionResource> getCalificacionResource(@PathParam("cedulaEstudiante") Long cedula) throws BusinessLogicException {
-        EstudianteEntity entity = estudiante.getEstudiante(cedula);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /estudiantes/" + cedula + "/calificacion no existe.", 404);
-        }
-        return CalificacionResource.class;
-    }
+//    @Path("{cedulaEstudiante: \\d+}/calificaciones")
+//    public Class<CalificacionResource> getCalificacionResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
+//        EstudianteEntity entity = estudiante.getEstudiante(cedulaEstudiante);
+//        if (entity == null) {
+//            throw new WebApplicationException("El recurso /estudiantes/" + cedulaEstudiante + "/calificacion no existe.", 404);
+//        }
+//        return CalificacionResource.class;
+//    }
     
     
 
@@ -111,6 +112,16 @@ public class EstudianteResource {
     public OrigenDTO getOrigen(@PathParam("cedula") Long cedula){
         return new OrigenDTO(estudiante.getOrigen(cedula));
     }
+    
+    @Path("{EstudiantesId: \\d+}/calificaciones")
+    public Class<EstudianteCalificacionResource> getEstudianteCalificacionResource(@PathParam("EstudiantesId") Long idEstudiantes) {
+        EstudianteEntity entity = estudiante.getEstudiante(idEstudiantes);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /origenes/" + idEstudiantes + "/origen no existe.", 404);
+        }
+        return EstudianteCalificacionResource.class;
+    }
+    
     
 }
 

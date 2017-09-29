@@ -62,8 +62,8 @@ public class OrigenLogic {
 
     }
 
-    public List<EstudianteEntity> getEstudiantes(Long cedula) throws BusinessLogicException {
-        return getOrigen(cedula).getEstudiante();
+    public List<EstudianteEntity> getEstudiantes(Long idOrigen) throws BusinessLogicException {
+        return getOrigen(idOrigen).getEstudiante();
     }
 
     /**
@@ -92,14 +92,6 @@ public class OrigenLogic {
             throw new BusinessLogicException("El recurso /origen/" + cedula + "/Estudiante no existe.");
         }
         list.remove(estuEntity);
-    }
-
-    public OrigenEntity updateEditorial(Long id, OrigenEntity entity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar origen con id={0}", id);
-        // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
-        OrigenEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar origen con id={0}", entity.getId());
-        return newEntity;
     }
 
     /**
@@ -144,10 +136,4 @@ public class OrigenLogic {
         persistence.delete(id);
     }
 
-    private boolean validate(Long id) {
-        if (id == null) {
-            return false;
-        }
-        return true;
-    }
 }
