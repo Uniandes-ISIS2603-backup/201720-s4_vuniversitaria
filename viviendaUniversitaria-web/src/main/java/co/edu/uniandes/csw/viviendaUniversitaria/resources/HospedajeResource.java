@@ -105,8 +105,37 @@ public class HospedajeResource {
     
     @GET
     @Path("{idHospedaje: [0-9][0-9]*}/arrendador")
-    public ArrendadorDTO darArrendador(@PathParam("idHospedaje") Long idHospedaje)
+    public ArrendadorDTO darArrendador(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException
     {
         return new ArrendadorDTO(hospedajeLogic.find(idHospedaje).getArrendador());
     }
+    
+    @GET
+    @Path("{idHospedaje: [0-9][0-9]*}/facturas")
+    public List<FacturaDTO> darFacturas(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException
+    {
+        return convertirFacturas(hospedajeLogic.find(idHospedaje).getFacturas());
+    }
+    
+    private List<FacturaDTO> convertirFacturas(List<FacturaEntity> facturas)
+    {
+        List<FacturaDTO> ret = new ArrayList<>();
+        for(FacturaEntity factura : facturas) ret.add(new FacturaDTO(factura));
+        return ret;
+    }
+    
+    @GET
+    @Path("{idHospedaje: [0-9][0-9]*}/reservas")
+    public List<ReservaDTO> darReserva(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException
+    {
+        return convertirReserva(hospedajeLogic.find(idHospedaje).getReservas());
+    }
+    
+    private List<ReservaDTO> convertirReserva(List<ReservaEntity> facturas)
+    {
+        List<ReservaDTO> ret = new ArrayList<>();
+        for(ReservaEntity factura : facturas) ret.add(new ReservaDTO(factura));
+        return ret;
+    }
+    
 }
