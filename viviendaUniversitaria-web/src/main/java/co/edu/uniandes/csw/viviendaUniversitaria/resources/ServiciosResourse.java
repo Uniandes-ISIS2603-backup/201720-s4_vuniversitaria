@@ -22,100 +22,53 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 
 /**
  *
  * @author jc.sanguino10
  */
-@Path("servicio")
-//@Produces(MediaType.APPLICATION_JSON)
-//@Consumes(MediaType.APPLICATION_JSON)
-@Produces("application/json")
-@Consumes("application/json")
-@Stateless
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+
 public class ServiciosResourse {
 
     @Inject
-    ServiciosLogic logic;
+    private ServiciosLogic logic;
 
     @GET
-    public List<ServiciosDetailDTO> getList() throws WebApplicationException{
-
-        try {
-           List<ServiciosEntity> list = logic.findAll();
-        if (list.isEmpty()) {
-            throw new WebApplicationException("la lista de servicios se encuentra vacia", 404);
+    public List<ServiciosDetailDTO> getList(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException {
+        List<ServiciosEntity> listServicios = logic.findAll(idHospedaje);
+        List<ServiciosDetailDTO> respuesta = new ArrayList<>();
+        for (ServiciosEntity listServicio : listServicios) {
+            respuesta.add(new ServiciosDetailDTO(listServicio));
         }
-        List<ServiciosDetailDTO> respuesta = new ArrayList<ServiciosDetailDTO>();
-        for (ServiciosEntity lugaresInteresEntity : list) {
-            respuesta.add(new ServiciosDetailDTO(lugaresInteresEntity));
-        }
-        return respuesta; 
-        } catch (BusinessLogicException e) {
-            throw new WebApplicationException(e.getMessage(), 404);
-        }
-        
+        return respuesta;
     }
 
     @GET
     @Path("{id: \\d+}")
     public ServiciosDetailDTO getServicio(@PathParam("idHospedaje") long idHospedaje, @PathParam("id") long id) throws WebApplicationException {
-        try {
-            if (logic.findServicio(id) == null) {
-            throw new WebApplicationException("no existe algun servicios con el id: " + id, 404);
-        }
-        return new ServiciosDetailDTO(logic.findServicio(id));
-        } catch (BusinessLogicException e) {
-            throw new WebApplicationException(e.getMessage(), 404);
-        }
-        
+        return new ServiciosDetailDTO(logic.findServicio(idHospedaje, id));
     }
 
     @POST
     public ServiciosDetailDTO createServicio(@PathParam("idHospedaje") long idHospedaje, ServiciosDetailDTO nuevoServicio) throws WebApplicationException {
-        if(nuevoServicio ==null)
-        {
-            throw new WebApplicationException("el nuevo servicio a crear esta vacio", 404);
-        }
-        try {
-             ServiciosEntity entity = nuevoServicio.toEntity();
-        ServiciosEntity nuevoEntity = logic.createServicio(entity);
-        return new ServiciosDetailDTO(nuevoEntity);
-        } catch (BusinessLogicException e) {
-            throw new WebApplicationException(e.getMessage(), 404);
-        }
-       
+        return new ServiciosDetailDTO(logic.createServicio(idHospedaje, nuevoServicio.toEntity()));
+
     }
 
     @PUT
     @Path("{id: \\d+}")
-    public ServiciosDetailDTO updateServicio(@PathParam("id") Long id, ServiciosDetailDTO servicioAtualizado) throws WebApplicationException {
-        try {
-            ServiciosEntity entity = logic.findServicio(id);
-        if (entity == null) {
-            throw new WebApplicationException("El servicios con id:" + id + " no existe.", 404);
-        } else {
-            ServiciosEntity entity2 = servicioAtualizado.toEntity();
-            ServiciosEntity nuevoEntity = logic.updateServicio(entity2);
-            return new ServiciosDetailDTO(nuevoEntity);
-        }
-        } catch (BusinessLogicException e) {
-            throw new WebApplicationException(e.getMessage(), 404);
-        }
-        
+    public ServiciosDetailDTO updateServicio(@PathParam("idHospedaje") Long idHospedaje,@PathParam("id") Long id, ServiciosDetailDTO servicioAtualizado) throws WebApplicationException {
+        return new ServiciosDetailDTO(logic.updateServicio(idHospedaje,id, servicioAtualizado.toEntity()));
     }
+    
 
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteServicio(@PathParam("id") Long id) throws WebApplicationException {
-        try {
-            ServiciosEntity entity = logic.findServicio(id);
-        logic.delete(id);
-        } catch (BusinessLogicException e) {
-            throw new WebApplicationException(e.getMessage(), 404);
-        }
-        
+    public void deleteServicio(@PathParam("idHospedaje") Long idHospedaje, @PathParam("id") Long id) throws WebApplicationException {
+        logic.delete(idHospedaje, id);
     }
-
 }

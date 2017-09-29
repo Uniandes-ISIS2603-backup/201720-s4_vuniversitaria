@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.ServiciosEntity;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -52,6 +53,14 @@ public class HospedajePersistence
         LOGGER.info("Consultando todas los hospedaje");
         return em.createQuery("select u from HospedajeEntity u", HospedajeEntity.class).getResultList();
     }
-    
+    public ServiciosEntity updateServicio(Long idHospedaje, Long id, ServiciosEntity entity )
+    {
+       HospedajeEntity hospedaje = find(idHospedaje);
+       int i =hospedaje.getServicios().indexOf(entity);
+       entity.setHospedaje(find(idHospedaje));
+       hospedaje.getServicios().set(i, entity);
+       em.merge(hospedaje);
+       return entity;
+    }
     
 }

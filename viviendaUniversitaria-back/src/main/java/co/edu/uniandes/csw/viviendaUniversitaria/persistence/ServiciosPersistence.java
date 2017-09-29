@@ -48,4 +48,5 @@ public class ServiciosPersistence {
         Query q = em.createQuery("select u from LugaresInteresEntity u");
         return q.getResultList();
     }
+     
 }
