@@ -11,8 +11,11 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.LugaresInteresEntity;
  *
  * @author jc.sanguino10
  */
-public class LuegaresInteresDetailDTO extends LugaresInteresDTO {
-    public LuegaresInteresDetailDTO() {
+public class LugaresInteresDetailDTO extends LugaresInteresDTO {
+
+    private UbicacionDTO ubicacion;
+
+    public LugaresInteresDetailDTO() {
         //Constructor por defecto
     }
 
@@ -21,17 +24,31 @@ public class LuegaresInteresDetailDTO extends LugaresInteresDTO {
      *
      * @param entity
      */
-    public LuegaresInteresDetailDTO(LugaresInteresEntity entity) {
+    public LugaresInteresDetailDTO(LugaresInteresEntity entity) {
         super(entity);
+        ubicacion = new UbicacionDTO(entity.getUbicacion());
     }
 
     /**
      * Transformar un DTO a un Entity
      *
-     * @return 
+     * @return
      */
     @Override
     public LugaresInteresEntity toEntity() {
-        return super.toEntity();
+        LugaresInteresEntity rta = super.toEntity();
+        rta.setUbicacion(ubicacion.toEntity());
+        return rta;
+
     }
+
+    public UbicacionDTO getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(UbicacionDTO ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+    
+    
 }
