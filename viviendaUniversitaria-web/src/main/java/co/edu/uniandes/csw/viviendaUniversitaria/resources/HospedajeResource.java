@@ -95,14 +95,6 @@ public class HospedajeResource {
         return ret;
     }
     
-    @Path("{idHospedaje: [0-9][0-9]*}/servicios")
-    public Class<ServiciosResourse> getServicio(@PathParam("idHospedaje") Long idHospedaje ) throws WebApplicationException
-    {
-      HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
-        if(hospedaje == null) throw new WebApplicationException("Acceso: La entidad no existe", 405);
-        return ServiciosResourse.class;  
-    }
-    
     @GET
     @Path("{idHospedaje: [0-9][0-9]*}/arrendador")
     public ArrendadorDTO darArrendador(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException

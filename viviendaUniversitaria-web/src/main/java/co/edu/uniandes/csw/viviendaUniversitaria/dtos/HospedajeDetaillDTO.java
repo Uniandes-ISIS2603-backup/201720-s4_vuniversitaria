@@ -6,9 +6,11 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.FacturaEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeLugarEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReglaEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReservaEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ServiciosEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,14 @@ public class HospedajeDetaillDTO extends HospedajeDTO
         super();
     }
     
+    private List<ReglaDTO> reglas;
+    private List<ServiciosDTO> servicios;
+    private List<HospedajeLugarDTO> hospedajeLugares;
+    private List<FacturaDTO> facturas;
+    private List<ReservaDTO> reservas;
+    private List<CalificacionDTO> calificaciones;
+    private ArrendadorDTO arrendador;
+    private UbicacionDTO ubicacion;
 
     
     public HospedajeDetaillDTO(HospedajeEntity entidad)
@@ -51,6 +61,16 @@ public class HospedajeDetaillDTO extends HospedajeDTO
         {
             this.calificaciones = new ArrayList<>();
             for(CalificacionEntity calificacion : entidad.getCalificaciones()) calificaciones.add(new CalificacionDTO(calificacion));
+        }
+        if(entidad.getFacturas()!= null)
+        {
+            this.facturas = new ArrayList<>();
+            for(FacturaEntity calificacion : entidad.getFacturas()) facturas.add(new FacturaDTO(calificacion));
+        }
+        if(entidad.getReservas()!= null)
+        {
+            this.reservas = new ArrayList<>();
+            for(ReservaEntity calificacion : entidad.getReservas()) reservas.add(new ReservaDTO(calificacion));
         }
         //else {entidad.setCalificaciones(null);}
         if(entidad.getArrendador() != null) this.arrendador = new  ArrendadorDTO(entidad.getArrendador());
@@ -86,18 +106,27 @@ public class HospedajeDetaillDTO extends HospedajeDTO
             for(CalificacionDTO ca : calificaciones) add.add(ca.toEntity());
             ret.setCalificaciones(add);
         }
+        if(calificaciones != null)
+        {
+            List<CalificacionEntity> add = new ArrayList<>();
+            for(CalificacionDTO ca : calificaciones) add.add(ca.toEntity());
+            ret.setCalificaciones(add);
+        }
+        if(facturas != null)
+        {
+            List<FacturaEntity> add = new ArrayList<>();
+            for(FacturaDTO ca : facturas) add.add(ca.toEntity());
+            ret.setFacturas(add);
+        }
+        if(reservas != null)
+        {
+            List<ReservaEntity> add = new ArrayList<>();
+            for(ReservaDTO ca : reservas) add.add(ca.toEntity());
+            ret.setReservas(add);
+        }
         if(ubicacion != null) ret.setUbicacion(ubicacion.toEntity());
         return ret;
-    } 
-    
-    private List<ReglaDTO> reglas;
-    private List<ServiciosDTO> servicios;
-    private List<HospedajeLugarDTO> hospedajeLugares;
-    //private List<FacturaDTO> facturas;
-    //private List<ReservaDTO> reservas;
-    private List<CalificacionDTO> calificaciones;
-    private ArrendadorDTO arrendador;
-    private UbicacionDTO ubicacion;
+    }
 
     public List<ReglaDTO> getReglas() {
         return reglas;
@@ -146,6 +175,24 @@ public class HospedajeDetaillDTO extends HospedajeDTO
     public void setUbicacion(UbicacionDTO ubicacion) {
         this.ubicacion = ubicacion;
     }
+
+    public List<FacturaDTO> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<FacturaDTO> facturas) {
+        this.facturas = facturas;
+    }
+
+    public List<ReservaDTO> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<ReservaDTO> reservas) {
+        this.reservas = reservas;
+    }
+    
+    
     
     
     

@@ -1,25 +1,24 @@
 
-delete from APP.REGLAENTITY;
-ALTER TABLE APP.REGLAENTITY ALTER COLUMN id RESTART WITH 1;
-
-delete from APP.HOSPEDAJEENTITY;
-ALTER TABLE APP.HOSPEDAJEENTITY ALTER COLUMN id RESTART WITH 1;
-
-delete from APP.ARRENDADORENTITY;
-ALTER TABLE APP.ARRENDADORENTITY ALTER COLUMN id RESTART WITH 1;
-
-delete from APP.CALIFICACIONENTITY;
-ALTER TABLE APP.CALIFICACIONENTITY ALTER COLUMN id RESTART WITH 1;
-
-delete from APP.UBICACIONENTITY;
-ALTER TABLE APP.UBICACIONENTITY ALTER COLUMN id RESTART WITH 1;
-
+delete from REGLAENTITY;
+delete from FacturaEntity;
+delete from CALIFICACIONENTITY;
+delete from UBICACIONENTITY;
+delete from ReservaEntity;
+delete from HOSPEDAJEENTITY;
+delete from ARRENDADORENTITY;
+delete from HOSPEDAJEENTITY;
 delete from OrigenEntity;
-ALTER TABLE OrigenEntity ALTER COLUMN id RESTART WITH 1;
-
+delete from ServiciosEntity;
 delete from EstudianteEntity;
 
-
+ALTER TABLE APP.REGLAENTITY ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE APP.HOSPEDAJEENTITY ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE APP.CALIFICACIONENTITY ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE APP.UBICACIONENTITY ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE OrigenEntity ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE ServiciosEntity ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE FacturaEntity ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE ReservaEntity ALTER COLUMN id RESTART WITH 1;
 
 --pruebas EstudianteEntity
 insert into EstudianteEntity (cedula, nombre) values (123, 'amilkar');
@@ -114,9 +113,92 @@ insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Eilis', 6
 insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Dorelle', 86, 39);
 insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Rhoda', 62, 3);
 
+--Servicios
+insert into ServiciosEntity (descripcion, costo) values ('Marietta', 96.55);
+insert into ServiciosEntity (descripcion, costo) values ('Ailsun', 67.54);
+insert into ServiciosEntity (descripcion, costo) values ('Gloria', 7.48);
+insert into ServiciosEntity (descripcion, costo) values ('Yance', 80.89);
+insert into ServiciosEntity (descripcion, costo) values ('Nikolaus', 79.26);
+insert into ServiciosEntity (descripcion, costo) values ('Deana', 80.39);
+insert into ServiciosEntity (descripcion, costo) values ('Erma', 32.76);
+insert into ServiciosEntity (descripcion, costo) values ('Jillene', 8.15);
+insert into ServiciosEntity (descripcion, costo) values ('Myranda', 44.1);
+insert into ServiciosEntity (descripcion, costo) values ('Mycah', 62.82);
+insert into ServiciosEntity (descripcion, costo) values ('Wake', 90.52);
+insert into ServiciosEntity (descripcion, costo) values ('Odie', 14.28);
+insert into ServiciosEntity (descripcion, costo) values ('Barr', 33.41);
+insert into ServiciosEntity (descripcion, costo) values ('Amabel', 62.68);
+insert into ServiciosEntity (descripcion, costo) values ('Albertina', 41.72);
+insert into ServiciosEntity (descripcion, costo) values ('Brunhilde', 35.91);
+insert into ServiciosEntity (descripcion, costo) values ('Milly', 25.65);
+insert into ServiciosEntity (descripcion, costo) values ('Corrinne', 7.73);
+insert into ServiciosEntity (descripcion, costo) values ('Liza', 32.34);
+insert into ServiciosEntity (descripcion, costo) values ('Berte', 27.24);
+
+-- Facturas
+
+insert into FacturaEntity (fecha, total, iva) values ('10/5/2016', 64.81, 11.15);
+insert into FacturaEntity (fecha, total, iva) values ('12/23/2016', 50.81, 21.57);
+insert into FacturaEntity (fecha, total, iva) values ('5/20/2017', 56.99, 34.11);
+insert into FacturaEntity (fecha, total, iva) values ('5/2/2017', 96.69, 31.06);
+insert into FacturaEntity (fecha, total, iva) values ('12/24/2016', 13.38, 78.64);
+insert into FacturaEntity (fecha, total, iva) values ('5/6/2017', 51.17, 48.42);
+insert into FacturaEntity (fecha, total, iva) values ('7/16/2017', 6.26, 63.93);
+insert into FacturaEntity (fecha, total, iva) values ('7/15/2017', 84.58, 96.49);
+insert into FacturaEntity (fecha, total, iva) values ('10/16/2016', 81.67, 44.0);
+insert into FacturaEntity (fecha, total, iva) values ('10/22/2016', 69.23, 38.07);
+insert into FacturaEntity (fecha, total, iva) values ('11/9/2016', 49.36, 10.3);
+insert into FacturaEntity (fecha, total, iva) values ('11/24/2016', 73.03, 71.63);
+insert into FacturaEntity (fecha, total, iva) values ('1/25/2017', 2.79, 53.55);
+insert into FacturaEntity (fecha, total, iva) values ('2/24/2017', 40.74, 51.5);
+insert into FacturaEntity (fecha, total, iva) values ('4/23/2017', 85.23, 14.01);
+insert into FacturaEntity (fecha, total, iva) values ('1/10/2017', 37.12, 5.26);
+insert into FacturaEntity (fecha, total, iva) values ('11/30/2016', 99.47, 26.8);
+insert into FacturaEntity (fecha, total, iva) values ('2/7/2017', 81.88, 97.86);
+insert into FacturaEntity (fecha, total, iva) values ('12/13/2016', 6.0, 42.73);
+insert into FacturaEntity (fecha, total, iva) values ('4/21/2017', 41.4, 94.23);
+
+-- Reservas
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (80.98, 28.22, '3/30/2017', '5/3/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (33.33, 98.4, '4/10/2017', '10/2/2016');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (31.96, 68.17, '1/25/2017', '4/27/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (12.16, 78.21, '8/14/2017', '1/25/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (87.24, 90.68, '4/20/2017', '3/18/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (59.05, 54.44, '1/20/2017', '5/1/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (5.82, 79.6, '3/31/2017', '4/16/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (91.84, 54.42, '9/18/2017', '3/23/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (58.38, 32.75, '12/28/2016', '12/24/2016');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (19.29, 13.56, '10/23/2016', '11/29/2016');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (19.63, 94.11, '5/7/2017', '1/10/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (82.24, 97.08, '11/6/2016', '11/12/2016');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (54.19, 52.46, '8/3/2017', '1/26/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (39.78, 24.4, '6/24/2017', '7/2/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (4.44, 28.96, '12/13/2016', '7/22/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (42.34, 80.8, '3/12/2017', '6/12/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (1.45, 30.0, '2/22/2017', '7/15/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (87.58, 90.52, '6/4/2017', '3/10/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (51.76, 61.14, '11/12/2016', '1/22/2017');
+insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (65.22, 24.78, '4/23/2017', '2/6/2017');
+
+-- Asociaciones
+
 update HOSPEDAJEENTITY set arrendador_id = 3177523825303 where id = 1;
 update HOSPEDAJEENTITY set arrendador_id = 3177523825303 where id = 2;
 update HOSPEDAJEENTITY set arrendador_id = 3177523825303 where id = 3;
+update CALIFICACIONENTITY set hospedaje_id = 1 where id = 1;
+update CALIFICACIONENTITY set hospedaje_id = 1 where id = 2;
+update CALIFICACIONENTITY set hospedaje_id = 2 where id = 3;
+update CALIFICACIONENTITY set hospedaje_id = 3 where id = 4;
+update FacturaEntity set hospedaje_id = 1 where id = 1;
+update FacturaEntity set hospedaje_id = 1 where id = 2;
+update FacturaEntity set hospedaje_id = 1 where id = 3;
+update UBICACIONENTITY set hospedaje_id = 1 where id = 1;
+update UBICACIONENTITY set hospedaje_id = 2 where id = 2;
+update UBICACIONENTITY set hospedaje_id = 3 where id = 3;
+update ReservaEntity set hospedaje_id = 1 where id = 1;
+update ReservaEntity set hospedaje_id = 1 where id = 2;
+update ReservaEntity set hospedaje_id = 1 where id = 3;
+
 
 select * from APP.HOSPEDAJEENTITY;
 select * from APP.ARRENDADORENTITY;
@@ -125,4 +207,8 @@ select * from APP.UBICACIONENTITY;
 select * from APP.REGLAENTITY;
 select * from EstudianteEntity;
 select * from OrigenEntity;
+select * from ServiciosEntity;
+select * from FacturaEntity;
+select * from ReservaEntity;
+
 
