@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.CalificacionDTO;
-import co.edu.uniandes.csw.viviendaUniversitaria.dtos.CalificacionDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -31,83 +30,66 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author kk.penaranda
  */
+@Path("calificaciones")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class CalificacionResource {
     @Inject
-    private CalificacionLogic calificacionLogic; // Variable para acceder a la lógica de la aplicación.     
-    
+    CalificacionLogic calificacionLogic; // Variable para acceder a la lógica de la aplicación. 
 
     private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
     
     @POST
-    public CalificacionDetailDTO createCalificacion(@PathParam("idEstudiante") Long idEstudiante, @PathParam("idHospedaje") Long idHospedaje, CalificacionDetailDTO calificacion) throws BusinessLogicException {
-        
-        CalificacionEntity nuevo= calificacionLogic.createCalificacionHospedajeEstudiante(calificacion.toEntity(), idHospedaje, idEstudiante);
-        return new CalificacionDetailDTO(nuevo);
+    public CalificacionDTO createCalificacion(CalificacionDTO calificacion) throws BusinessLogicException {
+        CalificacionEntity calificacionEntity = calificacion.toEntity();
+        CalificacionEntity nuevo= calificacionLogic.createCalificacion(calificacionEntity);
+        return new CalificacionDTO(nuevo);
     }
 
     @GET
-    public List<CalificacionDetailDTO> getCalificacionesHospedaje(@PathParam("idHospedaje") Long idHospedaje) throws BusinessLogicException {
-        if(listEntity2DetailDTO(calificacionLogic.getCalificacionesHospedajeDado(idHospedaje)).isEmpty())
-            throw new WebApplicationException("La lista de calificaciones del hospedaje esta vacía", 404);
-        return listEntity2DetailDTO(calificacionLogic.getCalificacionesHospedajeDado(idHospedaje));
-    }
-    
-    @GET
-    public List<CalificacionDetailDTO> getCalificacionesEstudiante(@PathParam("idEstudiante") Long idEstudiante) throws BusinessLogicException {
-        if(listEntity2DetailDTO(calificacionLogic.getCalificacionesEstudiante(idEstudiante)).isEmpty())
-            throw new WebApplicationException("La lista de calificaciones del estudiante esta vacía", 404);
-        return listEntity2DetailDTO(calificacionLogic.getCalificacionesEstudiante(idEstudiante));
+    public List<CalificacionDTO> getCalificaciones() throws BusinessLogicException {
+        if(listEntity2DetailDTO(calificacionLogic.getCalificacion()).isEmpty())
+            throw new WebApplicationException("La lista de calificaciones esta vacía", 404);
+        return listEntity2DetailDTO(calificacionLogic.getCalificacion());
     }
 
     @GET
     @Path("{id: [0-9][0-9]*}")
-    public CalificacionDetailDTO getCalificacionEspecificaHospedaje( @PathParam("idHospedaje") Long idHospedaje, @PathParam("id") Long id) throws BusinessLogicException {
-        CalificacionEntity entity = calificacionLogic.getCalificacionesHospedaje(idHospedaje, id);
+    public CalificacionDTO getCalificacion(@PathParam("id") Long id) throws BusinessLogicException {
+        CalificacionEntity entity = calificacionLogic.getCalificacion(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /calificacion/ " + id + " no existe.", 404);
         }
-        return new CalificacionDetailDTO(entity);
-    }
-    
-    @GET
-    @Path("{id: [0-9][0-9]*}")
-    public CalificacionDetailDTO getCalificacionEspecificaEstudiante( @PathParam("idEstudiante") Long idEstudiante, @PathParam("id") Long id) throws BusinessLogicException {
-        CalificacionEntity entity = calificacionLogic.getCalificacionesEstudiante(idEstudiante, id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /calificacion/ " + id + " no existe.", 404);
-        }
-        return new CalificacionDetailDTO(entity);
+        return new CalificacionDTO(calificacionLogic.getCalificacion(id));
     }
 
     
     @PUT
     @Path("{id: [0-9][0-9]*}")
-    public CalificacionDetailDTO updateCalificacion(@PathParam("idEstudiante") Long idEstudiante, @PathParam("id") Long id, CalificacionDTO calificacion) throws BusinessLogicException {
+    public CalificacionDTO updateCalificacion(@PathParam("id") Long id, CalificacionDTO calificacion) throws BusinessLogicException {
         calificacion.setId(id);
-        CalificacionEntity entity = calificacionLogic.getCalificacionesEstudiante(idEstudiante, id);
+        CalificacionEntity entity = calificacionLogic.getCalificacion(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /calificacion/" + id + "/estudiante/"+idEstudiante+ "no existe.", 404);
+            throw new WebApplicationException("El recurso /calificacion/" + id + " no existe.", 404);
         }
-        return new CalificacionDetailDTO(calificacionLogic.updateCalificacionHospedajeEstudiante(idEstudiante, calificacion.toEntity()));
+        return new CalificacionDTO(calificacionLogic.updateCalificacion(id, calificacion.toEntity()));
     }
 
     @DELETE
     @Path("{id: [0-9][0-9]*}")
-    public void deleteCalificacion(@PathParam("idEstudiante") Long idEstudiante, @PathParam("id") Long id) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar una calificacion de un estudiante con id {0}", id);
-        CalificacionEntity entity = calificacionLogic.getCalificacionesEstudiante(idEstudiante, id);
+    public void deleteCalificacion(@PathParam("id") Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar una calificacion con id {0}", id);
+        CalificacionEntity entity = calificacionLogic.getCalificacion(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /calificacion/ del estudiante" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /calificacion/" + id + " no existe.", 404);
         }
-        calificacionLogic.deleteCalificacionEstudiante(idEstudiante, id);
+        calificacionLogic.deleteCalificacion(id);
     }
-    private List<CalificacionDetailDTO> listEntity2DetailDTO(List<CalificacionEntity> entityList) {
-        List<CalificacionDetailDTO> list = new ArrayList<>();
+    private List<CalificacionDTO> listEntity2DetailDTO(List<CalificacionEntity> entityList) {
+        List<CalificacionDTO> list = new ArrayList<>();
         for (CalificacionEntity entity : entityList) {
-            list.add(new CalificacionDetailDTO(entity));
+            list.add(new CalificacionDTO(entity));
         }
         return list;
     }
