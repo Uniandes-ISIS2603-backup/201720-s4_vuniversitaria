@@ -1,5 +1,6 @@
 
 delete from REGLAENTITY;
+delete from FACTURAENTITY;
 delete from FacturaEntity;
 delete from CALIFICACIONENTITY;
 delete from UBICACIONENTITY;
@@ -11,6 +12,8 @@ delete from OrigenEntity;
 delete from ServiciosEntity;
 delete from EstudianteEntity;
 delete from LugaresInteresEntity;
+delete from APP.DETALLESERVICIOENTITY;
+delete from APP.DETALLERESERVAENTITY;
 
 ALTER TABLE APP.REGLAENTITY ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE APP.HOSPEDAJEENTITY ALTER COLUMN id RESTART WITH 1;
@@ -216,6 +219,9 @@ update UBICACIONENTITY set hospedaje_id = 3 where id = 3;
 update ReservaEntity set hospedaje_id = 1 where id = 1;
 update ReservaEntity set hospedaje_id = 1 where id = 2;
 update ReservaEntity set hospedaje_id = 1 where id = 3;
+update ReservaEntity set estudiante_id = 1 where id = 1;
+update ReservaEntity set estudiante_id = 1 where id = 2;
+update ReservaEntity set estudiante_id = 1 where id = 3;
 
 update UBICACIONENTITY set lugaresInteres_id = 1 where id = 3;
 update UBICACIONENTITY set lugaresInteres_id = 2 where id = 3;
