@@ -141,7 +141,11 @@ insert into ServiciosEntity (descripcion, costo) values ('Liza', 32.34);
 insert into ServiciosEntity (descripcion, costo) values ('Berte', 27.24);
 
 -- Facturas
-
+insert into APP.FACTURAENTITY (id,fecha,iva,total) values (1,'12/12/2011',20,20);
+insert into APP.FACTURAENTITY (id,fecha,iva,total) values (2,'10/11/2009',19,25);
+insert into APP.FACTURAENTITY (id,fecha,iva,total) values (3,'12/11/2008',10,30);
+insert into APP.FACTURAENTITY (id,fecha,iva,total) values (4,'12/12/2005',2,22);
+insert into APP.FACTURAENTITY (id,fecha,iva,total) values (5,'09/09/2001',9,10);
 insert into FacturaEntity (fecha, total, iva) values ('10/5/2016', 64.81, 11.15);
 insert into FacturaEntity (fecha, total, iva) values ('12/23/2016', 50.81, 21.57);
 insert into FacturaEntity (fecha, total, iva) values ('5/20/2017', 56.99, 34.11);
@@ -164,26 +168,11 @@ insert into FacturaEntity (fecha, total, iva) values ('12/13/2016', 6.0, 42.73);
 insert into FacturaEntity (fecha, total, iva) values ('4/21/2017', 41.4, 94.23);
 
 -- Reservas
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (80.98, 28.22, '3/30/2017', '5/3/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (33.33, 98.4, '4/10/2017', '10/2/2016');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (31.96, 68.17, '1/25/2017', '4/27/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (12.16, 78.21, '8/14/2017', '1/25/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (87.24, 90.68, '4/20/2017', '3/18/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (59.05, 54.44, '1/20/2017', '5/1/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (5.82, 79.6, '3/31/2017', '4/16/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (91.84, 54.42, '9/18/2017', '3/23/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (58.38, 32.75, '12/28/2016', '12/24/2016');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (19.29, 13.56, '10/23/2016', '11/29/2016');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (19.63, 94.11, '5/7/2017', '1/10/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (82.24, 97.08, '11/6/2016', '11/12/2016');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (54.19, 52.46, '8/3/2017', '1/26/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (39.78, 24.4, '6/24/2017', '7/2/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (4.44, 28.96, '12/13/2016', '7/22/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (42.34, 80.8, '3/12/2017', '6/12/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (1.45, 30.0, '2/22/2017', '7/15/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (87.58, 90.52, '6/4/2017', '3/10/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (51.76, 61.14, '11/12/2016', '1/22/2017');
-insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (65.22, 24.78, '4/23/2017', '2/6/2017');
+insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje) values (1,123,'02/02/2009','03/02/2021',2);
+insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje) values (2,1235,'03/05/2008','03/02/2031',3);
+insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje) values (3,1236,'04/08/2005','03/02/2011',4);
+insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje) values (4,1234,'05/07/2003','03/02/2020',5);
+
 
 -- Ligares Interes
 
