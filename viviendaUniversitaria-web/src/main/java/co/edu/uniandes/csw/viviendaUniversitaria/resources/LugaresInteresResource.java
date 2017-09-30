@@ -7,11 +7,14 @@ package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.LugaresInteresDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.LugaresInteresDetailDTO;
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.UbicacionDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.LugaresInteresLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.LugaresInteresEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -23,7 +26,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
-
 
 /**
  *
@@ -37,7 +39,6 @@ public class LugaresInteresResource {
 
     @Inject
     LugaresInteresLogic logic;
- 
 
     @GET
     public List<LugaresInteresDetailDTO> getList() throws WebApplicationException {
@@ -46,10 +47,11 @@ public class LugaresInteresResource {
             List<LugaresInteresDetailDTO> respuesta = new ArrayList<LugaresInteresDetailDTO>();
             for (LugaresInteresEntity lugaresInteresEntity : list) {
                 respuesta.add(new LugaresInteresDetailDTO(lugaresInteresEntity));
+                System.err.println(lugaresInteresEntity);
             }
             return respuesta;
-        } catch (BusinessLogicException e) {
-            throw new WebApplicationException(e.getMessage(), 404);
+        } catch (WebApplicationException e) {
+            throw e;
         }
 
     }
@@ -58,33 +60,23 @@ public class LugaresInteresResource {
     @Path("{id: \\d+}")
     public LugaresInteresDetailDTO getLugares(@PathParam("id") long id) throws WebApplicationException {
         try {
-            LugaresInteresDetailDTO respuesta =new LugaresInteresDetailDTO(logic.findIdLugarInteres(id));
-            System.err.println(respuesta.getUbicacion()+"=======================================================================================");
+            LugaresInteresDetailDTO respuesta = new LugaresInteresDetailDTO(logic.findIdLugarInteres(id));
             return respuesta;
-            
-        } catch (BusinessLogicException e) {
-            throw new WebApplicationException(e.getMessage(), 404);
+
+        } catch (WebApplicationException e) {
+            throw e;
         }
 
     }
 
     @POST
-    @Path("{id: \\d+}")
-    public LugaresInteresDetailDTO createLugar(LugaresInteresDTO nuevolugar, @PathParam("id") Long id) throws WebApplicationException {
+    public LugaresInteresDetailDTO createLugar(LugaresInteresDetailDTO nuevolugar) throws WebApplicationException, BusinessLogicException {
 
-        if (nuevolugar == null) {
-            throw new WebApplicationException("el nuevo lugar a crear esta vacio", 404);
-        }
         try {
-            LugaresInteresEntity entity = nuevolugar.toEntity();
-            LugaresInteresEntity nuevoEntity = logic.createLugarInteres(entity, id);            
-            LugaresInteresDetailDTO respuesta = new LugaresInteresDetailDTO(nuevoEntity);
-                                
-            return new LugaresInteresDetailDTO(nuevoEntity);
-        } catch (BusinessLogicException e) {
-            throw new WebApplicationException(e.getMessage(), 404);
+            return new LugaresInteresDetailDTO(logic.createLugarInteres(nuevolugar.toEntity()));
+        } catch (WebApplicationException ex) {
+            throw ex;
         }
-
     }
 
     @PUT
@@ -94,19 +86,19 @@ public class LugaresInteresResource {
             LugaresInteresEntity entity = lugarAtualizado.toEntity();
             LugaresInteresEntity nuevoEntity = logic.updateLugarInteres(entity);
             return new LugaresInteresDTO(nuevoEntity);
-        } catch (BusinessLogicException e) {
-            throw new WebApplicationException(e.getMessage(), 404);
+        } catch (WebApplicationException e) {
+            throw e;
         }
 
     }
 
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteLugar(@PathParam("id") Long id) throws WebApplicationException {
+    public void deleteLugar(@PathParam("id") Long id) throws WebApplicationException, BusinessLogicException {
         try {
             logic.delete(id);
-        } catch (BusinessLogicException e) {
-            throw new WebApplicationException(e.getMessage(), 404);
+        } catch (WebApplicationException e) {
+            throw e;
 
         }
     }

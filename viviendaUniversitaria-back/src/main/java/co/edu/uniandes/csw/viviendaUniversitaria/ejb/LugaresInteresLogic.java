@@ -29,22 +29,22 @@ public class LugaresInteresLogic {
     @Inject
     private UbicacionLogic logicUbicacion;
     
-    public List<LugaresInteresEntity> findAll() throws BusinessLogicException {
+    public List<LugaresInteresEntity> findAll() throws WebApplicationException {
         LOGGER.info("Inicio proceso busqueda de Lugar de interes");
         if (persistence.findAll() == null) {
-            throw new BusinessLogicException("no existen lugares de interes");
+            throw new WebApplicationException("no existen lugares de interes", 405);
         } else if (persistence.findAll().isEmpty()) {
-            throw new BusinessLogicException("no existen lugares de interes");
+            throw new WebApplicationException("no existen lugares de interes",405);
         } else {
             return persistence.findAll();
         }
     }
 
-    public LugaresInteresEntity findIdLugarInteres(Long id) throws BusinessLogicException {
+    public LugaresInteresEntity findIdLugarInteres(Long id) throws WebApplicationException {
         LOGGER.info("Inicio proceso busqueda de Lugar de interes");
         LugaresInteresEntity respuesta = persistence.findId(id);
         if (respuesta == null) {
-            throw new BusinessLogicException("no existe el lugar de interes con id:" + id);
+            throw new WebApplicationException("no existe el lugar de interes con id:" + id, 405);
         }
         validacionNull(respuesta.getId());
         LOGGER.info("Fin de proceso de busqueda");
@@ -52,69 +52,52 @@ public class LugaresInteresLogic {
 
     }
 
-    public LugaresInteresEntity createLugarInteres(LugaresInteresEntity entidad, Long id) throws BusinessLogicException {
-        LOGGER.info("Inicio proceso creación de Lugar de interes");
-        System.out.println("co.edu.uniandes.csw.viviendaUniversitaria.ejb.LugaresInteresLogic.createLugarInteres()  -           frgtyhgfdfghjhgfdfghjkjhgfdfghjkjhgfdsdfghjhgfdfg");
-        Long idEntity = entidad.getId();
-        validacionNull(idEntity);
-        validacionNull(id);
-        if (persistence.findId(idEntity) != null) {
-            // se verifica que no exista ya un servicio con ese id
-            throw new BusinessLogicException("Ya existe un Lugar de interes con el id: " + idEntity);
-        } else if(logicUbicacion.getUbicacion(id)==null){
-            throw new BusinessLogicException("No existe una Ubacacion con el id: " + id);
-        }else {          
-            persistence.create(entidad);
-            asignarUbicacion(id,idEntity);
-            LOGGER.info("Fin de proceso de creación");
-            return entidad;
+    public LugaresInteresEntity createLugarInteres(LugaresInteresEntity entidad) throws WebApplicationException, BusinessLogicException {
+        if(logicUbicacion.getUbicacion(entidad.getUbicacion().getId())!=null){
+            throw new WebApplicationException("ya existe una ubicacion con este id",412);
         }
+        else{
+        UbicacionEntity ubicacionLugar = entidad.getUbicacion();
+        ubicacionLugar.setLugaresInteres(entidad);        
+        logicUbicacion.createUbicacion(entidad.getUbicacion());
+        return persistence.create(entidad);
+        }
+        
     }
 
-    public LugaresInteresEntity updateLugarInteres(LugaresInteresEntity entidad) throws BusinessLogicException {
+    public LugaresInteresEntity updateLugarInteres(LugaresInteresEntity entidad) throws WebApplicationException {
         if (entidad == null) {
-            throw new BusinessLogicException("ingrese un entity valido");
+            throw new WebApplicationException("ingrese un entity valido", 407);
         }
         LOGGER.info("Inicio proceso de actualizacion de Lugar de interes");
         Long id = entidad.getId();
         validacionNull(id);
         if (findIdLugarInteres(id) == null) {
-            throw new BusinessLogicException("el lugar con el id: " + id + "no existe");
+            throw new WebApplicationException("el lugar con el id: " + id + "no existe", 405);
         }
         LOGGER.info("Finalizando proceso de actualización");
         return persistence.update(entidad);
 
     }
 
-    public void delete(Long id) throws BusinessLogicException {
+    public void delete(Long id) throws WebApplicationException, BusinessLogicException {
         validacionNull(id);
-        if (persistence.findId(id) == null) {
+        LugaresInteresEntity lugarDelete = persistence.findId(id);
+        if (lugarDelete == null) {
             //verifica que el servicio a actualizar exista
-            throw new BusinessLogicException("Ingrese el id de algun Lugar de interes existente");
+            throw new WebApplicationException("Ingrese el id de algun Lugar de interes existente",407);
         } else {
+            
+            logicUbicacion.deleteUbicacion(lugarDelete.getUbicacion().getId());
             persistence.delete(id);
         }
     }
 
-    public void validacionNull(Long id) throws BusinessLogicException {
+    public void validacionNull(Long id) throws WebApplicationException {
         if (id == null) {
             //verifica que el servicio a actualizar exista
-            throw new BusinessLogicException("Ingrese el id del Lugar de interes");
+            throw new WebApplicationException("Ingrese el id del Lugar de interes",407);
         }
     }
-    public LugaresInteresEntity asignarUbicacion(Long idUbicacion, Long idLugar) throws WebApplicationException
-    {
-        try {
-           LugaresInteresEntity lugar = findIdLugarInteres(idLugar);
-            UbicacionEntity ubicacion = logicUbicacion.getUbicacion(idUbicacion);
-            System.out.println(ubicacion+"====================================================================================================");
-            if(ubicacion==null) throw new WebApplicationException("Esta ubicacion ya se encuentra sociada a un lugar de interes.\nPor favor verifique la ubicacion he intente de nuevo.", 412);
-            if(ubicacion.getLugaresInteres() != null) throw new WebApplicationException("Esta ubicacion ya se encuentra sociada a un lugar de interes.\nPor favor verifique la ubicacion he intente de nuevo.", 412);
-            ubicacion.setLugaresInteres(lugar);
-            lugar.setUbicacion(ubicacion);
-            return findIdLugarInteres(idLugar);
-        } catch (BusinessLogicException ble) {
-            throw new WebApplicationException(ble.getMessage(), 412);
-        }
-    }
+    
 }
