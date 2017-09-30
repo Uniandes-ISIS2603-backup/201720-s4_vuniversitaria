@@ -10,6 +10,7 @@ delete from HOSPEDAJEENTITY;
 delete from OrigenEntity;
 delete from ServiciosEntity;
 delete from EstudianteEntity;
+delete from LugaresInteresEntity;
 
 ALTER TABLE APP.REGLAENTITY ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE APP.HOSPEDAJEENTITY ALTER COLUMN id RESTART WITH 1;
@@ -19,6 +20,7 @@ ALTER TABLE OrigenEntity ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE ServiciosEntity ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE FacturaEntity ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE ReservaEntity ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE LugaresInteresEntity ALTER COLUMN id RESTART WITH 1;
 
 --pruebas EstudianteEntity
 insert into EstudianteEntity (cedula, nombre) values (123, 'amilkar');
@@ -180,6 +182,22 @@ insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) va
 insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (51.76, 61.14, '11/12/2016', '1/22/2017');
 insert into ReservaEntity (cedulaHuesped, idHospedaje, fechaInicio, fechaFin) values (65.22, 24.78, '4/23/2017', '2/6/2017');
 
+-- Ligares Interes
+
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Ipsum.ppt', 8, 'http://dummyimage.com/140x242.png/5fa2dd/ffffff');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('VelNullaEget.doc', 97, 'http://dummyimage.com/119x181.png/ff4444/ffffff');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('NonMattisPulvinar.jpeg', 25, 'http://dummyimage.com/188x148.png/dddddd/000000');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('UltricesPhasellus.tiff', 62, 'http://dummyimage.com/137x224.bmp/ff4444/ffffff');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('AmetSem.pdf', 30, 'http://dummyimage.com/210x235.png/cc0000/ffffff');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('UltricesPosuereCubilia.gif', 67, 'http://dummyimage.com/217x181.jpg/ff4444/ffffff');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('VitaeNisiNam.xls', 17, 'http://dummyimage.com/118x175.png/ff4444/ffffff');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('IdPretiumIaculis.mp3', 89, 'http://dummyimage.com/245x230.bmp/cc0000/ffffff');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Integer.avi', 77, 'http://dummyimage.com/141x107.bmp/ff4444/ffffff');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('PretiumIaculis.ppt', 74, 'http://dummyimage.com/133x226.bmp/dddddd/000000');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Aenean.avi', 28, 'http://dummyimage.com/148x138.jpg/5fa2dd/ffffff');
+
+
+
 -- Asociaciones
 
 update HOSPEDAJEENTITY set arrendador_id = 3177523825303 where id = 1;
@@ -199,6 +217,19 @@ update ReservaEntity set hospedaje_id = 1 where id = 1;
 update ReservaEntity set hospedaje_id = 1 where id = 2;
 update ReservaEntity set hospedaje_id = 1 where id = 3;
 
+update UBICACIONENTITY set lugaresInteres_id = 1 where id = 3;
+update UBICACIONENTITY set lugaresInteres_id = 2 where id = 3;
+update UBICACIONENTITY set lugaresInteres_id = 3 where id = 3;
+update UBICACIONENTITY set lugaresInteres_id = 4 where id = 3;
+update UBICACIONENTITY set lugaresInteres_id = 5 where id = 3;
+update UBICACIONENTITY set lugaresInteres_id = 6 where id = 3;
+update UBICACIONENTITY set lugaresInteres_id = 7 where id = 3;
+update UBICACIONENTITY set lugaresInteres_id = 8 where id = 3;
+update UBICACIONENTITY set lugaresInteres_id = 9 where id = 3;
+update UBICACIONENTITY set lugaresInteres_id = 10 where id = 3;
+
+
+
 
 select * from APP.HOSPEDAJEENTITY;
 select * from APP.ARRENDADORENTITY;
@@ -210,5 +241,6 @@ select * from OrigenEntity;
 select * from ServiciosEntity;
 select * from FacturaEntity;
 select * from ReservaEntity;
+select * from LugaresInteresEntity;
 
 

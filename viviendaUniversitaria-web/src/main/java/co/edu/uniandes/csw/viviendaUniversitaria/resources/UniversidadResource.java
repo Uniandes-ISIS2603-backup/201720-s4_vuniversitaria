@@ -66,11 +66,11 @@ public class UniversidadResource {
 
     }
 
-    @POST
-    @Path("{idUni: \\d+}/ubicacion/{idUbicacion: \\d+}")
-    public UniversidadDetailDTO agregarUbicacion(@PathParam("idUni") Long idUni, @PathParam("idUbicacion") Long idUbicacion) {
-        return new UniversidadDetailDTO(logic.agregarUbicacacion(idUni, idUbicacion));
-    }
+//    @POST
+//    @Path("{idUni: \\d+}/ubicacion/{idUbicacion: \\d+}")
+//    public UniversidadDetailDTO agregarUbicacion(@PathParam("idUni") Long idUni, @PathParam("idUbicacion") Long idUbicacion) {
+//        return new UniversidadDetailDTO(logic.agregarUbicacacion(idUni, idUbicacion));
+//    }
 
     @PUT
     @Path("{idUni: \\d+}")
