@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -29,9 +30,12 @@ public class OrigenLogic {
     @Inject
     private EstudianteLogic estudianteLogic;
 
-    public EstudianteEntity addEstudiante(Long cedula, Long idOrigen) {
+    public EstudianteEntity addEstudiante(Long cedula, Long idOrigen) throws BusinessLogicException {
         OrigenEntity origenEntity = getOrigen(idOrigen);
         EstudianteEntity estudianteEntity = estudianteLogic.getEstudiante(cedula);
+        if (estudianteEntity == null) {
+            throw new BusinessLogicException("no existe el estudiante");
+        }
         estudianteEntity.setOrigen(origenEntity);
         return estudianteEntity;
     }
@@ -58,8 +62,8 @@ public class OrigenLogic {
 
     }
 
-    public List<EstudianteEntity> getEstudiantes(Long cedula) throws BusinessLogicException {
-        return getOrigen(cedula).getEstudiante();
+    public List<EstudianteEntity> getEstudiantes(Long idOrigen) throws BusinessLogicException {
+        return getOrigen(idOrigen).getEstudiante();
     }
 
     /**
@@ -79,19 +83,15 @@ public class OrigenLogic {
         return getOrigen(idOrigen).getEstudiante();
     }
 
-    public void removeEstudiante(Long cedula, Long idOrigen) {
-        OrigenEntity origenEntity = getOrigen(idOrigen);
-        EstudianteEntity estudiante = estudianteLogic.getEstudiante(cedula);
-        estudiante.setOrigen(null);
-        origenEntity.getEstudiante().remove(estudiante);
-    }
-
-    public OrigenEntity updateEditorial(Long id, OrigenEntity entity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar origen con id={0}", id);
-        // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
-        OrigenEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar origen con id={0}", entity.getId());
-        return newEntity;
+    public void removeEstudiante(Long cedula, Long idOrigen) throws BusinessLogicException{
+        EstudianteEntity estuEntity = new EstudianteEntity();
+        estuEntity.setCedula(cedula);
+        List<EstudianteEntity> list = getOrigen(idOrigen).getEstudiante();
+        int i = list.indexOf(estuEntity);
+        if (i < 0) {
+            throw new BusinessLogicException("El recurso /origen/" + cedula + "/Estudiante no existe.");
+        }
+        list.remove(estuEntity);
     }
 
     /**
@@ -136,10 +136,4 @@ public class OrigenLogic {
         persistence.delete(id);
     }
 
-    private boolean validate(Long id) {
-        if (id == null) {
-            return false;
-        }
-        return true;
-    }
 }

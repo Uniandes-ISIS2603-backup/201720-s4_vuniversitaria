@@ -29,7 +29,7 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class OrigenEstudianteResource {
     @Inject
-    private OrigenLogic OrigenLogic;
+    private OrigenLogic origenLogic;
 
     /**
      * Convierte una lista de EstudianteEntity a una lista de EstudianteDTO.
@@ -72,7 +72,7 @@ public class OrigenEstudianteResource {
      */
     @GET
     public List<EstudianteDTO> listEstudiantes(@PathParam("OrigenesId") Long OrigensId) {
-        return EstudiantesListEntity2DTO(OrigenLogic.listEstudiantes(OrigensId));
+        return EstudiantesListEntity2DTO(origenLogic.listEstudiantes(OrigensId));
     }
 
     /**
@@ -87,7 +87,7 @@ public class OrigenEstudianteResource {
     @GET
     @Path("{EstudiantesId: \\d+}")
     public EstudianteDTO getEstudiantes(@PathParam("OrigenesId") Long OrigensId, @PathParam("EstudiantesId") Long EstudiantesId) throws BusinessLogicException {
-        return new EstudianteDTO(OrigenLogic.getEstudiante(OrigensId, EstudiantesId));
+        return new EstudianteDTO(origenLogic.getEstudiante(OrigensId, EstudiantesId));
     }
 
     /**
@@ -101,8 +101,8 @@ public class OrigenEstudianteResource {
     
     @POST
     @Path("{EstudiantesId: \\d+}")
-    public EstudianteDTO addEstudiantes(@PathParam("OrigenesId") Long OrigensId, @PathParam("EstudiantesId") Long EstudiantesId) {
-        return new EstudianteDTO(OrigenLogic.addEstudiante(EstudiantesId,OrigensId));
+    public EstudianteDTO addEstudiantes(@PathParam("OrigenesId") Long OrigensId, @PathParam("EstudiantesId") Long EstudiantesId) throws BusinessLogicException {
+        return new EstudianteDTO(origenLogic.addEstudiante(EstudiantesId,OrigensId));
     }
 
     /**
@@ -114,7 +114,8 @@ public class OrigenEstudianteResource {
      */
     @DELETE
     @Path("{EstudiantesId: \\d+}")
-    public void removeEstudiantes(@PathParam("OrigenesId") Long OrigensId, @PathParam("EstudiantesId") Long EstudiantesId) {
-        OrigenLogic.removeEstudiante(EstudiantesId,OrigensId);
+    public void removeEstudiantes(@PathParam("OrigenesId") Long OrigensId, @PathParam("EstudiantesId") Long EstudiantesId) throws BusinessLogicException {
+        
+        origenLogic.removeEstudiante(EstudiantesId,OrigensId);
     }
 }

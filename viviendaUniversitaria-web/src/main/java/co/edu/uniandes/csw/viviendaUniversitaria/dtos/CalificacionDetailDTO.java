@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.HospedajeDTO;
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.HospedajeDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 
 /**
@@ -14,12 +16,12 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 
 public class CalificacionDetailDTO extends CalificacionDTO{
     
-    
+    private HospedajeDTO hospedaje;
     /**
      * Constructor por defecto
      */
     public CalificacionDetailDTO() {
-        //Vacío por default
+        super();
     }
     
    
@@ -30,7 +32,12 @@ public class CalificacionDetailDTO extends CalificacionDTO{
      */
     public CalificacionDetailDTO(CalificacionEntity entity) {
         super(entity);
-        
+        if(entity.getHospedaje()!= null){
+            this.hospedaje = new HospedajeDTO(entity.getHospedaje());
+        }
+        else {
+            entity.setHospedaje(null);
+        }               
     }
 
     /**
@@ -40,7 +47,19 @@ public class CalificacionDetailDTO extends CalificacionDTO{
      */
     @Override
     public CalificacionEntity toEntity() {
-        return super.toEntity();
+        CalificacionEntity calificacionEntity = super.toEntity();
+        if (this.getHospedaje() != null) {
+            calificacionEntity.setHospedaje(this.getHospedaje().toEntity());
+        }
+        return calificacionEntity;
+    }
+    
+    public HospedajeDTO getHospedaje(){
+        return this.hospedaje;
+    }
+    
+    public void setHospedaje(HospedajeDTO hospedaje){
+        this.hospedaje= hospedaje;
     }
     
 }

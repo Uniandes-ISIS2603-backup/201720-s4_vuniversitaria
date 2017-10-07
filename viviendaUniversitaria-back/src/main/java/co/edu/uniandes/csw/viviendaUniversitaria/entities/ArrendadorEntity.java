@@ -9,8 +9,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -26,7 +24,6 @@ public class ArrendadorEntity implements Serializable {
      * Identificador del arrendador
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     /**
@@ -89,8 +86,17 @@ public class ArrendadorEntity implements Serializable {
      * @param hospedaje
      */
     public void setHospedajes(List<HospedajeEntity> hospedaje) {
-        this.hospedaje = hospedaje;
-        
+        this.hospedaje = hospedaje;    
         
     }
+    
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this.getId() != null && ((ArrendadorEntity) obj).getId() != null) {
+            return this.getId().equals(((ArrendadorEntity) obj).getId());
+        }
+        return super.equals(obj);
+    }
+
 }

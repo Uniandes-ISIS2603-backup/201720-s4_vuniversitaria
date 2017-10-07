@@ -24,8 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.ejb.Stateless;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -39,12 +38,11 @@ import javax.persistence.MappedSuperclass;
  * @author ISIS2603
  */
 @MappedSuperclass
+@Stateless
 public abstract class BaseEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
+    protected Long id;
 
     public Long getId() {
         return id;
@@ -54,27 +52,19 @@ public abstract class BaseEntity implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public boolean equals(Object obj) {
-        if (this.getId() != null && ((BaseEntity) obj).getId() != null) {
-            return this.getId().equals(((BaseEntity) obj).getId());
+        if(obj != null && obj instanceof BaseEntity) {
+            BaseEntity base = (BaseEntity) obj;
+            if(base.getId() == null) return false;
+            else return base.getId().equals(id);
         }
-        return super.equals(obj);
+        else return super.equals(obj);
     }
 
     @Override
     public int hashCode() {
-        if (this.getId() != null) {
-            return this.getId().hashCode();
-        }
+        if (this.getId() != null) return this.getId().hashCode();
         return super.hashCode();
-    }
+    }    
 }

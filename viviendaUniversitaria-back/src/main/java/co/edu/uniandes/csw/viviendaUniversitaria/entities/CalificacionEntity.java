@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -146,8 +145,6 @@ public class CalificacionEntity implements Serializable {
      * @param fecha 
      */
     public void setFecha(Date fecha) {
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        date.format(fecha);
         this.fecha = fecha;
     }
 
@@ -157,6 +154,13 @@ public class CalificacionEntity implements Serializable {
      */
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+    
+    public boolean equals(Object obj) {
+        if (this.getId() != null && ((CalificacionEntity) obj).getId() != null) {
+            return this.getId().equals(((CalificacionEntity) obj).getId());
+        }
+        return super.equals(obj);
     }
 
 }

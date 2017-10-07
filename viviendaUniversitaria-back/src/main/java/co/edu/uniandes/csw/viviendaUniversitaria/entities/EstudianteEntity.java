@@ -61,7 +61,7 @@ public class EstudianteEntity  implements Serializable //extends BaseEntity
     private ReservaEntity reserva;
     
     @PodamExclude
-    @OneToMany(mappedBy = "estudiante")
+    @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true ,mappedBy = "estudiante", fetch=FetchType.LAZY)
     private List<CalificacionEntity> calificaciones;
     
     public ReservaEntity getReserva() {
@@ -113,6 +113,15 @@ public class EstudianteEntity  implements Serializable //extends BaseEntity
     public void setFacturas(List<FacturaEntity> facturas) {
         this.facturas = facturas;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this.getCedula() != null && ((EstudianteEntity) obj).getCedula()!= null) {
+            return this.getCedula().equals(((EstudianteEntity) obj).getCedula());
+        }
+        return super.equals(obj);
+    }
+    
     
     
 }

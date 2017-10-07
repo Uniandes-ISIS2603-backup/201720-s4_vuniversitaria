@@ -22,15 +22,15 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author ws.duarte
  */
 @Entity
-public class HospedajeEntity implements Serializable
+public class HospedajeEntity extends BaseEntity
 {
     /**
      * Identificador único del hospedaje.
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+//    
     /**
      * Tipo de arrendamiento del hospedaje.
      */
@@ -103,17 +103,17 @@ public class HospedajeEntity implements Serializable
      * Retorna el identificador del hospedaje.
      * @return Identificador del hospedaje.
      */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Cambia el identificador del hospedaje.
-     * @param id Nuevo identificador del hospedaje.
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    /**
+//     * Cambia el identificador del hospedaje.
+//     * @param id Nuevo identificador del hospedaje.
+//     */
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     /**
      * Retorna el tipo de arreendamiento del hospedaje.

@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -38,7 +39,7 @@ public class ReservaEntity implements Serializable {
     private Date fechaFin;
 
     @PodamExclude
-    @ManyToOne
+    @OneToOne
     private EstudianteEntity estudiante;
     
     @PodamExclude
@@ -102,6 +103,7 @@ public class ReservaEntity implements Serializable {
     }
 
     public void setFechaInicio(Date fechaInicio) {
+        
         this.fechaInicio = fechaInicio;
 
     }
@@ -111,6 +113,8 @@ public class ReservaEntity implements Serializable {
     }
 
     public void setFechaFin(Date fechaFin) {
+       
+       
         this.fechaFin = fechaFin;
     }
 
