@@ -38,7 +38,7 @@ public class OrigenEstudianteResource {
      * @return Lista de EstudianteDTO convertida.
      * 
      */
-    private List<EstudianteDTO> EstudiantesListEntity2DTO(List<EstudianteEntity> entityList) {
+    private List<EstudianteDTO> estudiantesListEntity2DTO(List<EstudianteEntity> entityList) {
         List<EstudianteDTO> list = new ArrayList<>();
         for (EstudianteEntity entity : entityList) {
             list.add(new EstudianteDTO(entity));
@@ -53,7 +53,7 @@ public class OrigenEstudianteResource {
      * @return Lista de EstudianteEntity convertida.
      * 
      */
-    private List<EstudianteEntity> EstudiantesListDTO2Entity(List<EstudianteDTO> dtos) {
+    private List<EstudianteEntity> estudiantesListDTO2Entity(List<EstudianteDTO> dtos) {
         List<EstudianteEntity> list = new ArrayList<>();
         for (EstudianteDTO dto : dtos) {
             list.add(dto.toEntity());
@@ -71,8 +71,8 @@ public class OrigenEstudianteResource {
      * 
      */
     @GET
-    public List<EstudianteDTO> listEstudiantes(@PathParam("OrigenesId") Long OrigensId) {
-        return EstudiantesListEntity2DTO(origenLogic.listEstudiantes(OrigensId));
+    public List<EstudianteDTO> listEstudiantes(@PathParam("OrigenesId") Long origensId) {
+        return estudiantesListEntity2DTO(origenLogic.listEstudiantes(origensId));
     }
 
     /**
@@ -86,8 +86,8 @@ public class OrigenEstudianteResource {
      */
     @GET
     @Path("{EstudiantesId: \\d+}")
-    public EstudianteDTO getEstudiantes(@PathParam("OrigenesId") Long OrigensId, @PathParam("EstudiantesId") Long EstudiantesId) throws BusinessLogicException {
-        return new EstudianteDTO(origenLogic.getEstudiante(OrigensId, EstudiantesId));
+    public EstudianteDTO getEstudiantes(@PathParam("OrigenesId") Long origensId, @PathParam("EstudiantesId") Long estudiantesId) throws BusinessLogicException {
+        return new EstudianteDTO(origenLogic.getEstudiante(origensId, estudiantesId));
     }
 
     /**
@@ -101,8 +101,8 @@ public class OrigenEstudianteResource {
     
     @POST
     @Path("{EstudiantesId: \\d+}")
-    public EstudianteDTO addEstudiantes(@PathParam("OrigenesId") Long OrigensId, @PathParam("EstudiantesId") Long EstudiantesId) throws BusinessLogicException {
-        return new EstudianteDTO(origenLogic.addEstudiante(EstudiantesId,OrigensId));
+    public EstudianteDTO addEstudiantes(@PathParam("OrigenesId") Long origensId, @PathParam("EstudiantesId") Long estudiantesId) throws BusinessLogicException {
+        return new EstudianteDTO(origenLogic.addEstudiante(estudiantesId,origensId));
     }
 
     /**
@@ -114,8 +114,8 @@ public class OrigenEstudianteResource {
      */
     @DELETE
     @Path("{EstudiantesId: \\d+}")
-    public void removeEstudiantes(@PathParam("OrigenesId") Long OrigensId, @PathParam("EstudiantesId") Long EstudiantesId) throws BusinessLogicException {
+    public void removeEstudiantes(@PathParam("OrigenesId") Long origensId, @PathParam("EstudiantesId") Long estudiantesId) throws BusinessLogicException {
         
-        origenLogic.removeEstudiante(EstudiantesId,OrigensId);
+        origenLogic.removeEstudiante(estudiantesId,origensId);
     }
 }

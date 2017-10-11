@@ -9,7 +9,6 @@ import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.OrigenDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.EstudianteLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +34,9 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class EstudianteResource {
 
+    private static final String ALGO1 = "El recurso /estudiantes/ ";
+    private static final String ALGO2 = " no existe";
+
     @Inject
     EstudianteLogic estudiante;
 
@@ -47,7 +49,7 @@ public class EstudianteResource {
     }
 
     @GET
-    public List<EstudianteDTO> getEstudiantes() throws Exception {
+    public List<EstudianteDTO> getEstudiantes() throws BusinessLogicException {
         return listEstudianteEntity2DTO(estudiante.getEstudiantes());
     }
 
@@ -56,7 +58,7 @@ public class EstudianteResource {
     public EstudianteDTO getEstudiante(@PathParam("cedula") Long cedula) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.getEstudiante(cedula);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /estudiantes/" + cedula + " no existe.", 404);
+            throw new WebApplicationException(ALGO1 + cedula + ALGO2, 404);
         }
         return new EstudianteDTO(entity);
     }
@@ -71,7 +73,7 @@ public class EstudianteResource {
     public void deleteEstudiante(@PathParam("estudiantesCedula") Long cedula) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.getEstudiante(cedula);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /estudiantes/" + cedula + " no existe.", 404);
+            throw new WebApplicationException(ALGO1 + cedula + ALGO2, 404);
         }
         estudiante.deleteEstudiante(cedula);
     }
@@ -82,7 +84,7 @@ public class EstudianteResource {
         estu.setCedula(cedula);
         EstudianteEntity entity = estudiante.getEstudiante(cedula);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /estudiantes/" + cedula + " no existe.", 404);
+            throw new WebApplicationException(ALGO1 + cedula + ALGO2, 404);
         }
         return new EstudianteDTO(estudiante.updateEstudiante(estu.toEntity()));
     }
@@ -91,7 +93,7 @@ public class EstudianteResource {
     public Class<CalificacionResource> getCalificacionResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.getEstudiante(cedulaEstudiante);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /estudiantes/" + cedulaEstudiante + "/calificacion no existe.", 404);
+            throw new WebApplicationException(ALGO1 + cedulaEstudiante + ALGO2, 404);
         }
         return CalificacionResource.class;
     }
@@ -114,7 +116,7 @@ public class EstudianteResource {
     public Class<ReservaResource> getReservaResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.getEstudiante(cedulaEstudiante);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /estudiantes/" + cedulaEstudiante + "/reservas no existe.", 404);
+            throw new WebApplicationException(ALGO1 + cedulaEstudiante + ALGO2, 404);
         }
         return ReservaResource.class;
     }
@@ -123,7 +125,7 @@ public class EstudianteResource {
     public Class<FacturaResource> getFacturas(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.getEstudiante(cedulaEstudiante);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /estudiantes/" + cedulaEstudiante + "/calificacion no existe.", 404);
+            throw new WebApplicationException(ALGO1 + cedulaEstudiante + "/calificacion no existe.", 404);
         }
         return FacturaResource.class;
     }

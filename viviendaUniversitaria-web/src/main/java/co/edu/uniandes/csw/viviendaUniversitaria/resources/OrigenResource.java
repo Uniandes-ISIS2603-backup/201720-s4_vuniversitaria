@@ -37,10 +37,12 @@ public class OrigenResource {
     OrigenLogic origenLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
     private static final Logger LOGGER = Logger.getLogger(OrigenPersistence.class.getName());
-
+    private static final String ALGO1 = "El recurso /origenes/";
+    private static final String ALGO2 = "no existe";
+    
     @POST
-    public OrigenDTO createOrigen(OrigenDTO Origen) throws BusinessLogicException {
-        OrigenEntity OrigenEntity = Origen.toEntity();
+    public OrigenDTO createOrigen(OrigenDTO origen) throws BusinessLogicException {
+        OrigenEntity OrigenEntity = origen.toEntity();
         OrigenEntity nuevoOrigen = origenLogic.createOrigen(OrigenEntity);
         return new OrigenDTO(nuevoOrigen);
     }
@@ -55,7 +57,7 @@ public class OrigenResource {
     public OrigenDTO getOrigen(@PathParam("id") Long id) throws BusinessLogicException {
         OrigenEntity entity = origenLogic.getOrigen(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Origens/" + id + " no existe.", 404);
+            throw new WebApplicationException(ALGO1 + id + ALGO2, 404);
         }
         return new OrigenDTO(origenLogic.getOrigen(id));
     }
@@ -64,20 +66,20 @@ public class OrigenResource {
     public Class<OrigenEstudianteResource> getOrigenEstudianteResource(@PathParam("OrigenesId") Long idOrigen) {
         OrigenEntity entity = origenLogic.getOrigen(idOrigen);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /origenes/" + idOrigen + "/origen no existe.", 404);
+            throw new WebApplicationException(ALGO1 + idOrigen + ALGO2, 404);
         }
         return OrigenEstudianteResource.class;
     }
 
     @PUT
     @Path("{id: \\d+}")
-    public OrigenDTO updateOrigen(@PathParam("id") Long id, OrigenDTO Origen) throws BusinessLogicException {
-        Origen.setId(id);
+    public OrigenDTO updateOrigen(@PathParam("id") Long id, OrigenDTO origen) throws BusinessLogicException {
+        origen.setId(id);
         OrigenEntity entity = origenLogic.getOrigen(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Origens/" + id + " no existe.", 404);
+            throw new WebApplicationException(ALGO1 + id + ALGO2, 404);
         }
-        return new OrigenDTO(origenLogic.updateOrigen(id, Origen.toEntity()));
+        return new OrigenDTO(origenLogic.updateOrigen(id, origen.toEntity()));
     }
 
     @DELETE
@@ -86,7 +88,7 @@ public class OrigenResource {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar una Origen con id {0}", id);
         OrigenEntity entity = origenLogic.getOrigen(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Origens/" + id + " no existe.", 404);
+            throw new WebApplicationException(ALGO1 + id + ALGO2, 404);
         }
         origenLogic.deleteOrigen(id);
 
