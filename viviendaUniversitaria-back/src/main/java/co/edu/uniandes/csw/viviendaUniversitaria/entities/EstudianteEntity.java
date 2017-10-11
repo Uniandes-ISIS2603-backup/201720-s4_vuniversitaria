@@ -118,7 +118,7 @@ public class EstudianteEntity  implements Serializable //extends BaseEntity
     
     @Override
     public boolean equals(Object obj) {
-        if(obj != null ||this.getClass()!= obj.getClass()){
+        if(obj != null && this.getClass()!= obj.getClass()){
             return false;
         }
         if (this.getCedula() != null && ((EstudianteEntity) obj).getCedula()!= null) {
