@@ -26,6 +26,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -114,14 +115,25 @@ public class EstudianteEntity  implements Serializable //extends BaseEntity
         this.facturas = facturas;
     }
 
+    
     @Override
     public boolean equals(Object obj) {
+        if(obj != null ||this.getClass()!= obj.getClass()){
+            return false;
+        }
         if (this.getCedula() != null && ((EstudianteEntity) obj).getCedula()!= null) {
             return this.getCedula().equals(((EstudianteEntity) obj).getCedula());
         }
         return super.equals(obj);
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.cedula);
+        hash = 67 * hash + Objects.hashCode(this.nombre);
+        return hash;
+    }
     
     
 }

@@ -5,7 +5,11 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
 
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.FacturaEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReservaEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -178,6 +182,55 @@ PodamFactory factory = new PodamFactoryImpl();
             }
             Assert.assertTrue(found);
         }
+    }
+@Test
+    public void equalsHashTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        EstudianteEntity newEntity = factory.manufacturePojo(EstudianteEntity.class);
+        
+        assertTrue(newEntity.equals(newEntity));
+        assertEquals(newEntity.hashCode(), newEntity.hashCode());
+        
+        EstudianteEntity tipo=null;
+        assertFalse(newEntity.equals(tipo));
+        
+  
+        OrigenEntity newOrigenEntity = factory.manufacturePojo(OrigenEntity.class);
+        assertFalse(newEntity.equals(newOrigenEntity));
+        
+          EstudianteEntity newEntity2 = factory.manufacturePojo(EstudianteEntity.class);
+        newEntity2.setCedula(newEntity.getCedula());
+        assertTrue(newEntity.equals(newEntity2));
+        
+        newEntity2.setCedula(newEntity.getCedula()+1);
+        assertFalse(newEntity.equals(newEntity2));
+    }
+    
+    @Test
+    public void entitiesTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        OrigenEntity newOrigenEntity = factory.manufacturePojo(OrigenEntity.class);
+        EstudianteEntity newEntity = factory.manufacturePojo(EstudianteEntity.class);
+        ReservaEntity newReservaEntity = factory.manufacturePojo(ReservaEntity.class);
+
+        List<FacturaEntity> facturas = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            facturas.add(factory.manufacturePojo(FacturaEntity.class));
+        }
+        List<CalificacionEntity> calificaciones = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            calificaciones.add(factory.manufacturePojo(CalificacionEntity.class));
+        }
+
+        newEntity.setOrigen(newOrigenEntity);
+        assertEquals(newEntity.getOrigen(), newOrigenEntity);
+        newEntity.setFacturas(facturas);
+        assertEquals(newEntity.getFacturas(), facturas);
+        newEntity.setReserva(newReservaEntity);
+        assertEquals(newEntity.getReserva(), newReservaEntity);
+        newEntity.setCalificaciones(calificaciones);
+        assertEquals(newEntity.getCalificaciones(), calificaciones);
+
     }
 
 }
