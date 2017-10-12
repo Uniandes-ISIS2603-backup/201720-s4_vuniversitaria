@@ -37,13 +37,12 @@ public class EstudianteResource {
     private static final String ALGO1 = "El recurso /estudiantes/ ";
     private static final String ALGO2 = " no existe";
 
-    @Inject
     EstudianteLogic estudiante;
 
     public EstudianteResource() {
     //asd
     }
-
+    @Inject
     public EstudianteResource(EstudianteLogic estudiante) {
         this.estudiante = estudiante;
     }
