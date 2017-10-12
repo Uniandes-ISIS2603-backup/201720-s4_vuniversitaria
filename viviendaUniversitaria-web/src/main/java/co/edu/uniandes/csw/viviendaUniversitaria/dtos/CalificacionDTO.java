@@ -8,10 +8,8 @@ package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.Temporal;
 
 /**
  *
@@ -108,13 +106,7 @@ public class CalificacionDTO {
         this.valoracion = valoracion;
     }
     
-    /**
-     * Establece el comentario
-     * @param comentario 
-     */
-    public void setComentario(String comentario){
-        this.comentario= comentario;
-    }
+    
     
     /**
      * Establece la fecha

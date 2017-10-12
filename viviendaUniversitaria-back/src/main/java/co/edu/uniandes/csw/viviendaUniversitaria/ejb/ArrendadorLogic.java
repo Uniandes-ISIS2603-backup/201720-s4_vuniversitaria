@@ -43,11 +43,10 @@ public class ArrendadorLogic {
         if (persistence.find(entity.getId())!= null)
             throw new BusinessLogicException("Ya existe un Arrendador con el id \"" + entity.getId()+"\"");
         if(entity.getId()<10000)
-        {
             throw new WebApplicationException("El identificador es un documento de identidad por lo que debe tener mas de 5 digitos", 412);
            
-        }
-        if(entity.getId()<0) throw new WebApplicationException("El id no puede ser un número negativo", 412);
+        if(entity.getId()<0) 
+            throw new WebApplicationException("El id no puede ser un número negativo", 412);
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de un arrendador");
         return entity;
