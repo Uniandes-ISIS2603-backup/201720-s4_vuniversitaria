@@ -24,11 +24,19 @@ import javax.ws.rs.WebApplicationException;
 public class ArrendadorLogic {
     private static final Logger LOGGER = Logger.getLogger(ArrendadorLogic.class.getName());
 
-    @Inject
     private ArrendadorPersistence persistence;  
     
-    @Inject 
     private HospedajeLogic hospedajeLogic;
+    
+    public ArrendadorLogic(){
+        //Constructor por defecto
+    }
+    
+    @Inject
+    public ArrendadorLogic(ArrendadorPersistence persistence, HospedajeLogic hospedajeLogic){
+        this.persistence= persistence;
+        this.hospedajeLogic= hospedajeLogic;
+    }
         
     public ArrendadorEntity createArrendador(ArrendadorEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de arrendador");

@@ -50,41 +50,6 @@ public class CalificacionPersistence {
         LOGGER.info("Consultando todas las calificaciones registradas.");
         TypedQuery query= em.createQuery("select u from CalificacionEntity u", CalificacionEntity.class);
         return query.getResultList();
-    }
+    }    
     
-    public CalificacionEntity getListaCalificacionesHospedaje(Long idHospedaje, Long idCalificacion){
-        TypedQuery<CalificacionEntity> tabla = em.createQuery("select p from CalificacionEntity p where (p.hospedaje.id = :idHospedaje) and (p.id = :idCalificacion)", CalificacionEntity.class);
-        tabla.setParameter("idHospedaje", idHospedaje);
-        tabla.setParameter("idCalificacion", idCalificacion);
-        List<CalificacionEntity> lista= tabla.getResultList();
-        CalificacionEntity calificacion= null;
-        if(lista== null){
-            calificacion = null;
-        }
-        else if(lista.isEmpty()){
-            calificacion= null;
-        }
-        else if(lista.size()>=1){
-            calificacion= lista.get(0);
-        }
-        return calificacion;
-    }
-    
-    public CalificacionEntity getListaCalificacionesEstudiante(Long idEstudiante, Long idCalificacion){
-        TypedQuery<CalificacionEntity> tabla = em.createQuery("select p from CalificacionEntity p where (p.estudiante.id = :idEstudiante) and (p.id = :idCalificacion)", CalificacionEntity.class);
-        tabla.setParameter("idEstudiante", idEstudiante);
-        tabla.setParameter("idCalificacion", idCalificacion);
-        List<CalificacionEntity> lista= tabla.getResultList();
-        CalificacionEntity calificacion= null;
-        if(lista== null){
-            calificacion = null;
-        }
-        else if(lista.isEmpty()){
-            calificacion= null;
-        }
-        else if(lista.size()>=1){
-            calificacion= lista.get(0);
-        }
-        return calificacion;
-    }
 }

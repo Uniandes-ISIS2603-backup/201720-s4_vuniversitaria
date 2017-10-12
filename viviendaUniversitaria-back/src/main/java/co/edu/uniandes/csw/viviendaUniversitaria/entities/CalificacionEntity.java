@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -156,11 +157,31 @@ public class CalificacionEntity implements Serializable {
         this.comentario = comentario;
     }
     
+    @Override
     public boolean equals(Object obj) {
-        if (this.getId() != null && ((CalificacionEntity) obj).getId() != null) {
+        if(obj == null ){
+            return false;
+        }
+        if(this.getClass()!= obj.getClass()){
+            return false;
+        }
+        if (this.getId() != null && ((CalificacionEntity) obj).getId()!= null) {
             return this.getId().equals(((CalificacionEntity) obj).getId());
         }
         return super.equals(obj);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.valoracion) ^ (Double.doubleToLongBits(this.valoracion) >>> 32));
+        hash = 79 * hash + Objects.hashCode(this.fecha);
+        hash = 79 * hash + Objects.hashCode(this.comentario);
+        hash = 79 * hash + Objects.hashCode(this.hospedaje);
+        return hash;
+    }
+
+   
 
 }

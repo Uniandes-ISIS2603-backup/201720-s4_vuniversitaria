@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -93,10 +94,25 @@ public class ArrendadorEntity implements Serializable {
     
     @Override
     public boolean equals(Object obj) {
-        if (this.getId() != null && ((ArrendadorEntity) obj).getId() != null) {
+        if(obj == null ){
+            return false;
+        }
+        if(this.getClass()!= obj.getClass()){
+            return false;
+        }
+        if (this.getId() != null && ((ArrendadorEntity) obj).getId()!= null) {
             return this.getId().equals(((ArrendadorEntity) obj).getId());
         }
         return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.nombre);
+        hash = 97 * hash + Objects.hashCode(this.hospedaje);
+        return hash;
     }
 
 }

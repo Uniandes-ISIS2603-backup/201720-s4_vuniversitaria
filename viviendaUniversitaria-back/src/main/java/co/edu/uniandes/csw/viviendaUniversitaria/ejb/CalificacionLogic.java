@@ -27,14 +27,22 @@ import javax.inject.Inject;
 public class CalificacionLogic {
     private static final Logger LOGGER = Logger.getLogger(CalificacionLogic.class.getName());
 
-    @Inject
-    private CalificacionPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    private  CalificacionPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
     
-    @Inject
-    private HospedajePersistence hospedajeLogic;
+    private  HospedajePersistence hospedajeLogic;
     
-    @Inject
     private EstudiantePersistence estudianteLogic;
+    
+    public CalificacionLogic(){
+        //Constructor por defecto
+    }
+    
+    @Inject
+    public CalificacionLogic(HospedajePersistence hospedajeLogic, EstudiantePersistence estudianteLogic, CalificacionPersistence persistence){
+        this.estudianteLogic= estudianteLogic;
+        this.hospedajeLogic= hospedajeLogic;
+        this.persistence = persistence;
+    }
 
   
     public CalificacionEntity createCalificacion(CalificacionEntity entity) throws BusinessLogicException {
@@ -46,7 +54,7 @@ public class CalificacionLogic {
         return entity;
     }
     
-        public List<CalificacionEntity> getCalificacion() {
+        public List<CalificacionEntity> getCalificaciones() {
         LOGGER.info("Inicia proceso de consultar todas las calificaciones");
         List<CalificacionEntity> calificaciones = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todas las calificaciones");
@@ -75,60 +83,53 @@ public class CalificacionLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar calificacion con id={0}", id);
     }
-
-    public CalificacionEntity createCalificacionHospedajeEstudiante(CalificacionEntity entity, Long idHospedaje, Long idEstudiante) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de calificacion");
-        if (persistence.find(entity.getId())!= null)
-            throw new BusinessLogicException("Ya existe una Calificacion con el id \"" + entity.getId()+ "\"");
+    
+    
+    public HospedajeEntity getHospedaje(Long idCalificacion) throws BusinessLogicException{
+      CalificacionEntity calificacion=persistence.find(idCalificacion);
+      if (calificacion==null){
+          throw new BusinessLogicException("No se pudo encontrar una calificacion con ese id");
+      }
+      return calificacion.getHospedaje();
+  }
+    
+    public HospedajeEntity setHospedaje(Long idCalificacion, HospedajeEntity hospedaje) throws BusinessLogicException{
+        CalificacionEntity calificacion = persistence.find(idCalificacion);
+        if(calificacion == null){
+            throw new BusinessLogicException("No se pudo encontrar una calificacion con ese id");
+        }
+        calificacion.setHospedaje(hospedaje);
+        persistence.update(calificacion);
+        return hospedaje;
+    }   
+    
+    public EstudianteEntity getEstudiante(Long idCalificacion) throws BusinessLogicException{
+        CalificacionEntity calificacion = persistence.find(idCalificacion);
+        if(calificacion== null){
+            throw new BusinessLogicException("No existe una calificacion con el id ingresado");
+        }
+        return calificacion.getEstudiante();
+    }
+    
+    public EstudianteEntity setEstudiante(Long idCalificacion, EstudianteEntity estudiante) throws BusinessLogicException{
+        CalificacionEntity calificacion= persistence.find(idCalificacion);
+        if(calificacion== null){
+            throw new BusinessLogicException("No existe una calificcaion con el id ingresado");
+        }
+        calificacion.setEstudiante(estudiante);
+        persistence.update(calificacion);
+        return estudiante;
+    }
+    
+    public void asociarCalificacionAEstudianteHospedaje(Long idHospedaje, Long idEstudiante, CalificacionEntity calificacion) throws BusinessLogicException{
+        HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
+        EstudianteEntity estudiante = estudianteLogic.find(idEstudiante);
         
-        HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
-        entity.setHospedaje(hospedaje);
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de la calificacion");
-        return entity;    }
-
-    public List<CalificacionEntity> getCalificacionesHospedajeDado(Long idHospedaje) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de consultar todas las calificaciones de un hospedaje");
-        HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
-        if (hospedaje.getCalificaciones() == null) {
-            throw new BusinessLogicException("El hospedaje que consulta aún no tiene calificaciones");
-        }
-        if (hospedaje.getCalificaciones().isEmpty()) {
-            throw new BusinessLogicException("El libro que consulta aún no tiene reviews");
-        }
-        return hospedaje.getCalificaciones();
-    }
-
-    public List<CalificacionEntity> getCalificacionesEstudiante(Long idEstudiante) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de consultar todas las calificaciones de un estudiante");
-        EstudianteEntity estudiante = estudianteLogic.find(idEstudiante);
-        if (estudiante.getCalificaciones() == null) {
-            throw new BusinessLogicException("El estudiante que consulta aún no tiene calificaciones");
-        }
-        if (estudiante.getCalificaciones().isEmpty()) {
-            throw new BusinessLogicException("El estudiante que consulta aún no tiene reviews");
-        }
-        return estudiante.getCalificaciones();   
-    }
-
-    public CalificacionEntity getCalificacionesHospedaje(Long idHospedaje, Long id) {
-        return persistence.getListaCalificacionesHospedaje(idHospedaje, id);
-    }
-
-    public CalificacionEntity getCalificacionesEstudiante(Long idEstudiante, Long id) {
-        return persistence.getListaCalificacionesEstudiante(idEstudiante, id);
-    }
-
-    public CalificacionEntity updateCalificacionHospedajeEstudiante(Long idEstudiante, CalificacionEntity entity) {
-        LOGGER.info("Inicia proceso de actualizar una calificacion");
-        EstudianteEntity estudiante = estudianteLogic.find(idEstudiante);
-        entity.setEstudiante(estudiante);
-        return persistence.update(entity);
-    }
-
-    public void deleteCalificacionEstudiante(Long idEstudiante, Long id) {
-        LOGGER.info("Inicia proceso de borrar calificaciones");
-        CalificacionEntity old = getCalificacionesEstudiante(idEstudiante, id);
-        persistence.delete(old.getId());    
-    }
+        if(hospedaje== null || estudiante== null)
+            throw new BusinessLogicException("No existe alguna de las entidades buscadas");
+        
+        calificacion.setHospedaje(hospedaje);
+        calificacion.setEstudiante(estudiante);
+        persistence.update(calificacion);
+    }    
 }
