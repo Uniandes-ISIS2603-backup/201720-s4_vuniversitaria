@@ -33,12 +33,22 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @Consumes("application/json")
 public class OrigenResource {
-@Inject
+
     OrigenLogic origenLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
     private static final Logger LOGGER = Logger.getLogger(OrigenPersistence.class.getName());
     private static final String ALGO1 = "El recurso /origenes/";
     private static final String ALGO2 = "no existe";
+
+    public OrigenResource() {
+    //fds
+    }
+    @Inject
+    public OrigenResource(OrigenLogic origenLogic) {
+        this.origenLogic = origenLogic;
+    }
+    
+    
     
     @POST
     public OrigenDTO createOrigen(OrigenDTO origen) throws BusinessLogicException {

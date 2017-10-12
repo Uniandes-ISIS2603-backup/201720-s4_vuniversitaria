@@ -28,9 +28,20 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class OrigenEstudianteResource {
-    @Inject
+
     private OrigenLogic origenLogic;
 
+    public OrigenEstudianteResource() {
+    //hgs
+    }
+    @Inject
+    public OrigenEstudianteResource(OrigenLogic origenLogic) {
+        this.origenLogic = origenLogic;
+    }
+    
+    
+    
+    
     /**
      * Convierte una lista de EstudianteEntity a una lista de EstudianteDTO.
      *

@@ -40,6 +40,16 @@ public class EstudianteResource {
     @Inject
     EstudianteLogic estudiante;
 
+    public EstudianteResource() {
+    //asd
+    }
+
+    public EstudianteResource(EstudianteLogic estudiante) {
+        this.estudiante = estudiante;
+    }
+    
+    
+
     public EstudianteLogic getEstudiante() {
         return estudiante;
     }

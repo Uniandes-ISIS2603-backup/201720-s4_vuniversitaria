@@ -24,14 +24,13 @@ public class OrigenLogic {
 
     private static final Logger LOGGER = Logger.getLogger(OrigenLogic.class.getName());
 
-    @Inject
     private OrigenPersistence persistence;
-    @Inject
     private EstudianteLogic estudianteLogic;
 
     public OrigenLogic() {
+        //h
     }
-
+    @Inject
     public OrigenLogic(OrigenPersistence persistence, EstudianteLogic estudianteLogic) {
         this.persistence = persistence;
         this.estudianteLogic = estudianteLogic;
