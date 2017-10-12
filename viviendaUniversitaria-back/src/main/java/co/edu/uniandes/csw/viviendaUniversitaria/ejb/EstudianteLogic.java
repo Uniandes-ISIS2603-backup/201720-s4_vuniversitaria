@@ -42,13 +42,18 @@ import javax.inject.Inject;
 public class EstudianteLogic {
 
     private static final Logger LOGGER = Logger.getLogger(EstudianteLogic.class.getName());
-
-    @Inject
     private EstudiantePersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
-    @Inject
     private CalificacionLogic calificacionLogic;
-
+    
+    public EstudianteLogic(){
+        //asd       
+    }
+    @Inject
+    public EstudianteLogic(EstudiantePersistence persistence, CalificacionLogic calificacionLogic) {
+        this.persistence = persistence;
+        this.calificacionLogic = calificacionLogic;
+    }
+   
     /**
      *
      * @param entity
@@ -69,6 +74,8 @@ public class EstudianteLogic {
 
         return entity;
     }
+    
+    
 
     /**
      *

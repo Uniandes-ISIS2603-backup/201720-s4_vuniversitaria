@@ -29,6 +29,16 @@ public class OrigenLogic {
     @Inject
     private EstudianteLogic estudianteLogic;
 
+    public OrigenLogic() {
+    }
+
+    public OrigenLogic(OrigenPersistence persistence, EstudianteLogic estudianteLogic) {
+        this.persistence = persistence;
+        this.estudianteLogic = estudianteLogic;
+    }
+
+    
+    
     public EstudianteEntity addEstudiante(Long cedula, Long idOrigen) throws BusinessLogicException {
         OrigenEntity origenEntity = getOrigen(idOrigen);
         EstudianteEntity estudianteEntity = estudianteLogic.getEstudiante(cedula);
