@@ -7,22 +7,23 @@ package co.edu.uniandes.csw.viviendaUniversitaria.interfase;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.BaseEntity;
 import java.util.List;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
-
 
 /**
  *
  * @author ws.duarte
  * @param <T>
  */
+public interface IPersistence<T extends BaseEntity> {
 
-public interface IPersistence <T extends BaseEntity>
-{
     public T create(T entity);
+
     public T find(Long id);
+
     public List<T> findAll();
+
     public T update(T entity);
+
     public void delete(Long id);
+
     public Class<T> getClase();
 }

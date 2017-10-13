@@ -20,14 +20,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+ */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import javax.ejb.Stateless;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-
 
 /**
  * Generic entity with ID and name fields to inherit from.
@@ -55,17 +54,23 @@ public abstract class BaseEntity implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj != null && obj instanceof BaseEntity) {
+        if (obj != null && obj instanceof BaseEntity) {
             BaseEntity base = (BaseEntity) obj;
-            if(base.getId() == null) return false;
-            else return base.getId().equals(id);
+            if (base.getId() == null) {
+                return false;
+            } else {
+                return base.getId().equals(id);
+            }
+        } else {
+            return super.equals(obj);
         }
-        else return super.equals(obj);
     }
 
     @Override
     public int hashCode() {
-        if (this.getId() != null) return this.getId().hashCode();
+        if (this.getId() != null) {
+            return this.getId().hashCode();
+        }
         return super.hashCode();
-    }    
+    }
 }
