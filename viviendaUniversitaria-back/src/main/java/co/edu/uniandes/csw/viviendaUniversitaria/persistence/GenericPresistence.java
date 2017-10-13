@@ -9,25 +9,24 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.BaseEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import co.edu.uniandes.csw.viviendaUniversitaria.interfase.IPersistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
  * @author ws.duarte
  * @param <T>
  */
-@Stateless
+
 public class GenericPresistence<T extends BaseEntity> implements IPersistence<T>
 {
-    public static final String CONTEXT = "viviendaUniversitariaPU";
     private Class<T> clase;
     private Logger LOG;
 
-    @PersistenceContext(unitName = CONTEXT)
+    
+    @PersistenceContext(unitName = "viviendaUniversitariaPU")
     protected EntityManager em;
     
     public GenericPresistence(Class<T> clase) {
@@ -50,15 +49,16 @@ public class GenericPresistence<T extends BaseEntity> implements IPersistence<T>
     @Override
     public T find(Long id)
     {
-        LOG.log(Level.INFO, "Consultando un {0} con id: {1}", new String[]{clase.getSimpleName(), id.toString()});
+        LOG.log(Level.INFO, "Consultando un {0} con id: {1}", new String[]{clase.getCanonicalName(), id.toString()});
         return em.find(clase, id);
     }
+    
     
     @Override
     public List<T> findAll()
     {
-        LOG.log(Level.INFO,"Consultando todos los {0}",clase.getSimpleName());
-        return execute("select u from "+clase.getSimpleName()+" u").getResultList();
+        LOG.log(Level.INFO,"Consultando todos los {0}", clase.getSimpleName());
+        return em.createQuery("select u from "+clase.getSimpleName()+" u", clase).getResultList();
     }
     
     @Override
@@ -77,13 +77,6 @@ public class GenericPresistence<T extends BaseEntity> implements IPersistence<T>
         em.remove(find(id));
         LOG.log(Level.FINE, "{0} eliminado correctamente",clase.getSimpleName());
     }
-    
-    @Override
-    public TypedQuery<T> execute(String sql)
-    {
-        LOG.info("Ejecutando la query");
-        return em.createQuery(sql, clase);
-    }
 
     @Override
     public Class<T> getClase() {
@@ -91,7 +84,8 @@ public class GenericPresistence<T extends BaseEntity> implements IPersistence<T>
     }
     
     private Long generatedID() {
-        return em.createQuery("select count(u) from "+clase.getSimpleName()+" u", Long.class).getSingleResult();
+        LOG.log(Level.INFO,"Generando el id automatico");
+        return em.createQuery("select max(u.id)+1 from "+clase.getSimpleName()+" u", Long.class).getSingleResult();
     }
     
 }

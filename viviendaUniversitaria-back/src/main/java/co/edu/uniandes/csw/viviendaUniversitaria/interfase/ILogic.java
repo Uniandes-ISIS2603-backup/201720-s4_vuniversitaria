@@ -15,7 +15,7 @@ import javax.ws.rs.WebApplicationException;
  * @author ws.duarte
  * @param <T>
  */
-@Stateless
+
 public interface ILogic <T extends BaseEntity>
 {
     public T create(T entity) throws WebApplicationException;

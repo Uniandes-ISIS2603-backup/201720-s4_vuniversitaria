@@ -226,7 +226,7 @@ update UBICACIONENTITY set lugaresInteres_id = 10 where id = 3;
 
 
 
-select * from APP.HOSPEDAJEENTITY;
+select * from APP.HospedajeEntity;
 select * from APP.ARRENDADORENTITY;
 select * from APP.CALIFICACIONENTITY ;
 select * from APP.UBICACIONENTITY;
@@ -237,5 +237,7 @@ select * from ServiciosEntity;
 select * from FacturaEntity;
 select * from ReservaEntity;
 select * from LugaresInteresEntity;
+
+
 
 

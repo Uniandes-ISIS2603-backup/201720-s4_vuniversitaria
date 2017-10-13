@@ -5,13 +5,15 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-import java.io.Serializable;
+//import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -30,7 +32,7 @@ public class HospedajeEntity extends BaseEntity
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private Long id;
-//    
+    
     /**
      * Tipo de arrendamiento del hospedaje.
      */
@@ -44,7 +46,12 @@ public class HospedajeEntity extends BaseEntity
     /**
      * Valoración total del hospadaje.
      */
-    private double valoracion;
+    private Double valoracion;
+    
+    /**
+     * Cantidad de votos totales.
+     */
+    private Integer cantidadVotaciones;
     
     /**
      * Relación con regla.
@@ -96,13 +103,13 @@ public class HospedajeEntity extends BaseEntity
      * Relación con ubicación.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "hospedaje", orphanRemoval = true)
+    @OneToOne(mappedBy = "hospedaje", orphanRemoval = true, fetch=FetchType.LAZY)
     private UbicacionEntity ubicacion;
     
-    /**
-     * Retorna el identificador del hospedaje.
-     * @return Identificador del hospedaje.
-     */
+//    /**
+//     * Retorna el identificador del hospedaje.
+//     * @return Identificador del hospedaje.
+//     */
 //    public Long getId() {
 //        return id;
 //    }
@@ -151,7 +158,7 @@ public class HospedajeEntity extends BaseEntity
      * Retorna la valoración del hospadaje.
      * @return Valoración del hospadaje.
      */
-    public double getValoracion() {
+    public Double getValoracion() {
         return valoracion;
     }
 
@@ -159,7 +166,7 @@ public class HospedajeEntity extends BaseEntity
      * Cambiia la valoración del hospedaje.
      * @param valoracion Nueva valoración para el hospedaje.
      */
-    public void setValoracion(double valoracion) {
+    public void setValoracion(Double valoracion) {
         this.valoracion = valoracion;
     }
 
@@ -290,19 +297,35 @@ public class HospedajeEntity extends BaseEntity
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj != null && obj instanceof HospedajeEntity && this.id != null && ((HospedajeEntity)obj).getId() != null) return this.id.equals(((HospedajeEntity)obj).getId());
-        return super.equals(obj); 
+//        if(obj != null && obj instanceof HospedajeEntity && this.id != null && ((HospedajeEntity)obj).getId() != null) return this.id.equals(((HospedajeEntity)obj).getId());
+//        return super.equals(obj); 
+        if(obj instanceof HospedajeEntity) return super.equals(obj);
+        else return false;
+    }
+
+//    /**
+//     * Retorna el código hash del hospedaje.
+//     * @return Código hash del hospedaje.
+//     */
+//    @Override
+//    public int hashCode() {
+//        if(this.id != null) return this.id.hashCode();
+//        return super.hashCode(); 
+//    }
+
+    /**
+     * Retorna la cantidad de votos totales.
+     * @return Cantidad de votos totales. 
+     */
+    public Integer getCantidadVotaciones() {
+        return cantidadVotaciones;
     }
 
     /**
-     * Retorna el código hash del hospedaje.
-     * @return Código hash del hospedaje.
+     * Cambia el valor de la cantidad de realciones totales.
+     * @param cantidadVotaciones Nueva cantidad de realciones totales.
      */
-    @Override
-    public int hashCode() {
-        if(this.id != null) return this.id.hashCode();
-        return super.hashCode(); 
-    }
-    
-    
+    public void setCantidadVotaciones(Integer cantidadVotaciones) {
+        this.cantidadVotaciones = cantidadVotaciones;
+    }    
 }

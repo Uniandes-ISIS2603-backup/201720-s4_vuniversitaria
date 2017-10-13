@@ -11,7 +11,6 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.*;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -34,7 +33,6 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class HospedajeResource {
-    
     
     @Inject
     private HospedajeLogic hospedajeLogic;
@@ -63,7 +61,7 @@ public class HospedajeResource {
     public HospedajeDetaillDTO put(@PathParam("idHospedaje") Long id, HospedajeDetaillDTO dto) throws WebApplicationException, BusinessLogicException
     {
         dto.setId(id);
-        return new HospedajeDetaillDTO(hospedajeLogic.update(dto.toEntity()));
+        return new HospedajeDetaillDTO(hospedajeLogic.update(dto.toEntity(), id));
     }
     
     @DELETE

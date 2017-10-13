@@ -6,33 +6,33 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.BaseEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.interfase.IPersistence;
 import co.edu.uniandes.csw.viviendaUniversitaria.interfase.ILogic;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
-import co.edu.uniandes.csw.viviendaUniversitaria.interfase.IPersistence;
-
 /**
  *
  * @author ws.duarte
  * @param <T>
- * @param <E>
  */
 @Stateless
-public class GenericLogic <T extends BaseEntity, E extends IPersistence>  implements ILogic<T>{
+public class GenericLogic <T extends BaseEntity>  implements ILogic<T>
+{
     
     private Class<T> clase;
     private Logger LOG;
-    @Inject
+    
     protected IPersistence<T>  persistence;
 
     public GenericLogic() {}
     
-    public GenericLogic(Class<E> classPersistence) throws IllegalAccessException, InstantiationException {
-        this.persistence = classPersistence.newInstance();
+    public GenericLogic(IPersistence<T> persistence) throws IllegalAccessException, InstantiationException {
+        this.persistence = persistence;
         this.clase = persistence.getClase();
         LOG = Logger.getLogger(clase.getName());
     }
@@ -67,7 +67,7 @@ public class GenericLogic <T extends BaseEntity, E extends IPersistence>  implem
         LOG.log(Level.INFO,"Consultando todos los registros de {0}",clase.getSimpleName());
         List<T> ret = persistence.findAll();
         if(ret.isEmpty()) {
-            LOG.log(Level.SEVERE,"No se encontraron registros al momento de consulta");
+            LOG.log(Level.SEVERE,"No se encontraron registros al momento de consultar");
             throw new WebApplicationException("No existen entidades registradas actualmente",405);
         }
         LOG.log(Level.FINE,"La consulta fue exitosa");

@@ -38,6 +38,8 @@ public class ServiciosEntity extends BaseEntity implements Serializable {
      * hospedaje
      */
     private double costo;
+    
+    private String name;
 
 
     public List<DetalleServicioEntity> getDetalleServicio() {
@@ -75,5 +77,15 @@ public class ServiciosEntity extends BaseEntity implements Serializable {
     public void setCosto(double costo) {
         this.costo = costo;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
 
 }

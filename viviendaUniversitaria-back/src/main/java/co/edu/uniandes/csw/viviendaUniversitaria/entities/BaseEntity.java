@@ -28,6 +28,7 @@ import javax.ejb.Stateless;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+
 /**
  * Generic entity with ID and name fields to inherit from.
  *

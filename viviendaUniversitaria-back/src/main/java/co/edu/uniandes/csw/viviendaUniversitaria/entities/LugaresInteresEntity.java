@@ -47,6 +47,8 @@ public class LugaresInteresEntity extends BaseEntity implements Serializable {
      * Imagen del lugar de interes
      */
     private String rutaImagen;
+    
+    private String name;
     //--------------------------------------------//
     //--------------GETTERS AND SETTERS-----------//
     //--------------------------------------------//
@@ -90,5 +92,16 @@ public class LugaresInteresEntity extends BaseEntity implements Serializable {
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
+    
 
 }

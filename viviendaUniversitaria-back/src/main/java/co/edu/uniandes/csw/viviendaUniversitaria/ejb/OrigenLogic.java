@@ -14,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -25,11 +24,20 @@ public class OrigenLogic {
 
     private static final Logger LOGGER = Logger.getLogger(OrigenLogic.class.getName());
 
-    @Inject
     private OrigenPersistence persistence;
-    @Inject
     private EstudianteLogic estudianteLogic;
 
+    public OrigenLogic() {
+        //h
+    }
+    @Inject
+    public OrigenLogic(OrigenPersistence persistence, EstudianteLogic estudianteLogic) {
+        this.persistence = persistence;
+        this.estudianteLogic = estudianteLogic;
+    }
+
+    
+    
     public EstudianteEntity addEstudiante(Long cedula, Long idOrigen) throws BusinessLogicException {
         OrigenEntity origenEntity = getOrigen(idOrigen);
         EstudianteEntity estudianteEntity = estudianteLogic.getEstudiante(cedula);
