@@ -24,22 +24,27 @@ import javax.inject.Inject;
  * @author ws.duarte
  */
 @Stateless
-public class HospedajeLogic extends GenericLogic<HospedajeEntity>
+public class HospedajeLogic extends GenericLogic<HospedajeEntity,HospedajePersistence>
 {
 
     private static final Logger LOGGER = Logger.getLogger(HospedajeLogic.class.getName());
 
 //    @Inject
 //    private HospedajePersistence persistence;
-    
+//    
     @Inject
     private UbicacionLogic ubicacionLogic;
     @Inject
     private CalificacionLogic calificacionLogic;
 
-    @Inject
-    public HospedajeLogic( HospedajePersistence persistence) throws IllegalAccessException, InstantiationException {
-        super(new HospedajePersistence());
+    
+    public HospedajeLogic() throws IllegalAccessException, InstantiationException {
+        super(HospedajePersistence.class);
+        System.out.println("=============================================================");
+        System.out.println("co.edu.uniandes.csw.viviendaUniversitaria.ejb.HospedajeLogic.<init>()");
+        System.out.println(persistence);
+        System.out.println(persistence.getClase());
+        System.out.println("=============================================================");
     }
 
     
@@ -125,12 +130,12 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity>
     }
     
     
-//    private void validar(HospedajeEntity entidad, String proceso) throws WebApplicationException {
-//        if (persistence.find(entidad.getId()) == null) {
-//            //LOGGER.log(Level.WARNING, "Intento de {0} fallido.\nLa entidad no existe\nId:{1}", new Object[]{proceso, entidad.getId()});
-//            throw new WebApplicationException(proceso + ": La entidad no existe", 405);
-//        }
-//    }
+    private void validar(HospedajeEntity entidad, String proceso) throws WebApplicationException {
+        if (persistence.find(entidad.getId()) == null) {
+            //LOGGER.log(Level.WARNING, "Intento de {0} fallido.\nLa entidad no existe\nId:{1}", new Object[]{proceso, entidad.getId()});
+            throw new WebApplicationException(proceso + ": La entidad no existe", 405);
+        }
+    }
 
 //    private HospedajeEntity validarEntidad(HospedajeEntity entidad) throws WebApplicationException
 //    {

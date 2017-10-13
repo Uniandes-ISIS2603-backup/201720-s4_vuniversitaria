@@ -23,11 +23,11 @@ import javax.ejb.Stateless;
 public class HospedajePersistence  extends GenericPresistence<HospedajeEntity>
 {
 
-    
     public HospedajePersistence() 
     {
         super(HospedajeEntity.class);
     }
+    
     
     
 //    private static final Logger LOGGER = Logger.getLogger(HospedajePersistence.class.getName());

@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
 /**
  *
@@ -21,7 +20,7 @@ import javax.ws.rs.WebApplicationException;
  * @param <T>
  */
 @Stateless
-public class GenericLogic <T extends BaseEntity>  implements ILogic<T>
+public class GenericLogic <T extends BaseEntity, E extends IPersistence<T>>  implements ILogic<T>
 {
     
     private Class<T> clase;
@@ -31,8 +30,8 @@ public class GenericLogic <T extends BaseEntity>  implements ILogic<T>
 
     public GenericLogic() {}
     
-    public GenericLogic(IPersistence<T> persistence) throws IllegalAccessException, InstantiationException {
-        this.persistence = persistence;
+    public GenericLogic(Class<E> persis) throws IllegalAccessException, InstantiationException {
+        this.persistence = persis.newInstance();
         this.clase = persistence.getClase();
         LOG = Logger.getLogger(clase.getName());
     }

@@ -36,6 +36,10 @@ public class HospedajeResource {
     
     @Inject
     private HospedajeLogic hospedajeLogic;
+
+//    public HospedajeResource() throws InstantiationException, IllegalAccessException {
+//        this.hospedajeLogic = new HospedajeLogic();
+//    }
     
     @POST
     public HospedajeDetaillDTO post(HospedajeDetaillDTO entidad) throws WebApplicationException, BusinessLogicException
