@@ -5,15 +5,11 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-//import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -26,12 +22,6 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class HospedajeEntity extends BaseEntity
 {
-    /**
-     * Identificador único del hospedaje.
-     */
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
     
     /**
      * Tipo de arrendamiento del hospedaje.
@@ -105,22 +95,7 @@ public class HospedajeEntity extends BaseEntity
     @PodamExclude
     @OneToOne(mappedBy = "hospedaje", orphanRemoval = true, fetch=FetchType.LAZY)
     private UbicacionEntity ubicacion;
-    
-//    /**
-//     * Retorna el identificador del hospedaje.
-//     * @return Identificador del hospedaje.
-//     */
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    /**
-//     * Cambia el identificador del hospedaje.
-//     * @param id Nuevo identificador del hospedaje.
-//     */
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
+
 
     /**
      * Retorna el tipo de arreendamiento del hospedaje.
@@ -297,21 +272,28 @@ public class HospedajeEntity extends BaseEntity
      */
     @Override
     public boolean equals(Object obj) {
-//        if(obj != null && obj instanceof HospedajeEntity && this.id != null && ((HospedajeEntity)obj).getId() != null) return this.id.equals(((HospedajeEntity)obj).getId());
-//        return super.equals(obj); 
         if(obj instanceof HospedajeEntity) return super.equals(obj);
         else return false;
     }
 
-//    /**
-//     * Retorna el código hash del hospedaje.
-//     * @return Código hash del hospedaje.
-//     */
-//    @Override
-//    public int hashCode() {
-//        if(this.id != null) return this.id.hashCode();
-//        return super.hashCode(); 
-//    }
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.tipoArrendamiento);
+        hash = 23 * hash + Objects.hashCode(this.descripcion);
+        hash = 23 * hash + Objects.hashCode(this.valoracion);
+        hash = 23 * hash + Objects.hashCode(this.cantidadVotaciones);
+        hash = 23 * hash + Objects.hashCode(this.reglas);
+        hash = 23 * hash + Objects.hashCode(this.servicios);
+        hash = 23 * hash + Objects.hashCode(this.hospedajesLugares);
+        hash = 23 * hash + Objects.hashCode(this.facturas);
+        hash = 23 * hash + Objects.hashCode(this.reservas);
+        hash = 23 * hash + Objects.hashCode(this.calificaciones);
+        hash = 23 * hash + Objects.hashCode(this.arrendador);
+        hash = 23 * hash + Objects.hashCode(this.ubicacion);
+        return hash;
+    }
+
 
     /**
      * Retorna la cantidad de votos totales.

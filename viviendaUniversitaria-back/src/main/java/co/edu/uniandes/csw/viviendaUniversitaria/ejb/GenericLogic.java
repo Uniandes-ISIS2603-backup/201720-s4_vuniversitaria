@@ -22,7 +22,7 @@ import javax.ws.rs.WebApplicationException;
 public abstract class GenericLogic<T extends BaseEntity> implements ILogic<T> {
 
     private Class<T> clase;
-    private Logger LOG;
+    protected Logger LOG;
 
     protected GenericPresistence<T> persistence;
 

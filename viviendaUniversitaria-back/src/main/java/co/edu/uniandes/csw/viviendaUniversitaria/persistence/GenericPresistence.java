@@ -21,7 +21,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.interfase.IPersistence;
 public abstract class GenericPresistence<T extends BaseEntity> implements IPersistence<T> {
 
     private Class<T> clase;
-    private Logger LOG;
+    protected Logger LOG;
 
     @PersistenceContext(unitName = "viviendaUniversitariaPU")
     protected EntityManager em;

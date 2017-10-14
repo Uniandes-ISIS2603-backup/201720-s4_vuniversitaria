@@ -62,7 +62,7 @@ public abstract class BaseEntity implements Serializable {
                 return base.getId().equals(id);
             }
         } else {
-            return super.equals(obj);
+            return false;
         }
     }
 

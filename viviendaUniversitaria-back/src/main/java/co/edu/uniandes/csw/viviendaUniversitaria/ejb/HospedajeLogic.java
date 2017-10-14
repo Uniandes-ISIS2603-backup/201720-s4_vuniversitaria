@@ -10,7 +10,6 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.UbicacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.HospedajePersistence;
-import java.util.logging.Logger;
 import javax.ws.rs.WebApplicationException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -22,18 +21,28 @@ import javax.inject.Inject;
 @Stateless
 public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
 
-    private static final Logger LOGGER = Logger.getLogger(HospedajeLogic.class.getName());
-
     private UbicacionLogic ubicacionLogic;
 
     private CalificacionLogic calificacionLogic;
 
+    /**
+     * Constructor vacio
+     */
     public HospedajeLogic() {
         super();
     }
 
+    /**
+     * Constructor inyectado
+     * Injecta todos los parametros que se van a usar
+     * @param persistenceHospedaje Mi persistencia, esta es la que se pasa al super
+     * @param ubicacionLogic Esta es otra que estoy usando
+     * @param calificacionLogic Esta es otra que estoy usando
+     * @throws IllegalAccessException
+     * @throws InstantiationException 
+     */
     @Inject
-    public HospedajeLogic(HospedajePersistence persistenceHospedaje, UbicacionLogic ubicacionLogic, CalificacionLogic calificacionLogic, HospedajePersistence persistence) throws IllegalAccessException, InstantiationException {
+    public HospedajeLogic(HospedajePersistence persistenceHospedaje, UbicacionLogic ubicacionLogic, CalificacionLogic calificacionLogic) throws IllegalAccessException, InstantiationException {
         super(persistenceHospedaje, HospedajeEntity.class);
         this.calificacionLogic = calificacionLogic;
         this.ubicacionLogic = ubicacionLogic;

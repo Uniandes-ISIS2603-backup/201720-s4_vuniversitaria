@@ -18,6 +18,9 @@ import javax.ejb.Stateless;
 @Stateless
 public class HospedajePersistence extends GenericPresistence<HospedajeEntity> {
 
+    /**
+     * Iniección de la entidad
+     */
     public HospedajePersistence() {
         super(HospedajeEntity.class);
     }
