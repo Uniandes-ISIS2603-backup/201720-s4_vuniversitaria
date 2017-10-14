@@ -6,15 +6,12 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.interfase.IDto;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author ws.duarte
  */
-public class HospedajeDTO implements IDto<HospedajeEntity> {
+public class HospedajeDTO {
 
     private Long id;
 
@@ -43,7 +40,6 @@ public class HospedajeDTO implements IDto<HospedajeEntity> {
         this.cantidadVotaciones = entidad.getCantidadVotaciones();
     }
 
-    @Override
     public HospedajeEntity toEntity() {
         HospedajeEntity ret = new HospedajeEntity();
         ret.setDescripcion(descripcion);
@@ -52,16 +48,6 @@ public class HospedajeDTO implements IDto<HospedajeEntity> {
         ret.setTipoArrendamiento(tipoArrendamiento);
         ret.setCantidadVotaciones(cantidadVotaciones);
         return ret;
-    }
-    
-    @Override
-    public IDto<HospedajeEntity> setEntity(HospedajeEntity entity) {
-        this.id = entity.getId();
-        this.descripcion = entity.getDescripcion();
-        this.tipoArrendamiento = entity.getTipoArrendamiento();
-        this.valoracion = entity.getValoracion();
-        this.cantidadVotaciones = entity.getCantidadVotaciones();
-        return this;
     }
 
     public Long getId() {        
