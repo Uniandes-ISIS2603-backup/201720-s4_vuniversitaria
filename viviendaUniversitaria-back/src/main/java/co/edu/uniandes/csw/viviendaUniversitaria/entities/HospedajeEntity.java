@@ -17,32 +17,32 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * Clase que modela un hospedaje.
+ *
  * @author ws.duarte
  */
 @Entity
-public class HospedajeEntity extends BaseEntity
-{
-    
+public class HospedajeEntity extends BaseEntity {
+
     /**
      * Tipo de arrendamiento del hospedaje.
      */
     private String tipoArrendamiento;
-    
+
     /**
      * Descripción del hospadaje.
      */
     private String descripcion;
-    
+
     /**
      * Valoración total del hospadaje.
      */
     private Double valoracion;
-    
+
     /**
      * Cantidad de votos totales.
      */
     private Integer cantidadVotaciones;
-    
+
     /**
      * Relación con regla.
      */
@@ -56,25 +56,25 @@ public class HospedajeEntity extends BaseEntity
     @PodamExclude
     @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ServiciosEntity> servicios;
-    
+
     /**
      * Relación con hospedajeLugar.
      */
     @PodamExclude
     @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<HospedajeLugarEntity> hospedajesLugares;
-    
+
     @PodamExclude
     @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FacturaEntity> facturas;
-    
+
     /**
      * Relación con reserva.
      */
     @PodamExclude
     @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReservaEntity> reservas;
-    
+
     /**
      * Relación con calificaciónes.
      */
@@ -88,17 +88,17 @@ public class HospedajeEntity extends BaseEntity
     @PodamExclude
     @ManyToOne
     private ArrendadorEntity arrendador;
-    
+
     /**
      * Relación con ubicación.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "hospedaje", orphanRemoval = true, fetch=FetchType.LAZY)
+    @OneToOne(mappedBy = "hospedaje", orphanRemoval = true, fetch = FetchType.LAZY)
     private UbicacionEntity ubicacion;
-
 
     /**
      * Retorna el tipo de arreendamiento del hospedaje.
+     *
      * @return Tipo de arrendamiento del hospedaje.
      */
     public String getTipoArrendamiento() {
@@ -107,6 +107,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Cambia el tipo de arrendamiento del hospedaje.
+     *
      * @param tipoArrendamiento Nuevo tipo de arrendamiento para el hospedaje.
      */
     public void setTipoArrendamiento(String tipoArrendamiento) {
@@ -115,6 +116,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Retorna la dercripción del hospedaje.
+     *
      * @return Descripción del hospeadaje.
      */
     public String getDescripcion() {
@@ -123,6 +125,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Cambi la descripción del hospedaje.
+     *
      * @param descripcion Nueva descripción del hospadaje.
      */
     public void setDescripcion(String descripcion) {
@@ -131,6 +134,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Retorna la valoración del hospadaje.
+     *
      * @return Valoración del hospadaje.
      */
     public Double getValoracion() {
@@ -139,6 +143,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Cambiia la valoración del hospedaje.
+     *
      * @param valoracion Nueva valoración para el hospedaje.
      */
     public void setValoracion(Double valoracion) {
@@ -147,6 +152,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Retorna la relacíon con las reglas.
+     *
      * @return Relación con las reglas.
      */
     public List<ReglaEntity> getReglas() {
@@ -155,6 +161,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Cambia la relación con regla.
+     *
      * @param reglas Nueva relación con regla.
      */
     public void setReglas(List<ReglaEntity> reglas) {
@@ -163,6 +170,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Retorna la relación con servicios.
+     *
      * @return Relación con servicios.
      */
     public List<ServiciosEntity> getServicios() {
@@ -171,6 +179,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Cambia la relación con servicios.
+     *
      * @param servicios Nueva relación con servicios.
      */
     public void setServicios(List<ServiciosEntity> servicios) {
@@ -179,6 +188,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Retorna la relación con hospedajeLugar.
+     *
      * @return Relación con hospedajeLugar.
      */
     public List<HospedajeLugarEntity> getHospedajesLugares() {
@@ -187,6 +197,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Cambia la relación con hospedajeLugar.
+     *
      * @param hospedajesLugares Nueva relación entre hospedajeLugar.
      */
     public void setHospedajesLugares(List<HospedajeLugarEntity> hospedajesLugares) {
@@ -195,6 +206,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Retorna la relacíon con reserva.
+     *
      * @return Relación con reserva.
      */
     public List<ReservaEntity> getReservas() {
@@ -203,6 +215,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Cambia la relación con reserva.
+     *
      * @param reservas Nueva relación con reserva.
      */
     public void setReservas(List<ReservaEntity> reservas) {
@@ -211,6 +224,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Retorna la relación con calificaciones.
+     *
      * @return Relación con calificación.
      */
     public List<CalificacionEntity> getCalificaciones() {
@@ -219,6 +233,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Cambia la relación con calificacíon.
+     *
      * @param calificaciones Nueva relación con calificación.
      */
     public void setCalificaciones(List<CalificacionEntity> calificaciones) {
@@ -227,6 +242,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Retorna la relación con arrendador.
+     *
      * @return Relación con arrendador.
      */
     public ArrendadorEntity getArrendador() {
@@ -235,6 +251,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Cambia la relación con arrendador.
+     *
      * @param arrendador Nueva relacíon con arrendador.
      */
     public void setArrendador(ArrendadorEntity arrendador) {
@@ -243,6 +260,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Retorna la relación con ubicación.
+     *
      * @return Relación con ubicación.
      */
     public UbicacionEntity getUbicacion() {
@@ -251,6 +269,7 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Cambia la relación conubicación.
+     *
      * @param ubicacion Nueva relación con ubicación.
      */
     public void setUbicacion(UbicacionEntity ubicacion) {
@@ -264,40 +283,31 @@ public class HospedajeEntity extends BaseEntity
     public void setFacturas(List<FacturaEntity> facturas) {
         this.facturas = facturas;
     }
-    
+
     /**
      * Determina si dos hospedajes son iguales.
+     *
      * @param obj Hospedaje a comparar.
      * @return True si son iguales, false de lo contrario.
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof HospedajeEntity) return super.equals(obj);
-        else return false;
+        if (obj instanceof HospedajeEntity) {
+            return super.equals(obj);
+        } else {
+            return false;
+        }
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.tipoArrendamiento);
-        hash = 23 * hash + Objects.hashCode(this.descripcion);
-        hash = 23 * hash + Objects.hashCode(this.valoracion);
-        hash = 23 * hash + Objects.hashCode(this.cantidadVotaciones);
-        hash = 23 * hash + Objects.hashCode(this.reglas);
-        hash = 23 * hash + Objects.hashCode(this.servicios);
-        hash = 23 * hash + Objects.hashCode(this.hospedajesLugares);
-        hash = 23 * hash + Objects.hashCode(this.facturas);
-        hash = 23 * hash + Objects.hashCode(this.reservas);
-        hash = 23 * hash + Objects.hashCode(this.calificaciones);
-        hash = 23 * hash + Objects.hashCode(this.arrendador);
-        hash = 23 * hash + Objects.hashCode(this.ubicacion);
-        return hash;
+        return super.hashCode();
     }
-
 
     /**
      * Retorna la cantidad de votos totales.
-     * @return Cantidad de votos totales. 
+     *
+     * @return Cantidad de votos totales.
      */
     public Integer getCantidadVotaciones() {
         return cantidadVotaciones;
@@ -305,9 +315,10 @@ public class HospedajeEntity extends BaseEntity
 
     /**
      * Cambia el valor de la cantidad de realciones totales.
+     *
      * @param cantidadVotaciones Nueva cantidad de realciones totales.
      */
     public void setCantidadVotaciones(Integer cantidadVotaciones) {
         this.cantidadVotaciones = cantidadVotaciones;
-    }    
+    }
 }

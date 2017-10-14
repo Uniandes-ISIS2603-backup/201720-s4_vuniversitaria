@@ -161,7 +161,7 @@ public class HospedajeEntityTest {
         HospedajeEntity hospedajeT = data.get(0);
         HospedajeEntity hospedaje = new HospedajeEntity();
         hospedaje.setValoracion(hospedajeT.getValoracion());
-        Assert.assertTrue(hospedaje.getValoracion() == (hospedajeT.getValoracion()));
+        Assert.assertTrue(hospedaje.getValoracion().equals(hospedajeT.getValoracion()));
     }
 
     /**
@@ -172,7 +172,7 @@ public class HospedajeEntityTest {
         HospedajeEntity hospedajeT = data.get(0);
         HospedajeEntity hospedaje = new HospedajeEntity();
         hospedaje.setValoracion(hospedajeT.getValoracion());
-        Assert.assertTrue(hospedaje.getValoracion() == (hospedajeT.getValoracion()));
+        Assert.assertTrue(hospedaje.getValoracion().equals(hospedajeT.getValoracion()));
     }
 
     /**
@@ -464,6 +464,33 @@ public class HospedajeEntityTest {
     public void testEquals() {
         HospedajeEntity hospedajeT=  data.get(0);
         Assert.assertTrue(hospedajeT.equals(data.get(0)));
+        hospedajeT.setId(new Long(2));
+        BaseEntity base = new BaseEntity() {};
+        base.setId(new Long(23));
+        Assert.assertTrue(!hospedajeT.equals(base));
+
+    }
+    
+    /**
+     * Test of getCantidadVotaciones method, of class HospedajeEntity.
+     */
+    @Test
+    public void testGetCantidadVotaciones() {
+        HospedajeEntity hospedajeT = data.get(0);
+        HospedajeEntity hospedaje = new HospedajeEntity();
+        hospedaje.setCantidadVotaciones(hospedajeT.getCantidadVotaciones());
+        Assert.assertTrue(hospedaje.getCantidadVotaciones().equals(hospedajeT.getCantidadVotaciones()));
+    }
+
+    /**
+     * Test of setCantidadVotaciones method, of class HospedajeEntity.
+     */
+    @Test
+    public void testSetCantidadVotaciones() {
+        HospedajeEntity hospedajeT = data.get(0);
+        HospedajeEntity hospedaje = new HospedajeEntity();
+        hospedaje.setCantidadVotaciones(hospedajeT.getCantidadVotaciones());
+        Assert.assertTrue(hospedaje.getCantidadVotaciones().equals(hospedajeT.getCantidadVotaciones()));
     }
 
     /**
@@ -475,6 +502,5 @@ public class HospedajeEntityTest {
         Long id = new Long(3);
         hospedajeT.setId(new Long(3));
         Assert.assertEquals(id, new Long(hospedajeT.hashCode()));
-    }
-    
+    }    
 }

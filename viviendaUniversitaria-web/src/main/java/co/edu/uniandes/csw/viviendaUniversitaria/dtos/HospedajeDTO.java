@@ -6,45 +6,45 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.interfase.IDto;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author ws.duarte
  */
-public class HospedajeDTO 
-{
+public class HospedajeDTO implements IDto<HospedajeEntity> {
+
     private Long id;
-    
+
     /**
      * Tipo de arrendamiento del hospedaje.
      */
     private String tipoArrendamiento;
-    
+
     /**
      * Descripción del hospadaje.
      */
     private String descripcion;
-    
+
     /**
      * Valoración total del hospadaje.
      */
     private Double valoracion;
-    
+
     private Integer cantidadVotaciones;
-    
-    public HospedajeDTO() {}
-    
-    public HospedajeDTO(HospedajeEntity entidad) 
-    {
+
+    public HospedajeDTO(HospedajeEntity entidad) {
         this.id = entidad.getId();
         this.descripcion = entidad.getDescripcion();
         this.tipoArrendamiento = entidad.getTipoArrendamiento();
         this.valoracion = entidad.getValoracion();
         this.cantidadVotaciones = entidad.getCantidadVotaciones();
     }
-    
-    public HospedajeEntity toEntity()
-    {
+
+    @Override
+    public HospedajeEntity toEntity() {
         HospedajeEntity ret = new HospedajeEntity();
         ret.setDescripcion(descripcion);
         ret.setId(id);
@@ -53,8 +53,18 @@ public class HospedajeDTO
         ret.setCantidadVotaciones(cantidadVotaciones);
         return ret;
     }
+    
+    @Override
+    public IDto<HospedajeEntity> setEntity(HospedajeEntity entity) {
+        this.id = entity.getId();
+        this.descripcion = entity.getDescripcion();
+        this.tipoArrendamiento = entity.getTipoArrendamiento();
+        this.valoracion = entity.getValoracion();
+        this.cantidadVotaciones = entity.getCantidadVotaciones();
+        return this;
+    }
 
-    public Long getId() {
+    public Long getId() {        
         return id;
     }
 
@@ -93,7 +103,5 @@ public class HospedajeDTO
     public void setCantidadVotaciones(Integer cantidadVotaciones) {
         this.cantidadVotaciones = cantidadVotaciones;
     }
-    
-    
-    
+
 }

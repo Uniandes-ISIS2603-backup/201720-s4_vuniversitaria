@@ -22,9 +22,6 @@ import java.util.List;
 public class HospedajeDetaillDTO extends HospedajeDTO
 {
 
-    public HospedajeDetaillDTO() {
-        super();
-    }
     
     private List<ReglaDTO> reglas;
     private List<ServiciosDTO> servicios;

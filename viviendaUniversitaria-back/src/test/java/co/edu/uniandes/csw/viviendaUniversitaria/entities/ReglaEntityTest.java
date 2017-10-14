@@ -163,6 +163,10 @@ public class ReglaEntityTest {
     public void testEquals() {
         ReglaEntity reglaT = data.get(0);
         Assert.assertTrue(reglaT.equals(data.get(0)));
+        BaseEntity base = new BaseEntity() {};
+        base.setId(new Long(89));
+        reglaT.setId(new Long(89));
+        Assert.assertTrue(!reglaT.equals(base));
     }
 
     /**

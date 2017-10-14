@@ -112,7 +112,7 @@ public class CalificacionDTO {
      * Establece la fecha
      * @param fecha 
      */
-    private void setFecha(String fecha){
+    public void setFecha(String fecha){
         this.fecha = fecha;
     }
     

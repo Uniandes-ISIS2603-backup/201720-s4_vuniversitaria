@@ -1,11 +1,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -48,24 +44,6 @@ public class ReglaEntity extends BaseEntity {
     }
 
     /**
-     * Retorna el id de la regla.
-     *
-     * @return Código unoco de la regla.
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Cambia el id de la regla.
-     *
-     * @param id Nuevo código de la regla.
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    /**
      * Retorna el hospedaje que se relaciona con la regla.
      *
      * @return Relación con hospedaje.
@@ -92,9 +70,10 @@ public class ReglaEntity extends BaseEntity {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof ReglaEntity) {
-            super.equals(obj);
+            return super.equals(obj);
+        } else {
+            return false;
         }
-        return false;
     }
 
     /**
@@ -104,9 +83,6 @@ public class ReglaEntity extends BaseEntity {
      */
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.regla);
-        hash = 37 * hash + Objects.hashCode(this.hospedaje);
-        return hash;
+        return super.hashCode();
     }
 }
