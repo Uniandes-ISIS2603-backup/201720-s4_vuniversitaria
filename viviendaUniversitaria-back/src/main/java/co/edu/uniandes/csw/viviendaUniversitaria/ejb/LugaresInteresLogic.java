@@ -52,18 +52,18 @@ public class LugaresInteresLogic {
 
     }
 
-    public LugaresInteresEntity createLugarInteres(LugaresInteresEntity entidad) throws WebApplicationException, BusinessLogicException {
-        if(logicUbicacion.getUbicacion(entidad.getUbicacion().getId())!=null){
-            throw new WebApplicationException("ya existe una ubicacion con este id",412);
-        }
-        else{
-        UbicacionEntity ubicacionLugar = entidad.getUbicacion();
-        ubicacionLugar.setLugaresInteres(entidad);        
-        logicUbicacion.createUbicacion(entidad.getUbicacion());
-        return persistence.create(entidad);
-        }
-        
-    }
+//    public LugaresInteresEntity createLugarInteres(LugaresInteresEntity entidad) throws WebApplicationException, BusinessLogicException {
+//        if(logicUbicacion.getUbicacion(entidad.getUbicacion().getId())!=null){
+//            throw new WebApplicationException("ya existe una ubicacion con este id",412);
+//        }
+//        else{
+//        UbicacionEntity ubicacionLugar = entidad.getUbicacion();
+//        ubicacionLugar.setLugaresInteres(entidad);        
+//        logicUbicacion.createUbicacion(entidad.getUbicacion());
+//        return persistence.create(entidad);
+//        }
+//        
+//    }
 
     public LugaresInteresEntity updateLugarInteres(LugaresInteresEntity entidad) throws WebApplicationException {
         if (entidad == null) {
@@ -88,7 +88,7 @@ public class LugaresInteresLogic {
             throw new WebApplicationException("Ingrese el id de algun Lugar de interes existente",407);
         } else {
             
-            logicUbicacion.deleteUbicacion(lugarDelete.getUbicacion().getId());
+//            logicUbicacion.deleteUbicacion(lugarDelete.getUbicacion().getId());
             persistence.delete(id);
         }
     }

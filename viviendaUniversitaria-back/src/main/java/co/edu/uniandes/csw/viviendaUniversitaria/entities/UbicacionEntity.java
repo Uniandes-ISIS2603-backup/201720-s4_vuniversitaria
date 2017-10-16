@@ -23,93 +23,85 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-
-import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import uk.co.jemos.podam.common.PodamExclude;
-
 /**
  *
  * @author ISIS2603
  */
 @Entity
-public class UbicacionEntity  implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String direccion;
-    Long latitud;
-    Long altitud;
+public class UbicacionEntity extends BaseEntity{
+  
+    /**
+    * Atributo que modela la direccion de la ubicacion.
+    */
+    private String direccion;
+    /**
+     * Atributo que modela la latitud de la ubicacion.
+     */
+    private Long latitud;
+    /**
+     * Atributo que modela la altitud de la ubicacion.
+     */
+    private Long altitud;
 
-    @PodamExclude
-    @OneToOne
-    private LugaresInteresEntity lugaresInteres;
-    
-    @PodamExclude
-    @OneToOne
-    private UniversidadEntity universidad;
-    
-    @PodamExclude
-    @OneToOne
-    private HospedajeEntity hospedaje;
-
-    public LugaresInteresEntity getLugaresInteres() {
-        return lugaresInteres;
-    }
-
-    public void setLugaresInteres(LugaresInteresEntity lugaresInteres) {
-        this.lugaresInteres = lugaresInteres;
-    }
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    /**
+     * Retorna la latitud
+     * @return latitud
+     */
     public Long getLatitud() {
         return latitud;
     }
-
+    /**
+     * Modifica la latitud
+     * @param latitud 
+     */
     public void setLatitud(Long latitud) {
         this.latitud = latitud;
     }
-
+    /**
+     * Retorna la altitud
+     * @return altitud
+     */
     public Long getAltitud() {
         return altitud;
     }
-
+    /**
+     * Modifica la altitud 
+     * @param altitud 
+     */
     public void setAltitud(Long altitud) {
         this.altitud = altitud;
     }
-    
+    /**
+     * Retorna la direccion
+     * @return direccion
+     */
     public String getDireccion() {
         return direccion;
     }
-
+    /**
+     * Modifica la direccion
+     * @param direccion 
+     */
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
-    public UniversidadEntity getUniversidad() {
-        return universidad;
+    /**
+     * Compara si dos ubicaciones son iguales
+     * @param obj la ubicacion con la que me comparo
+     * @return True si son iguales de lo contrario False.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof UbicacionEntity) {
+            return super.equals(obj);
+        } else {
+            return false;
+        }
     }
 
-    public void setUniversidad(UniversidadEntity universidad) {
-        this.universidad = universidad;
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
-
-    public HospedajeEntity getHospedaje() {
-        return hospedaje;
-    }
-
-    public void setHospedaje(HospedajeEntity hospedaje) {
-        this.hospedaje = hospedaje;
-    }
-    
 }
