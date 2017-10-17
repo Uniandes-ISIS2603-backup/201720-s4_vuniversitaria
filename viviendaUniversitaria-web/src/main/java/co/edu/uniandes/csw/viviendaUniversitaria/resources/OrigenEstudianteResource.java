@@ -82,7 +82,7 @@ public class OrigenEstudianteResource {
      * 
      */
     @GET
-    public List<EstudianteDTO> listEstudiantes(@PathParam("OrigenesId") Long origensId) {
+    public List<EstudianteDTO> listEstudiantes(@PathParam("OrigenesId") Long origensId) throws BusinessLogicException {
         return estudiantesListEntity2DTO(origenLogic.listEstudiantes(origensId));
     }
 

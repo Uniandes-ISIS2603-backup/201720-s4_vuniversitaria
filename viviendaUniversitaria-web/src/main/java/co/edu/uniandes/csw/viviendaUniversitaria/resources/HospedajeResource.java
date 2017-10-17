@@ -91,13 +91,13 @@ public class HospedajeResource {
 
     @GET
     @Path("{idHospedaje: [0-9][0-9]*}/arrendador")
-    public ArrendadorDTO darArrendador(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException {
+    public ArrendadorDTO darArrendador(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
         return new ArrendadorDTO(hospedajeLogic.find(idHospedaje).getArrendador());
     }
 
     @GET
     @Path("{idHospedaje: [0-9][0-9]*}/facturas")
-    public List<FacturaDTO> darFacturas(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException {
+    public List<FacturaDTO> darFacturas(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
         return convertirFacturas(hospedajeLogic.find(idHospedaje).getFacturas());
     }
 
@@ -113,7 +113,7 @@ public class HospedajeResource {
 
     @GET
     @Path("{idHospedaje: [0-9][0-9]*}/reservas")
-    public List<ReservaDTO> darReserva(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException {
+    public List<ReservaDTO> darReserva(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
         return convertirReserva(hospedajeLogic.find(idHospedaje).getReservas());
     }
 
@@ -129,7 +129,7 @@ public class HospedajeResource {
 
     @GET
     @Path("{idHospedaje: [0-9][0-9]*}/calificaciones")
-    public List<CalificacionDTO> darCalificacion(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException {
+    public List<CalificacionDTO> darCalificacion(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
         return convertirCalificacion(hospedajeLogic.find(idHospedaje).getCalificaciones());
     }
 
