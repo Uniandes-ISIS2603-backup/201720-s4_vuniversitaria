@@ -48,19 +48,19 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
         this.ubicacionLogic = ubicacionLogic;
     }
 
-    public HospedajeEntity agregarUbicacacion(Long idHospedaje, Long idUbicacion) throws WebApplicationException {
-        try {
-            HospedajeEntity hospedaje = find(idHospedaje);
-            UbicacionEntity ubicacion = ubicacionLogic.getUbicacion(idUbicacion);
-            if (ubicacion.getHospedaje() != null) {
-                throw new WebApplicationException("Esta ubicacion ya se encuentra sociada a un hospedaje.\nPor favor verifique la ubicacion he intente de nuevo.", 412);
-            }
-            ubicacion.setHospedaje(hospedaje);
-            return find(idHospedaje);
-        } catch (BusinessLogicException ble) {
-            throw new WebApplicationException(ble.getMessage(), 412);
-        }
-    }
+//    public HospedajeEntity agregarUbicacacion(Long idHospedaje, Long idUbicacion) throws WebApplicationException {
+//        try {
+//            HospedajeEntity hospedaje = find(idHospedaje);
+//            UbicacionEntity ubicacion = ubicacionLogic.getUbicacion(idUbicacion);
+//            if (ubicacion.getHospedaje() != null) {
+//                throw new WebApplicationException("Esta ubicacion ya se encuentra sociada a un hospedaje.\nPor favor verifique la ubicacion he intente de nuevo.", 412);
+//            }
+//            ubicacion.setHospedaje(hospedaje);
+//            return find(idHospedaje);
+//        } catch (BusinessLogicException ble) {
+//            throw new WebApplicationException(ble.getMessage(), 412);
+//        }
+//    }
 
     public HospedajeEntity agregarCalificacion(Long idHospedaje, Long idCalificacion) throws BusinessLogicException {
         HospedajeEntity hospedaje = find(idHospedaje);

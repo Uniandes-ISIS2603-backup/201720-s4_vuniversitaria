@@ -38,7 +38,7 @@ public class UniversidadResource {
 
     @GET
     public List<UniversidadDetailDTO> getUniversidades() throws BusinessLogicException {
-        return listEntity2DetailDTO(logic.getUniversidades());
+        return listEntity2DetailDTO(logic.findAll());
     }
 
     private List<UniversidadDetailDTO> listEntity2DetailDTO(List<UniversidadEntity> entityList) {
@@ -52,8 +52,8 @@ public class UniversidadResource {
     @GET
     @Path("/{idUni: \\d+}")
     public UniversidadDetailDTO getUniversidad(@PathParam("idUni") Long id) throws BusinessLogicException {
-        if (logic.getUniversidad(id) != null) {
-            UniversidadEntity entity = logic.getUniversidad(id);
+        if (logic.find(id) != null) {
+            UniversidadEntity entity = logic.find(id);
             return new UniversidadDetailDTO(entity);
         } else {
             throw new WebApplicationException("La universidad con ese id no existe", 404);
@@ -62,7 +62,7 @@ public class UniversidadResource {
 
     @POST
     public UniversidadDetailDTO createUniversidad(UniversidadDetailDTO ubi) throws BusinessLogicException {
-        return new UniversidadDetailDTO(logic.createUniversidad(ubi.toEntity()));
+        return new UniversidadDetailDTO(logic.create(ubi.toEntity()));
 
     }
 
@@ -78,13 +78,13 @@ public class UniversidadResource {
         if (idUni != ubi.getId()) {
             throw new WebApplicationException("Los ids no coinciden", 412);
         }
-        UniversidadEntity entity = logic.updateUniversidad(idUni, ubi.toEntity());
+        UniversidadEntity entity = logic.update(ubi.toEntity(),idUni );
         return new UniversidadDetailDTO(entity);
     }
 
     @DELETE
     @Path("/{idUni: \\d+}")
     public void deleteUniversidad(@PathParam("idUni") Long id) throws BusinessLogicException, WebApplicationException {
-        logic.deleteUniversidad(id);
+        logic.delete(id);
     }
 }

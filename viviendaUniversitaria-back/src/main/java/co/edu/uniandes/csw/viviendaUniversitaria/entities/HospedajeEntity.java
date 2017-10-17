@@ -93,7 +93,7 @@ public class HospedajeEntity extends BaseEntity {
      * Relación con ubicación.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "hospedaje", orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToOne
     private UbicacionEntity ubicacion;
 
     /**
