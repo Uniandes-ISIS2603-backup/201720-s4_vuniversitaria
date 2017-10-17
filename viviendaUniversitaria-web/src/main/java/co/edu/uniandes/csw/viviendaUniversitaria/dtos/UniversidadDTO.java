@@ -16,21 +16,19 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author c.santacruza
  */
 public class UniversidadDTO {
-    
-   // @PodamExclude
-    //@OneToOne("Ubicacion")
-    //private UbicacionEntity ubicacion;
-     private Long id;
+
+    private Long id;
     private String name;
-    
-    public UniversidadDTO(){
+
+    public UniversidadDTO() {
         //Vacio por default
-        
+
     }
-    public UniversidadDTO(UniversidadEntity entity){
+
+    public UniversidadDTO(UniversidadEntity entity) {
         this.id = entity.getId();
         this.name = entity.getNombre();
-       
+
     }
 
     public Long getId() {
@@ -47,17 +45,18 @@ public class UniversidadDTO {
 
     public void setName(String name) {
         this.name = name;
-    }    
-    
-      /**
+    }
+
+    /**
      * Convertir DTO a Entity
-     * @return Un Entity con los valores del DTO 
+     *
+     * @return Un Entity con los valores del DTO
      */
     public UniversidadEntity toEntity() {
         UniversidadEntity entity = new UniversidadEntity();
         entity.setId(this.id);
         entity.setNombre(this.name);
-       
+
         return entity;
     }
 }

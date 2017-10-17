@@ -66,11 +66,11 @@ public class HospedajeResource {
         hospedajeLogic.delete(id);
     }
 
-    @POST
-    @Path("{idHospedaje: [0-9][0-9]*}/ubicacion/{idUbicacion: [0-9][0-9]*}")
-    public HospedajeDetaillDTO agreagrUbicacion(@PathParam("idHospedaje") Long idHospedaje, @PathParam("idUbicacion") Long idUbicacion) {
-        return new HospedajeDetaillDTO(hospedajeLogic.agregarUbicacacion(idHospedaje, idUbicacion));
-    }
+//    @POST
+//    @Path("{idHospedaje: [0-9][0-9]*}/ubicacion/{idUbicacion: [0-9][0-9]*}")
+//    public HospedajeDetaillDTO agreagrUbicacion(@PathParam("idHospedaje") Long idHospedaje, @PathParam("idUbicacion") Long idUbicacion) {
+//        return new HospedajeDetaillDTO(hospedajeLogic.agregarUbicacacion(idHospedaje, idUbicacion));
+//    }
 
     @Path("{idHospedaje: [0-9][0-9]*}/reglas")
     public Class<ReglaResource> getRegla(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {

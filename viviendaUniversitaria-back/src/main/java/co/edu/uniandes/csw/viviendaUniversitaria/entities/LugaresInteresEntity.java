@@ -28,7 +28,7 @@ public class LugaresInteresEntity extends BaseEntity implements Serializable {
      * Atributo donde se describe la ubicacion de un lugar de interes
      */
     @PodamExclude
-    @OneToOne(mappedBy = "lugaresInteres", orphanRemoval = true, fetch=FetchType.LAZY)
+    @OneToOne
     private UbicacionEntity ubicacion;
     
     @PodamExclude
