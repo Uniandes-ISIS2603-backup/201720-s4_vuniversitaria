@@ -69,15 +69,15 @@ public class LugaresInteresResource {
 
     }
 
-    @POST
-    public LugaresInteresDetailDTO createLugar(LugaresInteresDetailDTO nuevolugar) throws WebApplicationException, BusinessLogicException {
-
-        try {
-            return new LugaresInteresDetailDTO(logic.createLugarInteres(nuevolugar.toEntity()));
-        } catch (WebApplicationException ex) {
-            throw ex;
-        }
-    }
+//    @POST
+//    public LugaresInteresDetailDTO createLugar(LugaresInteresDetailDTO nuevolugar) throws WebApplicationException, BusinessLogicException {
+//
+//        try {
+//            return new LugaresInteresDetailDTO(logic.createLugarInteres(nuevolugar.toEntity()));
+//        } catch (WebApplicationException ex) {
+//            throw ex;
+//        }
+//    }
 
     @PUT
     @Path("{id: \\d+}")
