@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.HospedajeDetaillDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.ArrendadorLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,13 +63,13 @@ public class ArrendadorHospedajeResource {
     
     @POST
     @Path("{hospedajeId: [0-9][0-9]*}")
-    public HospedajeDetaillDTO addHospedajesArrendador(@PathParam("id") Long id, @PathParam("hospedajeId") Long hospedajeId) {
+    public HospedajeDetaillDTO addHospedajesArrendador(@PathParam("id") Long id, @PathParam("hospedajeId") Long hospedajeId) throws BusinessLogicException {
         return new HospedajeDetaillDTO(arrendadorLogic.addHospedaje(id, hospedajeId));
     }
     
     @DELETE
     @Path("{hospedajeId: [0-9][0-9]*}")
-    public void deleteHospedajesArrendador(@PathParam("{id}") Long id, @PathParam("hospedajeId") Long hospedajeId){
+    public void deleteHospedajesArrendador(@PathParam("{id}") Long id, @PathParam("hospedajeId") Long hospedajeId) throws BusinessLogicException{
         arrendadorLogic.removerHospedajes(id, hospedajeId);
     }
 }
