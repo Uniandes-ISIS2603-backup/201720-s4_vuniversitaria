@@ -62,7 +62,7 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
         }
     }
 
-    public HospedajeEntity agregarCalificacion(Long idHospedaje, Long idCalificacion) {
+    public HospedajeEntity agregarCalificacion(Long idHospedaje, Long idCalificacion) throws BusinessLogicException {
         HospedajeEntity hospedaje = find(idHospedaje);
         CalificacionEntity calificaicon = calificacionLogic.getCalificacion(idHospedaje);
         if (calificaicon.getHospedaje() != null) {

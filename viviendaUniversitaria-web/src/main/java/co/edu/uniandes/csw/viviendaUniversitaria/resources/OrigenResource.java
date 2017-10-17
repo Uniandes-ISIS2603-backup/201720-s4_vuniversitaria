@@ -53,28 +53,28 @@ public class OrigenResource {
     @POST
     public OrigenDTO createOrigen(OrigenDTO origen) throws BusinessLogicException {
         OrigenEntity OrigenEntity = origen.toEntity();
-        OrigenEntity nuevoOrigen = origenLogic.createOrigen(OrigenEntity);
+        OrigenEntity nuevoOrigen = origenLogic.create(OrigenEntity);
         return new OrigenDTO(nuevoOrigen);
     }
 
     @GET
     public List<OrigenDTO> getOrigens() throws BusinessLogicException {
-        return listEntity2DTO(origenLogic.getOrigenes());
+        return listEntity2DTO(origenLogic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
     public OrigenDTO getOrigen(@PathParam("id") Long id) throws BusinessLogicException {
-        OrigenEntity entity = origenLogic.getOrigen(id);
+        OrigenEntity entity = origenLogic.find(id);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + id + ALGO2, 404);
         }
-        return new OrigenDTO(origenLogic.getOrigen(id));
+        return new OrigenDTO(origenLogic.find(id));
     }
     
     @Path("{OrigenesId: \\d+}/estudiantes")
-    public Class<OrigenEstudianteResource> getOrigenEstudianteResource(@PathParam("OrigenesId") Long idOrigen) {
-        OrigenEntity entity = origenLogic.getOrigen(idOrigen);
+    public Class<OrigenEstudianteResource> getOrigenEstudianteResource(@PathParam("OrigenesId") Long idOrigen) throws BusinessLogicException {
+        OrigenEntity entity = origenLogic.find(idOrigen);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + idOrigen + ALGO2, 404);
         }
@@ -85,22 +85,22 @@ public class OrigenResource {
     @Path("{id: \\d+}")
     public OrigenDTO updateOrigen(@PathParam("id") Long id, OrigenDTO origen) throws BusinessLogicException {
         origen.setId(id);
-        OrigenEntity entity = origenLogic.getOrigen(id);
+        OrigenEntity entity = origenLogic.find(id);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + id + ALGO2, 404);
         }
-        return new OrigenDTO(origenLogic.updateOrigen(id, origen.toEntity()));
+        return new OrigenDTO(origenLogic.update(origen.toEntity(),id));
     }
 
     @DELETE
     @Path("{id: \\d+}")
     public void deleteOrigen(@PathParam("id") Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar una Origen con id {0}", id);
-        OrigenEntity entity = origenLogic.getOrigen(id);
+        OrigenEntity entity = origenLogic.find(id);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + id + ALGO2, 404);
         }
-        origenLogic.deleteOrigen(id);
+        origenLogic.delete(id);
 
     }
     private List<OrigenDTO> listEntity2DTO(List<OrigenEntity> entityList) {

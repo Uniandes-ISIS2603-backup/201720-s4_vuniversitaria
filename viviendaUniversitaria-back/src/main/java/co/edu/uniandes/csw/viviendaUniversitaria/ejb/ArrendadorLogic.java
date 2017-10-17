@@ -101,7 +101,7 @@ public class ArrendadorLogic {
         return null;
     }   
     
-    public HospedajeEntity addHospedaje(Long idArrendador, Long idHospedaje){
+    public HospedajeEntity addHospedaje(Long idArrendador, Long idHospedaje) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia el proceso para agregar un hospedaje", idArrendador);
         ArrendadorEntity arrendador = getArrendador(idArrendador);
         hospedajeLogic.find(idHospedaje).setArrendador(arrendador);
@@ -109,7 +109,7 @@ public class ArrendadorLogic {
     }
     
     
-    public void removerHospedajes(Long arrendadorId, Long hospedajesId) {
+    public void removerHospedajes(Long arrendadorId, Long hospedajesId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un hospedaje del arrendador con id = {0}", arrendadorId);
                 
         ArrendadorEntity arrendadorEntity = getArrendador(arrendadorId);

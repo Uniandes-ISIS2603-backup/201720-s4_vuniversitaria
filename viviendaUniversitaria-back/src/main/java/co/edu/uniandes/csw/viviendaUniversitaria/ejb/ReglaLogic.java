@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReglaEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReglaPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,7 +36,7 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
         this.hospedajeLogic = hospedajeLogic;
     }
 
-    public List<ReglaEntity> findAll(Long idHospedaje) throws WebApplicationException {
+    public List<ReglaEntity> findAll(Long idHospedaje) throws WebApplicationException, BusinessLogicException {
         LOG.log(Level.INFO, "Consultando todas las reglas de un hospedaje. \nid:{0}", idHospedaje);
         HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
         if (hospedaje.getReglas() == null || hospedaje.getReglas().isEmpty()) {
@@ -52,7 +53,7 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
         return reglaPersistence.find(idHospedaje, idRegla);
     }
 
-    public ReglaEntity create(Long idhospedaje, ReglaEntity entidad) throws WebApplicationException {
+    public ReglaEntity create(Long idhospedaje, ReglaEntity entidad) throws WebApplicationException, BusinessLogicException {
         LOG.log(Level.INFO, "Creacion de una nueva entidad regla l hospedaje id: {0}", idhospedaje);
         if (!exist(entidad.getId())) {
             throw new WebApplicationException("Ya existe la regla con el id especificado", 405);
@@ -62,7 +63,7 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
         return reglaPersistence.create(entidad);
     }
 
-    public ReglaEntity update(Long idhospedaje, ReglaEntity entidad) throws WebApplicationException {
+    public ReglaEntity update(Long idhospedaje, ReglaEntity entidad) throws WebApplicationException, BusinessLogicException {
         LOG.log(Level.INFO, "Actualizar la entidad con id: {0}", entidad.getId());
         if (!exist(entidad.getId())) {
             throw new WebApplicationException("No existe la regla con el id especificado", 405);

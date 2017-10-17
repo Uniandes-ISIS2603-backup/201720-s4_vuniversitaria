@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.interfase;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.BaseEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.List;
 
 /**
@@ -15,14 +16,14 @@ import java.util.List;
  */
 public interface ILogic<T extends BaseEntity> {
 
-    public T create(T entity);
+    public T create(T entity) throws BusinessLogicException;
 
-    public T find(Long id);
+    public T find(Long id)throws BusinessLogicException;
 
-    public List<T> findAll();
+    public List<T> findAll()throws BusinessLogicException;
 
-    public T update(T entity, Long id);
+    public T update(T entity, Long id)throws BusinessLogicException;
 
-    public void delete(Long id);
+    public void delete(Long id)throws BusinessLogicException;
 
 }

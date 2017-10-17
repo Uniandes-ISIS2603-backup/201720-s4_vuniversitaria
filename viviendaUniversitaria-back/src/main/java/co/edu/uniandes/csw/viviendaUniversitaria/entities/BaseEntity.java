@@ -25,6 +25,8 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import javax.ejb.Stateless;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -42,6 +44,7 @@ import javax.persistence.MappedSuperclass;
 public abstract class BaseEntity implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     public Long getId() {

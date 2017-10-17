@@ -10,9 +10,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -21,11 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author a.eslava
  */
 @Entity
-public class OrigenEntity implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+public class OrigenEntity extends BaseEntity implements Serializable{
     private String name;
     
     @PodamExclude
@@ -47,16 +40,4 @@ public class OrigenEntity implements Serializable{
     public void setEstudiante(List<EstudianteEntity> estudiante) {
         this.estudiante = estudiante;
     }
-    
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 }
