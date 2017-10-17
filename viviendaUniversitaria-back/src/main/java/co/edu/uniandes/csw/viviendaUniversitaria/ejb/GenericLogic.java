@@ -30,7 +30,7 @@ public abstract class GenericLogic<T extends BaseEntity> implements ILogic<T> {
     public GenericLogic() {
     }
 
-    public GenericLogic(GenericPresistence<T> persis, Class<T> clase) throws IllegalAccessException, InstantiationException {
+    public GenericLogic(GenericPresistence<T> persis, Class<T> clase) {
         this.persistence = persis;
         this.clase = clase;
         LOG = Logger.getLogger(clase.getName());
@@ -39,10 +39,6 @@ public abstract class GenericLogic<T extends BaseEntity> implements ILogic<T> {
     @Override
     public T create(T entity) throws BusinessLogicException {
         LOG.log(Level.INFO, "Creación de un nuevo {0}", clase.getSimpleName());
-        if (exist(entity.getId())) {
-            LOG.log(Level.SEVERE, "La entidad con la llave primaria {0} ya existe", entity.getId());
-            throw new BusinessLogicException("Ya existe una entidad con esta llave primaria");
-        }
         T ret = persistence.create(entity);
         LOG.log(Level.FINE, "La entidad fue creada exitosamente.");
         return ret;

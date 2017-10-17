@@ -47,8 +47,6 @@ public abstract class GenericPresistence<T extends BaseEntity> implements IPersi
 
     @Override
     public T find(Long id) {
-
-        LOG.log(Level.INFO, "Consultando un {0} con id: {1}", new String[]{clase.getCanonicalName(), id.toString()});
         return em.find(clase, id);
     }
 

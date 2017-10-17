@@ -28,10 +28,12 @@ public class OrigenLogic extends GenericLogic<OrigenEntity>{
     private EstudianteLogic estudianteLogic;
 
     public OrigenLogic() {
-        //h
+        super();
     }
+    
     @Inject
     public OrigenLogic(OrigenPersistence persistence, EstudianteLogic estudianteLogic) {
+        super(persistence, OrigenEntity.class);
         this.persistence = persistence;
         this.estudianteLogic = estudianteLogic;
     }
