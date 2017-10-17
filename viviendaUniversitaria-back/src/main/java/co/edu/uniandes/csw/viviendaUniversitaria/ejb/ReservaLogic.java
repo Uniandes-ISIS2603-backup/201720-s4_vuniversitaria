@@ -138,7 +138,7 @@ public class ReservaLogic {
       return estudiante;
 }
    public void asociateReservaConHospedajeYEstudiante (Long idHospedaje, Long idEstudiante, ReservaEntity reserva) throws BusinessLogicException{
-      EstudianteEntity estudiante= estudianteLogic.getEstudiante(idEstudiante);
+      EstudianteEntity estudiante= estudianteLogic.find(idEstudiante);
       HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
       if(hospedaje==null || estudiante==null){
           throw new BusinessLogicException("Usuario u hospedaje inválido");

@@ -24,6 +24,7 @@ ALTER TABLE ServiciosEntity ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE FacturaEntity ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE ReservaEntity ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE LugaresInteresEntity ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE EstudianteEntity ALTER COLUMN id RESTART WITH 1;
 
 --pruebas EstudianteEntity
 insert into EstudianteEntity (cedula, nombre) values (123, 'amilkar');

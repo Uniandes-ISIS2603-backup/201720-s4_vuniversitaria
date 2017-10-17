@@ -228,7 +228,7 @@ public class FacturaLogic {
       return estudiante;
 }
    public void asociateFacturaConHospedajeYEstudiante (Long idHospedaje, Long idEstudiante, FacturaEntity factura) throws BusinessLogicException{
-      EstudianteEntity estudiante= estudianteLogic.getEstudiante(idEstudiante);
+      EstudianteEntity estudiante= estudianteLogic.find(idEstudiante);
       HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
       if(hospedaje==null || estudiante==null){
           throw new BusinessLogicException("Usuario u hospedaje inválido");

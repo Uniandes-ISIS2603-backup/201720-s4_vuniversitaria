@@ -10,7 +10,6 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.OrigenPersistence;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -21,10 +20,6 @@ import javax.inject.Inject;
  */
 @Stateless
 public class OrigenLogic extends GenericLogic<OrigenEntity>{
-
-    private static final Logger LOGGER = Logger.getLogger(OrigenLogic.class.getName());
-
-    private OrigenPersistence persistence;
     private EstudianteLogic estudianteLogic;
 
     public OrigenLogic() {
@@ -34,15 +29,12 @@ public class OrigenLogic extends GenericLogic<OrigenEntity>{
     @Inject
     public OrigenLogic(OrigenPersistence persistence, EstudianteLogic estudianteLogic) {
         super(persistence, OrigenEntity.class);
-        this.persistence = persistence;
         this.estudianteLogic = estudianteLogic;
     }
-
-    
     
     public EstudianteEntity addEstudiante(Long cedula, Long idOrigen) throws BusinessLogicException {
         OrigenEntity origenEntity = find(idOrigen);
-        EstudianteEntity estudianteEntity = estudianteLogic.getEstudiante(cedula);
+        EstudianteEntity estudianteEntity = estudianteLogic.find(cedula);
         if (estudianteEntity == null) {
             throw new BusinessLogicException("no existe el estudiante");
         }
@@ -53,7 +45,7 @@ public class OrigenLogic extends GenericLogic<OrigenEntity>{
 
     public EstudianteEntity getEstudiante(Long origenId, Long cedula) throws BusinessLogicException {
         List<EstudianteEntity> estudiantes = find(origenId).getEstudiante();
-        EstudianteEntity estudiante = estudianteLogic.getEstudiante(cedula);
+        EstudianteEntity estudiante = estudianteLogic.find(cedula);
         int index = estudiantes.indexOf(estudiante);
         if (index >= 0) {
             return estudiantes.get(index);

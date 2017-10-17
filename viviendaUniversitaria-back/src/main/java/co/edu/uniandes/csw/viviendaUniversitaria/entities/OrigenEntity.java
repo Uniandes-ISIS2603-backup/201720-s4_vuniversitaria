@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,4 +41,19 @@ public class OrigenEntity extends BaseEntity implements Serializable{
     public void setEstudiante(List<EstudianteEntity> estudiante) {
         this.estudiante = estudiante;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof OrigenEntity)
+            return super.equals(obj);
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = super.hashCode();
+        hash = 89 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+    
 }

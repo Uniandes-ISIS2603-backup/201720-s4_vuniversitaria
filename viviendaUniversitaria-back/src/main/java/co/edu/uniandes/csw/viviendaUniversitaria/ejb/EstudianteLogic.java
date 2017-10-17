@@ -39,10 +39,7 @@ import javax.inject.Inject;
  * @author ISIS2603
  */
 @Stateless
-public class EstudianteLogic {
-
-    private static final Logger LOGGER = Logger.getLogger(EstudianteLogic.class.getName());
-    private EstudiantePersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
     private CalificacionLogic calificacionLogic;
     
     public EstudianteLogic(){
@@ -50,99 +47,16 @@ public class EstudianteLogic {
     }
     @Inject
     public EstudianteLogic(EstudiantePersistence persistence, CalificacionLogic calificacionLogic) {
+        super(persistence,EstudianteEntity.class);
         this.persistence = persistence;
         this.calificacionLogic = calificacionLogic;
     }
-   
-    /**
-     *
-     * @param entity
-     * @return
-     * @throws BusinessLogicException
-     */
-    public EstudianteEntity createEstudiante(EstudianteEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de estudiante");
-        // Invoca la persistencia para crear la Default
-        if (entity.getCedula() == null) {
-            throw new BusinessLogicException("la cedula no puede estar vacia");
-        }
-        if (getEstudiante(entity.getCedula()) != null) {
-            throw new BusinessLogicException("la cedula no estar repetida");
-        }
-        LOGGER.info("Termina proceso de creación de estudiante");
-        persistence.create(entity);
-
-        return entity;
-    }
-    
-    
-
-    /**
-     *
-     * Obtener todas las Defaultes existentes en la base de datos.
-     *
-     * @return una lista de Defaultes.
-     */
-    public List<EstudianteEntity> getEstudiantes() {
-        LOGGER.info("Inicia proceso de consultar todos los estudiantes");
-        List<EstudianteEntity> estudiante = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todos los estudiantes");
-        return estudiante;
-    }
-
-    /**
-     * Obtiene los datos de una instancia de Estudiante a partir de su ID.
-     *
-     * @param id Identificador de la instancia a consultar
-     * @return Instancia de EstudianteEntity con los datos del Estudiante
-     * consultado.
-     * @generated
-     */
-    public EstudianteEntity getEstudiante(Long cedula) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar un estudiante con id = {0}", cedula);
-        EstudianteEntity estudiante = persistence.find(cedula);
-        if (cedula == null) {
-            LOGGER.log(Level.SEVERE, "El estudiante con el id {0} no existe", cedula);
-        }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar estudiante con id={0}", cedula);
-        return estudiante;
-    }
-    public OrigenEntity getOrigen(Long cedula) {
-        return getEstudiante(cedula).getOrigen();
-    }
-    /**
-     * Actualiza la información de una instancia de Estudiante.
-     *
-     * @param entity Instancia de EstudianteEntity con los nuevos datos.
-     * @return Instancia de EstudianteEntity con los datos actualizados.
-     * @generated
-     */
-    public EstudianteEntity updateEstudiante(EstudianteEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar un estudiante ");
-        if (entity.getCedula() == null) {
-            throw new BusinessLogicException("no existe estudiante");
-        }
-        EstudianteEntity rta = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar estudiante", entity.getCedula());
-        return rta;
-    }
-
-    /**
-     * Elimina una instancia de Estudiante de la base de datos.
-     *
-     * @param id Identificador de la instancia a eliminar.
-     * @generated
-     */
-    public void deleteEstudiante(Long cedula) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un estudiante ");
-        if (cedula == null) {
-            throw new BusinessLogicException("la cedula es invalida para buscar un estudiante");
-        }
-        persistence.delete(cedula);
+    public OrigenEntity getOrigen(Long cedula) throws BusinessLogicException {
+        return find(cedula).getOrigen();
     }
 
     public CalificacionEntity addCalificacion(Long idCalificacion, Long idEstudiante) throws BusinessLogicException {
-        EstudianteEntity estudianteEntity = getEstudiante(idEstudiante);
+        EstudianteEntity estudianteEntity = find(idEstudiante);
         CalificacionEntity calificacionEntity = calificacionLogic.getCalificacion(idCalificacion);
         if (calificacionEntity == null) {
             throw new BusinessLogicException("no existe la calificacion");
@@ -152,7 +66,7 @@ public class EstudianteLogic {
     }
 
     public CalificacionEntity getCalificacion(Long estudianteId, Long idCalificacion) throws BusinessLogicException {
-        List<CalificacionEntity> calificaciones = getEstudiante(estudianteId).getCalificaciones();
+        List<CalificacionEntity> calificaciones = find(estudianteId).getCalificaciones();
         CalificacionEntity calificacion = calificacionLogic.getCalificacion(idCalificacion);
         int index = calificaciones.indexOf(calificacion);
         if (index >= 0) {
@@ -163,17 +77,17 @@ public class EstudianteLogic {
     }
 
     public List<CalificacionEntity> getCalificaciones(Long idCalificacion) throws BusinessLogicException {
-        return getEstudiante(idCalificacion).getCalificaciones();
+        return find(idCalificacion).getCalificaciones();
     }
 
-    public List<CalificacionEntity> listCalificaciones(Long cedula) {
-        return getEstudiante(cedula).getCalificaciones();
+    public List<CalificacionEntity> listCalificaciones(Long cedula) throws BusinessLogicException {
+        return find(cedula).getCalificaciones();
     }
 
     public void removeCalificaciones(Long idCalificacion, Long cedula) throws BusinessLogicException {
         CalificacionEntity calificacionEntity = new CalificacionEntity();
         calificacionEntity.setId(idCalificacion);
-        List<CalificacionEntity> list = getEstudiante(cedula).getCalificaciones();
+        List<CalificacionEntity> list = find(cedula).getCalificaciones();
         int i = list.indexOf(calificacionEntity);
         if (i < 0) {
             throw new BusinessLogicException("El recurso /origen/" + idCalificacion + "/Estudiante no existe.");

@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author camilo
+ * @author a.eslava
  * @param <R>
  * @param <S>
  */

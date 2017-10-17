@@ -41,10 +41,8 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author ISIS2603
  */
 @Entity
-public class EstudianteEntity  implements Serializable //extends BaseEntity
+public class EstudianteEntity extends BaseEntity implements Serializable //extends BaseEntity
 {
-
-    @Id
     private Long cedula;
     
     private String nombre;
@@ -118,16 +116,9 @@ public class EstudianteEntity  implements Serializable //extends BaseEntity
     
     @Override
     public boolean equals(Object obj) {
-        if(obj == null ){
-            return false;
-        }
-        if(this.getClass()!= obj.getClass()){
-            return false;
-        }
-        if (this.getCedula() != null && ((EstudianteEntity) obj).getCedula()!= null) {
-            return this.getCedula().equals(((EstudianteEntity) obj).getCedula());
-        }
-        return super.equals(obj);
+        if(obj instanceof EstudianteEntity)
+            return super.equals(obj);
+        return false;
     }
 
     @Override

@@ -49,7 +49,7 @@ public class EstudianteResource {
     
     
 
-    public EstudianteLogic getEstudiante() {
+    public EstudianteLogic find() {
         return estudiante;
     }
 
@@ -58,14 +58,14 @@ public class EstudianteResource {
     }
 
     @GET
-    public List<EstudianteDTO> getEstudiantes() throws BusinessLogicException {
-        return listEstudianteEntity2DTO(estudiante.getEstudiantes());
+    public List<EstudianteDTO> finds() throws BusinessLogicException {
+        return listEstudianteEntity2DTO(estudiante.findAll());
     }
 
     @GET
     @Path("{cedula: \\d+}")
-    public EstudianteDTO getEstudiante(@PathParam("cedula") Long cedula) throws BusinessLogicException {
-        EstudianteEntity entity = estudiante.getEstudiante(cedula);
+    public EstudianteDTO find(@PathParam("cedula") Long cedula) throws BusinessLogicException {
+        EstudianteEntity entity = estudiante.find(cedula);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + cedula + ALGO2, 404);
         }
@@ -74,33 +74,33 @@ public class EstudianteResource {
 
     @POST
     public EstudianteDTO createEstudiante(EstudianteDTO estudiante) throws BusinessLogicException {
-        return new EstudianteDTO(this.estudiante.createEstudiante(estudiante.toEntity()));
+        return new EstudianteDTO(this.estudiante.create(estudiante.toEntity()));
     }
 
     @DELETE
     @Path("{estudiantesCedula: \\d+}")
     public void deleteEstudiante(@PathParam("estudiantesCedula") Long cedula) throws BusinessLogicException {
-        EstudianteEntity entity = estudiante.getEstudiante(cedula);
+        EstudianteEntity entity = estudiante.find(cedula);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + cedula + ALGO2, 404);
         }
-        estudiante.deleteEstudiante(cedula);
+        estudiante.delete(cedula);
     }
 
     @PUT
     @Path("{cedula: \\d+}")
     public EstudianteDTO updateEstudiante(@PathParam("cedula") Long cedula, EstudianteDTO estu) throws BusinessLogicException {
         estu.setCedula(cedula);
-        EstudianteEntity entity = estudiante.getEstudiante(cedula);
+        EstudianteEntity entity = estudiante.find(cedula);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + cedula + ALGO2, 404);
         }
-        return new EstudianteDTO(estudiante.updateEstudiante(estu.toEntity()));
+        return new EstudianteDTO(estudiante.update(entity, cedula));
     }
 
     @Path("{cedulaEstudiante: \\d+}/calificaciones")
     public Class<CalificacionResource> getCalificacionResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
-        EstudianteEntity entity = estudiante.getEstudiante(cedulaEstudiante);
+        EstudianteEntity entity = estudiante.find(cedulaEstudiante);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + cedulaEstudiante + ALGO2, 404);
         }
@@ -117,13 +117,13 @@ public class EstudianteResource {
 
     @GET
     @Path("{cedula: \\d+}/origenes")
-    public OrigenDTO getOrigen(@PathParam("cedula") Long cedula) {
+    public OrigenDTO getOrigen(@PathParam("cedula") Long cedula) throws BusinessLogicException {
         return new OrigenDTO(estudiante.getOrigen(cedula));
     }
 
     @Path("{cedulaEstudiante: \\d+}/reservas")
     public Class<ReservaResource> getReservaResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
-        EstudianteEntity entity = estudiante.getEstudiante(cedulaEstudiante);
+        EstudianteEntity entity = estudiante.find(cedulaEstudiante);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + cedulaEstudiante + ALGO2, 404);
         }
@@ -132,7 +132,7 @@ public class EstudianteResource {
     
     @Path("{cedulaEstudiante: \\d+}/factura")
     public Class<FacturaResource> getFacturas(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
-        EstudianteEntity entity = estudiante.getEstudiante(cedulaEstudiante);
+        EstudianteEntity entity = estudiante.find(cedulaEstudiante);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + cedulaEstudiante + "/calificacion no existe.", 404);
         }
