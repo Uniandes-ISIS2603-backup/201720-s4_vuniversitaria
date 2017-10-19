@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
  * @author a.eslava
  */
 public class EstudianteDTO {
+    private Long id;
     private Long cedula;  
     private String nombre;
     
@@ -24,7 +25,7 @@ public class EstudianteDTO {
         if (estudiante != null) {
             this.nombre = estudiante.getNombre();
             this.cedula = estudiante.getCedula();
-            
+            this.id = estudiante.getId();
         }
     }
     
@@ -37,6 +38,14 @@ public class EstudianteDTO {
         return estu;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+     
     public String getNombre() {
         return nombre;
     }

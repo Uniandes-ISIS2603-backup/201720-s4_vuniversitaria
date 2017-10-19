@@ -188,6 +188,6 @@ public class OrigenPersistenceTest {
             estudiantes.add(factory.manufacturePojo(EstudianteEntity.class));
         }
         newEntity.setEstudiante(estudiantes);
-        assertEquals(newEntity.getEstudiante(), estudiantes);
+        assertEquals(newEntity.getEstudiantes(), estudiantes);
     }
 }

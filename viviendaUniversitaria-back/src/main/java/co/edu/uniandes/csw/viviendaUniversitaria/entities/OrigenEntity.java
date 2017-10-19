@@ -34,7 +34,7 @@ public class OrigenEntity extends BaseEntity implements Serializable{
         this.name = name;
     }
 
-    public List<EstudianteEntity> getEstudiante() {
+    public List<EstudianteEntity> getEstudiantes() {
         return estudiante;
     }
 

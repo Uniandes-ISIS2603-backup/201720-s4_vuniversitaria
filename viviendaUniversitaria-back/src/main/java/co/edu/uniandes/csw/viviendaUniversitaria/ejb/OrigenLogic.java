@@ -10,7 +10,6 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.OrigenPersistence;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -19,20 +18,20 @@ import javax.inject.Inject;
  * @author a.eslava
  */
 @Stateless
-public class OrigenLogic extends GenericLogic<OrigenEntity>{
+public class OrigenLogic extends GenericLogic<OrigenEntity> {
     private EstudianteLogic estudianteLogic;
 
     public OrigenLogic() {
         super();
     }
-    
+
     @Inject
-    public OrigenLogic(OrigenPersistence persistence, EstudianteLogic estudianteLogic) {
+    public OrigenLogic(OrigenPersistence persistence, EstudianteLogic asd){
         super(persistence, OrigenEntity.class);
-        this.estudianteLogic = estudianteLogic;
+        this.estudianteLogic=asd;
     }
-    
-    public EstudianteEntity addEstudiante(Long cedula, Long idOrigen) throws BusinessLogicException {
+
+    public EstudianteEntity createEstudiante(Long cedula, Long idOrigen) throws BusinessLogicException {
         OrigenEntity origenEntity = find(idOrigen);
         EstudianteEntity estudianteEntity = estudianteLogic.find(cedula);
         if (estudianteEntity == null) {
@@ -42,10 +41,20 @@ public class OrigenLogic extends GenericLogic<OrigenEntity>{
         return estudianteEntity;
     }
 
-
-    public EstudianteEntity getEstudiante(Long origenId, Long cedula) throws BusinessLogicException {
-        List<EstudianteEntity> estudiantes = find(origenId).getEstudiante();
-        EstudianteEntity estudiante = estudianteLogic.find(cedula);
+    public void removeEstudiante(Long id, Long idOrigen) throws BusinessLogicException{
+        EstudianteEntity estuEntity = new EstudianteEntity();
+        estuEntity.setId(id);
+        List<EstudianteEntity> list = find(idOrigen).getEstudiantes();
+        int i = list.indexOf(estuEntity);
+        if (i < 0) {
+            throw new BusinessLogicException("El recurso "+idOrigen+"/origen/" + id + "/Estudiante no existe.");
+        }
+        list.remove(estuEntity);
+    }
+    
+    public EstudianteEntity findEstudiantes(Long origenId, Long id) throws BusinessLogicException {
+        List<EstudianteEntity> estudiantes = find(origenId).getEstudiantes();
+        EstudianteEntity estudiante = estudianteLogic.find(id);
         int index = estudiantes.indexOf(estudiante);
         if (index >= 0) {
             return estudiantes.get(index);
@@ -54,23 +63,7 @@ public class OrigenLogic extends GenericLogic<OrigenEntity>{
 
     }
 
-    public List<EstudianteEntity> getEstudiantes(Long idOrigen) throws BusinessLogicException {
-        return find(idOrigen).getEstudiante();
-    }
-
-    
-    public List<EstudianteEntity> listEstudiantes(Long idOrigen) throws BusinessLogicException {
-        return find(idOrigen).getEstudiante();
-    }
-
-    public void removeEstudiante(Long cedula, Long idOrigen) throws BusinessLogicException{
-        EstudianteEntity estuEntity = new EstudianteEntity();
-        estuEntity.setCedula(cedula);
-        List<EstudianteEntity> list = find(idOrigen).getEstudiante();
-        int i = list.indexOf(estuEntity);
-        if (i < 0) {
-            throw new BusinessLogicException("El recurso /origen/" + cedula + "/Estudiante no existe.");
-        }
-        list.remove(estuEntity);
+    public List<EstudianteEntity> findAllEstudiantes(Long idOrigen) throws BusinessLogicException {
+        return find(idOrigen).getEstudiantes();
     }
 }

@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDTO;
+import co.edu.uniandes.csw.viviendaUniversitaria.ejb.EstudianteLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.OrigenLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -16,6 +17,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -28,34 +30,23 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class OrigenEstudianteResource {
-
     private OrigenLogic origenLogic;
 
     public OrigenEstudianteResource() {
-    //hgs
+        //constructor para la parte web
     }
-    @Inject
-    public OrigenEstudianteResource(OrigenLogic origenLogic) {
+
+    @Inject public OrigenEstudianteResource(OrigenLogic origenLogic) {
         this.origenLogic = origenLogic;
     }
     
-    
-    
-    
-    /**
-     * Convierte una lista de EstudianteEntity a una lista de EstudianteDTO.
-     *
-     * @param entityList Lista de EstudianteEntity a convertir.
-     * @return Lista de EstudianteDTO convertida.
-     * 
-     */
     private List<EstudianteDTO> estudiantesListEntity2DTO(List<EstudianteEntity> entityList) {
         List<EstudianteDTO> list = new ArrayList<>();
         for (EstudianteEntity entity : entityList) {
             list.add(new EstudianteDTO(entity));
         }
         return list;
-    }
+    }    
 
     /**
      * Convierte una lista de EstudianteDTO a una lista de EstudianteEntity.
@@ -83,7 +74,7 @@ public class OrigenEstudianteResource {
      */
     @GET
     public List<EstudianteDTO> listEstudiantes(@PathParam("OrigenesId") Long origensId) throws BusinessLogicException {
-        return estudiantesListEntity2DTO(origenLogic.listEstudiantes(origensId));
+        return estudiantesListEntity2DTO(origenLogic.findAllEstudiantes(origensId));
     }
 
     /**
@@ -98,7 +89,7 @@ public class OrigenEstudianteResource {
     @GET
     @Path("{EstudiantesId: \\d+}")
     public EstudianteDTO getEstudiantes(@PathParam("OrigenesId") Long origensId, @PathParam("EstudiantesId") Long estudiantesId) throws BusinessLogicException {
-        return new EstudianteDTO(origenLogic.getEstudiante(origensId, estudiantesId));
+        return new EstudianteDTO(origenLogic.findEstudiantes(origensId, estudiantesId));
     }
 
     /**
@@ -113,7 +104,7 @@ public class OrigenEstudianteResource {
     @POST
     @Path("{EstudiantesId: \\d+}")
     public EstudianteDTO addEstudiantes(@PathParam("OrigenesId") Long origensId, @PathParam("EstudiantesId") Long estudiantesId) throws BusinessLogicException {
-        return new EstudianteDTO(origenLogic.addEstudiante(estudiantesId,origensId));
+        return new EstudianteDTO(origenLogic.createEstudiante(estudiantesId,origensId));
     }
 
     /**

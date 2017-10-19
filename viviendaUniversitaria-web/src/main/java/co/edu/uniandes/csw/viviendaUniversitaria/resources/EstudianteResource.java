@@ -46,16 +46,8 @@ public class EstudianteResource {
     public EstudianteResource(EstudianteLogic estudiante) {
         this.estudiante = estudiante;
     }
-    
-    
 
-    public EstudianteLogic find() {
-        return estudiante;
-    }
-
-    public void setEstudiante(EstudianteLogic estudiante) {
-        this.estudiante = estudiante;
-    }
+    
 
     @GET
     public List<EstudianteDTO> finds() throws BusinessLogicException {
@@ -95,7 +87,7 @@ public class EstudianteResource {
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + cedula + ALGO2, 404);
         }
-        return new EstudianteDTO(estudiante.update(entity, cedula));
+        return new EstudianteDTO(estudiante.update(estu.toEntity(), cedula));
     }
 
     @Path("{cedulaEstudiante: \\d+}/calificaciones")
