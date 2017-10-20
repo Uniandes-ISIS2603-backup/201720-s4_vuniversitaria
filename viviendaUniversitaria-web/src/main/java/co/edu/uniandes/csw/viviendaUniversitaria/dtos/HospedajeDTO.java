@@ -32,6 +32,10 @@ public class HospedajeDTO {
 
     private Integer cantidadVotaciones;
 
+    public HospedajeDTO() {
+        super();
+    }
+    
     public HospedajeDTO(HospedajeEntity entidad) {
         this.id = entidad.getId();
         this.descripcion = entidad.getDescripcion();

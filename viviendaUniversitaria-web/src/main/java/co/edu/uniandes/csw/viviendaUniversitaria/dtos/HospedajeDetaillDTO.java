@@ -32,6 +32,10 @@ public class HospedajeDetaillDTO extends HospedajeDTO
     private ArrendadorDTO arrendador;
     private UbicacionDTO ubicacion;
 
+    public HospedajeDetaillDTO()
+    {
+        super();
+    }
     
     public HospedajeDetaillDTO(HospedajeEntity entidad)
     {
