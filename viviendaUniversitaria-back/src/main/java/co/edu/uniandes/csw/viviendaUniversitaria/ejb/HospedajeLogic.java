@@ -30,12 +30,13 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
     }
 
     /**
-     * Constructor inyectado
-     * Injecta todos los parametros que se van a usar
-     * @param persistenceHospedaje Mi persistencia, esta es la que se pasa al super
+     * Constructor inyectado Injecta todos los parametros que se van a usar
+     *
+     * @param persistenceHospedaje Mi persistencia, esta es la que se pasa al
+     * super
      * @param calificacionLogic Esta es otra que estoy usando
      * @throws IllegalAccessException
-     * @throws InstantiationException 
+     * @throws InstantiationException
      */
     @Inject
     public HospedajeLogic(HospedajePersistence persistenceHospedaje, CalificacionLogic calificacionLogic) throws IllegalAccessException, InstantiationException {
@@ -46,7 +47,7 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
     @Override
     public HospedajeEntity update(HospedajeEntity entity, Long id) throws WebApplicationException {
         HospedajeEntity oldEntity = persistence.find(id);
-        if(oldEntity != null) {
+        if (oldEntity != null) {
             System.out.println("=============================================================");
             entity.setReglas(oldEntity.getReglas());
             entity.setServicios(oldEntity.getServicios());
@@ -59,7 +60,7 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
         }
         return super.update(entity, id);
     }
-    
+
     /*private List<ReglaDTO> reglas;
     private List<ServiciosDTO> servicios;
     private List<HospedajeLugarDTO> hospedajeLugares;
@@ -68,7 +69,6 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
     private List<CalificacionDTO> calificaciones;
     private ArrendadorDTO arrendador;
     private UbicacionDTO ubicacion;*/
-    
     public HospedajeEntity agregarCalificacion(Long idHospedaje, Long idCalificacion) throws BusinessLogicException {
         HospedajeEntity hospedaje = find(idHospedaje);
         CalificacionEntity calificaicon = calificacionLogic.getCalificacion(idHospedaje);

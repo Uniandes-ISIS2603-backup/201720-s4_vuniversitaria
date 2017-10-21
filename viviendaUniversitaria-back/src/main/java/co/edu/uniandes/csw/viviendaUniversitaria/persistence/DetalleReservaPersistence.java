@@ -13,11 +13,10 @@ import javax.ejb.Stateless;
  * @author ws.duarte
  */
 @Stateless
-public class DetalleReservaPersistence extends GenericPresistence<DetalleReservaEntity>
-{
+public class DetalleReservaPersistence extends GenericPresistence<DetalleReservaEntity> {
 
     public DetalleReservaPersistence() {
         super(DetalleReservaEntity.class);
     }
-    
+
 }

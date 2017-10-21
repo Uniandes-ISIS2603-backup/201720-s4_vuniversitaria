@@ -16,10 +16,10 @@ import javax.inject.Inject;
  */
 @Stateless
 public class DetalleServicioLogic extends GenericLogic<DetalleServicioEntity> {
-    
+
     @Inject
     public DetalleServicioLogic(DetalleServicioPersistence persistence) {
-        super(persistence,DetalleServicioEntity.class);
+        super(persistence, DetalleServicioEntity.class);
     }
 
     public DetalleServicioLogic() {

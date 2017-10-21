@@ -15,13 +15,12 @@ import javax.inject.Inject;
  * @author ws.duarte
  */
 @Stateless
-public class DetalleReservaLogic extends GenericLogic<DetalleReservaEntity>
-{
+public class DetalleReservaLogic extends GenericLogic<DetalleReservaEntity> {
 
     public DetalleReservaLogic() {
         super();
     }
-    
+
     @Inject
     public DetalleReservaLogic(DetalleReservaPersistence persistence) {
         super(persistence, DetalleReservaEntity.class);

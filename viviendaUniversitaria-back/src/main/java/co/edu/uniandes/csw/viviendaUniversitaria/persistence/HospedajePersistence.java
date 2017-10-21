@@ -14,7 +14,6 @@ import javax.ejb.Stateless;
  *
  * @author NOA_WERMEID
  */
-
 @Stateless
 public class HospedajePersistence extends GenericPresistence<HospedajeEntity> {
 

@@ -6,25 +6,26 @@ import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- * Clase que modela una parte de la factura.
- *¨Parte que se encarga de regstar los costos generados por el arriendo.
+ * Clase que modela una parte de la factura. ¨Parte que se encarga de regstar
+ * los costos generados por el arriendo.
+ *
  * @author ws.duarte
  */
 @Entity
-public class DetalleReservaEntity extends BaseEntity
-{    
+public class DetalleReservaEntity extends BaseEntity {
+
     /**
      * Total generado por la reserva.
      */
     private Double subTotal;
-    
+
     /**
      * Relación con factura.
      */
     @PodamExclude
     @ManyToOne
     private FacturaEntity factura;
-    
+
     /**
      * Relacion con reserva
      */
@@ -34,6 +35,7 @@ public class DetalleReservaEntity extends BaseEntity
 
     /**
      * Retorna el total generado por el detalle de reserva.
+     *
      * @return Total generado por el detalle de reserva.
      */
     public Double getSubTotal() {
@@ -42,14 +44,16 @@ public class DetalleReservaEntity extends BaseEntity
 
     /**
      * Cambia el total generado por la reserva.
+     *
      * @param subTotal Nuevo total del detalle de reserva.
      */
     public void setSubTotal(Double subTotal) {
         this.subTotal = subTotal;
     }
-    
+
     /**
      * Retorna la relación con factura.
+     *
      * @return Relación con factura.
      */
     public FacturaEntity getFactura() {
@@ -58,6 +62,7 @@ public class DetalleReservaEntity extends BaseEntity
 
     /**
      * Cambia la relacíon con factura.
+     *
      * @param factura Nueva relación con factura.
      */
     public void setFactura(FacturaEntity factura) {
@@ -66,6 +71,7 @@ public class DetalleReservaEntity extends BaseEntity
 
     /**
      * Retorna la relacion con reserva.
+     *
      * @return Relacion con reserva.
      */
     public ReservaEntity getReserva() {
@@ -74,21 +80,25 @@ public class DetalleReservaEntity extends BaseEntity
 
     /**
      * Cambia la relacion con reserva.
+     *
      * @param reserva Nueva relacion con reserva.
      */
     public void setReserva(ReservaEntity reserva) {
         this.reserva = reserva;
     }
-    
+
     /**
-     * Determina si dos detalles de reserva son  iguales.
+     * Determina si dos detalles de reserva son iguales.
+     *
      * @param obj Detalle de reserva a comparar.
      * @return True si son iguales, false de lo contrario.
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof DetalleReservaEntity) return super.equals(obj);
-        return false; 
+        if (obj instanceof DetalleReservaEntity) {
+            return super.equals(obj);
+        }
+        return false;
     }
 
     @Override
@@ -97,5 +107,5 @@ public class DetalleReservaEntity extends BaseEntity
         hash = 97 * hash + Objects.hashCode(this.subTotal);
         return hash;
     }
-    
+
 }

@@ -13,9 +13,9 @@ import javax.ejb.Stateless;
  * @author ws.duarte
  */
 @Stateless
-public class DetalleServicioPersistence extends GenericPresistence<DetalleServicioEntity>
-{
+public class DetalleServicioPersistence extends GenericPresistence<DetalleServicioEntity> {
+
     public DetalleServicioPersistence() {
         super(DetalleServicioEntity.class);
-    } 
+    }
 }

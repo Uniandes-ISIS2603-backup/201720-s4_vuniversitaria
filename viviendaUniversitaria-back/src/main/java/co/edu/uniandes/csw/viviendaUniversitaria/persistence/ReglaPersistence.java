@@ -15,7 +15,6 @@ import javax.persistence.TypedQuery;
  *
  * @author NOA_WERMEID
  */
-
 @Stateless
 public class ReglaPersistence extends GenericPresistence<ReglaEntity> {
 

@@ -15,15 +15,14 @@ import javax.inject.Inject;
  * @author ws.duarte
  */
 @Stateless
-public class HospedajeLugarLogic extends GenericLogic<HospedajeLugarEntity>
-{
+public class HospedajeLugarLogic extends GenericLogic<HospedajeLugarEntity> {
 
     public HospedajeLugarLogic() {
     }
-    
+
     @Inject
     public HospedajeLugarLogic(HospedajeLugarPersistence persistence) {
-        super(persistence,HospedajeLugarEntity.class);
+        super(persistence, HospedajeLugarEntity.class);
     }
-    
+
 }

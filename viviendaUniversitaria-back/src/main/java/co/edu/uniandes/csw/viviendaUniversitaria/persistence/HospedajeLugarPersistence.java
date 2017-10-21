@@ -13,12 +13,10 @@ import javax.ejb.Stateless;
  * @author ws.duarte
  */
 @Stateless
-public class HospedajeLugarPersistence extends GenericPresistence<HospedajeLugarEntity>
-{
+public class HospedajeLugarPersistence extends GenericPresistence<HospedajeLugarEntity> {
 
     public HospedajeLugarPersistence() {
         super(HospedajeLugarEntity.class);
     }
-    
-    
+
 }
