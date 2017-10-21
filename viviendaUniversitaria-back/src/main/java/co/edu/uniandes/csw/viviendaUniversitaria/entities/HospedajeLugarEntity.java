@@ -1,5 +1,6 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -97,5 +98,14 @@ public class HospedajeLugarEntity extends BaseEntity {
             return super.equals(obj);
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.distancia);
+        hash = 83 * hash + Objects.hashCode(this.hospedaje);
+        hash = 83 * hash + Objects.hashCode(this.lugarInteres);
+        return hash;
     }
 }

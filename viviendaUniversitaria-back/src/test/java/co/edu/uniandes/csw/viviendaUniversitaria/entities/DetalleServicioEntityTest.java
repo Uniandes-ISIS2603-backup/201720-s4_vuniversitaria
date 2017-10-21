@@ -189,7 +189,7 @@ public class DetalleServicioEntityTest {
         DetalleServicioEntity detalleT = data.get(0);
         Long id = new Long(3);
         detalleT.setId(new Long(3));
-        Assert.assertEquals(id, new Long(detalleT.hashCode()));
+        Assert.assertEquals(data.get(0).hashCode(), detalleT.hashCode());
     }
 
 }

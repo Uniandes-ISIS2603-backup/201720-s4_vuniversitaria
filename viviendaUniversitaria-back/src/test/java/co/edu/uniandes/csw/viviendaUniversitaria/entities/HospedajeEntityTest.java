@@ -445,7 +445,7 @@ public class HospedajeEntityTest {
         HospedajeEntity hospedajeT = data.get(0);
         Long id = new Long(3);
         hospedajeT.setId(new Long(3));
-        Assert.assertEquals(id, new Long(hospedajeT.hashCode()));
+        Assert.assertEquals(data.get(0).hashCode(), hospedajeT.hashCode());
     }
     
     

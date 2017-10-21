@@ -298,6 +298,24 @@ public class HospedajeEntity extends BaseEntity {
         }
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.tipoArrendamiento);
+        hash = 97 * hash + Objects.hashCode(this.descripcion);
+        hash = 97 * hash + Objects.hashCode(this.valoracion);
+        hash = 97 * hash + Objects.hashCode(this.cantidadVotaciones);
+        hash = 97 * hash + Objects.hashCode(this.reglas);
+        hash = 97 * hash + Objects.hashCode(this.servicios);
+        hash = 97 * hash + Objects.hashCode(this.hospedajesLugares);
+        hash = 97 * hash + Objects.hashCode(this.facturas);
+        hash = 97 * hash + Objects.hashCode(this.reservas);
+        hash = 97 * hash + Objects.hashCode(this.calificaciones);
+        hash = 97 * hash + Objects.hashCode(this.arrendador);
+        hash = 97 * hash + Objects.hashCode(this.ubicacion);
+        return hash;
+    }
+
     /**
      * Retorna la cantidad de votos totales.
      *

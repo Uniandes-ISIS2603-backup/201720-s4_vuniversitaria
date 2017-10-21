@@ -1,5 +1,6 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -88,6 +89,15 @@ public class DetalleReservaEntity extends BaseEntity
     public boolean equals(Object obj) {
         if(obj instanceof DetalleReservaEntity) return super.equals(obj);
         return false; 
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.subTotal);
+        hash = 97 * hash + Objects.hashCode(this.factura);
+        hash = 97 * hash + Objects.hashCode(this.reserva);
+        return hash;
     }
     
 }

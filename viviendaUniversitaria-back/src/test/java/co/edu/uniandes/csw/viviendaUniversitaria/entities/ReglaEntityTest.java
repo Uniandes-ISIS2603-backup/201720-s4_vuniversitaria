@@ -147,7 +147,7 @@ public class ReglaEntityTest {
         ReglaEntity reglaT = data.get(0);
         Long id = new Long(3);
         reglaT.setId(new Long(3));
-        Assert.assertEquals(id, new Long(reglaT.hashCode()));
+        Assert.assertEquals(data.get(0).hashCode(), reglaT.hashCode());
     }
 
 }
