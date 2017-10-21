@@ -1,10 +1,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-import java.io.Serializable;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -14,14 +11,8 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author ws.duarte
  */
 @Entity
-public class DetalleServicioEntity implements Serializable
+public class DetalleServicioEntity extends BaseEntity
 {
-    /**
-     * Identificador del detalle del servicio.
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     
     /**
      * Cantidad de servicios pedidos.
@@ -46,22 +37,6 @@ public class DetalleServicioEntity implements Serializable
     @PodamExclude
     @ManyToOne
     private ServiciosEntity servicio;
-
-    /**
-     * Retorna el identificador del detalle del servicio.
-     * @return Identificador del detalle del servicio.
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Cambia el identificador del detalle del servicio.
-     * @param id Nuevo identificador del servicio.
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      * Retorna la cantidad de servicios pedidos.
@@ -134,17 +109,7 @@ public class DetalleServicioEntity implements Serializable
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj != null && obj instanceof DetalleServicioEntity && this.id != null && ((DetalleServicioEntity)obj).getId() != null) return this.id.equals(((DetalleServicioEntity)obj).getId());
-        return super.equals(obj); 
-    }
-
-    /**
-     * Retorna el código hash del detalle de servicio.
-     * @return Código hash del detalle de servicio.
-     */
-    @Override
-    public int hashCode() {
-        if(this.id != null) return this.id.hashCode();
-        return super.hashCode();
+        if( obj instanceof DetalleServicioEntity ) return super.equals(obj);
+        return false; 
     }
 }

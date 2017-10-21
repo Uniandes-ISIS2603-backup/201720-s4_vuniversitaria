@@ -7,20 +7,12 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
-import javax.transaction.UserTransaction;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -28,51 +20,29 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author ws.duarte
  */
-@RunWith(Arquillian.class)
 public class DetalleServicioEntityTest {
-    
-    @Inject
-    UserTransaction utx;
-    private List<DetalleServicioEntity> data = new ArrayList<DetalleServicioEntity>();
-    
+
+    private List<DetalleServicioEntity> data = new ArrayList<>();
+
     public DetalleServicioEntityTest() {
     }
-    
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(DetalleServicioEntity.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-        try {
-            utx.begin();
-            clearData();
-            insertData();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        }
+        clearData();
+        insertData();
     }
 
     private void clearData() {
-        data = new ArrayList<DetalleServicioEntity>();
+        data = new ArrayList<>();
     }
 
     private void insertData() {
@@ -82,7 +52,7 @@ public class DetalleServicioEntityTest {
             data.add(entity);
         }
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -117,7 +87,7 @@ public class DetalleServicioEntityTest {
         DetalleServicioEntity detalleT = data.get(0);
         DetalleServicioEntity detalle = new DetalleServicioEntity();
         detalle.setCantidad(detalleT.getCantidad());
-        Assert.assertTrue(detalle.getCantidad() == (detalleT.getCantidad()));
+        Assert.assertTrue(detalle.getCantidad().equals(detalleT.getCantidad()));
     }
 
     /**
@@ -206,8 +176,9 @@ public class DetalleServicioEntityTest {
      */
     @Test
     public void testEquals() {
-        DetalleServicioEntity detalleT =  data.get(0);
-        Assert.assertTrue(detalleT .equals(data.get(0)));
+        DetalleServicioEntity detalleT = data.get(0);
+        Assert.assertTrue(detalleT.equals(data.get(0)));
+        Assert.assertFalse(detalleT.equals(new HospedajeEntity()));
     }
 
     /**
@@ -220,5 +191,5 @@ public class DetalleServicioEntityTest {
         detalleT.setId(new Long(3));
         Assert.assertEquals(id, new Long(detalleT.hashCode()));
     }
-    
+
 }

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -299,11 +298,6 @@ public class HospedajeEntity extends BaseEntity {
         }
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
     /**
      * Retorna la cantidad de votos totales.
      *
@@ -320,5 +314,15 @@ public class HospedajeEntity extends BaseEntity {
      */
     public void setCantidadVotaciones(Integer cantidadVotaciones) {
         this.cantidadVotaciones = cantidadVotaciones;
+    }
+    
+    /**
+     * Incremaenta la cantidad de voraciónes y actualiza la valoración total.
+     * @param calificación calificación a agregar.
+     */
+    public void incrementarCalificación(CalificacionEntity calificación) {
+        
+        valoracion = ((valoracion*cantidadVotaciones)+calificación.getValoracion())/(cantidadVotaciones+1);
+        cantidadVotaciones++;
     }
 }

@@ -1,11 +1,6 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -15,15 +10,8 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author ws.duarte
  */
 @Entity
-public class DetalleReservaEntity implements Serializable
-{
-    /**
-     * Identificador del detalle de reserva.
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+public class DetalleReservaEntity extends BaseEntity
+{    
     /**
      * Total generado por la reserva.
      */
@@ -42,22 +30,6 @@ public class DetalleReservaEntity implements Serializable
     @PodamExclude
     @ManyToOne
     private ReservaEntity reserva;
-
-    /**
-     * Retorna el identificador del detalle de reserva.
-     * @return Identifiacdor del detalle de reserva.
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Cambia el identifiacdor del detalle de reserva.
-     * @param id Nuevo identificador del detalle de reserva.
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      * Retorna el total generado por el detalle de reserva.
@@ -114,18 +86,8 @@ public class DetalleReservaEntity implements Serializable
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj != null && obj instanceof DetalleReservaEntity && this.id != null && ((DetalleReservaEntity)obj).getId() != null) return this.id.equals(((DetalleReservaEntity)obj).getId());
-        return super.equals(obj); 
-    }
-
-    /**
-     * Retorna el código hash del detalle de reserva.
-     * @return Código hash del detalle de reserva.
-     */
-    @Override
-    public int hashCode() {
-        if(this.id != null) return this.id.hashCode();
-        return super.hashCode(); 
+        if(obj instanceof DetalleReservaEntity) return super.equals(obj);
+        return false; 
     }
     
 }

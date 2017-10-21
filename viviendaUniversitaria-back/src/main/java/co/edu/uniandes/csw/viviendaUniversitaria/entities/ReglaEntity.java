@@ -1,6 +1,5 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -74,15 +73,5 @@ public class ReglaEntity extends BaseEntity {
         } else {
             return false;
         }
-    }
-
-    /**
-     * Retorna el código hash de la regla.
-     *
-     * @return Código hash de Regla.
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 }

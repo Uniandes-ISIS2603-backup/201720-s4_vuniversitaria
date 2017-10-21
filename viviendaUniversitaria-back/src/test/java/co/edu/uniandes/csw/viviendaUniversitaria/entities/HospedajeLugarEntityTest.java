@@ -5,23 +5,14 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.persistence.ArrendadorPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
-import javax.transaction.UserTransaction;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -29,21 +20,9 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author ws.duarte
  */
-@RunWith(Arquillian.class)
 public class HospedajeLugarEntityTest {
-    
-    @Inject
-    UserTransaction utx;
-    private List<HospedajeLugarEntity> data = new ArrayList<HospedajeLugarEntity>();
-    
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(HospedajeLugarEntity.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
-    
+    private List<HospedajeLugarEntity> data = new ArrayList<>();
+
     public HospedajeLugarEntityTest() {
     }
     
@@ -57,23 +36,13 @@ public class HospedajeLugarEntityTest {
     
     @Before
     public void setUp() {
-        try {
-            utx.begin();
+
             clearData();
             insertData();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        }
     }
     
     private void clearData() {
-        data = new ArrayList<HospedajeLugarEntity>();
+        data = new ArrayList<>();
     }
 
     private void insertData() {
@@ -187,6 +156,10 @@ public class HospedajeLugarEntityTest {
     public void testEquals() {
         HospedajeLugarEntity hospedajeL = data.get(0);
         Assert.assertTrue(hospedajeL.equals(data.get(0)));
+        hospedajeL.setId(new Long(2));
+        HospedajeEntity h = new HospedajeEntity();
+        h.setId(new Long(2));
+        Assert.assertFalse(hospedajeL.equals(h));
     }
 
     /**
