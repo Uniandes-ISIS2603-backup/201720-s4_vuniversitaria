@@ -60,7 +60,7 @@ public class DetalleServicioResourse {
     public DetalleServicioDTO put(@PathParam("id") Long id, DetalleServicioDTO dto) throws WebApplicationException, BusinessLogicException
     {
         dto.setId(id);
-        return new DetalleServicioDTO(logic.update(dto.toEntity()));
+        return new DetalleServicioDTO(logic.update(dto.toEntity(),id));
     }
     
     @DELETE

@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.UbicacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.HospedajePersistence;
 import javax.ws.rs.WebApplicationException;
@@ -20,8 +19,6 @@ import javax.inject.Inject;
  */
 @Stateless
 public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
-
-    private UbicacionLogic ubicacionLogic;
 
     private CalificacionLogic calificacionLogic;
 
@@ -36,31 +33,15 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
      * Constructor inyectado
      * Injecta todos los parametros que se van a usar
      * @param persistenceHospedaje Mi persistencia, esta es la que se pasa al super
-     * @param ubicacionLogic Esta es otra que estoy usando
      * @param calificacionLogic Esta es otra que estoy usando
      * @throws IllegalAccessException
      * @throws InstantiationException 
      */
     @Inject
-    public HospedajeLogic(HospedajePersistence persistenceHospedaje, UbicacionLogic ubicacionLogic, CalificacionLogic calificacionLogic) throws IllegalAccessException, InstantiationException {
+    public HospedajeLogic(HospedajePersistence persistenceHospedaje, CalificacionLogic calificacionLogic) throws IllegalAccessException, InstantiationException {
         super(persistenceHospedaje, HospedajeEntity.class);
         this.calificacionLogic = calificacionLogic;
-        this.ubicacionLogic = ubicacionLogic;
     }
-
-//    public HospedajeEntity agregarUbicacacion(Long idHospedaje, Long idUbicacion) throws WebApplicationException {
-//        try {
-//            HospedajeEntity hospedaje = find(idHospedaje);
-//            UbicacionEntity ubicacion = ubicacionLogic.getUbicacion(idUbicacion);
-//            if (ubicacion.getHospedaje() != null) {
-//                throw new WebApplicationException("Esta ubicacion ya se encuentra sociada a un hospedaje.\nPor favor verifique la ubicacion he intente de nuevo.", 412);
-//            }
-//            ubicacion.setHospedaje(hospedaje);
-//            return find(idHospedaje);
-//        } catch (BusinessLogicException ble) {
-//            throw new WebApplicationException(ble.getMessage(), 412);
-//        }
-//    }
 
     public HospedajeEntity agregarCalificacion(Long idHospedaje, Long idCalificacion) throws BusinessLogicException {
         HospedajeEntity hospedaje = find(idHospedaje);

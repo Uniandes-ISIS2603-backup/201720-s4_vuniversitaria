@@ -61,7 +61,7 @@ public class HospedajeLugarResourse {
     public HospedajeLugarDTO put(@PathParam("id") Long id, HospedajeLugarDTO dto) throws WebApplicationException, BusinessLogicException
     {
         dto.setId(id);
-        return new HospedajeLugarDTO(logic.update(dto.toEntity()));
+        return new HospedajeLugarDTO(logic.update(dto.toEntity(),id));
     }
     
     @DELETE

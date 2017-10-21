@@ -20,9 +20,8 @@ import javax.ws.rs.WebApplicationException;
  * @author ws.duarte
  */
 @Stateless
-public class ReglaLogic extends GenericLogic<ReglaEntity> {
-
-    private ReglaPersistence reglaPersistence;
+public class ReglaLogic extends GenericLogic<ReglaEntity>
+{
     private HospedajeLogic hospedajeLogic;
 
     public ReglaLogic() {
@@ -32,7 +31,6 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
     @Inject
     public ReglaLogic(ReglaPersistence reglaPersistence, HospedajeLogic hospedajeLogic) throws InstantiationException, IllegalAccessException {
         super(reglaPersistence, ReglaEntity.class);
-        this.reglaPersistence = reglaPersistence;
         this.hospedajeLogic = hospedajeLogic;
     }
 
@@ -50,7 +48,7 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
         if (!exist(idRegla)) {
             throw new WebApplicationException("No existe la regla con el id especificado", 405);
         }
-        return reglaPersistence.find(idHospedaje, idRegla);
+        return ((ReglaPersistence)persistence).find(idHospedaje, idRegla);
     }
 
     public ReglaEntity create(Long idhospedaje, ReglaEntity entidad) throws WebApplicationException, BusinessLogicException {
@@ -60,7 +58,7 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
         }
         HospedajeEntity hospedaje = hospedajeLogic.find(idhospedaje);
         entidad.setHospedaje(hospedaje);
-        return reglaPersistence.create(entidad);
+        return ((ReglaPersistence)persistence).create(entidad);
     }
 
     public ReglaEntity update(Long idhospedaje, ReglaEntity entidad) throws WebApplicationException, BusinessLogicException {
@@ -70,7 +68,7 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
         }
         HospedajeEntity hospedaje = hospedajeLogic.find(idhospedaje);
         entidad.setHospedaje(hospedaje);
-        return reglaPersistence.update(entidad);
+        return ((ReglaPersistence)persistence).update(entidad);
     }
 
     public void delete(Long idhospedaje, Long idRegla) throws WebApplicationException {
