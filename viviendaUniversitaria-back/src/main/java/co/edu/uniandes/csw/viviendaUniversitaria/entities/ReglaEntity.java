@@ -80,7 +80,6 @@ public class ReglaEntity extends BaseEntity {
     public int hashCode() {
         int hash = 7;
         hash = 31 * hash + Objects.hashCode(this.regla);
-        hash = 31 * hash + Objects.hashCode(this.hospedaje);
         return hash;
     }
 }

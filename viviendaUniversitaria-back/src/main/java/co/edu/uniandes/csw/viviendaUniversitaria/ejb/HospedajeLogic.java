@@ -43,6 +43,32 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
         this.calificacionLogic = calificacionLogic;
     }
 
+    @Override
+    public HospedajeEntity update(HospedajeEntity entity, Long id) throws WebApplicationException {
+        HospedajeEntity oldEntity = persistence.find(id);
+        if(oldEntity != null) {
+            System.out.println("=============================================================");
+            entity.setReglas(oldEntity.getReglas());
+            entity.setServicios(oldEntity.getServicios());
+            entity.setHospedajesLugares(oldEntity.getHospedajesLugares());
+            entity.setFacturas(oldEntity.getFacturas());
+            entity.setReservas(oldEntity.getReservas());
+            entity.setArrendador(oldEntity.getArrendador());
+            entity.setUbicacion(oldEntity.getUbicacion());
+            System.out.println("=============================================================");
+        }
+        return super.update(entity, id);
+    }
+    
+    /*private List<ReglaDTO> reglas;
+    private List<ServiciosDTO> servicios;
+    private List<HospedajeLugarDTO> hospedajeLugares;
+    private List<FacturaDTO> facturas;
+    private List<ReservaDTO> reservas;
+    private List<CalificacionDTO> calificaciones;
+    private ArrendadorDTO arrendador;
+    private UbicacionDTO ubicacion;*/
+    
     public HospedajeEntity agregarCalificacion(Long idHospedaje, Long idCalificacion) throws BusinessLogicException {
         HospedajeEntity hospedaje = find(idHospedaje);
         CalificacionEntity calificaicon = calificacionLogic.getCalificacion(idHospedaje);

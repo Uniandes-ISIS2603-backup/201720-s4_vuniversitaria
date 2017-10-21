@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -36,7 +37,7 @@ public class ArrendadorEntity implements Serializable {
      * Lista de los hospedajes pertenecientes al arrendador
      */
     @PodamExclude
-    @OneToMany(mappedBy = "arrendador", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "arrendador", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<HospedajeEntity> hospedaje;
 
     /**
@@ -111,7 +112,6 @@ public class ArrendadorEntity implements Serializable {
         int hash = 5;
         hash = 97 * hash + Objects.hashCode(this.id);
         hash = 97 * hash + Objects.hashCode(this.nombre);
-        hash = 97 * hash + Objects.hashCode(this.hospedaje);
         return hash;
     }
 

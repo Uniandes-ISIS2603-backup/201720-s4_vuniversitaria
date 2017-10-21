@@ -23,6 +23,7 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
+import java.util.Objects;
 import javax.persistence.Entity;
 /**
  *
@@ -102,6 +103,10 @@ public class UbicacionEntity extends BaseEntity{
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.direccion);
+        hash = 37 * hash + Objects.hashCode(this.latitud);
+        hash = 37 * hash + Objects.hashCode(this.altitud);
+        return hash;
     }
 }

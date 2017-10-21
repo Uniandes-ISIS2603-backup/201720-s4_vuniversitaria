@@ -119,8 +119,6 @@ public class DetalleServicioEntity extends BaseEntity
         int hash = 5;
         hash = 37 * hash + Objects.hashCode(this.cantidad);
         hash = 37 * hash + Objects.hashCode(this.subTotal);
-        hash = 37 * hash + Objects.hashCode(this.factura);
-        hash = 37 * hash + Objects.hashCode(this.servicio);
         return hash;
     }
 }

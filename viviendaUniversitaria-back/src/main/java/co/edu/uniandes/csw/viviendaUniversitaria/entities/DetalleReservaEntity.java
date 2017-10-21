@@ -95,8 +95,6 @@ public class DetalleReservaEntity extends BaseEntity
     public int hashCode() {
         int hash = 7;
         hash = 97 * hash + Objects.hashCode(this.subTotal);
-        hash = 97 * hash + Objects.hashCode(this.factura);
-        hash = 97 * hash + Objects.hashCode(this.reserva);
         return hash;
     }
     

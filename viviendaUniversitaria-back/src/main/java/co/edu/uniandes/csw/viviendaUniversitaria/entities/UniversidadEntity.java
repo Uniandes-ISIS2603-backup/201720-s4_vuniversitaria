@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -71,7 +72,9 @@ public class UniversidadEntity  extends BaseEntity {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.nombre);
+        return hash;
     }
     
 }

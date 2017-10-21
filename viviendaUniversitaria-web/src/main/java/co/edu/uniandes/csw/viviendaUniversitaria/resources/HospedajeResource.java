@@ -29,13 +29,17 @@ import javax.ws.rs.core.MediaType;
  * @author ws.duarte
  */
 @Path("/hospedajes")
-@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class HospedajeResource {
 
     @Inject
     private HospedajeLogic hospedajeLogic;
+    
+    public HospedajeResource() {
+        super();
+    }
 
     @POST
     public HospedajeDetaillDTO post(HospedajeDetaillDTO entidad) throws WebApplicationException, BusinessLogicException {
@@ -65,12 +69,6 @@ public class HospedajeResource {
     public void delete(@PathParam("idHospedaje") Long id) throws WebApplicationException, BusinessLogicException {
         hospedajeLogic.delete(id);
     }
-
-//    @POST
-//    @Path("{idHospedaje: [0-9][0-9]*}/ubicacion/{idUbicacion: [0-9][0-9]*}")
-//    public HospedajeDetaillDTO agreagrUbicacion(@PathParam("idHospedaje") Long idHospedaje, @PathParam("idUbicacion") Long idUbicacion) {
-//        return new HospedajeDetaillDTO(hospedajeLogic.agregarUbicacacion(idHospedaje, idUbicacion));
-//    }
 
     @Path("{idHospedaje: [0-9][0-9]*}/reglas")
     public Class<ReglaResource> getRegla(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {

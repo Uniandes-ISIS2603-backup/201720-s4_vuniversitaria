@@ -104,8 +104,6 @@ public class HospedajeLugarEntity extends BaseEntity {
     public int hashCode() {
         int hash = 7;
         hash = 83 * hash + Objects.hashCode(this.distancia);
-        hash = 83 * hash + Objects.hashCode(this.hospedaje);
-        hash = 83 * hash + Objects.hashCode(this.lugarInteres);
         return hash;
     }
 }

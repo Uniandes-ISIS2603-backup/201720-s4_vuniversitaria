@@ -33,7 +33,7 @@ public class CalificacionEntity implements Serializable {
     /**
      * Puntuacion dada por un usuario
      */
-    private double valoracion;
+    private Double valoracion;
 
     /**
      * Modela la fecha en la que se realizó la calificación
@@ -173,12 +173,11 @@ public class CalificacionEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.valoracion) ^ (Double.doubleToLongBits(this.valoracion) >>> 32));
-        hash = 79 * hash + Objects.hashCode(this.fecha);
-        hash = 79 * hash + Objects.hashCode(this.comentario);
-        hash = 79 * hash + Objects.hashCode(this.hospedaje);
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.id);
+        hash = 73 * hash + Objects.hashCode(this.valoracion);
+        hash = 73 * hash + Objects.hashCode(this.fecha);
+        hash = 73 * hash + Objects.hashCode(this.comentario);
         return hash;
     }
 

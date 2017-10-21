@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -46,53 +47,53 @@ public class HospedajeEntity extends BaseEntity {
      * Relación con regla.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ReglaEntity> reglas;
 
     /**
      * Relción con servicios.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ServiciosEntity> servicios;
 
     /**
      * Relación con hospedajeLugar.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<HospedajeLugarEntity> hospedajesLugares;
 
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<FacturaEntity> facturas;
 
     /**
      * Relación con reserva.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ReservaEntity> reservas;
 
     /**
      * Relación con calificaciónes.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<CalificacionEntity> calificaciones;
 
     /**
      * Relación con arrendador.
      */
     @PodamExclude
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private ArrendadorEntity arrendador;
 
     /**
      * Relación con ubicación.
      */
     @PodamExclude
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private UbicacionEntity ubicacion;
 
     /**
@@ -305,14 +306,6 @@ public class HospedajeEntity extends BaseEntity {
         hash = 97 * hash + Objects.hashCode(this.descripcion);
         hash = 97 * hash + Objects.hashCode(this.valoracion);
         hash = 97 * hash + Objects.hashCode(this.cantidadVotaciones);
-        hash = 97 * hash + Objects.hashCode(this.reglas);
-        hash = 97 * hash + Objects.hashCode(this.servicios);
-        hash = 97 * hash + Objects.hashCode(this.hospedajesLugares);
-        hash = 97 * hash + Objects.hashCode(this.facturas);
-        hash = 97 * hash + Objects.hashCode(this.reservas);
-        hash = 97 * hash + Objects.hashCode(this.calificaciones);
-        hash = 97 * hash + Objects.hashCode(this.arrendador);
-        hash = 97 * hash + Objects.hashCode(this.ubicacion);
         return hash;
     }
 

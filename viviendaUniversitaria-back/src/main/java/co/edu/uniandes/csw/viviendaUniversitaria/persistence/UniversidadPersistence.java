@@ -5,8 +5,6 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
 
-
-import co.edu.uniandes.csw.viviendaUniversitaria.ejb.UbicacionLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.UbicacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.UniversidadEntity;
 import javax.ejb.Stateless;
