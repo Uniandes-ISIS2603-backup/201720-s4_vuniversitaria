@@ -37,7 +37,7 @@ public class ReservaEntity implements Serializable {
     private Date fechaFin;
 
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "reserva", fetch = FetchType.LAZY)
     private EstudianteEntity estudiante;
     
     @PodamExclude
@@ -45,7 +45,7 @@ public class ReservaEntity implements Serializable {
     private HospedajeEntity hospedaje;
     
     @PodamExclude
-    @OneToMany(mappedBy = "reserva", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<DetalleReservaEntity> detalleReserva;
 
     public List<DetalleReservaEntity> getDetalleReserva() {

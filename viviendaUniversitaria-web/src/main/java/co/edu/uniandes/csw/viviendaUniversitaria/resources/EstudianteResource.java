@@ -123,7 +123,7 @@ public class EstudianteResource {
     }
     
     @Path("{cedulaEstudiante: \\d+}/factura")
-    public Class<FacturaResource> getFacturas(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
+    public Class<FacturaResource> getFacturasResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.find(cedulaEstudiante);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + cedulaEstudiante + "/calificacion no existe.", 404);

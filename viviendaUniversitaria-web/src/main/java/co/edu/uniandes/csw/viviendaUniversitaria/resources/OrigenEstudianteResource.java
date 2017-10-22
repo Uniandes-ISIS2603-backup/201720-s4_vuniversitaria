@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDTO;
-import co.edu.uniandes.csw.viviendaUniversitaria.ejb.EstudianteLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.OrigenLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -14,10 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -114,10 +111,11 @@ public class OrigenEstudianteResource {
      * @param EstudiantesId Identificador de la instancia de Estudiante
      * 
      */
-    @DELETE
-    @Path("{EstudiantesId: \\d+}")
-    public void removeEstudiantes(@PathParam("OrigenesId") Long origensId, @PathParam("EstudiantesId") Long estudiantesId) throws BusinessLogicException {
-        
-        origenLogic.removeEstudiante(estudiantesId,origensId);
-    }
+// POR REGLA DE NEGOCIO NO SE BORRA UN ORIGEN DE UN ESTUDIANTE
+//    @DELETE
+//    @Path("{EstudiantesId: \\d+}")
+//    public void removeEstudiantes(@PathParam("OrigenesId") Long origensId, @PathParam("EstudiantesId") Long estudiantesId) throws BusinessLogicException {
+//        
+//        origenLogic.removeEstudiante(estudiantesId,origensId);
+//    }
 }

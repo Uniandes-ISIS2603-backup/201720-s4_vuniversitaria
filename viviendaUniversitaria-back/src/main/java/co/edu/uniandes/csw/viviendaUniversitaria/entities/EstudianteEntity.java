@@ -55,7 +55,7 @@ public class EstudianteEntity extends BaseEntity implements Serializable //exten
     private List<FacturaEntity> facturas;
     
     @PodamExclude
-    @OneToOne(mappedBy = "estudiante", fetch=FetchType.LAZY)
+    @OneToOne
     private ReservaEntity reserva;
     
     @PodamExclude

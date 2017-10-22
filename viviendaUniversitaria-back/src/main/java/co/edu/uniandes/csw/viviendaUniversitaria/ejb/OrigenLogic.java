@@ -30,7 +30,7 @@ public class OrigenLogic extends GenericLogic<OrigenEntity> {
         super(persistence, OrigenEntity.class);
         this.estudianteLogic=asd;
     }
-
+    //aqui creo la relacion Origen-Estudiante
     public EstudianteEntity createEstudiante(Long cedula, Long idOrigen) throws BusinessLogicException {
         OrigenEntity origenEntity = find(idOrigen);
         EstudianteEntity estudianteEntity = estudianteLogic.find(cedula);
@@ -40,18 +40,19 @@ public class OrigenLogic extends GenericLogic<OrigenEntity> {
         estudianteEntity.setOrigen(origenEntity);
         return estudianteEntity;
     }
-
-    public void removeEstudiante(Long id, Long idOrigen) throws BusinessLogicException{
-        EstudianteEntity estuEntity = new EstudianteEntity();
-        estuEntity.setId(id);
-        List<EstudianteEntity> list = find(idOrigen).getEstudiantes();
-        int i = list.indexOf(estuEntity);
-        if (i < 0) {
-            throw new BusinessLogicException("El recurso "+idOrigen+"/origen/" + id + "/Estudiante no existe.");
-        }
-        list.remove(estuEntity);
-    }
+// POR REGLA DE NEGOCIO NO SE BORRA UN ORIGEN DE UN ESTUDIANTE
+//    public void removeEstudiante(Long id, Long idOrigen) throws BusinessLogicException{
+//        EstudianteEntity estuEntity = new EstudianteEntity();
+//        estuEntity.setId(id);
+//        List<EstudianteEntity> list = find(idOrigen).getEstudiantes();
+//        int i = list.indexOf(estuEntity);
+//        if (i < 0) {
+//            throw new BusinessLogicException("El recurso "+idOrigen+"/origen/" + id + "/Estudiante no existe.");
+//        }
+//        list.remove(estuEntity);
+//    }
     
+    //este es el get para un estudiante en la relacion Origen-Estudiante
     public EstudianteEntity findEstudiantes(Long origenId, Long id) throws BusinessLogicException {
         List<EstudianteEntity> estudiantes = find(origenId).getEstudiantes();
         EstudianteEntity estudiante = estudianteLogic.find(id);
@@ -62,7 +63,7 @@ public class OrigenLogic extends GenericLogic<OrigenEntity> {
         throw new BusinessLogicException("El estudiante no está asociado al origen");
 
     }
-
+    //Este es el getAll 
     public List<EstudianteEntity> findAllEstudiantes(Long idOrigen) throws BusinessLogicException {
         return find(idOrigen).getEstudiantes();
     }
