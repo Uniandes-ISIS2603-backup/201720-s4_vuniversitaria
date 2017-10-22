@@ -11,46 +11,50 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
  *
  * @author ws.duarte
  */
-public class HospedajeDTO 
-{
+public class HospedajeDTO {
+
     private Long id;
-    
+
     /**
      * Tipo de arrendamiento del hospedaje.
      */
     private String tipoArrendamiento;
-    
+
     /**
      * Descripción del hospadaje.
      */
     private String descripcion;
-    
+
     /**
      * Valoración total del hospadaje.
      */
-    private double valoracion;
+    private Double valoracion;
+
+    private Integer cantidadVotaciones;
+
+    public HospedajeDTO() {
+        super();
+    }
     
-    public HospedajeDTO() {}
-    
-    public HospedajeDTO(HospedajeEntity entidad) 
-    {
+    public HospedajeDTO(HospedajeEntity entidad) {
         this.id = entidad.getId();
         this.descripcion = entidad.getDescripcion();
         this.tipoArrendamiento = entidad.getTipoArrendamiento();
         this.valoracion = entidad.getValoracion();
+        this.cantidadVotaciones = entidad.getCantidadVotaciones();
     }
-    
-    public HospedajeEntity toEntity()
-    {
+
+    public HospedajeEntity toEntity() {
         HospedajeEntity ret = new HospedajeEntity();
         ret.setDescripcion(descripcion);
         ret.setId(id);
         ret.setValoracion(valoracion);
         ret.setTipoArrendamiento(tipoArrendamiento);
+        ret.setCantidadVotaciones(cantidadVotaciones);
         return ret;
     }
 
-    public Long getId() {
+    public Long getId() {        
         return id;
     }
 
@@ -74,14 +78,20 @@ public class HospedajeDTO
         this.descripcion = descripcion;
     }
 
-    public double getValoracion() {
+    public Double getValoracion() {
         return valoracion;
     }
 
-    public void setValoracion(double valoracion) {
+    public void setValoracion(Double valoracion) {
         this.valoracion = valoracion;
     }
-    
-    
-    
+
+    public Integer getCantidadVotaciones() {
+        return cantidadVotaciones;
+    }
+
+    public void setCantidadVotaciones(Integer cantidadVotaciones) {
+        this.cantidadVotaciones = cantidadVotaciones;
+    }
+
 }

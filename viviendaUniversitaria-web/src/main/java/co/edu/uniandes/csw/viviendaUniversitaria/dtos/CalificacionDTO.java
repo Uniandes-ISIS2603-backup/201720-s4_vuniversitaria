@@ -6,9 +6,10 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.persistence.Temporal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,8 +35,7 @@ public class CalificacionDTO {
     /**
      * Fecha en la que se realizó la calificación
      */
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date fecha;
+    private String fecha;
     
     /**
      * Constructor
@@ -49,9 +49,11 @@ public class CalificacionDTO {
      * @param entity 
      */
     public CalificacionDTO(CalificacionEntity entity){
+        
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         this.id = entity.getId();
         this.valoracion = entity.getValoracion();
-        this.fecha = entity.getFecha();
+        this.fecha = date.format(entity.getFecha());
         this.comentario = entity.getComentario();
     }
     
@@ -83,7 +85,7 @@ public class CalificacionDTO {
      * Retorna la fecha en la que se realizó la calificación
      * @return fecha
      */
-    public Date getFecha(){
+    public String getFecha(){
         return fecha;
     }
 
@@ -104,21 +106,13 @@ public class CalificacionDTO {
         this.valoracion = valoracion;
     }
     
-    /**
-     * Establece el comentario
-     * @param comentario 
-     */
-    public void setComentario(String comentario){
-        this.comentario= comentario;
-    }
+    
     
     /**
      * Establece la fecha
      * @param fecha 
      */
-    private void setFecha(Date fecha){
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        date.format(fecha);
+    public void setFecha(String fecha){
         this.fecha = fecha;
     }
     
@@ -127,10 +121,16 @@ public class CalificacionDTO {
      * @return entity de tipo calificacion
      */
     public CalificacionEntity toEntity() {
+        
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         CalificacionEntity entity = new CalificacionEntity();
         entity.setId(this.id);
         entity.setComentario(this.comentario);
-        entity.setFecha(this.fecha);
+        try {
+            entity.setFecha(date.parse(this.fecha));
+        } catch (ParseException ex) {
+            Logger.getLogger(CalificacionDTO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         entity.setValoracion(this.valoracion);
         return entity;
     }

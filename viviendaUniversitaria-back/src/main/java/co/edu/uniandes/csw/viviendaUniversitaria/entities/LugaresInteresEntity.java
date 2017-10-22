@@ -9,8 +9,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -28,8 +26,7 @@ public class LugaresInteresEntity extends BaseEntity implements Serializable {
      * Atributo donde se describe la ubicacion de un lugar de interes
      */
     @PodamExclude
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lugaresInteres")
+    @OneToOne
     private UbicacionEntity ubicacion;
     
     @PodamExclude
@@ -48,6 +45,8 @@ public class LugaresInteresEntity extends BaseEntity implements Serializable {
      * Imagen del lugar de interes
      */
     private String rutaImagen;
+    
+    private String name;
     //--------------------------------------------//
     //--------------GETTERS AND SETTERS-----------//
     //--------------------------------------------//
@@ -91,5 +90,16 @@ public class LugaresInteresEntity extends BaseEntity implements Serializable {
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
+    
 
 }

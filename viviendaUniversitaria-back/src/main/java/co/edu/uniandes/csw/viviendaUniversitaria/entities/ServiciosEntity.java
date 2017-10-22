@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -38,6 +39,8 @@ public class ServiciosEntity extends BaseEntity implements Serializable {
      * hospedaje
      */
     private double costo;
+    
+    private String name;
 
 
     public List<DetalleServicioEntity> getDetalleServicio() {
@@ -74,6 +77,29 @@ public class ServiciosEntity extends BaseEntity implements Serializable {
 
     public void setCosto(double costo) {
         this.costo = costo;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof ServiciosEntity) return super.equals(obj);
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.descripcion);
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.costo) ^ (Double.doubleToLongBits(this.costo) >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.name);
+        return hash;
     }
 
 }

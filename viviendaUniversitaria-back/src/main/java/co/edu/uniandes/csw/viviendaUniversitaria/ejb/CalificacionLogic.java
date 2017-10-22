@@ -7,8 +7,12 @@ package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.CalificacionPersistence;
+import co.edu.uniandes.csw.viviendaUniversitaria.persistence.EstudiantePersistence;
+import co.edu.uniandes.csw.viviendaUniversitaria.persistence.HospedajePersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,12 +27,26 @@ import javax.inject.Inject;
 public class CalificacionLogic {
     private static final Logger LOGGER = Logger.getLogger(CalificacionLogic.class.getName());
 
+    private  CalificacionPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    
+    private  HospedajePersistence hospedajeLogic;
+    
+    private EstudiantePersistence estudianteLogic;
+    
+    public CalificacionLogic(){
+        //Constructor por defecto
+    }
+    
     @Inject
-    private CalificacionPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    public CalificacionLogic(HospedajePersistence hospedajeLogic, EstudiantePersistence estudianteLogic, CalificacionPersistence persistence){
+        this.estudianteLogic= estudianteLogic;
+        this.hospedajeLogic= hospedajeLogic;
+        this.persistence = persistence;
+    }
 
   
     public CalificacionEntity createCalificacion(CalificacionEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de city");
+        LOGGER.info("Inicia proceso de creación de calificacion");
         if (persistence.find(entity.getId())!= null)
             throw new BusinessLogicException("Ya existe una Calificacion con el id \"" + entity.getId()+ "\"");
         persistence.create(entity);
@@ -36,7 +54,7 @@ public class CalificacionLogic {
         return entity;
     }
     
-        public List<CalificacionEntity> getCalificacion() {
+        public List<CalificacionEntity> getCalificaciones() {
         LOGGER.info("Inicia proceso de consultar todas las calificaciones");
         List<CalificacionEntity> calificaciones = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todas las calificaciones");
@@ -65,4 +83,53 @@ public class CalificacionLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar calificacion con id={0}", id);
     }
+    
+    
+    public HospedajeEntity getHospedaje(Long idCalificacion) throws BusinessLogicException{
+      CalificacionEntity calificacion=persistence.find(idCalificacion);
+      if (calificacion==null){
+          throw new BusinessLogicException("No se pudo encontrar una calificacion con ese id");
+      }
+      return calificacion.getHospedaje();
+  }
+    
+    public HospedajeEntity setHospedaje(Long idCalificacion, HospedajeEntity hospedaje) throws BusinessLogicException{
+        CalificacionEntity calificacion = persistence.find(idCalificacion);
+        if(calificacion == null){
+            throw new BusinessLogicException("No se pudo encontrar una calificacion con ese id");
+        }
+        calificacion.setHospedaje(hospedaje);
+        persistence.update(calificacion);
+        return hospedaje;
+    }   
+    
+    public EstudianteEntity getEstudiante(Long idCalificacion) throws BusinessLogicException{
+        CalificacionEntity calificacion = persistence.find(idCalificacion);
+        if(calificacion== null){
+            throw new BusinessLogicException("No existe una calificacion con el id ingresado");
+        }
+        return calificacion.getEstudiante();
+    }
+    
+    public EstudianteEntity setEstudiante(Long idCalificacion, EstudianteEntity estudiante) throws BusinessLogicException{
+        CalificacionEntity calificacion= persistence.find(idCalificacion);
+        if(calificacion== null){
+            throw new BusinessLogicException("No existe una calificcaion con el id ingresado");
+        }
+        calificacion.setEstudiante(estudiante);
+        persistence.update(calificacion);
+        return estudiante;
+    }
+    
+    public void asociarCalificacionAEstudianteHospedaje(Long idHospedaje, Long idEstudiante, CalificacionEntity calificacion) throws BusinessLogicException{
+        HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
+        EstudianteEntity estudiante = estudianteLogic.find(idEstudiante);
+        
+        if(hospedaje== null || estudiante== null)
+            throw new BusinessLogicException("No existe alguna de las entidades buscadas");
+        
+        calificacion.setHospedaje(hospedaje);
+        calificacion.setEstudiante(estudiante);
+        persistence.update(calificacion);
+    }    
 }

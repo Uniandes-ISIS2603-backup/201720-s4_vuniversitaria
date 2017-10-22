@@ -11,7 +11,6 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.*;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -30,64 +29,116 @@ import javax.ws.rs.core.MediaType;
  * @author ws.duarte
  */
 @Path("/hospedajes")
-//@Produces("application/json")
-//@Consumes("application/json")
-@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class HospedajeResource {
-    
-    
+
     @Inject
     private HospedajeLogic hospedajeLogic;
     
+    public HospedajeResource() {
+        super();
+    }
+
     @POST
-    public HospedajeDetaillDTO post(HospedajeDetaillDTO entidad) throws WebApplicationException, BusinessLogicException
-    {
+    public HospedajeDetaillDTO post(HospedajeDetaillDTO entidad) throws WebApplicationException, BusinessLogicException {
         return new HospedajeDetaillDTO(hospedajeLogic.create(entidad.toEntity()));
     }
-    
+
     @GET
-    public List<HospedajeDetaillDTO> getAll() throws WebApplicationException, BusinessLogicException
-    {
+    public List<HospedajeDetaillDTO> getAll() throws WebApplicationException, BusinessLogicException {
         return construir(hospedajeLogic.findAll());
     }
-    
+
     @GET
     @Path("{idHospedaje: [0-9][0-9]*}")
-    public HospedajeDetaillDTO get(@PathParam("idHospedaje") Long id) throws WebApplicationException, BusinessLogicException
-    {
+    public HospedajeDetaillDTO get(@PathParam("idHospedaje") Long id) throws WebApplicationException, BusinessLogicException {
         return new HospedajeDetaillDTO(hospedajeLogic.find(id));
     }
-    
+
     @PUT
     @Path("{idHospedaje: [0-9][0-9]*}")
-    public HospedajeDetaillDTO put(@PathParam("idHospedaje") Long id, HospedajeDetaillDTO dto) throws WebApplicationException, BusinessLogicException
-    {
+    public HospedajeDetaillDTO put(@PathParam("idHospedaje") Long id, HospedajeDetaillDTO dto) throws WebApplicationException, BusinessLogicException {
         dto.setId(id);
-        return new HospedajeDetaillDTO(hospedajeLogic.update(dto.toEntity()));
+        return new HospedajeDetaillDTO(hospedajeLogic.update(dto.toEntity(), id));
     }
-    
+
     @DELETE
     @Path("{idHospedaje: [0-9][0-9]*}")
-    public void delete(@PathParam("idHospedaje") Long id) throws WebApplicationException, BusinessLogicException
-    {
+    public void delete(@PathParam("idHospedaje") Long id) throws WebApplicationException, BusinessLogicException {
         hospedajeLogic.delete(id);
     }
-    
+
     @Path("{idHospedaje: [0-9][0-9]*}/reglas")
-    public Class<ReglaResource> getRegla(@PathParam("idHospedaje") Long idHospedaje ) throws WebApplicationException, BusinessLogicException
-    {
+    public Class<ReglaResource> getRegla(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
         HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
-        if(hospedaje == null) throw new WebApplicationException("Acceso: La entidad no existe", 405);
+        if (hospedaje == null) {
+            throw new WebApplicationException("Acceso: La entidad no existe", 405);
+        }
         return ReglaResource.class;
     }
-    
-    private List<HospedajeDetaillDTO> construir(List<HospedajeEntity> list)
-    {
+
+    private List<HospedajeDetaillDTO> construir(List<HospedajeEntity> list) {
         List<HospedajeDetaillDTO> ret = new ArrayList<>();
-        for(HospedajeEntity r : list) ret.add(new HospedajeDetaillDTO(r));
+        for (HospedajeEntity r : list) {
+            ret.add(new HospedajeDetaillDTO(r));
+        }
         return ret;
     }
-    
+
+    @GET
+    @Path("{idHospedaje: [0-9][0-9]*}/arrendador")
+    public ArrendadorDTO darArrendador(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
+        return new ArrendadorDTO(hospedajeLogic.find(idHospedaje).getArrendador());
+    }
+
+    @GET
+    @Path("{idHospedaje: [0-9][0-9]*}/facturas")
+    public List<FacturaDTO> darFacturas(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
+        return convertirFacturas(hospedajeLogic.find(idHospedaje).getFacturas());
+    }
+
+    private List<FacturaDTO> convertirFacturas(List<FacturaEntity> facturas) {
+        List<FacturaDTO> ret = new ArrayList<>();
+        if (facturas != null) {
+            for (FacturaEntity factura : facturas) {
+                ret.add(new FacturaDTO(factura));
+            }
+        }
+        return ret;
+    }
+
+    @GET
+    @Path("{idHospedaje: [0-9][0-9]*}/reservas")
+    public List<ReservaDTO> darReserva(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
+        return convertirReserva(hospedajeLogic.find(idHospedaje).getReservas());
+    }
+
+    private List<ReservaDTO> convertirReserva(List<ReservaEntity> reservas) {
+        List<ReservaDTO> ret = new ArrayList<>();
+        if (reservas != null) {
+            for (ReservaEntity reserva : reservas) {
+                ret.add(new ReservaDTO(reserva));
+            }
+        }
+        return ret;
+    }
+
+    @GET
+    @Path("{idHospedaje: [0-9][0-9]*}/calificaciones")
+    public List<CalificacionDTO> darCalificacion(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
+        return convertirCalificacion(hospedajeLogic.find(idHospedaje).getCalificaciones());
+    }
+
+    private List<CalificacionDTO> convertirCalificacion(List<CalificacionEntity> calificaciones) {
+        List<CalificacionDTO> ret = new ArrayList<>();
+        if (calificaciones != null) {
+            for (CalificacionEntity calificacion : calificaciones) {
+                ret.add(new CalificacionDTO(calificacion));
+            }
+        }
+        return ret;
+    }
+
 }

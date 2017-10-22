@@ -7,20 +7,12 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
-import javax.transaction.UserTransaction;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -28,23 +20,12 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author ws.duarte
  */
-@RunWith(Arquillian.class)
 public class HospedajeEntityTest {
-    
-    @Inject
-    UserTransaction utx;
-    private List<HospedajeEntity> data = new ArrayList<HospedajeEntity>();
+    private List<HospedajeEntity> data = new ArrayList<>();
     
     public HospedajeEntityTest() {
     }
     
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(HospedajeEntity.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
     
     @BeforeClass
     public static void setUpClass() {
@@ -56,23 +37,12 @@ public class HospedajeEntityTest {
     
     @Before
     public void setUp() {
-        try {
-            utx.begin();
             clearData();
             insertData();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        }
     }
 
     private void clearData() {
-        data = new ArrayList<HospedajeEntity>();
+        data = new ArrayList<>();
     }
 
     private void insertData() {
@@ -161,7 +131,7 @@ public class HospedajeEntityTest {
         HospedajeEntity hospedajeT = data.get(0);
         HospedajeEntity hospedaje = new HospedajeEntity();
         hospedaje.setValoracion(hospedajeT.getValoracion());
-        Assert.assertTrue(hospedaje.getValoracion() == (hospedajeT.getValoracion()));
+        Assert.assertTrue(hospedaje.getValoracion().equals(hospedajeT.getValoracion()));
     }
 
     /**
@@ -172,7 +142,7 @@ public class HospedajeEntityTest {
         HospedajeEntity hospedajeT = data.get(0);
         HospedajeEntity hospedaje = new HospedajeEntity();
         hospedaje.setValoracion(hospedajeT.getValoracion());
-        Assert.assertTrue(hospedaje.getValoracion() == (hospedajeT.getValoracion()));
+        Assert.assertTrue(hospedaje.getValoracion().equals(hospedajeT.getValoracion()));
     }
 
     /**
@@ -462,8 +432,9 @@ public class HospedajeEntityTest {
      */
     @Test
     public void testEquals() {
-        HospedajeEntity hospedajeT=  data.get(0);
+        HospedajeEntity hospedajeT =  data.get(0);
         Assert.assertTrue(hospedajeT.equals(data.get(0)));
+        Assert.assertFalse(hospedajeT.equals(new ServiciosEntity()));
     }
 
     /**
@@ -474,7 +445,23 @@ public class HospedajeEntityTest {
         HospedajeEntity hospedajeT = data.get(0);
         Long id = new Long(3);
         hospedajeT.setId(new Long(3));
-        Assert.assertEquals(id, new Long(hospedajeT.hashCode()));
+        Assert.assertEquals(data.get(0).hashCode(), hospedajeT.hashCode());
+    }
+    
+    
+    /**
+     * Test of incrementarCalificación method, of class HospedajeEntity.
+     */
+    @Test
+    public void testIncrementarCalificación() {
+        HospedajeEntity hospedajeT = new HospedajeEntity();
+        hospedajeT.setValoracion(new Double(2));
+        hospedajeT.setCantidadVotaciones(1);
+        CalificacionEntity c = new CalificacionEntity();
+        c.setValoracion(10);
+        hospedajeT.incrementarCalificación(c);
+        Assert.assertEquals(hospedajeT.getValoracion(),new Double((2+10)/2));
+        Assert.assertEquals(new Integer(2), hospedajeT.getCantidadVotaciones());
     }
     
 }

@@ -50,5 +50,6 @@ public class CalificacionPersistence {
         LOGGER.info("Consultando todas las calificaciones registradas.");
         TypedQuery query= em.createQuery("select u from CalificacionEntity u", CalificacionEntity.class);
         return query.getResultList();
-    }
+    }    
+    
 }

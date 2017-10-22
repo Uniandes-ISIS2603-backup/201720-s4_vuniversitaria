@@ -6,8 +6,8 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +33,7 @@ public class CalificacionEntity implements Serializable {
     /**
      * Puntuacion dada por un usuario
      */
-    private double valoracion;
+    private Double valoracion;
 
     /**
      * Modela la fecha en la que se realizó la calificación
@@ -146,8 +146,6 @@ public class CalificacionEntity implements Serializable {
      * @param fecha 
      */
     public void setFecha(Date fecha) {
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        date.format(fecha);
         this.fecha = fecha;
     }
 
@@ -158,5 +156,31 @@ public class CalificacionEntity implements Serializable {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null ){
+            return false;
+        }
+        if(this.getClass()!= obj.getClass()){
+            return false;
+        }
+        if (this.getId() != null && ((CalificacionEntity) obj).getId()!= null) {
+            return this.getId().equals(((CalificacionEntity) obj).getId());
+        }
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.id);
+        hash = 73 * hash + Objects.hashCode(this.valoracion);
+        hash = 73 * hash + Objects.hashCode(this.fecha);
+        hash = 73 * hash + Objects.hashCode(this.comentario);
+        return hash;
+    }
+
+   
 
 }

@@ -5,11 +5,8 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -18,29 +15,66 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author c.santacruza
  */
 @Entity
-public class UniversidadEntity  implements Serializable {
+public class UniversidadEntity  extends BaseEntity {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+   /**
+    * Atributo que modela el nombre de la universidad.
+    */
     private String nombre;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    /**
+     * Atributo que modela la ubicacion de la universidad.
+     */
+    @PodamExclude
+    @OneToOne
+    private UbicacionEntity ubicacion;
+    
+    /**
+     * Retorna el nombre de la universidad. 
+     * @return nombre
+     */
     public String getNombre() {
         return nombre;
     }
-
+    /**
+     * Modifica el nombre de la ubicacion.
+     * @param nombre 
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    //@PodamExclude
-    //@OneToOne(mappedBy = "universidad", orphanRemoval = true)
-    //private UbicacionEntity ubicacion;
+    /**
+     * Retorna la ubicacion de la universidad.
+     * @return ubicacion
+     */
+    public UbicacionEntity getUbicacion() {
+        return ubicacion;
+    }
+    /**
+     * Modifica la ubicacion de la universidad.
+     * @param ubicacion 
+     */
+    public void setUbicacion(UbicacionEntity ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+    /**
+     * Compara si dos universidades son iguales
+     * @param obj la universidad con la que me comparo
+     * @return True si son iguales de lo contrario False.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof UniversidadEntity) {
+            return super.equals(obj);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.nombre);
+        return hash;
+    }
+    
 }

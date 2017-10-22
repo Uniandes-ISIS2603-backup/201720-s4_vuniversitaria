@@ -5,87 +5,83 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.HospedajePersistence;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.ws.rs.WebApplicationException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.WebApplicationException;
 
 /**
  *
  * @author ws.duarte
  */
 @Stateless
-public class HospedajeLogic 
-{
-    private static final Logger LOGGER = Logger.getLogger(HospedajeLogic.class.getName());
-    
+public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
+
+    private CalificacionLogic calificacionLogic;
+
+    /**
+     * Constructor vacio
+     */
+    public HospedajeLogic() {
+        super();
+    }
+
+    /**
+     * Constructor inyectado Injecta todos los parametros que se van a usar
+     *
+     * @param persistenceHospedaje Mi persistencia, esta es la que se pasa al
+     * super
+     * @param calificacionLogic Esta es otra que estoy usando
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     */
     @Inject
-    private HospedajePersistence persistence;
-    
-    
-    public HospedajeEntity create(HospedajeEntity entidad) throws WebApplicationException
-    {
-        LOGGER.info("Creación de un hospedaje");
-        if(persistence.find(entidad.getId()) != null)
-        {
-            LOGGER.log(Level.WARNING, "Intento de creacion fallido.\nLa entidad ya existe\nId:{1}", entidad.getId());
-            throw new WebApplicationException("Creacion: La entidad ya existe", 405);
+    public HospedajeLogic(HospedajePersistence persistenceHospedaje, CalificacionLogic calificacionLogic) throws IllegalAccessException, InstantiationException {
+        super(persistenceHospedaje, HospedajeEntity.class);
+        this.calificacionLogic = calificacionLogic;
+    }
+
+    @Override
+    public HospedajeEntity update(HospedajeEntity entity, Long id) throws WebApplicationException {
+        HospedajeEntity oldEntity = persistence.find(id);
+        if (oldEntity != null) {
+            System.out.println("=============================================================");
+            entity.setReglas(oldEntity.getReglas());
+            entity.setServicios(oldEntity.getServicios());
+            entity.setHospedajesLugares(oldEntity.getHospedajesLugares());
+            entity.setFacturas(oldEntity.getFacturas());
+            entity.setReservas(oldEntity.getReservas());
+            entity.setArrendador(oldEntity.getArrendador());
+            entity.setUbicacion(oldEntity.getUbicacion());
+            System.out.println("=============================================================");
         }
-        return persistence.create((entidad));
+        return super.update(entity, id);
     }
-    
-    public HospedajeEntity update(HospedajeEntity entidad) throws WebApplicationException
-    {
-        LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", entidad.getId());
-        validar(entidad, "Actualización");
-        return persistence.update((entidad));
-    }
-    
-    public void delete(Long id) throws WebApplicationException
-    {
-        LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", id);
-        if(persistence.find(id) == null) 
-        {
-            LOGGER.log(Level.WARNING, "Intento de Eliminacion fallido.\nLa entidad no existe\nId:{0}", id);
-            throw new WebApplicationException("Eliminacion: La entidad no existe",405);
+
+    /*private List<ReglaDTO> reglas;
+    private List<ServiciosDTO> servicios;
+    private List<HospedajeLugarDTO> hospedajeLugares;
+    private List<FacturaDTO> facturas;
+    private List<ReservaDTO> reservas;
+    private List<CalificacionDTO> calificaciones;
+    private ArrendadorDTO arrendador;
+    private UbicacionDTO ubicacion;*/
+    public HospedajeEntity agregarCalificacion(Long idHospedaje, Long idCalificacion) throws BusinessLogicException {
+        HospedajeEntity hospedaje = find(idHospedaje);
+        CalificacionEntity calificaicon = calificacionLogic.getCalificacion(idHospedaje);
+        if (calificaicon.getHospedaje() != null) {
+            throw new WebApplicationException("Esta calificacion ya se encuentra sociada a un hospedaje.\nPor favor verifique la ubicacion he intente de nuevo.", 412);
         }
-        persistence.delete(id);
+        calificaicon.setHospedaje(actualizarVotacion(hospedaje, calificaicon));
+        return find(idHospedaje);
     }
-    
-    public HospedajeEntity find(Long id)throws WebApplicationException
-    {
-        LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", id);
-        HospedajeEntity ret = persistence.find(id);
-        if(ret == null) throw new WebApplicationException("Consulta id: La entidad no existe",405);
-        return ret;
+
+    private HospedajeEntity actualizarVotacion(HospedajeEntity hospedaje, CalificacionEntity calificacion) {
+        hospedaje.setValoracion(((hospedaje.getValoracion() * hospedaje.getCantidadVotaciones()) + calificacion.getValoracion()) / (hospedaje.getCantidadVotaciones() + 1));
+        hospedaje.setCantidadVotaciones(hospedaje.getCantidadVotaciones() + 1);
+        return update(hospedaje, hospedaje.getId());
     }
-    
-    public List<HospedajeEntity> findAll()throws WebApplicationException
-    {
-        LOGGER.info("Consultando todos los hospedajes");
-        List<HospedajeEntity> ret = persistence.findAll();
-        if(ret.isEmpty()) throw new WebApplicationException("Actualmente no existen hospedajes registrados.",405);
-        return ret;
-    }
-    
-    private void validar(HospedajeEntity entidad, String proceso) throws WebApplicationException
-    {
-        if(persistence.find(entidad.getId()) == null)
-        {
-            LOGGER.log(Level.WARNING, "Intento de {0} fallido.\nLa entidad no existe\nId:{1}", new Object[]{proceso, entidad.getId()});
-            throw new WebApplicationException(proceso+": La entidad no existe", 405);
-        }
-    }
-    
-//    private HospedajeEntity validarEntidad(HospedajeEntity entidad) throws WebApplicationException
-//    {
-//        if(entidad == null || entidad.getArrendador() != null || entidad.getDescripcion() != null || entidad.getTipoArrendamiento()!= null )
-//            throw new WebApplicationException("El parametro enviado no cumple con las caracteristicas especificadas",407);
-//        return entidad;
-//    }
-    
 }

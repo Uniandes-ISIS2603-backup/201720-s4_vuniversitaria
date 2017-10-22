@@ -5,23 +5,14 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.persistence.ArrendadorPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
-import javax.transaction.UserTransaction;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -29,23 +20,12 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author ws.duarte
  */
-@RunWith(Arquillian.class)
 public class ReglaEntityTest {
 
     public ReglaEntityTest() {
     }
-    
-    @Inject
-    UserTransaction utx;
-    private List<ReglaEntity> data = new ArrayList<ReglaEntity>();
 
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ReglaEntity.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
+    private List<ReglaEntity> data = new ArrayList<>();
 
     @BeforeClass
     public static void setUpClass() {
@@ -57,23 +37,12 @@ public class ReglaEntityTest {
 
     @Before
     public void setUp() {
-        try {
-            utx.begin();
-            clearData();
-            insertData();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        }
+        clearData();
+        insertData();
     }
 
     private void clearData() {
-        data = new ArrayList<ReglaEntity>();
+        data = new ArrayList<>();
     }
 
     private void insertData() {
@@ -163,6 +132,11 @@ public class ReglaEntityTest {
     public void testEquals() {
         ReglaEntity reglaT = data.get(0);
         Assert.assertTrue(reglaT.equals(data.get(0)));
+        BaseEntity base = new BaseEntity() {
+        };
+        base.setId(new Long(89));
+        reglaT.setId(new Long(89));
+        Assert.assertTrue(!reglaT.equals(base));
     }
 
     /**
@@ -173,7 +147,7 @@ public class ReglaEntityTest {
         ReglaEntity reglaT = data.get(0);
         Long id = new Long(3);
         reglaT.setId(new Long(3));
-        Assert.assertEquals(id, new Long(reglaT.hashCode()));
+        Assert.assertEquals(data.get(0).hashCode(), reglaT.hashCode());
     }
 
 }

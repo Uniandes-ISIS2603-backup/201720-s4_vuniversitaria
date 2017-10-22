@@ -20,10 +20,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+ */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
+import javax.ejb.Stateless;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,12 +40,12 @@ import javax.persistence.MappedSuperclass;
  * @author ISIS2603
  */
 @MappedSuperclass
+@Stateless
 public abstract class BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
+    protected Long id;
 
     public Long getId() {
         return id;
@@ -54,20 +55,18 @@ public abstract class BaseEntity implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public boolean equals(Object obj) {
-        if (this.getId() != null && ((BaseEntity) obj).getId() != null) {
-            return this.getId().equals(((BaseEntity) obj).getId());
+        if (obj != null && obj instanceof BaseEntity) {
+            BaseEntity base = (BaseEntity) obj;
+            if (base.getId() == null) {
+                return false;
+            } else {
+                return base.getId().equals(id);
+            }
+        } else {
+            return false;
         }
-        return super.equals(obj);
     }
 
     @Override

@@ -33,9 +33,9 @@ public class OrigenDetailDTO extends OrigenDTO{
      */
     public OrigenDetailDTO(OrigenEntity entity) {
         super(entity);
-        if (entity.getEstudiante() != null) {
+        if (entity.getEstudiantes() != null) {
             estudiantes=new ArrayList<>();
-            for(EstudianteEntity ent:entity.getEstudiante()){
+            for(EstudianteEntity ent:entity.getEstudiantes()){
                 estudiantes.add(new EstudianteDTO(ent));
             }
         }

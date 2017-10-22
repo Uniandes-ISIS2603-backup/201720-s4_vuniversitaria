@@ -26,10 +26,10 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -40,10 +40,8 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author ISIS2603
  */
 @Entity
-public class EstudianteEntity  implements Serializable //extends BaseEntity
+public class EstudianteEntity extends BaseEntity implements Serializable //extends BaseEntity
 {
-
-    @Id
     private Long cedula;
     
     private String nombre;
@@ -57,11 +55,11 @@ public class EstudianteEntity  implements Serializable //extends BaseEntity
     private List<FacturaEntity> facturas;
     
     @PodamExclude
-    @OneToOne(mappedBy = "estudiante", fetch=FetchType.LAZY)
+    @OneToOne
     private ReservaEntity reserva;
     
     @PodamExclude
-    @OneToMany(mappedBy = "estudiante")
+    @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true ,mappedBy = "estudiante", fetch=FetchType.LAZY)
     private List<CalificacionEntity> calificaciones;
     
     public ReservaEntity getReserva() {
@@ -112,6 +110,22 @@ public class EstudianteEntity  implements Serializable //extends BaseEntity
 
     public void setFacturas(List<FacturaEntity> facturas) {
         this.facturas = facturas;
+    }
+
+    
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof EstudianteEntity)
+            return super.equals(obj);
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.cedula);
+        hash = 67 * hash + Objects.hashCode(this.nombre);
+        return hash;
     }
     
     

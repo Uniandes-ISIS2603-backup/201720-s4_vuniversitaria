@@ -5,13 +5,11 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -19,104 +17,88 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * Clase que modela un hospedaje.
+ *
  * @author ws.duarte
  */
 @Entity
-public class HospedajeEntity implements Serializable
-{
-    /**
-     * Identificador único del hospedaje.
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+public class HospedajeEntity extends BaseEntity {
+
     /**
      * Tipo de arrendamiento del hospedaje.
      */
     private String tipoArrendamiento;
-    
+
     /**
      * Descripción del hospadaje.
      */
     private String descripcion;
-    
+
     /**
      * Valoración total del hospadaje.
      */
-    private double valoracion;
-    
+    private Double valoracion;
+
+    /**
+     * Cantidad de votos totales.
+     */
+    private Integer cantidadVotaciones;
+
     /**
      * Relación con regla.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ReglaEntity> reglas;
 
     /**
      * Relción con servicios.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ServiciosEntity> servicios;
-    
+
     /**
      * Relación con hospedajeLugar.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<HospedajeLugarEntity> hospedajesLugares;
-    
+
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<FacturaEntity> facturas;
-    
+
     /**
      * Relación con reserva.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ReservaEntity> reservas;
-    
+
     /**
      * Relación con calificaciónes.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<CalificacionEntity> calificaciones;
 
     /**
      * Relación con arrendador.
      */
     @PodamExclude
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private ArrendadorEntity arrendador;
-    
+
     /**
      * Relación con ubicación.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "hospedaje", orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY)
     private UbicacionEntity ubicacion;
-    
-    /**
-     * Retorna el identificador del hospedaje.
-     * @return Identificador del hospedaje.
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Cambia el identificador del hospedaje.
-     * @param id Nuevo identificador del hospedaje.
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      * Retorna el tipo de arreendamiento del hospedaje.
+     *
      * @return Tipo de arrendamiento del hospedaje.
      */
     public String getTipoArrendamiento() {
@@ -125,6 +107,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Cambia el tipo de arrendamiento del hospedaje.
+     *
      * @param tipoArrendamiento Nuevo tipo de arrendamiento para el hospedaje.
      */
     public void setTipoArrendamiento(String tipoArrendamiento) {
@@ -133,6 +116,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Retorna la dercripción del hospedaje.
+     *
      * @return Descripción del hospeadaje.
      */
     public String getDescripcion() {
@@ -141,6 +125,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Cambi la descripción del hospedaje.
+     *
      * @param descripcion Nueva descripción del hospadaje.
      */
     public void setDescripcion(String descripcion) {
@@ -149,22 +134,25 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Retorna la valoración del hospadaje.
+     *
      * @return Valoración del hospadaje.
      */
-    public double getValoracion() {
+    public Double getValoracion() {
         return valoracion;
     }
 
     /**
      * Cambiia la valoración del hospedaje.
+     *
      * @param valoracion Nueva valoración para el hospedaje.
      */
-    public void setValoracion(double valoracion) {
+    public void setValoracion(Double valoracion) {
         this.valoracion = valoracion;
     }
 
     /**
      * Retorna la relacíon con las reglas.
+     *
      * @return Relación con las reglas.
      */
     public List<ReglaEntity> getReglas() {
@@ -173,6 +161,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Cambia la relación con regla.
+     *
      * @param reglas Nueva relación con regla.
      */
     public void setReglas(List<ReglaEntity> reglas) {
@@ -181,6 +170,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Retorna la relación con servicios.
+     *
      * @return Relación con servicios.
      */
     public List<ServiciosEntity> getServicios() {
@@ -189,6 +179,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Cambia la relación con servicios.
+     *
      * @param servicios Nueva relación con servicios.
      */
     public void setServicios(List<ServiciosEntity> servicios) {
@@ -197,6 +188,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Retorna la relación con hospedajeLugar.
+     *
      * @return Relación con hospedajeLugar.
      */
     public List<HospedajeLugarEntity> getHospedajesLugares() {
@@ -205,6 +197,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Cambia la relación con hospedajeLugar.
+     *
      * @param hospedajesLugares Nueva relación entre hospedajeLugar.
      */
     public void setHospedajesLugares(List<HospedajeLugarEntity> hospedajesLugares) {
@@ -213,6 +206,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Retorna la relacíon con reserva.
+     *
      * @return Relación con reserva.
      */
     public List<ReservaEntity> getReservas() {
@@ -221,6 +215,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Cambia la relación con reserva.
+     *
      * @param reservas Nueva relación con reserva.
      */
     public void setReservas(List<ReservaEntity> reservas) {
@@ -229,6 +224,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Retorna la relación con calificaciones.
+     *
      * @return Relación con calificación.
      */
     public List<CalificacionEntity> getCalificaciones() {
@@ -237,6 +233,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Cambia la relación con calificacíon.
+     *
      * @param calificaciones Nueva relación con calificación.
      */
     public void setCalificaciones(List<CalificacionEntity> calificaciones) {
@@ -245,6 +242,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Retorna la relación con arrendador.
+     *
      * @return Relación con arrendador.
      */
     public ArrendadorEntity getArrendador() {
@@ -253,6 +251,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Cambia la relación con arrendador.
+     *
      * @param arrendador Nueva relacíon con arrendador.
      */
     public void setArrendador(ArrendadorEntity arrendador) {
@@ -261,6 +260,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Retorna la relación con ubicación.
+     *
      * @return Relación con ubicación.
      */
     public UbicacionEntity getUbicacion() {
@@ -269,6 +269,7 @@ public class HospedajeEntity implements Serializable
 
     /**
      * Cambia la relación conubicación.
+     *
      * @param ubicacion Nueva relación con ubicación.
      */
     public void setUbicacion(UbicacionEntity ubicacion) {
@@ -282,27 +283,58 @@ public class HospedajeEntity implements Serializable
     public void setFacturas(List<FacturaEntity> facturas) {
         this.facturas = facturas;
     }
-    
+
     /**
      * Determina si dos hospedajes son iguales.
+     *
      * @param obj Hospedaje a comparar.
      * @return True si son iguales, false de lo contrario.
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj != null && obj instanceof HospedajeEntity && this.id != null && ((HospedajeEntity)obj).getId() != null) return this.id.equals(((HospedajeEntity)obj).getId());
-        return super.equals(obj); 
+        if (obj instanceof HospedajeEntity) {
+            return super.equals(obj);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.tipoArrendamiento);
+        hash = 97 * hash + Objects.hashCode(this.descripcion);
+        hash = 97 * hash + Objects.hashCode(this.valoracion);
+        hash = 97 * hash + Objects.hashCode(this.cantidadVotaciones);
+        return hash;
     }
 
     /**
-     * Retorna el código hash del hospedaje.
-     * @return Código hash del hospedaje.
+     * Retorna la cantidad de votos totales.
+     *
+     * @return Cantidad de votos totales.
      */
-    @Override
-    public int hashCode() {
-        if(this.id != null) return this.id.hashCode();
-        return super.hashCode(); 
+    public Integer getCantidadVotaciones() {
+        return cantidadVotaciones;
     }
-    
-    
+
+    /**
+     * Cambia el valor de la cantidad de realciones totales.
+     *
+     * @param cantidadVotaciones Nueva cantidad de realciones totales.
+     */
+    public void setCantidadVotaciones(Integer cantidadVotaciones) {
+        this.cantidadVotaciones = cantidadVotaciones;
+    }
+
+    /**
+     * Incremaenta la cantidad de voraciónes y actualiza la valoración total.
+     *
+     * @param calificación calificación a agregar.
+     */
+    public void incrementarCalificación(CalificacionEntity calificación) {
+
+        valoracion = ((valoracion * cantidadVotaciones) + calificación.getValoracion()) / (cantidadVotaciones + 1);
+        cantidadVotaciones++;
+    }
 }

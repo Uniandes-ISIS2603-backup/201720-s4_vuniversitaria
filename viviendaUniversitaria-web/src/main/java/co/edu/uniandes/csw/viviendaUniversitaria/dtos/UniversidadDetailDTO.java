@@ -11,10 +11,18 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.UniversidadEntity;
  *
  * @author c.santacruza
  */
-public class UniversidadDetailDTO extends UniversidadDTO{
-     public UniversidadDetailDTO() {
-         //Vacio por defecto
-       
+public class UniversidadDetailDTO extends UniversidadDTO {
+
+    /**
+     * Relación con ubicacion.
+     */
+    private UbicacionDTO ubicacion;
+    
+    /**
+     * Constructor po defecto.
+     */
+    public UniversidadDetailDTO() {
+        //Vacio por defecto
     }
 
     /**
@@ -24,15 +32,22 @@ public class UniversidadDetailDTO extends UniversidadDTO{
      */
     public UniversidadDetailDTO(UniversidadEntity entity) {
         super(entity);
+        if (entity.getUbicacion() != null) {
+            this.ubicacion = new UbicacionDTO(entity.getUbicacion());
+        }
     }
 
     /**
      * Transformar un DTO a un Entity
      *
-     * @return 
+     * @return
      */
     @Override
     public UniversidadEntity toEntity() {
-        return super.toEntity();
+        UniversidadEntity u = super.toEntity();
+        if (ubicacion != null) {
+            u.setUbicacion(ubicacion.toEntity());
+        }
+        return u;
     }
 }

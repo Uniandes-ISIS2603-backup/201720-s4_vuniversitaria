@@ -13,7 +13,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -38,7 +37,7 @@ public class ReservaEntity implements Serializable {
     private Date fechaFin;
 
     @PodamExclude
-    @ManyToOne
+    @OneToOne(mappedBy = "reserva", fetch = FetchType.LAZY)
     private EstudianteEntity estudiante;
     
     @PodamExclude
@@ -46,7 +45,7 @@ public class ReservaEntity implements Serializable {
     private HospedajeEntity hospedaje;
     
     @PodamExclude
-    @OneToMany(mappedBy = "reserva", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<DetalleReservaEntity> detalleReserva;
 
     public List<DetalleReservaEntity> getDetalleReserva() {
@@ -102,6 +101,7 @@ public class ReservaEntity implements Serializable {
     }
 
     public void setFechaInicio(Date fechaInicio) {
+        
         this.fechaInicio = fechaInicio;
 
     }

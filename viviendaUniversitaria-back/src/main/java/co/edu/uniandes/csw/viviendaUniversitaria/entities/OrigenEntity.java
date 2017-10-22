@@ -7,13 +7,11 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -21,15 +19,11 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author a.eslava
  */
 @Entity
-public class OrigenEntity implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+public class OrigenEntity extends BaseEntity implements Serializable{
     private String name;
     
     @PodamExclude
-    @OneToMany(mappedBy = "origen", fetch=FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true ,mappedBy = "origen", fetch=FetchType.LAZY)
     private List<EstudianteEntity> estudiante;
 
     public String getName() {
@@ -40,7 +34,7 @@ public class OrigenEntity implements Serializable{
         this.name = name;
     }
 
-    public List<EstudianteEntity> getEstudiante() {
+    public List<EstudianteEntity> getEstudiantes() {
         return estudiante;
     }
 
@@ -48,15 +42,18 @@ public class OrigenEntity implements Serializable{
         this.estudiante = estudiante;
     }
     
-    public Long getId() {
-        return id;
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof OrigenEntity)
+            return super.equals(obj);
+        return false;
     }
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public int hashCode() {
+        int hash = super.hashCode();
+        hash = 89 * hash + Objects.hashCode(this.name);
+        return hash;
     }
-
+    
 }

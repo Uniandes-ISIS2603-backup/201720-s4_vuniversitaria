@@ -6,87 +6,23 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeLugarEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.HospedajeLugarPersistence;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.WebApplicationException;
 
 /**
  *
  * @author ws.duarte
  */
 @Stateless
-public class HospedajeLugarLogic 
-{
-    private static final Logger LOGGER = Logger.getLogger(HospedajeLugarLogic.class.getName());
-    
+public class HospedajeLugarLogic extends GenericLogic<HospedajeLugarEntity> {
+
+    public HospedajeLugarLogic() {
+    }
+
     @Inject
-    private HospedajeLugarPersistence persistence;
-    
-    
-    public HospedajeLugarEntity create(HospedajeLugarEntity entidad) throws WebApplicationException
-    {
-        LOGGER.info("Creación de un hospedaje");
-        if(persistence.find(entidad.getId()) != null)
-        {
-            LOGGER.log(Level.WARNING, "Intento de creacion fallido.\nLa entidad ya existe\nId:{1}", entidad.getId());
-            throw new WebApplicationException("Creacion: La entidad ya existe", 405);
-        }
-        return persistence.create(entidad);
+    public HospedajeLugarLogic(HospedajeLugarPersistence persistence) {
+        super(persistence, HospedajeLugarEntity.class);
     }
-    
-    public HospedajeLugarEntity update(HospedajeLugarEntity entidad) throws WebApplicationException
-    {
-        LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", entidad.getId());
-        validar(entidad, "Actualización");
-        return persistence.update((entidad));
-    }
-    
-    public void delete(Long id) throws WebApplicationException
-    {
-        LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}",id);
-        if(persistence.find(id) == null) 
-            {
-            LOGGER.log(Level.WARNING, "Intento de Eliminación fallido.\nLa entidad no existe\nId:{0}",  id);
-            throw new WebApplicationException("Eliminación: La entidad no existe", 405);
-        }
-        persistence.delete(id);
-    }
-    
-    public HospedajeLugarEntity find(Long id)throws WebApplicationException
-    {
-        LOGGER.log(Level.INFO, "Actualizar la entidad con id: {0}", id);
-        HospedajeLugarEntity ret = persistence.find(id);
-        if(ret == null) throw new WebApplicationException("Consulta id: La entidad no existe",405);
-        return ret;
-    }
-    
-    public List<HospedajeLugarEntity> findAll()throws WebApplicationException
-    {
-        LOGGER.info("Consultando todos los hospedajes");
-        List<HospedajeLugarEntity> ret = persistence.findAll();
-        if(ret.isEmpty()) throw new WebApplicationException("Actualmente no existen registros.",405);
-        return ret;
-    }
-    
-    private void validar(HospedajeLugarEntity entidad, String proceso) throws WebApplicationException
-    {
-        if(persistence.find(entidad.getId()) == null)
-        {
-            LOGGER.log(Level.WARNING, "Intento de {0} fallido.\nLa entidad no existe\nId:{1}", new Object[]{proceso, entidad.getId()});
-            throw new WebApplicationException(proceso+": La entidad no existe",405);
-        }
-    }
-    
-//    private HospedajeLugarEntity validarEntidad(HospedajeLugarEntity entidad) throws WebApplicationException
-//    {
-//        if(entidad == null || entidad.getDistancia().intValue() <= 0 || entidad.getHospedaje() != null || entidad.getLugarInteres() != null)
-//            throw new WebApplicationException("El parametro enviado no cumple con las caracteristicas especificadas",407);
-//        return entidad;
-//    }
-    
+
 }
