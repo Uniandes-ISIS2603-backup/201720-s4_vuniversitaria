@@ -21,19 +21,19 @@ import javax.ws.rs.WebApplicationException;
  */
 @Stateless
 public class ReglaLogic extends GenericLogic<ReglaEntity> {
-
+    
     private HospedajeLogic hospedajeLogic;
-
+    
     public ReglaLogic() {
         super();
     }
-
+    
     @Inject
     public ReglaLogic(ReglaPersistence reglaPersistence, HospedajeLogic hospedajeLogic) throws InstantiationException, IllegalAccessException {
         super(reglaPersistence, ReglaEntity.class);
         this.hospedajeLogic = hospedajeLogic;
     }
-
+    
     public List<ReglaEntity> findAll(Long idHospedaje) throws WebApplicationException, BusinessLogicException {
         LOG.log(Level.INFO, "Consultando todas las reglas de un hospedaje. \nid:{0}", idHospedaje);
         HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
@@ -42,7 +42,7 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
         }
         return hospedaje.getReglas();
     }
-
+    
     public ReglaEntity find(Long idHospedaje, Long idRegla) throws WebApplicationException {
         LOG.log(Level.INFO, "Actualizar la entidad con id: {0}", idRegla);
         if (!exist(idRegla)) {
@@ -50,17 +50,20 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
         }
         return ((ReglaPersistence) persistence).find(idHospedaje, idRegla);
     }
-
+    
     public ReglaEntity create(Long idhospedaje, ReglaEntity entidad) throws WebApplicationException, BusinessLogicException {
         LOG.log(Level.INFO, "Creacion de una nueva entidad regla l hospedaje id: {0}", idhospedaje);
-        if (!exist(entidad.getId())) {
+        if (entidad.getId() != null && exist(entidad.getId())) {
             throw new WebApplicationException("Ya existe la regla con el id especificado", 405);
         }
         HospedajeEntity hospedaje = hospedajeLogic.find(idhospedaje);
         entidad.setHospedaje(hospedaje);
+//        if (entidad.getId() == null) {
+//            entidad.setId(new Long(0));
+//        }
         return ((ReglaPersistence) persistence).create(entidad);
     }
-
+    
     public ReglaEntity update(Long idhospedaje, ReglaEntity entidad) throws WebApplicationException, BusinessLogicException {
         LOG.log(Level.INFO, "Actualizar la entidad con id: {0}", entidad.getId());
         if (!exist(entidad.getId())) {
@@ -70,7 +73,7 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
         entidad.setHospedaje(hospedaje);
         return ((ReglaPersistence) persistence).update(entidad);
     }
-
+    
     public void delete(Long idhospedaje, Long idRegla) throws WebApplicationException {
         LOG.log(Level.INFO, "Actualizar la entidad con id: {0}", idRegla);
         if (!exist(idRegla)) {

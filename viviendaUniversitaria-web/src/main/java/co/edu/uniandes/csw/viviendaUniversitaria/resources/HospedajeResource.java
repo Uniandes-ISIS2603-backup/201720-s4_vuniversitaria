@@ -69,6 +69,16 @@ public class HospedajeResource {
     public void delete(@PathParam("idHospedaje") Long id) throws WebApplicationException, BusinessLogicException {
         hospedajeLogic.delete(id);
     }
+    
+    private List<HospedajeDetaillDTO> construir(List<HospedajeEntity> list) {
+        List<HospedajeDetaillDTO> ret = new ArrayList<>();
+        for (HospedajeEntity r : list) {
+            ret.add(new HospedajeDetaillDTO(r));
+        }
+        return ret;
+    }
+    
+    //Relaciones
 
     @Path("{idHospedaje: [0-9][0-9]*}/reglas")
     public Class<ReglaResource> getRegla(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
@@ -77,14 +87,6 @@ public class HospedajeResource {
             throw new WebApplicationException("Acceso: La entidad no existe", 405);
         }
         return ReglaResource.class;
-    }
-
-    private List<HospedajeDetaillDTO> construir(List<HospedajeEntity> list) {
-        List<HospedajeDetaillDTO> ret = new ArrayList<>();
-        for (HospedajeEntity r : list) {
-            ret.add(new HospedajeDetaillDTO(r));
-        }
-        return ret;
     }
 
     @GET
