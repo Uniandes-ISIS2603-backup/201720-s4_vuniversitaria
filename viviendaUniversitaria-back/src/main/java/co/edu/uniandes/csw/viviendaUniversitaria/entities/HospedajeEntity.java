@@ -336,5 +336,5 @@ public class HospedajeEntity extends BaseEntity {
 
         valoracion = ((valoracion * cantidadVotaciones) + calificación.getValoracion()) / (cantidadVotaciones + 1);
         cantidadVotaciones++;
-    }
+    }   
 }
