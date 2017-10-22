@@ -1,0 +1,26 @@
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div id="alertPanel" style="text-align: center"></div>
+<div class="container-fluid">
+    <div class="col-md-4">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>    
+                    <th>Cedula</th>  
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="estudiante in estudiantesRecords">
+                    <td id="{{$index}}-name">{{estudiante.name}}</td>
+                        <td id="{{$index}}-cedula">{{author.cedula}}</td>                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
