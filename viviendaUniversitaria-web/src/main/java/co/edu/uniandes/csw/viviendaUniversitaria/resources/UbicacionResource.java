@@ -14,7 +14,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -41,11 +40,8 @@ public class UbicacionResource {
 
     @GET
     public List<UbicacionDetailDTO> getUbicaciones() {
-        if (listEntity2DetailDTO(logic.findAll()) == null) {
-            throw new WebApplicationException("Por favor ingresar datos", 404);
-        } else {
             return listEntity2DetailDTO(logic.findAll());
-        }
+        
     }
 
     private List<UbicacionDetailDTO> listEntity2DetailDTO(List<UbicacionEntity> entityList) {
@@ -67,18 +63,13 @@ public class UbicacionResource {
         }
     }
 
-    @POST
-    public UbicacionDetailDTO createUbicacion(UbicacionDetailDTO ubi) throws BusinessLogicException {
-        if (ubi == null) {
-            throw new WebApplicationException("Por favor ingresar datos", 404);
-        } else {
-            return new UbicacionDetailDTO(logic.create(ubi.toEntity()));
-        }
-    }
-
     @PUT
     @Path("/{idUbicacion: [0-9][0-9]*}")
     public UbicacionDetailDTO updateUbicacion(@PathParam("idUbicacion") Long id, UbicacionDetailDTO ubi) throws BusinessLogicException {
+         UbicacionEntity x = logic.find(id);
+        if (x == null) {
+            throw new WebApplicationException("El recurso con id" + id + "no existe", 404);
+        }
         if (logic.find(id) != null && id.equals(ubi.getId())) {
             UbicacionEntity entity = logic.update(ubi.toEntity(), id);
             return new UbicacionDetailDTO(entity);
@@ -86,16 +77,13 @@ public class UbicacionResource {
             throw new WebApplicationException("La ubicacion con ese id no existe");
         }
     }
-
-    @DELETE
-    @Path("/{idUbicacion: [0-9][0-9]*}")
-    public void deleteUbicacion(@PathParam("idUbicacion") Long id) throws BusinessLogicException {
-        if (logic.find(id) != null) {
-            logic.delete(id);
-        } else {
-            throw new WebApplicationException("La ubicacion con ese id no existe");
+    @POST
+    public UbicacionDetailDTO createUbicacion(UbicacionDetailDTO ubi) throws BusinessLogicException {
+        UbicacionEntity x = logic.find(ubi.getId());
+        if (x != null) {
+            throw new WebApplicationException("El recurso con id" + ubi.getId() + "ya existe", 404);
         }
-
+            return new UbicacionDetailDTO(this.logic.create(ubi.toEntity()));
+        
     }
-
 }
