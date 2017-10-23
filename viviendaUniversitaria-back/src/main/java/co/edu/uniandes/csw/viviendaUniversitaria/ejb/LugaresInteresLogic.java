@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.LugaresInteresEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.UbicacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.LugaresInteresPersistence;
 import java.util.List;
@@ -42,7 +41,7 @@ public class LugaresInteresLogic {
 
     public LugaresInteresEntity findIdLugarInteres(Long id) throws WebApplicationException {
         LOGGER.info("Inicio proceso busqueda de Lugar de interes");
-        LugaresInteresEntity respuesta = persistence.findId(id);
+        LugaresInteresEntity respuesta = persistence.find(id);
         if (respuesta == null) {
             throw new WebApplicationException("no existe el lugar de interes con id:" + id, 405);
         }
@@ -82,7 +81,7 @@ public class LugaresInteresLogic {
 
     public void delete(Long id) throws WebApplicationException, BusinessLogicException {
         validacionNull(id);
-        LugaresInteresEntity lugarDelete = persistence.findId(id);
+        LugaresInteresEntity lugarDelete = persistence.find(id);
         if (lugarDelete == null) {
             //verifica que el servicio a actualizar exista
             throw new WebApplicationException("Ingrese el id de algun Lugar de interes existente",407);

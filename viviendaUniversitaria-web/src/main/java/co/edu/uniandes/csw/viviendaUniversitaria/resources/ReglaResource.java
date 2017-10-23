@@ -11,8 +11,6 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReglaEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -29,12 +27,8 @@ import javax.ws.rs.core.MediaType;
  *
  * @author ws.duarte
  */
-//@Path("regla")
-//@Produces("application/json")
-//@Consumes("application/json")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-//@RequestScoped
 public class ReglaResource 
 {
    

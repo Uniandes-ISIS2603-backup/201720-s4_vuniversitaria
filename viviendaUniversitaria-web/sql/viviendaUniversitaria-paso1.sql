@@ -1,7 +1,6 @@
 
 delete from REGLAENTITY;
 delete from FACTURAENTITY;
-delete from FacturaEntity;
 delete from CALIFICACIONENTITY;
 delete from UBICACIONENTITY;
 delete from ReservaEntity;
@@ -142,11 +141,7 @@ insert into ServiciosEntity (descripcion, costo) values ('Liza', 32.34);
 insert into ServiciosEntity (descripcion, costo) values ('Berte', 27.24);
 
 -- Facturas
-insert into APP.FACTURAENTITY (id,fecha,iva,total) values (1,'12/12/2011',20,20);
-insert into APP.FACTURAENTITY (id,fecha,iva,total) values (2,'10/11/2009',19,25);
-insert into APP.FACTURAENTITY (id,fecha,iva,total) values (3,'12/11/2008',10,30);
-insert into APP.FACTURAENTITY (id,fecha,iva,total) values (4,'12/12/2005',2,22);
-insert into APP.FACTURAENTITY (id,fecha,iva,total) values (5,'09/09/2001',9,10);
+
 insert into FacturaEntity (fecha, total, iva) values ('10/5/2016', 64.81, 11.15);
 insert into FacturaEntity (fecha, total, iva) values ('12/23/2016', 50.81, 21.57);
 insert into FacturaEntity (fecha, total, iva) values ('5/20/2017', 56.99, 34.11);
@@ -209,9 +204,7 @@ update UBICACIONENTITY set hospedaje_id = 3 where id = 3;
 update ReservaEntity set hospedaje_id = 1 where id = 1;
 update ReservaEntity set hospedaje_id = 1 where id = 2;
 update ReservaEntity set hospedaje_id = 1 where id = 3;
-update ReservaEntity set estudiante_id = 1 where id = 1;
-update ReservaEntity set estudiante_id = 1 where id = 2;
-update ReservaEntity set estudiante_id = 1 where id = 3;
+
 
 update UBICACIONENTITY set lugaresInteres_id = 1 where id = 3;
 update UBICACIONENTITY set lugaresInteres_id = 2 where id = 3;
