@@ -10,6 +10,8 @@ import co.edu.uniandes.csw.viviendaUniversitaria.persistence.HospedajePersistenc
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.WebApplicationException;
 
 /**
@@ -19,6 +21,9 @@ import javax.ws.rs.WebApplicationException;
 @Stateless
 public class ServiciosLogic {
 
+    @PersistenceContext(unitName = "viviendaUniversitariaPU")
+    protected EntityManager em;
+    
     @Inject
     private HospedajePersistence hospedajePersistence; // Variable para acceder a la persistencia de la aplicación.
 
@@ -66,8 +71,9 @@ public class ServiciosLogic {
             if (existe < 0) {
                 throw new WebApplicationException("no existe el servicio con id: " + id, 405);
             } else {
-                hospedajePersistence.find(idHospedaje).getServicios().set(existe, entidad);
-                return findServicio(idHospedaje, id);
+                entidad.setHospedaje(hospedajePersistence.find(idHospedaje));
+                ServiciosEntity entity = em.merge(entidad);
+                return entity;
             }
         }
     }
