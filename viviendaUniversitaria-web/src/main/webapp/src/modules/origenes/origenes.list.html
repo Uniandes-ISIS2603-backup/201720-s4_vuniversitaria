@@ -1,0 +1,16 @@
+<div class="col-md-4">
+    <div class="container-fluid">   
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>                      
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="origen in origenesRecords">
+                    <td id="{{$index}}-name"><a ui-sref="origenDetail({origenesId: origen.id})">{{origen.name}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
