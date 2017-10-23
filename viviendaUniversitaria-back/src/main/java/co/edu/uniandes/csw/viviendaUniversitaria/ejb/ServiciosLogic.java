@@ -66,7 +66,8 @@ public class ServiciosLogic {
             if (existe < 0) {
                 throw new WebApplicationException("no existe el servicio con id: " + id, 405);
             } else {
-                return hospedajePersistence.updateServicio(idHospedaje, id, entidad);
+                hospedajePersistence.find(idHospedaje).getServicios().set(existe, entidad);
+                return findServicio(idHospedaje, id);
             }
         }
     }

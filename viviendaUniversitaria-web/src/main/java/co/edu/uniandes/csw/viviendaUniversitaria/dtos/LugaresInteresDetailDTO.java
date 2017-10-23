@@ -26,7 +26,14 @@ public class LugaresInteresDetailDTO extends LugaresInteresDTO {
      */
     public LugaresInteresDetailDTO(LugaresInteresEntity entity) {
         super(entity);
+        if(entity.getUbicacion()!=null)
+        {
         ubicacion = new UbicacionDTO(entity.getUbicacion());
+        }
+        else
+        {
+            ubicacion = new UbicacionDTO();
+        }
     }
 
     /**
