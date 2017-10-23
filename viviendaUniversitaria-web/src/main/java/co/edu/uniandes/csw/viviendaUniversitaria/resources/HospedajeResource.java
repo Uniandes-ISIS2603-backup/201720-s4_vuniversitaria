@@ -36,7 +36,7 @@ public class HospedajeResource {
 
     @Inject
     private HospedajeLogic hospedajeLogic;
-    
+
     public HospedajeResource() {
         super();
     }
@@ -69,7 +69,7 @@ public class HospedajeResource {
     public void delete(@PathParam("idHospedaje") Long id) throws WebApplicationException, BusinessLogicException {
         hospedajeLogic.delete(id);
     }
-    
+
     private List<HospedajeDetaillDTO> construir(List<HospedajeEntity> list) {
         List<HospedajeDetaillDTO> ret = new ArrayList<>();
         for (HospedajeEntity r : list) {
@@ -77,9 +77,8 @@ public class HospedajeResource {
         }
         return ret;
     }
-    
-    //Relaciones
 
+    //Relaciones
     @Path("{idHospedaje: [0-9][0-9]*}/reglas")
     public Class<ReglaResource> getRegla(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
         HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
@@ -141,6 +140,21 @@ public class HospedajeResource {
             }
         }
         return ret;
+    }
+
+    /**
+     *
+     * @param idHospedaje
+     * @return Clase servicios
+     * @throws co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException
+     */
+    @Path("{idHospedaje: [0-9][0-9]*}/servicios")
+    public Class<ServiciosResourse> getServicios(@PathParam("idHospedaje") Long idHospedaje) throws BusinessLogicException {
+        HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
+        if (hospedaje == null) {
+            throw new WebApplicationException("Acceso: La entidad no existe", 405);
+        }
+        return ServiciosResourse.class;
     }
 
 }
