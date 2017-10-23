@@ -195,15 +195,11 @@ update CALIFICACIONENTITY set hospedaje_id = 1 where id = 1;
 update CALIFICACIONENTITY set hospedaje_id = 1 where id = 2;
 update CALIFICACIONENTITY set hospedaje_id = 2 where id = 3;
 update CALIFICACIONENTITY set hospedaje_id = 3 where id = 4;
-update FacturaEntity set hospedaje_id = 1 where id = 1;
-update FacturaEntity set hospedaje_id = 1 where id = 2;
-update FacturaEntity set hospedaje_id = 1 where id = 3;
+
 update UBICACIONENTITY set hospedaje_id = 1 where id = 1;
 update UBICACIONENTITY set hospedaje_id = 2 where id = 2;
 update UBICACIONENTITY set hospedaje_id = 3 where id = 3;
-update ReservaEntity set hospedaje_id = 1 where id = 1;
-update ReservaEntity set hospedaje_id = 1 where id = 2;
-update ReservaEntity set hospedaje_id = 1 where id = 3;
+
 
 
 update UBICACIONENTITY set lugaresInteres_id = 1 where id = 3;
