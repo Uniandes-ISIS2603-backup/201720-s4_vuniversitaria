@@ -4,7 +4,10 @@
         'ui.router',
         'ui.bootstrap',
         // Internal modules dependencies       
-        'estudianteModule'
+        'estudianteModule',
+        'origenModule'
+        
+        
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {

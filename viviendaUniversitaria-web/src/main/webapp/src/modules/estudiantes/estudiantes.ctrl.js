@@ -1,18 +1,18 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 (function (ng) {
     var mod = ng.module("estudianteModule");
     mod.constant("estudiantesContext", "api/estudiantes");
-    mod.controller('estudianteCtrl', ['$scope', '$http', 'estudiantesContext',
-        function ($scope, $http, estudiantesContext) {
-            $http.get('data/estudiantes.json').then(function (response) {
-                $scope.authorsRecords = response.data;
+    mod.controller('estudianteCtrl', ['$scope', '$http', 'estudiantesContext', '$state',
+        function ($scope, $http, estudiantesContext, $state) {
+            $http.get(estudiantesContext).then(function (response) {
+                $scope.estudiantesRecords = response.data;
             });
+            
+            if ($state.params.estudianteId !== undefined) {
+                $http.get(estudiantesContext + '/' + $state.params.estudianteId).then(function (response) {
+                    $scope.currentEstudiante = response.data;
+                });
+            }
         }
     ]);
 }
 )(angular);
-

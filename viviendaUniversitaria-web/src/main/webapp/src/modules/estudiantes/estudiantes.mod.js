@@ -1,30 +1,46 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 (function (ng) {
-    // Definición del módulo
     var mod = ng.module("estudianteModule", ['ui.router']);
-
+    mod.constant("estudiantesContext", "api/estudiantes");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/estudiantes/';
             $urlRouterProvider.otherwise("/estudiantesList");
-            $stateProvider.state('estudiantesList', {
-                // Url que aparecerá en el browser
-                url: '/estudiantes/list',
+
+            $stateProvider.state('estudiantes', {
+                url: '/estudiantes',
+                abstract: true,
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'estudiantes.list.html',
+                        templateUrl: basePath + 'estudiantes.html',
                         controller: 'estudianteCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('estudiantesList', {
+                url: '/list',
+                parent: 'estudiantes',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'estudiantes.list.html'
+                    }
+                }
+            }).state('estudianteDetail', {
+                url: '/{estudianteId:int}/detail',
+                parent: 'estudiantes',
+                param: {
+                    estudianteId: null
+                },
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'estudiantes.list.html'
+                    },
+                    'detailView': {
+                        templateUrl: basePath + 'estudiantes.detail.html',
+                        controller: 'estudianteCtrl',
+                        controllerAs: 'ctrl'
+                    }
+
+                }
+
             });
-        }
-    ]);
+        }]);
 })(window.angular);
-
-
-
