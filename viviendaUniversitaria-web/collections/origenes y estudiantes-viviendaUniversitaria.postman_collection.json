@@ -176,7 +176,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/viviendaUniversitaria-web/api/estudiantes/123",
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/estudiantes/1",
 				"method": "GET",
 				"header": [
 					{
@@ -238,7 +238,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/viviendaUniversitaria-web/api/estudiantes/123",
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/estudiantes/1",
 				"method": "PUT",
 				"header": [
 					{
@@ -269,38 +269,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/viviendaUniversitaria-web/api/estudiantes/1235",
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "delete origen valido",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 204\"] = responseCode.code === 204;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/viviendaUniversitaria-web/api/origenes/2",
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/estudiantes/2",
 				"method": "DELETE",
 				"header": [
 					{
@@ -325,7 +294,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
 						]
 					}
 				}
@@ -356,7 +325,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
 						]
 					}
 				}
@@ -380,68 +349,6 @@
 			"response": []
 		},
 		{
-			"name": "post id repetida estudiante fallida",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 412\"] = responseCode.code === 412;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/viviendaUniversitaria-web/api/estudiantes",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"sjkdfb\",\n\t\"cedula\": \"123\"\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "put id inexistente estudiante fallida",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 404\"] = responseCode.code === 404;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/viviendaUniversitaria-web/api/estudiantes/987654",
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"sjkdfb\"\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
 			"name": "get id inexistente origen fallido",
 			"event": [
 				{
@@ -449,7 +356,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
 						]
 					}
 				}
@@ -480,7 +387,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
 						]
 					}
 				}
@@ -498,37 +405,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\t\"nombre\": \"asdas\"\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "delete origen id inexistente fallido",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 404\"] = responseCode.code === 404;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/viviendaUniversitaria-web/api/origenes/98754",
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
 				},
 				"description": ""
 			},
