@@ -216,6 +216,28 @@ update ReservaEntity set hospedaje_id = 1 where id = 1;
 update ReservaEntity set hospedaje_id = 1 where id = 2;
 update ReservaEntity set hospedaje_id = 1 where id = 3;
 
+update ServiciosEntity set hospedaje_id =1 where id =1;
+update ServiciosEntity set hospedaje_id =2 where id =2;
+update ServiciosEntity set hospedaje_id =3 where id =3;
+update ServiciosEntity set hospedaje_id =4 where id =4;
+update ServiciosEntity set hospedaje_id =5 where id =5;
+update ServiciosEntity set hospedaje_id =6 where id =6;
+update ServiciosEntity set hospedaje_id =7 where id =7;
+update ServiciosEntity set hospedaje_id =8 where id =8;
+update ServiciosEntity set hospedaje_id =9 where id =9;
+update ServiciosEntity set hospedaje_id =10 where id =10;
+update ServiciosEntity set hospedaje_id =11 where id =11;
+update ServiciosEntity set hospedaje_id =12 where id =12;
+update ServiciosEntity set hospedaje_id =13 where id =13;
+update ServiciosEntity set hospedaje_id =14 where id =14;
+update ServiciosEntity set hospedaje_id =15 where id =15;
+update ServiciosEntity set hospedaje_id =16 where id =16;
+update ServiciosEntity set hospedaje_id =17 where id =17;
+update ServiciosEntity set hospedaje_id =18 where id =18;
+update ServiciosEntity set hospedaje_id =19 where id =19;
+update ServiciosEntity set hospedaje_id =19 where id =20;
+
+
 update UniversidadEntity set UBICACION_ID = 7 where id = 1;
 update UniversidadEntity set UBICACION_ID = 8 where id = 2;
 update UniversidadEntity set UBICACION_ID = 9 where id = 3;
