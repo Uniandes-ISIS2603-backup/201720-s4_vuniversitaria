@@ -89,7 +89,7 @@ public class ArrendadorLogic {
         return getArrendador(arrendadorId).getHospedajes();
     }
     
-    public HospedajeEntity getHospedajeIdArrendador(Long arrendadorId, Long hospedajeId) {
+    public HospedajeEntity getHospedajeIdArrendador(Long arrendadorId, Long hospedajeId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar un hospedaje con id = {0}", hospedajeId);
         List<HospedajeEntity> listaHospedajes = getArrendador(arrendadorId).getHospedajes();
         HospedajeEntity hospedajeEntity = new HospedajeEntity();
@@ -98,7 +98,8 @@ public class ArrendadorLogic {
         if (i >= 0) {
             return listaHospedajes.get(i);
         }
-        return null;
+       else
+            throw new BusinessLogicException("El hospedaje no le pertenece al arrendador solicitado");
     }   
     
     public HospedajeEntity addHospedaje(Long idArrendador, Long idHospedaje) throws BusinessLogicException{

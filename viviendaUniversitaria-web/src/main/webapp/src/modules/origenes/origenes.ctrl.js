@@ -10,7 +10,7 @@
             if ($state.params.origenesId !== undefined) {
                 $http.get(origenContext + '/' + $state.params.origenesId).then(function (response) {
                     $scope.estudiantesRecords = response.data.estudiantes;
-                    $scope.currentEditorial = response.data;
+                    $scope.currentOrigen = response.data;
                 });
             }
         }

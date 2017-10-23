@@ -9,9 +9,10 @@ import co.edu.uniandes.csw.viviendaUniversitaria.dtos.HospedajeDetaillDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.ArrendadorLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -42,14 +43,7 @@ public class ArrendadorHospedajeResource {
         return listaHospedaje;
     }
     
-    private List<HospedajeEntity> getListaHospedajesDTO(List<HospedajeDetaillDTO> listaHospedajesDTO){
-        List<HospedajeEntity> listaEntidades= new ArrayList<>();
-        for(HospedajeDetaillDTO hospedajesDTO : listaHospedajesDTO){
-            listaEntidades.add(hospedajesDTO.toEntity());
-        }
-        return listaEntidades;
-    }
-    
+        
     @GET
     public List<HospedajeDetaillDTO> getHospedajes(@PathParam("id") Long id) {
         return getListaHospedajesArrendador(arrendadorLogic.getHospedajesArrendador(id));
@@ -58,7 +52,12 @@ public class ArrendadorHospedajeResource {
     @GET
     @Path("{hospedajeId: [0-9][0-9]*}")
     public HospedajeDetaillDTO getHospedajePorId(@PathParam("id") Long id, @PathParam("hospedajeId") Long hospedajeId) {
-        return new HospedajeDetaillDTO(arrendadorLogic.getHospedajeIdArrendador(id, hospedajeId));
+        try {
+            return new HospedajeDetaillDTO(arrendadorLogic.getHospedajeIdArrendador(id, hospedajeId));
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(ArrendadorHospedajeResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     @POST
@@ -69,7 +68,7 @@ public class ArrendadorHospedajeResource {
     
     @DELETE
     @Path("{hospedajeId: [0-9][0-9]*}")
-    public void deleteHospedajesArrendador(@PathParam("{id}") Long id, @PathParam("hospedajeId") Long hospedajeId) throws BusinessLogicException{
+    public void deleteHospedajesArrendador(@PathParam("id") Long id, @PathParam("hospedajeId") Long hospedajeId) throws BusinessLogicException{
         arrendadorLogic.removerHospedajes(id, hospedajeId);
     }
 }

@@ -9,13 +9,12 @@ import co.edu.uniandes.csw.viviendaUniversitaria.dtos.LugaresInteresDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.LugaresInteresDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.UbicacionDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.LugaresInteresLogic;
+import co.edu.uniandes.csw.viviendaUniversitaria.ejb.UbicacionLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.LugaresInteresEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -34,11 +33,13 @@ import javax.ws.rs.WebApplicationException;
 @Path("lugaresInteres")
 @Produces("application/json")
 @Consumes("application/json")
-@Stateless
+@RequestScoped
 public class LugaresInteresResource {
 
     @Inject
     LugaresInteresLogic logic;
+    @Inject
+    UbicacionLogic logicUbicacion;
 
     @GET
     public List<LugaresInteresDetailDTO> getList() throws WebApplicationException {
@@ -58,9 +59,9 @@ public class LugaresInteresResource {
 
     @GET
     @Path("{id: \\d+}")
-    public LugaresInteresDetailDTO getLugares(@PathParam("id") long id) throws WebApplicationException {
+    public LugaresInteresDetailDTO getLugares(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException {
         try {
-            LugaresInteresDetailDTO respuesta = new LugaresInteresDetailDTO(logic.findIdLugarInteres(id));
+            LugaresInteresDetailDTO respuesta = new LugaresInteresDetailDTO(logic.find(id));
             return respuesta;
 
         } catch (WebApplicationException e) {
@@ -69,22 +70,25 @@ public class LugaresInteresResource {
 
     }
 
-//    @POST
-//    public LugaresInteresDetailDTO createLugar(LugaresInteresDetailDTO nuevolugar) throws WebApplicationException, BusinessLogicException {
-//
-//        try {
-//            return new LugaresInteresDetailDTO(logic.createLugarInteres(nuevolugar.toEntity()));
-//        } catch (WebApplicationException ex) {
-//            throw ex;
-//        }
-//    }
+    @POST
+    @Path("{idUbicacion: \\d+}")
+    public LugaresInteresDetailDTO createLugar(@PathParam("idUbicacion") Long idUbicacion, LugaresInteresDetailDTO nuevolugar) throws WebApplicationException, BusinessLogicException {
+
+        UbicacionDTO ubicacion = new UbicacionDTO(logicUbicacion.find(idUbicacion));
+        nuevolugar.setUbicacion(ubicacion);
+        try {
+            return new LugaresInteresDetailDTO(logic.create(nuevolugar.toEntity()));
+        } catch (WebApplicationException ex) {
+            throw ex;
+        }
+    }
 
     @PUT
     @Path("{id: \\d+}")
     public LugaresInteresDTO updateLugar(@PathParam("id") Long id, LugaresInteresDTO lugarAtualizado) throws WebApplicationException {
         try {
             LugaresInteresEntity entity = lugarAtualizado.toEntity();
-            LugaresInteresEntity nuevoEntity = logic.updateLugarInteres(entity);
+            LugaresInteresEntity nuevoEntity = logic.update(entity, id);
             return new LugaresInteresDTO(nuevoEntity);
         } catch (WebApplicationException e) {
             throw e;
