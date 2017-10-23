@@ -12,11 +12,9 @@ import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicExcepti
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.OrigenPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -36,7 +34,6 @@ public class OrigenResource {
 
     OrigenLogic origenLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
-    private static final Logger LOGGER = Logger.getLogger(OrigenPersistence.class.getName());
     private static final String ALGO1 = "El recurso /origenes/";
     private static final String ALGO2 = "no existe";
 
@@ -52,8 +49,8 @@ public class OrigenResource {
     
     @POST
     public OrigenDTO createOrigen(OrigenDTO origen) throws BusinessLogicException {
-        OrigenEntity OrigenEntity = origen.toEntity();
-        OrigenEntity nuevoOrigen = origenLogic.create(OrigenEntity);
+        OrigenEntity origenEntity = origen.toEntity();
+        OrigenEntity nuevoOrigen = origenLogic.create(origenEntity);
         return new OrigenDTO(nuevoOrigen);
     }
 
