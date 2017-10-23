@@ -1,4 +1,3 @@
-
 delete from REGLAENTITY;
 delete from FACTURAENTITY;
 delete from CALIFICACIONENTITY;
@@ -13,6 +12,7 @@ delete from EstudianteEntity;
 delete from LugaresInteresEntity;
 delete from APP.DETALLESERVICIOENTITY;
 delete from APP.DETALLERESERVAENTITY;
+delete from UniversidadEntity;
 
 ALTER TABLE APP.REGLAENTITY ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE APP.HOSPEDAJEENTITY ALTER COLUMN id RESTART WITH 1;
@@ -24,6 +24,21 @@ ALTER TABLE FacturaEntity ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE ReservaEntity ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE LugaresInteresEntity ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE EstudianteEntity ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE UniversidadEntity ALTER COLUMN id RESTART WITH 1;
+
+
+--Universidad
+
+insert into UniversidadEntity (nombre) values ('Ardene');
+insert into UniversidadEntity (nombre) values ('Della');
+insert into UniversidadEntity (nombre) values ('Fredrick');
+insert into UniversidadEntity (nombre) values ('Leonora');
+insert into UniversidadEntity (nombre) values ('Emiline');
+insert into UniversidadEntity (nombre) values ('Marthe');
+insert into UniversidadEntity (nombre) values ('Alma');
+insert into UniversidadEntity (nombre) values ('Amery');
+insert into UniversidadEntity (nombre) values ('Elmira');
+insert into UniversidadEntity (nombre) values ('Roseann');
 
 --pruebas EstudianteEntity
 insert into EstudianteEntity (cedula, nombre) values (123, 'amilkar');
@@ -185,7 +200,6 @@ insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('P
 insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Aenean.avi', 28, 'http://dummyimage.com/148x138.jpg/5fa2dd/ffffff');
 
 
-
 -- Asociaciones
 
 update HOSPEDAJEENTITY set arrendador_id = 3177523825303 where id = 1;
@@ -198,27 +212,16 @@ update CALIFICACIONENTITY set hospedaje_id = 3 where id = 4;
 update FacturaEntity set hospedaje_id = 1 where id = 1;
 update FacturaEntity set hospedaje_id = 1 where id = 2;
 update FacturaEntity set hospedaje_id = 1 where id = 3;
-update UBICACIONENTITY set hospedaje_id = 1 where id = 1;
-update UBICACIONENTITY set hospedaje_id = 2 where id = 2;
-update UBICACIONENTITY set hospedaje_id = 3 where id = 3;
 update ReservaEntity set hospedaje_id = 1 where id = 1;
 update ReservaEntity set hospedaje_id = 1 where id = 2;
 update ReservaEntity set hospedaje_id = 1 where id = 3;
 
-
-update UBICACIONENTITY set lugaresInteres_id = 1 where id = 3;
-update UBICACIONENTITY set lugaresInteres_id = 2 where id = 3;
-update UBICACIONENTITY set lugaresInteres_id = 3 where id = 3;
-update UBICACIONENTITY set lugaresInteres_id = 4 where id = 3;
-update UBICACIONENTITY set lugaresInteres_id = 5 where id = 3;
-update UBICACIONENTITY set lugaresInteres_id = 6 where id = 3;
-update UBICACIONENTITY set lugaresInteres_id = 7 where id = 3;
-update UBICACIONENTITY set lugaresInteres_id = 8 where id = 3;
-update UBICACIONENTITY set lugaresInteres_id = 9 where id = 3;
-update UBICACIONENTITY set lugaresInteres_id = 10 where id = 3;
-
-
-
+update UniversidadEntity set UBICACION_ID = 7 where id = 1;
+update UniversidadEntity set UBICACION_ID = 8 where id = 2;
+update UniversidadEntity set UBICACION_ID = 9 where id = 3;
+update UniversidadEntity set UBICACION_ID = 10 where id = 4;
+update UniversidadEntity set UBICACION_ID = 11 where id = 5;
+update UniversidadEntity set UBICACION_ID = 12 where id = 6;
 
 select * from APP.HospedajeEntity;
 select * from APP.ARRENDADORENTITY;
@@ -231,7 +234,4 @@ select * from ServiciosEntity;
 select * from FacturaEntity;
 select * from ReservaEntity;
 select * from LugaresInteresEntity;
-
-
-
-
+select * from UniversidadEntity;
