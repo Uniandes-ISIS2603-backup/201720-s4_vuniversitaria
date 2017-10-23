@@ -1,0 +1,422 @@
+{
+	"variables": [],
+	"info": {
+		"name": "TESTS_ARRENDADOR_RESOURCE",
+		"_postman_id": "56b7e509-1d85-01ab-332c-e2abdb631828",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 10108850021,\n  \"nombre\": \"Rafael Serrano\"\n}"
+				},
+				"description": "Peticion para agregar un arrendador con todos los datos normales"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code===412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"nombre\": \"Manuela Moros\"\n}"
+				},
+				"description": "Intentar registrar un arrendador que tiene un id de tamaño menor al esperado"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code===412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": -2232324324,\n\t\"nombre\": \"Juliana Dueñas\"\n}"
+				},
+				"description": "Prueba de agregar un arrendador que intenta poner su id como un número negativo"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code===412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1010239642,\n\t\"nombre\": \"Catalina Muñoz\"\n}"
+				},
+				"description": "Prueba de intento de registro de un usuario cuyo id ya estaba en la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/45",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/45",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Intentar obtener un arrendador  que no esta registrado."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/1010239642",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/1010239642",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1010239642,\n\t\"nombre\":\"Kelly\"\n}"
+				},
+				"description": "Prueba de buscar un arrendador existente"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":60885378,\n\t\"nombre\": \"Rosa Serrano\"\n}"
+				},
+				"description": "Obtener la lista de los arrendadores. Donde esta no está vacía"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/1010239642",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/101",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 101,\n\t\"nombre\": \"Paola Vega\"\n}"
+				},
+				"description": "Metodo put con un arrendador no existente. Cambio no exitoso"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/1010239642",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/1010239642",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1010239642,\n\t\"nombre\": \"Kelly\"\n}"
+				},
+				"description": "Put con un arrendador existente. Cambio exitoso"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/10108850021",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code===204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/10108850021",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Eliminar un arrendador existente"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/10108850021",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/10108850021",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/10108850021",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/10108850021",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/9009122907/hospedajes/3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/9009122907/hospedajes/3",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/9009122907/hospedajes/4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code===412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/9009122907/hospedajes/4",
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/9009122907/hospedajes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/arrendadores/9009122907/hospedajes",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
