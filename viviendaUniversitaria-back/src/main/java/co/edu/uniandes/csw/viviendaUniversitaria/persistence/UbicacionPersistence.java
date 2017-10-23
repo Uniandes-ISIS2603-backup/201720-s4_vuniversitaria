@@ -41,4 +41,5 @@ public class UbicacionPersistence extends GenericPresistence<UbicacionEntity> {
     public UbicacionPersistence(){
         super(UbicacionEntity.class);
     }
+    
 }

@@ -16,7 +16,7 @@ public class UniversidadDetailDTO extends UniversidadDTO {
     /**
      * Relación con ubicacion.
      */
-    private UbicacionDTO ubicacion;
+    private UbicacionDetailDTO ubicacion;
     
     /**
      * Constructor po defecto.
@@ -33,7 +33,7 @@ public class UniversidadDetailDTO extends UniversidadDTO {
     public UniversidadDetailDTO(UniversidadEntity entity) {
         super(entity);
         if (entity.getUbicacion() != null) {
-            this.ubicacion = new UbicacionDTO(entity.getUbicacion());
+            this.ubicacion = new UbicacionDetailDTO(entity.getUbicacion());
         }
     }
 
@@ -50,4 +50,19 @@ public class UniversidadDetailDTO extends UniversidadDTO {
         }
         return u;
     }
+    /**
+     * Retorna la ubicación de una universidad
+     * @return ubicacionDTO
+     */
+    public UbicacionDetailDTO getUbicacion() {
+        return ubicacion;
+    }
+    /**
+     * Modifica la ubicación de una universidad
+     * @param ubicacion 
+     */
+    public void setUbicacion(UbicacionDetailDTO ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+    
 }

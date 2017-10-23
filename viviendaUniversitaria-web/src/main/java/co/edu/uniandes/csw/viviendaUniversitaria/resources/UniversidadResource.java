@@ -62,29 +62,30 @@ public class UniversidadResource {
 
     @POST
     public UniversidadDetailDTO createUniversidad(UniversidadDetailDTO ubi) throws BusinessLogicException {
-        return new UniversidadDetailDTO(logic.create(ubi.toEntity()));
+       
+        return new UniversidadDetailDTO(this.logic.create(ubi.toEntity()));
 
     }
-
-//    @POST
-//    @Path("{idUni: \\d+}/ubicacion/{idUbicacion: \\d+}")
-//    public UniversidadDetailDTO agregarUbicacion(@PathParam("idUni") Long idUni, @PathParam("idUbicacion") Long idUbicacion) {
-//        return new UniversidadDetailDTO(logic.agregarUbicacacion(idUni, idUbicacion));
-//    }
 
     @PUT
     @Path("{idUni: \\d+}")
     public UniversidadDetailDTO updateUniversidad(@PathParam("idUni") Long idUni, UniversidadDetailDTO ubi) throws BusinessLogicException {
-        if (idUni != ubi.getId()) {
-            throw new WebApplicationException("Los ids no coinciden", 412);
+        UniversidadEntity x = logic.find(idUni);
+        if (x == null) {
+            throw new WebApplicationException("El recurso con id" + idUni + "no existe", 404);
         }
-        UniversidadEntity entity = logic.update(ubi.toEntity(),idUni );
+        UniversidadEntity entity = logic.update(ubi.toEntity(), idUni);
         return new UniversidadDetailDTO(entity);
     }
 
     @DELETE
     @Path("/{idUni: \\d+}")
     public void deleteUniversidad(@PathParam("idUni") Long id) throws BusinessLogicException, WebApplicationException {
-        logic.delete(id);
+        UniversidadEntity entity = logic.find(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso con id" + id + " no existe", 404);
+        } else {
+            logic.delete(id);
+        }
     }
 }

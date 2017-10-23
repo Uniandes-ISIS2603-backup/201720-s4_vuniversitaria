@@ -5,15 +5,11 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.UbicacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.UniversidadEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.UniversidadPersistence;
-import java.util.List;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -40,4 +36,5 @@ public class UniversidadLogic extends GenericLogic<UniversidadEntity> {
         super(persistence, UniversidadEntity.class);
         this.logicUbicacion = logicUbicacion;
     }
+   
 }
