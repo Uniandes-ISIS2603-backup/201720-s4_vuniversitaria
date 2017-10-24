@@ -18,20 +18,19 @@
         <script src="src/modules/estudiantes/estudiantes.ctrl.js" type="text/javascript"></script>
         <!-- Origenes -->
         <script src="src/modules/origenes/origenes.mod.js" type="text/javascript"></script>
-        <script src="src/modules/origenes/origenes.ctrl.js" type="text/javascript"></script>
-        
-        <!-- Universidades -->
-        <script src="src/modules/univiersidades/universidades.mod.js" type="text/javascript"></script>
-        <script src="src/modules/universidades/universidades.ctrl.js" type="text/javascript"></script>
-        <!-- Ubicaciones -->
-        <script src="src/modules/ubicaciones/ubicaciones.mod.js" type="text/javascript"></script>
-        <script src="src/modules/ubicaciones/ubicaciones.ctrl.js" type="text/javascript"></script>
-
+        <script src="src/modules/origenes/origenes.ctrl.js" type="text/javascript"></script>        
         <!-- Hopedaje -->
         <script src="src/modules/hospedaje/hospedaje.mod.js" type="text/javascript"></script>
         <script src="src/modules/hospedaje/hospedaje.ctrl.js" type="text/javascript"></script>
         <script type="text/javascript" src="src/modules/hospedaje/CodeJS/barra_funcion.js"></script>
         <link rel="stylesheet" type="text/css" href="src/modules/hospedaje/MyStyle/barra_estilo.css">
+        
+        <!-- Universidad -->
+        <script src="src/modules/universidades/universidades.mod.js" type="text/javascript"></script>
+        <script src="src/modules/universidades/universidades.ctrl.js" type="text/javascript"></script>
+        <!-- Ubicacion -->
+        <script src="src/modules/ubicacion/ubicaciones.mod.js" type="text/javascript"></script>
+        <script src="src/modules/ubicacion/ubicaciones.ctrl.js" type="text/javascript"></script>
         
         <script src="src/app.js" type="text/javascript"></script> 
         <script src="src/http-interceptor.factory.js" type="text/javascript"></script> 
@@ -57,6 +56,8 @@
                             <ul class="nav nav-tabs">
                                 <li><a ui-sref="estudiantesList">Estudiantes</a></li>
                                 <li><a ui-sref="origenesList">Origenes</a></li>
+                                <li><a ui-sref="universidadesList">Universidad</a></li>
+                                <li><a ui-sref="ubicacionDetail">Ubicación</a></li>
                                 <li><a ui-sref="hospedaje" >Hospedajes</a></li>
                             </ul>                   
                         </div>
@@ -70,7 +71,7 @@
         <br>
         <div class="navbar navbar-default navbar-fixed-bottom">
             <div class="container">
-                <p class="navbar-text pull-left">© Amilkar "el crack " Eslava
+                <p class="navbar-text pull-left">© Vivienda Universitaria.
                 </p>
             </div>
         </div>
