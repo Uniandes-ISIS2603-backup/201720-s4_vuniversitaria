@@ -3,19 +3,18 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="thumb">
-                    <img class="img-responsive" ng-src="{{currentEstudiante.image}}"/>
+                    <img class="img-responsive" ng-src="{{currentUniversidad.image}}"/>
                 </div>
 
             </div>
             <div class="col-md-3">
                 <dl>     
-                    <dt>{{currentEstudiante.name}}</dt>
-                    <ul ng-repeat="origen in currentEstudiante.origenes">
-                        <a ui-sref="origenDetail({origenId: origen.id})">{{origen.name}}</a>
+                    <dt>{{currentUniversidad.nombre}}</dt>
+                    <ul ng-repeat="ubicacion in currentUniversidad.ubicacion">
+                        <a ui-sref="ubicacionDetail({ubicacionId: ubicacion.id})">{{ubicacion.direccion}}</a>
+                        <a ui-sref="ubicacionDetail({ubicacionId: ubicacion.id})">{{ubicacion.altitud}}</a>
+                        <a ui-sref="ubicacionDetail({ubicacionId: ubicacion.id})">{{ubicacion.latitud}}</a>
                     </ul>
-                    <dt class="bold">Cedula</dt>
-                    <dd>{{currentEstudiante.cedula}}</dd>
-
                 </dl>
             </div>
         </div>
