@@ -36,7 +36,6 @@ public class CalificacionLogic {
     public CalificacionLogic(){
         //Constructor por defecto
     }
-    
     @Inject
     public CalificacionLogic(HospedajePersistence hospedajeLogic, EstudiantePersistence estudianteLogic, CalificacionPersistence persistence){
         this.estudianteLogic= estudianteLogic;
@@ -44,13 +43,10 @@ public class CalificacionLogic {
         this.persistence = persistence;
     }
 
-  
     public CalificacionEntity createCalificacion(CalificacionEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de calificacion");
         if (persistence.find(entity.getId())!= null)
             throw new BusinessLogicException("Ya existe una Calificacion con el id \"" + entity.getId()+ "\"");
         persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de la calificacion");
         return entity;
     }
     
@@ -70,66 +66,70 @@ public class CalificacionLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar calificacion con id={0}", id);
         return calificacion;
     }
-
-    public CalificacionEntity updateCalificacion(Long id, CalificacionEntity entity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar calificacion con id={0}", id);
-        CalificacionEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar calificacion con id={0}", entity.getId());
-        return newEntity;
-    }
     
-    public void deleteCalificacion(Long id) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar calificacion con id={0}", id);
-        persistence.delete(id);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar calificacion con id={0}", id);
-    }
-    
-    
-    public HospedajeEntity getHospedaje(Long idCalificacion) throws BusinessLogicException{
-      CalificacionEntity calificacion=persistence.find(idCalificacion);
-      if (calificacion==null){
-          throw new BusinessLogicException("No se pudo encontrar una calificacion con ese id");
-      }
-      return calificacion.getHospedaje();
-  }
-    
-    public HospedajeEntity setHospedaje(Long idCalificacion, HospedajeEntity hospedaje) throws BusinessLogicException{
-        CalificacionEntity calificacion = persistence.find(idCalificacion);
-        if(calificacion == null){
-            throw new BusinessLogicException("No se pudo encontrar una calificacion con ese id");
-        }
-        calificacion.setHospedaje(hospedaje);
-        persistence.update(calificacion);
-        return hospedaje;
-    }   
-    
-    public EstudianteEntity getEstudiante(Long idCalificacion) throws BusinessLogicException{
-        CalificacionEntity calificacion = persistence.find(idCalificacion);
-        if(calificacion== null){
-            throw new BusinessLogicException("No existe una calificacion con el id ingresado");
-        }
-        return calificacion.getEstudiante();
-    }
-    
-    public EstudianteEntity setEstudiante(Long idCalificacion, EstudianteEntity estudiante) throws BusinessLogicException{
-        CalificacionEntity calificacion= persistence.find(idCalificacion);
-        if(calificacion== null){
-            throw new BusinessLogicException("No existe una calificcaion con el id ingresado");
-        }
-        calificacion.setEstudiante(estudiante);
-        persistence.update(calificacion);
-        return estudiante;
-    }
-    
-    public void asociarCalificacionAEstudianteHospedaje(Long idHospedaje, Long idEstudiante, CalificacionEntity calificacion) throws BusinessLogicException{
+    public List<CalificacionEntity> getCalificacionesHospedaje(Long idHospedaje) throws BusinessLogicException {
+        
         HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
-        EstudianteEntity estudiante = estudianteLogic.find(idEstudiante);
+        if (hospedaje.getCalificaciones() == null) {
+            throw new BusinessLogicException("El hospedaje que consulta aún no tiene calificaciones");
+        }
+        if (hospedaje.getCalificaciones().isEmpty()) {
+            throw new BusinessLogicException("El hospedaje que consulta aún no tiene calificaciones");
+        }
+        return hospedaje.getCalificaciones();
+    }
+    
+    
+    public CalificacionEntity getCalificacionEstudiante(Long idEstudiante, Long id) throws BusinessLogicException {
+        CalificacionEntity calificacion= new CalificacionEntity();
+        calificacion.setId(id);
+        List<CalificacionEntity> calificaciones= estudianteLogic.find(idEstudiante).getCalificaciones();
+        if(calificaciones.isEmpty())
+            throw new BusinessLogicException("El estudiante no tiene calificaciones");
         
-        if(hospedaje== null || estudiante== null)
-            throw new BusinessLogicException("No existe alguna de las entidades buscadas");
+        int ind=calificaciones.indexOf(calificacion);
+        if(ind<0)
+            throw new BusinessLogicException("No se encuentra la calificacion");
         
-        calificacion.setHospedaje(hospedaje);
-        calificacion.setEstudiante(estudiante);
-        persistence.update(calificacion);
-    }    
+        return calificaciones.get(ind);
+    }
+    
+    public CalificacionEntity getCalificacionHospedaje(Long idHospedaje, Long id) throws BusinessLogicException {
+        CalificacionEntity calificacion= new CalificacionEntity();
+        calificacion.setId(id);
+        List<CalificacionEntity> calificaciones= hospedajeLogic.find(idHospedaje).getCalificaciones();
+        if(calificaciones.isEmpty())
+            throw new BusinessLogicException("El hospedaje no tiene calificaciones");
+        
+        int ind=calificaciones.indexOf(calificacion);
+        if(ind<0)
+            throw new BusinessLogicException("No se encuentra la calificacion");
+        
+        return calificaciones.get(ind);
+    }
+            
+    public CalificacionEntity create(long idEstudiante, Long idHospedaje, CalificacionEntity entity) throws BusinessLogicException {
+        EstudianteEntity usuario=estudianteLogic.find(idEstudiante);
+        HospedajeEntity hospedaje= hospedajeLogic.find(idHospedaje);
+        
+        if(usuario== null || hospedaje==null)
+            throw new BusinessLogicException("El estudiante o el hospedaje no existe.");
+        
+        entity.setEstudiante(usuario);
+        
+        entity.setHospedaje(hospedaje);
+        return createCalificacion(entity);
+    }
+
+    public void remove(long idUsuario,long id) throws BusinessLogicException {
+        CalificacionEntity ent=getCalificacionEstudiante(idUsuario,id);
+        EstudianteEntity estudiante= estudianteLogic.find(idUsuario);
+        if(estudiante== null)
+            throw new BusinessLogicException("El estudiante no esta registrado.");
+                    
+        estudiante.getCalificaciones().remove(ent);
+        persistence.delete(id);
+    }
+
+
 }
