@@ -17,3 +17,14 @@
     ]);
 }
 )(angular);
+
+//onclick="{{$scope.idHospedaje = h.id}}"  
+/*
+ * 
+
+if($state.params.idHospedaje !== undefined){
+                $http.get(hospedajeContext+"/"+$state.params.idHospedaje).then(function (response) {
+                $scope.hospedajeActivo = response.data;
+            });
+            }
+ */

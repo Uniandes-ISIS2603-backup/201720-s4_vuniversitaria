@@ -6,7 +6,6 @@
             $urlRouterProvider.otherwise("/hospedajes");
             $stateProvider.state('hospedaje', {
                 url: '/hospedajes',
-                
                 views:{
                     'mainView':{
                         templateUrl: basePath+'hospedaje.html',
@@ -14,7 +13,17 @@
                         controllerAs: 'ctrl',
                     }
                 }
-            });
+            }).state('hospedajeEspecifico', {
+                url: '/hospedajes/1',
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'hospedajeEspecifico.html',
+                        controller: 'hospedajeCtrl',
+                        controllerAs: 'ctrl',
+                    }
+                }
+            })
+            ;
         }]);
 })(window.angular);
 

@@ -1,10 +1,17 @@
 <div class="container-fluid">
-    <div>
-        <script type="text/javascript" src="src/modules/hospedaje/CodeJS/barra_funcion.js"></script>
-        <link rel="stylesheet" type="text/css" href="src/modules/hospedaje/MyStyle/barra_estilo.css">
-        <h4>Hospedajes</h4>
-        <ul class="list-group" ng-repeat=" h in hospedajeList">
-            <li class="list-group-item"><p> {{h.id}} </p></li>
-        </ul>
+    <h4>Hospedajes</h4>
+    <div class="row">
+        <div class="col-sm-2 col-md-2" ng-repeat=" h in hospedajeList">
+            <div class="thumbnail" >
+                <img src="http://static.tvazteca.com/imagenes/2016/52/Cargan-impuestos-apps-hospedaje-2061571.jpg" width="300" height="250" class="img-responsive">
+                <p> 
+                    ID: {{h.id}} <br>
+                    TIPO ARRENDAMIENTO: {{h.tipoArrendamiento}} <br>
+                    VALORACION: {{h.valoracion}} <br>
+                    DESCRIPCION: {{h.descripcion}}
+                </p>
+                <input type="button" value="Detalles" ui-sref="hospedajeEspecifico">
+            </div>
+        </div>
     </div>
 </div>
