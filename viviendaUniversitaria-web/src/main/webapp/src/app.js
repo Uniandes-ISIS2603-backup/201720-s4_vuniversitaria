@@ -6,7 +6,9 @@
         // Internal modules dependencies       
         'estudianteModule',
         'origenModule',
-        'hospedajeModule'
+        'hospedajeModule',
+        'universidadModule',
+        'ubicacionModule'
         
         
     ]);
