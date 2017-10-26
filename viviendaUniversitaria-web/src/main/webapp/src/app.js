@@ -8,7 +8,8 @@
         'origenModule',
         'hospedajeModule',
         'universidadModule',
-        'ubicacionModule'
+        'ubicacionModule',
+        'arrendadorModule'
         
         
     ]);
