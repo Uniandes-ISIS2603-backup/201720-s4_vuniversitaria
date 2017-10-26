@@ -14,7 +14,10 @@
                     }
                 }
             }).state('hospedajeEspecifico', {
-                url: '/hospedajes/1',
+                url: '/hospedajes/{idHospedaje:int}',
+                param:{
+                    idHospedaje: null
+                },
                 views:{
                     'mainView':{
                         templateUrl: basePath+'hospedajeEspecifico.html',

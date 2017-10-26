@@ -7,6 +7,12 @@
             $http.get(hospedajeContext).then(function (response) {
                 $scope.hospedajeList = response.data;
             });
+            
+            if($state.params.idHospedaje !== undefined) {
+                $http.get(hospedajeContext+'/'+$state.params.idHospedaje).then(function (response) {
+                    $scope.hospedajeActivo = response.data;
+                })
+            };                
         }
     ]);
 }
