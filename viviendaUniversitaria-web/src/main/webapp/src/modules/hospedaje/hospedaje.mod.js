@@ -10,7 +10,7 @@
                     'mainView':{
                         templateUrl: basePath+'hospedaje.html',
                         controller: 'hospedajeCtrl',
-                        controllerAs: 'ctrl',
+                        controllerAs: 'ctrl'
                     }
                 }
             }).state('hospedajeEspecifico', {
@@ -22,7 +22,20 @@
                     'mainView':{
                         templateUrl: basePath+'hospedajeEspecifico.html',
                         controller: 'hospedajeCtrl',
-                        controllerAs: 'ctrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            })
+            .state('hospedajeEliminar', {
+                url: '/hospedajes/{idHospedaje:int}',
+                param:{
+                    idHospedaje: null
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'hospedaje.delete.html',
+                        controller: 'hospedajeDeleteCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
             })
