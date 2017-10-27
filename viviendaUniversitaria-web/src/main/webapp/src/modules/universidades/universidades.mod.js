@@ -30,17 +30,21 @@
                     universidadId: null
                 },
                 views: {
-                    'listView': {
-                        templateUrl: basePath + 'universidades.list.html'
-                    },
                     'detailView': {
                         templateUrl: basePath + 'universidades.detail.html',
                         controller: 'universidadCtrl',
                         controllerAs: 'ctrl'
                     }
-
                 }
-
+            }).state('universidadesCreate', {
+                url: '/create',
+                parent: 'universidades',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/universidades.new.html',
+                        controller: 'universidadNewCtrl'
+                    }
+                }
             });
         }]);
 })(window.angular);
