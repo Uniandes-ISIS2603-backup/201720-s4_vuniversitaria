@@ -4,10 +4,10 @@
     mod.controller('universidadCtrl', ['$scope', '$http', 'universidadesContext', '$state',
         function ($scope, $http, universidadesContext, $state) {
             $http.get(universidadesContext).then(function (response) {
-                $scope.universidadRecords = response.data;
+                $scope.universidadesRecords = response.data;
             });
-            
-            if ($state.params.universidadId !== undefined) {
+
+            if (($state.params.universidadId !== undefined) && ($state.params.universidadId !== null)) {
                 $http.get(universidadesContext + '/' + $state.params.universidadId).then(function (response) {
                     $scope.currentUniversidad = response.data;
                 });
@@ -15,4 +15,4 @@
         }
     ]);
 }
-)(angular);
+)(window.angular)
