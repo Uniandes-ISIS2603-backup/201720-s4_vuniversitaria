@@ -53,7 +53,7 @@ public class HospedajeResource {
 
     @GET
     @Path("{idHospedaje: [0-9][0-9]*}")
-    public HospedajeDetaillDTO get(@PathParam("idHospedaje") Long id) throws WebApplicationException, BusinessLogicException {
+    public HospedajeDetaillDTO get(@PathParam("idHospedaje") Long id,@PathParam("id") Long id2) throws WebApplicationException, BusinessLogicException {;
         return new HospedajeDetaillDTO(hospedajeLogic.find(id));
     }
 

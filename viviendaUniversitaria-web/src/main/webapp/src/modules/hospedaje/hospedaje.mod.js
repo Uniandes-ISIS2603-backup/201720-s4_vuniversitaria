@@ -10,7 +10,6 @@
                     'mainView':{
                         templateUrl: basePath+'hospedaje.html',
                         controller: 'hospedajeCtrl',
-                        controllerAs: 'ctrl'
                     }
                 }
             }).state('hospedajeEspecifico', {
@@ -21,8 +20,7 @@
                 views:{
                     'mainView':{
                         templateUrl: basePath+'hospedajeEspecifico.html',
-                        controller: 'hospedajeCtrl',
-                        controllerAs: 'ctrl'
+                        controller: 'hospedajeCtrl'
                     }
                 }
             })
@@ -34,8 +32,28 @@
                 views:{
                     'mainView':{
                         templateUrl: basePath+'hospedaje.delete.html',
+                        controller: 'hospedajeDeleteCtrl'
+                    }
+                }
+            }).state('hospedajeCrear', {
+                url: '/hospedajes',
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'hospedaje.create.html',
+                        controller: 'hospedajeCreateCtrl',
+                        controllerAs: 'c'
+                    }
+                }
+            }).state('hospedajeActualizar', {
+                url: '/hospedajes/{idHospedaje:int}',
+                 param:{
+                    idHospedaje: null
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'hospedaje.update.html',
                         controller: 'hospedajeDeleteCtrl',
-                        controllerAs: 'ctrl'
+                        controllerAs: 'c'
                     }
                 }
             })
