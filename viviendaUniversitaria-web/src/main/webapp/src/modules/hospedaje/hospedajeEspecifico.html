@@ -1,0 +1,89 @@
+<div class="container" >
+    <br>
+    <input type="button" value="Anterior" ui-sref="hospedajeEspecifico({idHospedaje: hospedajeActivo.id-1})" class="btn btn-info btn-lg">
+    <input type="button" value="Regresar" ui-sref="hospedaje" class="btn btn-info btn-lg">
+    <input type="button" value="Siguiente" ui-sref="hospedajeEspecifico({idHospedaje: hospedajeActivo.id+1})" class="btn btn-info btn-lg">
+    <br>
+    <br>
+    <br>
+    <br>
+    <div>
+        <img src="http://static.tvazteca.com/imagenes/2016/52/Cargan-impuestos-apps-hospedaje-2061571.jpg" width="500" height="350" class="img-responsive">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4>Información general</h4>
+            </div>
+            <div class="panel-body">
+                ID: {{hospedajeActivo.id}} <br>
+                TIPO ARRENDAMIENTO: {{hospedajeActivo.tipoArrendamiento}} <br>
+                VALORACION: {{hospedajeActivo.valoracion}} <br>
+                DESCRIPCION: {{hospedajeActivo.descripcion}}
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4>Arrendador</h4>
+        </div>
+        <div class="panel-body">
+            {{hospedajeActivo.arrendador.nombre}}
+        </div>
+    </div>
+    <br>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4>Calificaciones</h4>
+        </div>
+        <div class="panel-body">
+            <table class="table" >
+                <tbody ng-repeat=" c in hospedajeActivo.calificaciones">
+                    <tr>
+                        <td rowspan="4"><img src="https://icon-icons.com/icons2/1154/PNG/512/1486564400-account_81513.png" width="100" height="100" class="img-responsive"></td>
+                        <td class="well">FECHA: {{c.fecha}} </td>
+                    </tr>
+                    <tr>
+                        <td class="well">VALORACION: {{c.valoracion}}</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" class="well">COMENTARIO: {{c.comentario}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4>Reglas</h4>
+        </div>
+        <div class="panel-body">
+            <div ng-repeat=" r in hospedajeActivo.reglas">
+                {{r.regla}}
+            </div>
+        </div>
+    </div> 
+    <br>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4>Servicios</h4>
+        </div>
+        <div class="panel-body">
+            <div ng-repeat=" s in hospedajeActivo.servicios">
+                DESCRIPCION: {{s.descripcion}}
+                COSTO: {{s.costo}}
+            </div>
+        </div>
+    </div>
+    <br>
+    <div>
+        <input type="button" value="Editar" class="btn btn-warning btn-lg" ui-sref="hospedajeActualizar({idHospedaje: hospedajeActivo.id})" >
+        <input type="button" value="ELiminar" ui-sref="hospedajeEliminar({idHospedaje: hospedajeActivo.id})" class="btn btn-danger btn-lg">
+    </div>
+    <br>
+    <br>
+</div>

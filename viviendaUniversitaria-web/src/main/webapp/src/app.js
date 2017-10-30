@@ -5,7 +5,12 @@
         'ui.bootstrap',
         // Internal modules dependencies       
         'estudianteModule',
-        'origenModule'
+        'origenModule',
+        'hospedajeModule',
+        'universidadModule',
+        'ubicacionModule',
+        'arrendadorModule',
+        'lugaresInteresModule'    
         
         
     ]);
