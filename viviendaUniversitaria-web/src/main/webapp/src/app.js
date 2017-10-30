@@ -9,7 +9,8 @@
         'hospedajeModule',
         'universidadModule',
         'ubicacionModule',
-        'arrendadorModule'
+        'arrendadorModule',
+        'lugaresInteresModule'    
         
         
     ]);
