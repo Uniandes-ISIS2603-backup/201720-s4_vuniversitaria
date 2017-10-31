@@ -1,11 +1,21 @@
 .demostracion {
-	margin:auto;
-	width:400px;
-	height: 500px;
-	background-color:red;
+    margin:auto;
+    width:400px;
+    height: 500px;
+    background-color:red;
 }
 
 .demostracion-img  {
-	width:400px;
-	height: 250px;
+    width:400px;
+    height: 250px;
+}
+
+.imagenTamanio{
+    margin:auto;
+    position:absolute; 
+    z-index:1; 
+    background-size: cover;
+    background-position: center;
+    max-height: 250px; min-height: 250px; min-width: 400px; max-width: 400px;
+    padding:4px;
 }
