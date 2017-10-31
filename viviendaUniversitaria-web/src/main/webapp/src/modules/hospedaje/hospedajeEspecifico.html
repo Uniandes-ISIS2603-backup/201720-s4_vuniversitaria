@@ -7,8 +7,10 @@
     <br>
     <br>
     <br>
-    <div>
-        <img src="http://static.tvazteca.com/imagenes/2016/52/Cargan-impuestos-apps-hospedaje-2061571.jpg" width="500" height="350" class="img-responsive">
+    <div >
+        <div class="center-block">
+            <img style="max-height: 400px; min-height: 400px; min-width: 600px; max-width: 600px;" src="{{hospedajeActivo.rutaImagen}}"  >
+        </div>
         <br>
         <br>
         <br>
@@ -62,9 +64,9 @@
             <h4>Reglas</h4>
         </div>
         <div class="panel-body">
-            <div ng-repeat=" r in hospedajeActivo.reglas">
-                {{r.regla}}
-            </div>
+            <ul ng-repeat=" r in hospedajeActivo.reglas" class="list-group">
+                <li class="list-inline"> ♦ {{r.regla}} </li>
+            </ul>
         </div>
     </div> 
     <br>

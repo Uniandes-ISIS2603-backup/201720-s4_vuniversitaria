@@ -6,7 +6,7 @@
     <div class="row">
         <div ng-repeat=" h in hospedajeList" class="col-sm-5 col-md-5 col-lg-3 col-xs-3">
             <div class="thumbnail" >
-                <img src="http://static.tvazteca.com/imagenes/2016/52/Cargan-impuestos-apps-hospedaje-2061571.jpg" width="300" height="250" class="img-responsive" ui-sref="hospedajeEspecifico({idHospedaje: h.id})">
+                <img src="{{h.rutaImagen}}" style="max-height: 250px; min-height: 250px; min-width: 230px; max-width: 230px;" class="img-responsive" ui-sref="hospedajeEspecifico({idHospedaje: h.id})">
                 <p> 
                     ID: {{h.id}} <br>
                     TIPO ARRENDAMIENTO: {{h.tipoArrendamiento}} <br>

@@ -9,8 +9,8 @@
             });
             
             if($state.params.idHospedaje !== undefined) {
-                $http.get(hospedajeContext+'/'+$state.params.idHospedaje).then(function (response) {    
-                    $scope.hospedajeActivo = response.data;
+                $http.get(hospedajeContext+'/'+$state.params.idHospedaje).then(function (response) { 
+                    $scope.hospedajeActivo = response.data;                    
                 });
             };                
         }

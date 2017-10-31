@@ -42,6 +42,8 @@ public class HospedajeEntity extends BaseEntity {
      * Cantidad de votos totales.
      */
     private Integer cantidadVotaciones;
+    
+    private String rutaImagen;
 
     /**
      * Relación con regla.
@@ -95,6 +97,16 @@ public class HospedajeEntity extends BaseEntity {
     @PodamExclude
     @OneToOne(fetch = FetchType.LAZY)
     private UbicacionEntity ubicacion;
+
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+    
+    
 
     /**
      * Retorna el tipo de arreendamiento del hospedaje.
