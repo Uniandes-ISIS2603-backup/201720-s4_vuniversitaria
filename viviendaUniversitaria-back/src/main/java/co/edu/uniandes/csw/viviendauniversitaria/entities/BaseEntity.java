@@ -23,7 +23,6 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.viviendauniversitaria.entities;
 
-
 import java.io.Serializable;
 import javax.ejb.Stateless;
 import javax.persistence.GeneratedValue;
