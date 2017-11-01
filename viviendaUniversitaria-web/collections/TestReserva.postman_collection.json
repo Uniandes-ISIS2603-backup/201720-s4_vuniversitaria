@@ -1,0 +1,197 @@
+{
+	"variables": [],
+	"info": {
+		"name": "TestReserva",
+		"_postman_id": "ef6a2e66-06d0-ea49-3753-c8a9ee6a99e9",
+		"description": "Pruebas sobre Reserva",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtención de reservas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/reservas",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Prueba la correctitud de la obtención de reservas"
+			},
+			"response": []
+		},
+		{
+			"name": "Creación de una nueva reserva",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/reservas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"id\":2,\n\"cedulaHuesped\":25462,\n\"fechaInicio\":\"2016-03-02\",\n\"fechaFin\":\"2017-08-10\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Excepción por reserva ya existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code==412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/reservas/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\"id\":2,\n\"cedulaHuesped\":25462,\n\"fechaInicio\":\"2016-03-02\",\n\"fechaFin\":\"2017-08-10\"\n}"
+				},
+				"description": "En este debería lanzar el error"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualización del objeto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/reservas/2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\"cedulaHuesped\":12345,\n\"fechaInicio\":\"2013-01-01\",\n\"fechaFin\":\"2017-12-12\"\n}"
+				},
+				"description": "Debe reemplazar el objeto creado anteriormente"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtención del objeto antes creado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code==412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/reservas/2",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\"cedulaHuesped\":12345,\n\"fechaInicio\":\"2013-01-01\",\n\"fechaFin\":\"2017-12-12\"\n}"
+				},
+				"description": "Se obtiene el objeto anteriormente creado con id 2"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminación del objetio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/reservas/2",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\"cedulaHuesped\":12345,\n\"fechaInicio\":\"2013-01-01\",\n\"fechaFin\":\"2017-12-12\"\n}"
+				},
+				"description": "Se borra el objeto antes creado"
+			},
+			"response": []
+		}
+	]
+}
