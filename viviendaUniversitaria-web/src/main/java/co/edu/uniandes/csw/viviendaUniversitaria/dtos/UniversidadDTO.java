@@ -5,12 +5,7 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.UbicacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.UniversidadEntity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import uk.co.jemos.podam.common.PodamExclude;
-
 /**
  *
  * @author c.santacruza
