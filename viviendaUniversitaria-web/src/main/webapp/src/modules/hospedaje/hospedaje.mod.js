@@ -26,13 +26,14 @@
             })
             .state('hospedajeEliminar', {
                 url: '/hospedajes/{idHospedaje:int}',
-                param:{
+                 param:{
                     idHospedaje: null
                 },
                 views:{
                     'mainView':{
                         templateUrl: basePath+'hospedaje.delete.html',
-                        controller: 'hospedajeDeleteCtrl'
+                        controller: 'hospedajeDeleteCtrl',
+                        controllerAs: 'c'
                     }
                 }
             }).state('hospedajeCrear', {
@@ -52,7 +53,7 @@
                 views:{
                     'mainView':{
                         templateUrl: basePath+'hospedaje.update.html',
-                        controller: 'hospedajeDeleteCtrl',
+                        controller: 'hospedajeUpdateCtrl',
                         controllerAs: 'c'
                     }
                 }

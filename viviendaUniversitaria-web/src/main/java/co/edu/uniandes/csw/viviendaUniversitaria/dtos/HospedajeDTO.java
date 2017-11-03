@@ -31,6 +31,8 @@ public class HospedajeDTO {
     private Double valoracion;
 
     private Integer cantidadVotaciones;
+    
+    private String rutaImagen;
 
     public HospedajeDTO() {
         super();
@@ -42,6 +44,7 @@ public class HospedajeDTO {
         this.tipoArrendamiento = entidad.getTipoArrendamiento();
         this.valoracion = entidad.getValoracion();
         this.cantidadVotaciones = entidad.getCantidadVotaciones();
+        this.rutaImagen = entidad.getRutaImagen();
     }
 
     public HospedajeEntity toEntity() {
@@ -51,7 +54,16 @@ public class HospedajeDTO {
         ret.setValoracion(valoracion);
         ret.setTipoArrendamiento(tipoArrendamiento);
         ret.setCantidadVotaciones(cantidadVotaciones);
+        ret.setRutaImagen(rutaImagen);
         return ret;
+    }
+
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
     }
 
     public Long getId() {        

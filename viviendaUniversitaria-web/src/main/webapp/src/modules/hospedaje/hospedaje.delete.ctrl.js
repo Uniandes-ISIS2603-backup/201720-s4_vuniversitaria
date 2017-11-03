@@ -11,7 +11,7 @@
             };
             
             $scope.eliminarHospedaje = function () {
-                $http.delete(hospedajeContext + '/' + $state.params.idHospedaje, {}).then(function (response) {
+                $http.delete(hospedajeContext+'/'+$state.params.idHospedaje).then(function (response) {
                     $state.go('hospedaje');
                 });
             };            
