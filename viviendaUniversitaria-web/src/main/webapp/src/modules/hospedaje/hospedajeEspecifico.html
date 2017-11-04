@@ -1,30 +1,38 @@
 <div class="container" >
     <br>
-    <input type="button" value="Anterior" ui-sref="hospedajeEspecifico({idHospedaje: hospedajeActivo.id-1})" class="btn btn-info btn-lg">
-    <input type="button" value="Regresar" ui-sref="hospedaje" class="btn btn-info btn-lg">
-    <input type="button" value="Siguiente" ui-sref="hospedajeEspecifico({idHospedaje: hospedajeActivo.id+1})" class="btn btn-info btn-lg">
+    <div>
+        <input type="button" value="Anterior" ui-sref="hospedajeEspecifico({idHospedaje: hospedajeActivo.id-1})" class="btn btn-info btn-lg">
+        <input type="button" value="Regresar" ui-sref="hospedaje" class="btn btn-info btn-lg">
+        <input type="button" value="Siguiente" ui-sref="hospedajeEspecifico({idHospedaje: hospedajeActivo.id+1})" class="btn btn-info btn-lg">
+    </div>
+
     <br>
     <br>
     <br>
     <br>
-    <div >
-        <div class="center-block">
+    <div class="row">
+        <div class="center-block col-sm-7 col-md-7 col-lg-7 col-xs-7">
             <img class="imagen-detalle" src="{{hospedajeActivo.rutaImagen}}"  >
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h4>Información general</h4>
-            </div>
-            <div class="panel-body">
-                ID: {{hospedajeActivo.id}} <br>
-                TIPO ARRENDAMIENTO: {{hospedajeActivo.tipoArrendamiento}} <br>
-                VALORACION: {{hospedajeActivo.valoracion}} <br>
-                DESCRIPCION: {{hospedajeActivo.descripcion}}
-            </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
+            <input type="button" value="Editar" class="btn btn-warning btn-lg" ui-sref="hospedajeActualizar({idHospedaje: hospedajeActivo.id})">
+            <br>
+            <br>
+            <input type="button" value="ELiminar" ui-sref="hospedajeEliminar({idHospedaje: hospedajeActivo.id})" class="btn btn-danger btn-lg">
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4>Información general</h4>
+        </div>
+        <div class="panel-body">
+            TIPO ARRENDAMIENTO: {{hospedajeActivo.tipoArrendamiento}} <br>
+            VALORACION: {{hospedajeActivo.valoracion}} <br>
+            DESCRIPCION: {{hospedajeActivo.descripcion}}
         </div>
     </div>
     <br>
@@ -61,40 +69,45 @@
     <br>
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="row">
-                <h4 class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Reglas</h4>
-                <p class="col-sm-7 col-md-7 col-lg-7 col-xs-7"></p>
-                <select class="selectpicker color-transparente col-sm-2 col-md-2 col-lg-2 col-xs-2" title="Opciones">
-                    <option>Opciones</option>
-                    <option>Agregar</option>
-                    <option>Modificar</option>
-                    <option>Eliminar</option>
-                </select>
-            </div>
-        </div>
-        <div class="panel-body">
-            <ul ng-repeat=" r in hospedajeActivo.reglas" class="list-group">
-                <li class="list-inline"> ♦ {{r.regla}} </li>
-            </ul>
-        </div>
-    </div> 
-    <br>
-    <div class="panel panel-info">
-        <div class="panel-heading">
             <h4>Servicios</h4>
         </div>
         <div class="panel-body">
             <div ng-repeat=" s in hospedajeActivo.servicios">
-                DESCRIPCION: {{s.descripcion}}
-                COSTO: {{s.costo}}
+                <div class="well">
+                    DESCRIPCION: {{s.descripcion}} <br>
+                    COSTO: ${{s.costo}}
+                </div>
             </div>
         </div>
     </div>
-    <br>   
-    <div>
-        <input type="button" value="Editar" class="btn btn-warning btn-lg" ui-sref="hospedajeActualizar({idHospedaje: hospedajeActivo.id})" >
-        <input type="button" value="ELiminar" ui-sref="hospedajeEliminar({idHospedaje: hospedajeActivo.id})" class="btn btn-danger btn-lg">
+    <br>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="row">
+                <h4 class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Reglas</h4>
+                <p class="col-sm-8 col-md-8 col-lg-8 col-xs-8"></p>
+                <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">
+                    <p class="col-sm-3 col-md-3 col-lg-3 col-xs-3"></p>
+                    <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7">
+                        <button class="btn color-transparente"><span class="glyphicon glyphicon-plus"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body" ui-view="regaView">
+            <table class="table table-condensed">
+                <tbody ng-repeat=" r in hospedajeActivo.reglas" class="list-group">
+                    <tr>
+                        <td> {{r.regla}}</td>
+                        <td> <button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button> 
+                            <button class="btn btn-danger" ui-sref="hospedajeEspecifico({idHospedaje:hospedajeActivo.id})" ng-click="alert(hospedajeActivo.id);eliminarRegla(hospedajeActivo.id, r.id)"><span class="glyphicon glyphicon-remove"></span></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <br>
-    <br>
+</div>    
+<br>
+<br>
+
 </div>

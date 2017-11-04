@@ -9,6 +9,7 @@
 
             if (($state.params.arrendadorId !== undefined) && ($state.params.arrendadorId !== null)) {
                 $http.get(arrendadoresContext + '/' + $state.params.arrendadorId).then(function (response) {
+                    $scope.hospedajeList = response.data.hospedajes;
                     $scope.currentArrendador = response.data;
                 });
             }

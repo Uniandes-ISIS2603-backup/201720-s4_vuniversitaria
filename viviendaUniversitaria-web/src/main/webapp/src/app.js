@@ -6,13 +6,11 @@
         // Internal modules dependencies       
         'estudianteModule',
         'origenModule',
-        'hospedajeModule',
         'universidadModule',
         'ubicacionModule',
         'arrendadorModule',
-        'lugaresInteresModule'    
-        
-        
+        'lugaresInteresModule',
+        'hospedajeModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {

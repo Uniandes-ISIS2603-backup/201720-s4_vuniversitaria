@@ -82,7 +82,7 @@ values ('Albie', 'Hostales', 35,0,'https://media-cdn.tripadvisor.com/media/photo
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
 values ('Bonita', 'Albergues', 53,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/278/27831940.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 1', 'Albergues', 25,0,'http://www.experienciacolombia.com/ContentFiles/Directorio/913/Hospedaje-La-Casona-El-Tabio-Cundinamarca-8.JPG');
+values ('Hospedaje 1', 'Albergues', 25,0,'http://www.guiaejecafetero.com/wp-content/uploads/photo-gallery/Alojamientos/46.CampingMonteroca/rasta-house-camping-boquia-salento3.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
 values ('Hospedaje 2', 'Hostales', 27,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
