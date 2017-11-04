@@ -100,9 +100,6 @@ public class ArrendadorResource {
         if (entity == null) {
             throw new WebApplicationException("El arrendador no existe", 404);
         }
-        if(entity.getHospedajes().isEmpty()){
-            throw new WebApplicationException("No hay hospedajes asociados al arrendador seleccionado", 404);
-        }
         return ArrendadorHospedajeResource.class;
     }
 }

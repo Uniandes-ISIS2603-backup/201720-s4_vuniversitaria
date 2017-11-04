@@ -15,6 +15,9 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 public class CalificacionDetailDTO extends CalificacionDTO{
     
     private HospedajeDTO hospedaje;
+    
+    
+    private EstudianteDTO estudiante;
     /**
      * Constructor por defecto
      */
@@ -35,7 +38,13 @@ public class CalificacionDetailDTO extends CalificacionDTO{
         }
         else {
             entity.setHospedaje(null);
-        }               
+        }  
+        if(entity.getEstudiante()!= null){
+            this.estudiante = new EstudianteDTO(entity.getEstudiante());
+        }
+        else {
+            entity.setEstudiante(null);
+        }  
     }
 
     /**
@@ -58,6 +67,14 @@ public class CalificacionDetailDTO extends CalificacionDTO{
     
     public void setHospedaje(HospedajeDTO hospedaje){
         this.hospedaje= hospedaje;
+    }
+    
+    public EstudianteDTO getEstudiante(){
+        return this.estudiante;
+    }
+    
+    public void setEstudiante(EstudianteDTO estudianteDTO){
+        this.estudiante= estudianteDTO;
     }
     
 }

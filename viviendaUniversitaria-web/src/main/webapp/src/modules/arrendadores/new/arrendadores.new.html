@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createArrendador">Crear nuevo arrendador</label>
+                <label ng-if="edit" id="editArrendador">Editar Arrendador</label></div>
+            <div class="panel-body">
+                <form ng-submit="createArrendador()" name="arrendador">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="arrendadorId" class="col-sm-2">Cedula:</label>
+                            <input id="arrendadorId" required ng-model="arrendadorId" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="arrendadorName" class="col-sm-2">Nombre:</label>
+                            <input id="arrendadorName" required ng-model="arrendadorName" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="arrendadorRutaImagen" class="col-sm-2">Ruta imagen:</label>
+                            <input id="arrendadorRutaImagen" required ng-model="arrendadorRutaImagen" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div ng-if="edit" class="panel-group" id="theBooks">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Hospedajes asociados:</div>
+                            <div class="panel-body">
+                                <div id="div2" ondrop="angular.element(document.getElementById('hospedajes')).scope().dropAdd(event)" ondragover="angular.element(document.getElementById('hospedajes')).scope().allowDrop(event)">
+                                    <label></label>
+                                    <div ng-show="edit" ng-repeat="hospedaje in allHospedajesArrendador">
+                                        <p draggable="true" ondragstart="angular.element(document.getElementById('hospedajes')).scope().drag(event)" id="{{hospedaje.id}}">{{hospedaje.tipoArrendamiento}}</p>                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">Todos los hospedajes</div>
+                            <div class="panel-body">
+                                <div id="div1" ondrop="angular.element(document.getElementById('hospedajes')).scope().dropDelete(event)" ondragover="angular.element(document.getElementById('hospedajes')).scope().allowDrop(event)">
+                                    <label></label>
+                                    <div ng-repeat="hospedaje in allHospedajesShow">
+                                        <p draggable="true" ondragstart="angular.element(document.getElementById('hospedajes')).scope().drag(event)" id="{{hospedaje.id}}">{{hospedaje.tipoArrendamiento}}</p>                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!arrendador.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Advertencia!</strong><p>Todos los campos son necesarios*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="arrendador.$valid" type="submit" value="Guardar" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="arrendadoresList">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

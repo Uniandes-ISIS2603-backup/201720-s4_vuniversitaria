@@ -1,24 +1,31 @@
-<div class="panel panel-default"> 
+<div class="panel panel-default">
+    <link rel="stylesheet" type="text/css" href="src/modules/universidades/Styles/mapaResponsive.css">
     <div class="panel-body">
         <div class="row">
             <div class="col-md-3">
                 <div class="thumb">
-                    <img class="img-responsive" ng-src="{{currentEstudiante.image}}"/>
+                    <img class="img-responsive" ng-src="{{currentUniversidad.image}}" alt="{{currentUniversidad.name}} Imagen"/>
                 </div>
 
             </div>
             <div class="col-md-3">
-                <dl>     
-                    <dt>{{currentEstudiante.name}}</dt>
-                    <ul ng-repeat="origen in currentEstudiante.origenes">
-                        <a ui-sref="origenDetail({origenId: origen.id})">{{origen.name}}</a>
-                    </ul>
-                    <dt class="bold">Cedula</dt>
-                    <dd>{{currentEstudiante.cedula}}</dd>
 
-                </dl>
+                <p> 
+                    <b>Nombre :</b> 
+                    {{currentUniversidad.name}}<br><br><hr>
+                    <b>Dirección : </b>
+                    {{currentUniversidad.ubicacion.direccion}}<br><br><hr>
+                    <b>Altitud : </b>
+                    {{currentUniversidad.ubicacion.altitud}}<br><br><hr>
+                    <b>Latitud :</b>
+                    {{currentUniversidad.ubicacion.latitud}}<br><br>
+                <p>
+
             </div>
         </div>
+    </div>
+    <div  class="google-maps">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.9511032904775!2d-74.06709098469243!3d4.6027794966562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99bccab5697d%3A0x1da99c6575ca804b!2sUniversidad+de+los+Andes+-+Edificio+Mario+Laserna!5e0!3m2!1ses-419!2sco!4v1509064087709" width="1450" height="450" frameborder="0" style="border:0" ></iframe>
     </div>
 </div>
 

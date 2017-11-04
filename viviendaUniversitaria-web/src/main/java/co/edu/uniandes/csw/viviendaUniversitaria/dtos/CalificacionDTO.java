@@ -53,8 +53,9 @@ public class CalificacionDTO {
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         this.id = entity.getId();
         this.valoracion = entity.getValoracion();
-        this.fecha = date.format(entity.getFecha());
         this.comentario = entity.getComentario();
+        this.fecha = date.format(entity.getFecha());
+        
     }
     
     /**
@@ -106,6 +107,10 @@ public class CalificacionDTO {
         this.valoracion = valoracion;
     }
     
+    public void setComentario(String comentario){
+        this.comentario= comentario;
+    }
+    
     
     
     /**
@@ -125,13 +130,14 @@ public class CalificacionDTO {
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         CalificacionEntity entity = new CalificacionEntity();
         entity.setId(this.id);
+        entity.setValoracion(this.valoracion);
         entity.setComentario(this.comentario);
         try {
             entity.setFecha(date.parse(this.fecha));
         } catch (ParseException ex) {
             Logger.getLogger(CalificacionDTO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        entity.setValoracion(this.valoracion);
+        
         return entity;
     }
             

@@ -1,18 +1,32 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2" ng-repeat="estudiante in estudiantesRecords">
-            <div class="thumbnail">
-                <a ui-sref="estudianteDetail({estudianteId: estudiante.id})">                    
-                    <img class="img-responsive" ng-src='{{estudiante.image}}' alt="{{estudiante.name}}" />                  
-                </a>
-                <div class="caption text-center">
-                    <p>{{estudiante.name}}</p>
-                    <p ng-repeat="author in book.authors">
-                        <a ui-sref="authorDetail({authorId: author.id})" class="thumb">{{author.name}}</a>
-                    </p>
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label>Universidades</label></div>
+            <div class="panel-body">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="universidadesCreate"><span class="glyphicon glyphicon-plus-sign"></span> Agregar una nueva universidad</a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>    
+                                <th>Dirección</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="universidad in universidadesRecords">
+                                <td id="{{$index}}-name"><a ui-sref="universidadDetail({universidadId: universidad.id})">{{universidad.name}}</a></td>
+                                <td id="{{$index}}-direccion"><a ui-sref="universidadDetail({universidadId: universidad.id})">{{universidad.ubicacion.direccion}}</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+
+</div>
