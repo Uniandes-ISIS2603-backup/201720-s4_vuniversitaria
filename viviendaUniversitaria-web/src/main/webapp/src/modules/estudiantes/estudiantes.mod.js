@@ -41,6 +41,27 @@
 
                 }
 
+            }).state('estudiantesCreate', {
+                url: '/create',
+                parent: 'estudiantes',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/estudiantes.new.html',
+                        controller: 'estudianteNewCtrl'
+                    }
+                }
+            }).state('estudianteDelete', {
+                url: '/delete/{estudianteId:int}',
+                parent: 'estudiantes',
+                param: {
+                    estudianteId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/delete/estudiante.delete.html',
+                        controller: 'estudianteDeleteCtrl'
+                    }
+                }
             });
         }]);
 })(window.angular);
