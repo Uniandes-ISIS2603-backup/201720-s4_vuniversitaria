@@ -23,8 +23,15 @@ public class ArrendadorDTO {
      */
     private String nombre;
     
+    /**
+     * Atrbuto de la ruta
+     */
+    private String ruta;    
         
     
+    /**
+     * Constructor
+     */
     public ArrendadorDTO(){
         //Constructor por defecto
     }
@@ -36,6 +43,7 @@ public class ArrendadorDTO {
     public ArrendadorDTO(ArrendadorEntity entity){
         this.id= entity.getId();
         this.nombre = entity.getNombre();
+        this.ruta= entity.getRuta();
     }
     
     /**
@@ -73,6 +81,22 @@ public class ArrendadorDTO {
     }
     
     /**
+     * Retorna la ruta de la imagen
+     * @return ruta
+     */
+    public String getRuta(){
+        return this.ruta;
+    }
+    
+    /**
+     * Establece la ruta de la imagen
+     * @param ruta 
+     */
+    public void setRuta(String ruta){
+        this.ruta= ruta;
+    }
+    
+    /**
      * Convierte la informacion a una entidad arrendador
      * @return 
      */
@@ -80,6 +104,7 @@ public class ArrendadorDTO {
         ArrendadorEntity entity = new ArrendadorEntity();
         entity.setId(this.id);
         entity.setNombre(this.nombre);
+        entity.setRuta(this.ruta);
         return entity;
     }
     
