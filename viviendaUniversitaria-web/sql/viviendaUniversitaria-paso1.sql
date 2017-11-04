@@ -1,17 +1,18 @@
 delete from REGLAENTITY;
 delete from FACTURAENTITY;
 delete from CALIFICACIONENTITY;
+delete from UBICACIONENTITY;
 delete from ReservaEntity;
-delete from ServiciosEntity;
 delete from HOSPEDAJEENTITY;
 delete from ARRENDADORENTITY;
+delete from HOSPEDAJEENTITY;
 delete from OrigenEntity;
+delete from ServiciosEntity;
 delete from EstudianteEntity;
 delete from LugaresInteresEntity;
 delete from APP.DETALLESERVICIOENTITY;
 delete from APP.DETALLERESERVAENTITY;
 delete from UniversidadEntity;
-delete from UBICACIONENTITY;
 
 ALTER TABLE APP.REGLAENTITY ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE APP.HOSPEDAJEENTITY ALTER COLUMN id RESTART WITH 1;
@@ -53,49 +54,25 @@ insert into OrigenEntity ( name) values ( 'ibague');
 
 --Hopedaje
 
-/*
-http://www4.congreso.gob.pe/comisiones/1999/turismo/normas/DS12.94.HTML
-*/
-
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Sunny', 'Hoteles', 27,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Lauryn', 'Hoteles', 99,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Mariette', 'Apart-Hoteles', 14,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Violet', 'Apart-Hoteles', 44,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Roseline', 'Apart-Hoteles', 42,0,'https://s-ec.bstatic.com/images/hotel/max1024x768/715/71566660.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Shelby', 'Apart-Hoteles', 82,0,'https://www.mexicanbusinessweb.mx/wp-content/uploads/2016/02/CNS.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Erwin', 'Hostales', 22,0,'https://media-cdn.tripadvisor.com/media/photo-s/04/bb/4a/0b/hospedaje-magallanes.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Robinette', 'Hostales', 76,0,'http://www.chirripo.org/wp-content/uploads/2016/05/Hospedaje-Albergue-Chirripo.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Carley', 'Hostales', 49,0,'https://images.adsttc.com/media/images/56d0/b2f0/e58e/ce01/c200/0006/large_jpg/17.jpg?1456517863');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Karine', 'Hostales', 4,0,'https://media-cdn.tripadvisor.com/media/photo-s/08/2a/65/e3/hospedaje-la-bonita.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Albie', 'Hostales', 35,0,'https://media-cdn.tripadvisor.com/media/photo-s/05/2d/53/e3/hospedaje-dimar-inn.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Bonita', 'Albergues', 53,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/278/27831940.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 1', 'Albergues', 25,0,'http://www.guiaejecafetero.com/wp-content/uploads/photo-gallery/Alojamientos/46.CampingMonteroca/rasta-house-camping-boquia-salento3.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 2', 'Hostales', 27,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 3', 'Hostales', 99,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 4', 'Apart-Hoteles', 14,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 5', 'Albergues', 44,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 6', 'Apart-Hoteles', 14,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
-insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 7', 'Albergues', 44,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
-
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Butch', 'Juggings', 29,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Hakeem', 'Caldicot', 72,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Rubi', 'McTrustrie', 29,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Sunny', 'Wince', 27,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Lauryn', 'Bontine', 99,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Kimball', 'Herreros', 54,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Mariette', 'Dufour', 14,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Violet', 'Cogley', 44,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Roseline', 'Kaley', 42,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Shelby', 'Demschke', 82,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Erwin', 'Danbi', 22,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Robinette', 'Gerholz', 76,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Carley', 'Mangeot', 49,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Karine', 'Hudspith', 4,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Albie', 'Alebrooke', 35,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Colby', 'Mickelwright', 92,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Cairistiona', 'Jasiak', 87,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Bonita', 'Earlam', 53,0);
+insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES) values ('Aleen', 'Gavahan', 25,0);
 
 -- Arrendador
 
@@ -222,17 +199,6 @@ insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('I
 insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('PretiumIaculis.ppt', 74, 'http://dummyimage.com/133x226.bmp/dddddd/000000');
 insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Aenean.avi', 28, 'http://dummyimage.com/148x138.jpg/5fa2dd/ffffff');
 
--- Reglas
-insert into REGLAENTITY (regla,hospedaje_id) values ('Se pohiben las mascotas',1);
-insert into REGLAENTITY (regla,hospedaje_id) values ('Se prohibe escuchar musica con un volumen muy alto',1);
-insert into REGLAENTITY (regla,hospedaje_id) values ('Se prohiben las mascotas',2);
-insert into REGLAENTITY (regla,hospedaje_id) values ('Cerrar las puedtas de los cuartos con llve',3);
-insert into REGLAENTITY (regla,hospedaje_id) values ('No se responde si se le roban la bicicletas',1);
-insert into REGLAENTITY (regla,hospedaje_id) values ('La puerta se cierra a las 17:00',1);
-insert into REGLAENTITY (regla,hospedaje_id) values ('So se puede dajar al bebe llorar por más de 20 minutos',2);
-insert into REGLAENTITY (regla,hospedaje_id) values ('No se le pueden hechar lor perros a las celadoras lindas',2);
-insert into REGLAENTITY (regla,hospedaje_id) values ('Se pohiben las mascotas',1);
-insert into REGLAENTITY (regla,hospedaje_id) values ('No se aceptan niños',3);
 
 -- Asociaciones
 

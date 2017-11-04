@@ -5,12 +5,9 @@
         'ui.bootstrap',
         // Internal modules dependencies       
         'estudianteModule',
-        'origenModule',
-        'universidadModule',
-        'ubicacionModule',
-        'arrendadorModule',
-        'lugaresInteresModule',
-        'hospedajeModule'
+        'origenModule'
+        
+        
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {

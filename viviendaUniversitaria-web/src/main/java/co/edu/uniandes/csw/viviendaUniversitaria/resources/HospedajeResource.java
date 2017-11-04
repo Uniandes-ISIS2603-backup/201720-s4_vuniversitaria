@@ -53,7 +53,7 @@ public class HospedajeResource {
 
     @GET
     @Path("{idHospedaje: [0-9][0-9]*}")
-    public HospedajeDetaillDTO get(@PathParam("idHospedaje") Long id,@PathParam("id") Long id2) throws WebApplicationException, BusinessLogicException {;
+    public HospedajeDetaillDTO get(@PathParam("idHospedaje") Long id) throws WebApplicationException, BusinessLogicException {
         return new HospedajeDetaillDTO(hospedajeLogic.find(id));
     }
 
@@ -126,13 +126,20 @@ public class HospedajeResource {
         return ret;
     }
 
+    @GET
     @Path("{idHospedaje: [0-9][0-9]*}/calificaciones")
-    public Class<CalificacionResource> getCalificacionResource(@PathParam("idHospedaje") Long idHospedaje) throws BusinessLogicException {
-        HospedajeEntity entity = hospedajeLogic.find(idHospedaje);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso solicitado no existe", 404);
+    public List<CalificacionDTO> darCalificacion(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
+        return convertirCalificacion(hospedajeLogic.find(idHospedaje).getCalificaciones());
+    }
+
+    private List<CalificacionDTO> convertirCalificacion(List<CalificacionEntity> calificaciones) {
+        List<CalificacionDTO> ret = new ArrayList<>();
+        if (calificaciones != null) {
+            for (CalificacionEntity calificacion : calificaciones) {
+                ret.add(new CalificacionDTO(calificacion));
+            }
         }
-        return CalificacionResource.class;
+        return ret;
     }
 
     /**

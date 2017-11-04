@@ -32,11 +32,6 @@ public class ArrendadorEntity implements Serializable {
      * Nombre asociado al arrendador
      */
     private String nombre;
-    
-    /**
-     * Ruta de la imagen para el arrendador
-     */
-    private String rutaImagen;
 
     /**
      * Lista de los hospedajes pertenecientes al arrendador
@@ -97,13 +92,6 @@ public class ArrendadorEntity implements Serializable {
         
     }
     
-    public String getRuta(){
-        return rutaImagen;
-    }
-    
-    public void setRuta(String ruta){
-        this.rutaImagen= ruta;
-    }
     
     @Override
     public boolean equals(Object obj) {
