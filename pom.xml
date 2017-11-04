@@ -4,13 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>co.edu.uniandes.csw.viviendaUniversitaria</groupId>
     <artifactId>viviendaUniversitaria</artifactId>
-    <name>viviendaUniversitaria</name>
+    <name>viviendaUniversitaria2</name>
     <packaging>pom</packaging>
     <version>0.1.0</version>
     <modules>
         <module>viviendaUniversitaria-back</module>
         <module>viviendaUniversitaria-web</module>
-  
     </modules>
     
     <properties>
