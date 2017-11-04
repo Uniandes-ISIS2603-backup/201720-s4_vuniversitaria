@@ -1,0 +1,19 @@
+<div class="col-md-4">
+    <div class="container-fluid">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>    
+                    <th>Cedula</th>  
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="estudiante in estudiantesRecords">
+                    <td id="{{$index}}-Nombre">{{estudiante.nombre}}</td>
+                    <td id="{{$index}}-Cedula">{{estudiante.cedula}}</td>                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
