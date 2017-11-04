@@ -95,17 +95,20 @@
             </div>
         </div>
         <div class="panel-body" ui-view="regaView">
-            <ul ng-repeat=" r in hospedajeActivo.reglas" class="list-group" ng-click="alert('ldsdñlfkñsldf');">
-                <li id="r.id" class="list-inline" ><a> ♦ {{r.regla}} </a> </li> <!-- document.getElementById("YourButtonId").style.display = 'none'; -->
-            </ul>
+            <div>
+                <table>
+                    <tbody ng-repeat=" r in hospedajeActivo.reglas" class="list-group">
+                        <tr>
+                            <td> {{r.regla}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> 
+                
         </div>
     </div>    
     <br>
     <br>
-    <script>
-        function mostrar(idObjeto) {
-            document.getElementById(idObjeto).style.display = 'none';
-        }
-    </script>
 
 </div>
