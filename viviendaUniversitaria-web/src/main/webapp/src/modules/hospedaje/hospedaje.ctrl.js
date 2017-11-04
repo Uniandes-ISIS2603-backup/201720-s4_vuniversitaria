@@ -12,7 +12,17 @@
                 $http.get(hospedajeContext+'/'+$state.params.idHospedaje).then(function (response) { 
                     $scope.hospedajeActivo = response.data;                    
                 });
-            };                
+            };
+            
+            $scope.eliminarRegla = function(idHospedaje,idRegla){
+                $http.delete(hospedajeContext+'/'+idHospedaje+'/reglas/'+idRegla).then(function (response) { 
+                    $scope.hospedajeActivo = response.data;                    
+                });
+                $http.get(hospedajeContext+'/'+idHospedaje).then(function (response) { 
+                    $scope.hospedajeActivo = response.data;                    
+                });
+                alert($scope.hospedajeActivo);
+            };
         }
     ]);
 }

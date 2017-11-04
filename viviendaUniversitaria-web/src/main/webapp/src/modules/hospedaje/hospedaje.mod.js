@@ -24,18 +24,18 @@
                         controller: 'hospedajeCtrl'
                     }
                 }
-            }).state('reglaHospedaje', {
-                url: '/{idHospedaje:int}/reglas',
-                param: {
+            }).state('elimiarRegla', {
+                url: '/hospedajes/{idHospedaje:int}',
+                param:{
                     idHospedaje: null
                 },
                 views:{
-                    'mainView':{ //regaView
-                        templateUrl: basePathRegla+'regla.html'
+                    'mainView':{
+                        templateUrl: basePath+'hospedajeEspecifico.html',
+                        controller: 'hospedajeCtrl'
                     }
                 }
-            })
-            .state('hospedajeEliminar', {
+            }).state('hospedajeEliminar', {
                 url: '/hospedajes/{idHospedaje:int}',
                  param:{
                     idHospedaje: null
