@@ -1,0 +1,19 @@
+<div class="container center-block" >
+    <form class="form-horizontal">
+        <div class="form-group">
+            <h2 class="text-center">Actualizar la informacion del estudiante: ID: {{estudianteActivo.id}} </h2>
+        </div>
+        <div class="form-group">
+            <label for="txtNombre" class="col-sm-4 col-md-4 col-lg-4 col-xs-4 control-label">Nombre</label>
+            <textarea id="txtNombre" type="textarea" class="col-sm-6 col-md-6 col-lg-6 col-xs-6 form-control-static" placeholder="ejemplo: Diomedes Diaz" ng-model="estudianteActivo.nombre" ng-value="estudianteActivo.nombre" required></textarea>
+        </div>
+        <div class="form-group">
+            <p class="col-sm-4 col-md-4 col-lg-4 col-xs-4"></p>
+            <div class="col-sm-5 col-md-5 col-lg-5 col-xs-5">
+                <input type="button" value="Cancelar" ui-sref="estudiantesList" class="col-sm-5 col-md-5 col-lg-5 col-xs-5 btn btn-info btn-group-lg">
+                <p class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></p>
+                <input type="button" value="Actualizar"  class="col-sm-5 col-md-5 col-lg-5 col-xs-5 btn btn-success" ng-click="actualizar()" >
+            </div>
+        </div>
+    </form>
+</div>

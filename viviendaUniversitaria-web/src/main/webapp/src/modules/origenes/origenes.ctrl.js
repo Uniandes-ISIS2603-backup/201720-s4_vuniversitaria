@@ -8,10 +8,15 @@
             });
 
             if ($state.params.origenesId !== undefined) {
-                $http.get(origenContext + '/' + $state.params.origenesId).then(function (response) {
-                    $scope.estudiantesRecords = response.data.estudiantes;
-                    $scope.currentOrigen = response.data;
+                $http.get(origenContext + '/' + $state.params.origenesId + '/' + 'estudiantes').then(function (response) {
+                    $scope.estudiantesOrigin = response.data;
                 });
+                
+                $http.get(origenContext + '/' + $state.params.origenesId).then(function (response) {
+                    $scope.currentOrigen = response.data;
+                })
+                
+                ;
             }
         }
     ]);

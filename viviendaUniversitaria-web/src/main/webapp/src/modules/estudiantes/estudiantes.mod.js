@@ -54,14 +54,26 @@
                 url: '/delete/{estudianteId:int}',
                 parent: 'estudiantes',
                 param: {
-                    estudianteId: null
+                    authorId: null
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/delete/estudiante.delete.html',
+                        templateUrl: basePath + '/delete/estudiantes.delete.html',
                         controller: 'estudianteDeleteCtrl'
                     }
                 }
-            });
+            }).state('estudianteUpdate', {
+                url: '/update/{idEstudiante:int}',
+                parent:'estudiantes',
+                 param:{
+                    idEstudiante: null
+                },
+                views:{
+                    'detailView':{
+                        templateUrl: basePath + '/update/estudiantes.update.html',
+                        controller: 'estudianteUpdateCtrl'
+                    }
+                }
+            });            
         }]);
 })(window.angular);

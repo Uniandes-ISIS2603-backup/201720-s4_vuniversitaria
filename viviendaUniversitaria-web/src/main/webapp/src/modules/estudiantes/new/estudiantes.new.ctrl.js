@@ -7,9 +7,9 @@
             $scope.createEstudiante = function () {
                 $http.post(estudiantesContext, {
                     nombre: $scope.estudianteNombre,
-                    cedula: $scope.estudianteCedula,
+                    cedula: $scope.estudianteCedula
                 }).then(function (response) {
-                    $state.go('estudiantesList')
+                    $state.go('estudiantesList',{estudianteId: response.data.id},{reload: true});
                 });
             };
         }

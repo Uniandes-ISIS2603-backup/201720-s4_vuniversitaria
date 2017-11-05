@@ -6,7 +6,7 @@
             var idEstudiante = $state.params.estudianteId;
             $scope.deleteEstudiante = function () {
                 $http.delete(estudiantesContext + '/' + idEstudiante, {}).then(function (response) {
-                    $state.go('estudiantesList', {estudianteId: response.data.id}, {reload: true});
+                    $state.go('estudiantesList',{estudianteId: response.data.id},{reload: true});
                 });
             };
         }

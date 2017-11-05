@@ -5,6 +5,7 @@
             var basePath = 'src/modules/origenes/';
             var basePathEstudiantes = 'src/modules/estudiantes/';
             $urlRouterProvider.otherwise("/origenesList");
+            
             $stateProvider.state('origenes', {
                 url: '/origenes',
                 abstract: true,
@@ -30,15 +31,34 @@
                     origenesId: null
                 },
                 views: {
-                    'listView': {
-                        templateUrl: basePathEstudiantes + 'estudiantes.list.html',
-                        controller: 'origenCtrl',
-                        controllerAs: 'ctrl'
-                    },
                     'detailView': {
                         templateUrl: basePath + 'origenes.detail.html',
                         controller: 'origenCtrl',
                         controllerAs: 'ctrl'
+                    }
+                }
+            }).state('agregarEstudiante',{
+                url: '/{origenesId:int}/agregarEstudiante',
+                parent:'origenes'
+                ,param:{
+                    origenesId:null
+                }
+                ,views:{
+                   'listView':{
+                        templateUrl:basePath + '/new/origenes.new.html'
+                        ,controller:'origenNewCtrl'
+                    }
+                }
+            }).state('origenUpdate',{
+                url:'{origenId:int}/update'
+                ,parent:'origenes'
+                ,param:{
+                    origenId:null
+                }
+                ,views:{
+                    'detailView':{
+                        templateUrl: basePath + '/update/origenes.update.html'
+                        ,controller:'origenUpdateCtrl'
                     }
                 }
             });
