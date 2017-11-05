@@ -7,11 +7,6 @@
                 $scope.estudiantesRecords = response.data;
             });
             
-            if ($state.params.estudianteId !== undefined) {
-                $http.get(estudiantesContext + '/' + $state.params.estudianteId).then(function (response) {
-                    $scope.currentEstudiante = response.data;
-                });
-            }
         }
     ]);
 }

@@ -12,5 +12,38 @@
                 </tr>
             </tbody>
         </table>
+        <br>
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+        <a class="btn btn-success btn-sm" ui-sref="origenUpdate({origenId: currentOrigen.id})"><span class="glyphicon glyphicon-edit"></span>Edit Origin</a>
+        </div>
+        <br>
+        <br>
+        <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label>Estudiantes list</label></div>
+            <div class="panel-body">
+         <div class="col-md-8">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>    
+                                <th>Cedula</th> 
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="estudiante in estudiantesOrigin">
+                                 <td id="{{$index}}-Nombre">{{estudiante.nombre}}</td>
+                                <td id="{{$index}}-Cedula">{{estudiante.cedula}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+        </div>
+    </div>
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="agregarEstudiante({origenesId: currentOrigen.id})"><span class="glyphicon glyphicon-plus-sign"></span>Add Student</a>
+                    </div>
     </div>
 </div>

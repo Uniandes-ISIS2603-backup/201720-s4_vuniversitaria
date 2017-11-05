@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createAuthor">Create new Estudiante</label>
+                <label ng-if="edit" id="editAuthor">Edit Estudiante</label></div>
+            <div class="panel-body">
+                <form ng-submit="createEstudiante()" name="estudiante">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="estudianteNombre" class="col-sm-2">Nombre</label>
+                            <input id="estudianteNombre" required ng-model="estudianteNombre" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="estudianteCedula" class="col-sm-2">Cedula:</label>
+                            <textarea id="estudianteCedula" required ng-model="estudianteCedula" class="col-sm-6"></textarea>                        
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!estudiante.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="col-sm-5 col-md-5 col-lg-5 col-xs-5">
+                <input type="button" value="Cancelar" ui-sref="estudiantesList" class="col-sm-5 col-md-5 col-lg-5 col-xs-5 btn btn-info btn-group-lg">
+                <p class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></p>
+                <input type="submit" ng-click="estudianteNewCtrl.createEstudiante()" value="Crear"  class="col-sm-5 col-md-5 col-lg-5 col-xs-5 btn btn-success">
+            </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
