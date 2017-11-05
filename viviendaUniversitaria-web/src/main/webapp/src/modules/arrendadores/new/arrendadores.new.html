@@ -23,31 +23,7 @@
                             <input id="arrendadorRutaImagen" required ng-model="arrendadorRutaImagen" class="col-sm-6"/>
                         </div>
                     </div>
-                    <div ng-if="edit" class="panel-group" id="theBooks">
-                        <div class="panel panel-info">
-                            <div class="panel-heading">Hospedajes asociados:</div>
-                            <div class="panel-body">
-                                <div id="div2" ondrop="angular.element(document.getElementById('hospedajes')).scope().dropAdd(event)" ondragover="angular.element(document.getElementById('hospedajes')).scope().allowDrop(event)">
-                                    <label></label>
-                                    <div ng-show="edit" ng-repeat="hospedaje in allHospedajesArrendador">
-                                        <p draggable="true" ondragstart="angular.element(document.getElementById('hospedajes')).scope().drag(event)" id="{{hospedaje.id}}">{{hospedaje.tipoArrendamiento}}</p>                                 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-success">
-                            <div class="panel-heading">Todos los hospedajes</div>
-                            <div class="panel-body">
-                                <div id="div1" ondrop="angular.element(document.getElementById('hospedajes')).scope().dropDelete(event)" ondragover="angular.element(document.getElementById('hospedajes')).scope().allowDrop(event)">
-                                    <label></label>
-                                    <div ng-repeat="hospedaje in allHospedajesShow">
-                                        <p draggable="true" ondragstart="angular.element(document.getElementById('hospedajes')).scope().drag(event)" id="{{hospedaje.id}}">{{hospedaje.tipoArrendamiento}}</p>                
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!arrendador.$valid">
 

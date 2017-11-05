@@ -25,4 +25,27 @@
         </div>
     </div>
 </div>
+<div class="panel panel-info">
+        <div class="panel-heading">
+            <h4>Hospedajes asociados al arrendador</h4>
+        </div>
+        <div class="panel-body">
+            <table class="table" >
+                <tbody ng-repeat=" a in currentArrendador.hospedajes">
+                    <tr>
+                        <td rowspan="4"><img src="{{a.rutaImagen}}" width="350" height="350" class="img-responsive"></td>
+                        <td class="well">Tipo de arrendamiento: {{a.tipoArrendamiento}} </td>
+                    </tr>
+                    <tr>
+                        <td class="well">Identificador: {{a.id}}</td>
+                    </tr>
+                    <tr>
+                        <td class="well">Valoracion: {{a.valoracion}}</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" class="well">Descripcion: {{a.descripcion}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 

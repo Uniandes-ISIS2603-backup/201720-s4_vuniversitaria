@@ -3,7 +3,6 @@
     mod.constant("hospedajeContext", "api/hospedajes");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/hospedaje/';
-            var basePathRegla = 'src/modules/regla/';
             $urlRouterProvider.otherwise("/hospedajes");
             $stateProvider.state('hospedaje', {
                 url: '/hospedajes',
@@ -65,6 +64,18 @@
                     'mainView':{
                         templateUrl: basePath+'hospedaje.update.html',
                         controller: 'hospedajeUpdateCtrl',
+                        controllerAs: 'c'
+                    }
+                }
+            }).state('crearRegla', {
+                url: '/hospedajes/{idHospedaje:int}/reglas',
+                 param:{
+                    idHospedaje: null
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'regla/regla.create.html',
+                        controller: 'hospedajeCtrl',
                         controllerAs: 'c'
                     }
                 }

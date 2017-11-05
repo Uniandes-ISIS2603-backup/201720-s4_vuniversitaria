@@ -99,27 +99,16 @@ values ('Hospedaje 7', 'Albergues', 44,0,'http://www.xochitla.org.mx/imagenes/va
 
 -- Arrendador
 
-insert into APP.ARRENDADORENTITY (id, nombre) values (3177523825303, 'Milo');
-insert into APP.ARRENDADORENTITY (id, nombre) values (7661563852634, 'Roger');
-insert into APP.ARRENDADORENTITY (id, nombre) values (968668294465, 'Bertrand');
-insert into APP.ARRENDADORENTITY (id, nombre) values (203123592715, 'Papageno');
-insert into APP.ARRENDADORENTITY (id, nombre) values (7095082710217, 'Ermanno');
-insert into APP.ARRENDADORENTITY (id, nombre) values (8364709267017, 'Lennie');
-insert into APP.ARRENDADORENTITY (id, nombre) values (3026925437839, 'Maurie');
-insert into APP.ARRENDADORENTITY (id, nombre) values (7687381485806, 'Monique');
-insert into APP.ARRENDADORENTITY (id, nombre) values (3991096447077, 'Andeee');
-insert into APP.ARRENDADORENTITY (id, nombre) values (1163763388482, 'Maddalena');
-insert into APP.ARRENDADORENTITY (id, nombre) values (3489848653801, 'Astrix');
-insert into APP.ARRENDADORENTITY (id, nombre) values (7387280289802, 'Daisey');
-insert into APP.ARRENDADORENTITY (id, nombre) values (7654046550740, 'Dud');
-insert into APP.ARRENDADORENTITY (id, nombre) values (3670417686042, 'Townie');
-insert into APP.ARRENDADORENTITY (id, nombre) values (6247108163765, 'Carilyn');
-insert into APP.ARRENDADORENTITY (id, nombre) values (2366712422429, 'Filip');
-insert into APP.ARRENDADORENTITY (id, nombre) values (402932192995, 'Erina');
-insert into APP.ARRENDADORENTITY (id, nombre) values (881600386516, 'Rozamond');
-insert into APP.ARRENDADORENTITY (id, nombre) values (3022366882222, 'Anny');
-insert into APP.ARRENDADORENTITY (id, nombre) values (2381665776468, 'Kerianne');
-insert into APP.ARRENDADORENTITY (id, nombre) values (7763930934611, 'Eleni');
+insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (3177523825303, 'Milo Pimentel', 'https://cdn3.uvnimg.com/dims4/default/1463aea/2147483647/resize/860x645%3E/quality/75/?url=https%3A%2F%2Fcdn1.uvnimg.com%2Fe9%2F83%2F55755c2844dc825c1fe2b3b8c026%2Fscreen-shot-2016-11-03-at-11.54.32%20AM.png');
+insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (968668294465, 'Bertrand Velez', 'http://i.eldiario.com.ec/fotos-manabi-ecuador/2015/12/20151211022808_a-a-tres-da-as-de-la-gran-final.jpg');
+insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (203123592715, 'Papageno Colon', 'https://pbs.twimg.com/media/CyIndfkW8AA39Rm.jpg:large');
+insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (7095082710217, 'Ermanno Jesus', 'https://s-media-cache-ak0.pinimg.com/originals/b6/ae/18/b6ae189c11a971a1af4d17c1188a73ed.jpg');
+insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (8364709267017, 'Lennie Camacho', 'https://pmcvarietylatino.files.wordpress.com/2016/08/screen-shot-2016-08-02-at-6-07-35-pm.png');
+insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (3026925437839, 'Maurie Buffay', 'https://media1.popsugar-assets.com/files/thumbor/MBHtesX6rzydLZ-5oMHGS28vzpQ/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2014/07/28/951/n/1922283/91c8d314f242e434_thumb_temp_cover_file20701441406582209/i/Phoebe-Buffay-Friends-GIFs.jpg');
+insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (7687381485806, 'Monique Geller', 'https://friendv.files.wordpress.com/2013/08/monica-geller.jpg');
+insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (3991096447077, 'Andeee Green', 'http://akns-images.eonline.com/eol_images/Entire_Site/2014111/rs_560x415-140211085529-560.jennifer-aniston-friends.ls.21114_copy.jpg');
+insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (1163763388482, 'Maddalena Collins', 'https://i.pinimg.com/736x/28/a3/c2/28a3c249e7963ae6dd1063c2157a8735--lily-himym-lily-aldrin.jpg');
+insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (3489848653801, 'Astrix Pena', 'https://cbsb96radio.files.wordpress.com/2015/06/gettyimages-462704428.jpg');
 
 --Calificacion
 
