@@ -23,7 +23,14 @@
                     $state.reload();
                 });
 
+            };
 
+            $scope.crearRegla = function () {
+                $http.post(hospedajeContext + '/' + $state.params.idHospedaje + '/reglas', {
+                    regla:$scope.regla
+                }).then(function (response) {
+                    $state.go('hospedajeEspecifico', {idHospedaje: $state.params.idHospedaje});
+                });
             };
         }
     ]);

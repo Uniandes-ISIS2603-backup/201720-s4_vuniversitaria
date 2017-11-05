@@ -85,11 +85,11 @@
         <div class="panel-heading">
             <div class="row">
                 <h4 class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Reglas</h4>
-                <p class="col-sm-8 col-md-8 col-lg-8 col-xs-8"></p>
+                <p class="col-sm-7 col-md-7 col-lg-7 col-xs-7"></p>
                 <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">
-                    <p class="col-sm-3 col-md-3 col-lg-3 col-xs-3"></p>
-                    <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7">
-                        <button class="btn color-transparente"><span class="glyphicon glyphicon-plus"></span></button>
+                    <p class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></p>
+                    <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7 container">
+                        <button type="button" class="btn color-transparente" ui-sref="crearRegla({idHospedaje: hospedajeActivo.id})"><span class="glyphicon glyphicon-plus"></span> Agregar</button>
                     </div>
                 </div>
             </div>
@@ -99,8 +99,11 @@
                 <tbody ng-repeat=" r in hospedajeActivo.reglas" class="list-group">
                     <tr>
                         <td> {{r.regla}}</td>
-                        <td> <button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button> 
-                            <button class="btn btn-danger" ui-sref="hospedajeEspecifico({idHospedaje:hospedajeActivo.id})" ng-click="alert(hospedajeActivo.id);eliminarRegla(hospedajeActivo.id, r.id)"><span class="glyphicon glyphicon-remove"></span></button></td>
+                        <td>
+                            <button class="btn btn-danger" ng-click="eliminarRegla(hospedajeActivo.id, r.id)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -110,4 +113,33 @@
 <br>
 <br>
 
+
+<!-- Button trigger modal -->
+<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" value="Launch demo modal">
+<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Launch demo modal3">
+  
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+
+
