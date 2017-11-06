@@ -78,16 +78,31 @@ public class OrigenResource {
         return OrigenEstudianteResource.class;
     }
 
+//    @PUT
+//    @Path("{id: \\d+}")
+//    public OrigenDTO updateOrigen(@PathParam("id") Long id, OrigenDTO origen) throws BusinessLogicException {
+//        origen.setId(id);
+//        OrigenEntity entity = origenLogic.find(id);
+//        if (entity == null) {
+//            throw new WebApplicationException(ALGO1 + id + ALGO2, 404);
+//        }
+//        return new OrigenDTO(origenLogic.update(origen.toEntity(),id));
+//    }
     @PUT
     @Path("{id: \\d+}")
-    public OrigenDTO updateOrigen(@PathParam("id") Long id, OrigenDTO origen) throws BusinessLogicException {
-        origen.setId(id);
-        OrigenEntity entity = origenLogic.find(id);
-        if (entity == null) {
-            throw new WebApplicationException(ALGO1 + id + ALGO2, 404);
+    public OrigenDTO updateOrigen(@PathParam("id") Long id, OrigenDTO dto) throws BusinessLogicException {
+        OrigenEntity entity = dto.toEntity();
+        entity.setId(id);
+        OrigenEntity oldEntity = origenLogic.find(id);
+        if (oldEntity == null) {
+            throw new WebApplicationException("El origen no existe", 404);
         }
-        return new OrigenDTO(origenLogic.update(origen.toEntity(),id));
+        
+        entity.setEstudiante(oldEntity.getEstudiantes());
+        return new OrigenDTO(origenLogic.update(entity,id));
     }
+
+    
 //NO SE PUEDE BORRAR POR REGLAS DE NEGOCIO
 //    @DELETE
 //    @Path("{id: \\d+}")
