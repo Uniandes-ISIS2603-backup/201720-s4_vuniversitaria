@@ -199,17 +199,17 @@ insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje
 
 -- Ligares Interes
 
-insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Ipsum.ppt', 8, 'http://dummyimage.com/140x242.png/5fa2dd/ffffff');
-insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('VelNullaEget.doc', 97, 'http://dummyimage.com/119x181.png/ff4444/ffffff');
-insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('NonMattisPulvinar.jpeg', 25, 'http://dummyimage.com/188x148.png/dddddd/000000');
-insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('UltricesPhasellus.tiff', 62, 'http://dummyimage.com/137x224.bmp/ff4444/ffffff');
-insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('AmetSem.pdf', 30, 'http://dummyimage.com/210x235.png/cc0000/ffffff');
-insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('UltricesPosuereCubilia.gif', 67, 'http://dummyimage.com/217x181.jpg/ff4444/ffffff');
-insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('VitaeNisiNam.xls', 17, 'http://dummyimage.com/118x175.png/ff4444/ffffff');
-insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('IdPretiumIaculis.mp3', 89, 'http://dummyimage.com/245x230.bmp/cc0000/ffffff');
-insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Integer.avi', 77, 'http://dummyimage.com/141x107.bmp/ff4444/ffffff');
-insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('PretiumIaculis.ppt', 74, 'http://dummyimage.com/133x226.bmp/dddddd/000000');
-insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Aenean.avi', 28, 'http://dummyimage.com/148x138.jpg/5fa2dd/ffffff');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Juan Valdez: Perfecto lugar para un cafe 100% colombiano ', 8, 'http://www.masfranquicias.com/wp-content/uploads/2016/02/Juan_Valdez_Caf%C3%A917_Masfranquicias.jpg');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Exito: almacen de todo tipo de suministros ', 97, 'http://static.hsbnoticias.com/sites/default/files/styles/original/public/gallery/2015/03/mg-9788r.jpg?itok=khDChg30');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Banco davivienda: Banco davivienda perfecto para realizar pagos,giros,etc', 25, 'https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto,w_1200/v1470935784/entity/image/file/512/000/57acb2e82f41f3703b000512.jpg');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Parque la colina: centro comercial que cuenta con salas de cine, bancos, zona de comidas y diferentes almacenes de marca', 62, 'http://pyd.com.co/wp-content/uploads/2017/08/internet-parque-colina.jpg');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('MacDonalds: restaurante MacDonalds con parqueadero y auto mac', 30, 'http://www.rchconstructores.com/wp-content/uploads/2011/08/mcdonalds01.jpg');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Clinica Colina', 67, 'https://imgcdn.larepublica.co/cms/2013/05/06224016/colina0507-1000.jpg');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('abraham lincoln : colegio privado bilingue ', 17, 'http://locationcolombia.com/wp-content/uploads/2014/05/BOGOTA-Colegio-Abraham-Lincoln-CIELITO-LINDO-1.jpg');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Petrobras: estacion de gasolina', 89, 'http://cdn.colombia.com/sdi/2014/03/07/a4a5db94d8bc431e98b54c02ade342af.jpg');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Comercial Papelera: papeleria con servicio de 24 horas', 77, 'https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto,w_1200/v1404939232/entity/image/file/022/000/53bdabdfb9dd5d74fb000022.jpg');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Bogota beer company', 74, 'http://cr00.epimg.net/radio/imagenes/2015/09/22/nacional/1442956730_087930_1442957047_noticia_normal.jpg');
+insert into LugaresInteresEntity (descripcion, distancia, rutaImagen) values ('Subway', 28, 'http://www.impulsonegocios.com/resources/original/IN_2015/-norberto20152/000subway070415.jpg');
 
 -- Reglas
 insert into REGLAENTITY (regla,hospedaje_id) values ('Se pohiben las mascotas',1);

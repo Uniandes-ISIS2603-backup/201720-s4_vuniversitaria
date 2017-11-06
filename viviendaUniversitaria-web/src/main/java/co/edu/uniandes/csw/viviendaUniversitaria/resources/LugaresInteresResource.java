@@ -87,9 +87,8 @@ public class LugaresInteresResource {
     @Path("{id: \\d+}")
     public LugaresInteresDTO updateLugar(@PathParam("id") Long id, LugaresInteresDTO lugarAtualizado) throws WebApplicationException {
         try {
-            LugaresInteresEntity entity = lugarAtualizado.toEntity();
-            LugaresInteresEntity nuevoEntity = logic.update(entity, id);
-            return new LugaresInteresDTO(nuevoEntity);
+            lugarAtualizado.setId(id);
+            return new LugaresInteresDTO(logic.update(lugarAtualizado.toEntity(), id));
         } catch (WebApplicationException e) {
             throw e;
         }
