@@ -3,7 +3,6 @@
     mod.constant("lugaresInteresContext", "api/lugaresInteres");
     mod.controller('lugaresInteresCtrl', ['$scope', '$http', 'lugaresInteresContext', '$state',
         function ($scope, $http,lugaresInteresContext, $state) {
-            console.log('fafada',$state.params.idLugarInteres);
             $http.get(lugaresInteresContext).then(function (response) {
                 $scope.lugaresInteresList = response.data;
             });

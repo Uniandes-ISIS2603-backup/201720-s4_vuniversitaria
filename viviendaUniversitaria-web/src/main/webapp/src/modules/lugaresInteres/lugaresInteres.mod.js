@@ -23,7 +23,20 @@
                         controller : 'lugaresInteresCtrl'
                     }
                 }
-            })}
+            }).state('lugarInteresEliminar',{
+             url: '/lugaresInteres/{idLugarInteresDelete:int}',
+              param:{
+                    idLugarInteresDelete: 0
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'lugaresInteres.delete.html',
+                        controller : 'lugaresInteresDeleteCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            })        
+        }
     ]);
 })(window.angular);
 
