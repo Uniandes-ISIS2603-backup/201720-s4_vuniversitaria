@@ -48,13 +48,13 @@
                     }
                 }
             }).state('lugarInteresCreate',{
-             url: '/lugaresInteres/{idUbicacion:int}',
+             url: '/lugaresInteres',
               param:{
-                    idUbicacion: 0
+                    idUbiLugarInt: 0
                 },
                 views:{
                     'mainView':{
-                        templateUrl: basePath+'lugaresInteres.update.html',
+                        templateUrl: basePath+'lugaresInteres.create.html',
                         controller : 'lugaresInteresCreateCtrl',
                         controllerAs: 'ctrl'
                     }
