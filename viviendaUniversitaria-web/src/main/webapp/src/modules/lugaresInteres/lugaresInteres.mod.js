@@ -35,7 +35,31 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            })        
+            }).state('lugarInteresUpdate',{
+             url: '/lugaresInteres/{idLugarInteresUpdate:int}',
+              param:{
+                    idLugarInteresUpdate: 0
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'lugaresInteres.update.html',
+                        controller : 'lugaresInteresUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('lugarInteresCreate',{
+             url: '/lugaresInteres/{idUbicacion:int}',
+              param:{
+                    idUbicacion: 0
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'lugaresInteres.update.html',
+                        controller : 'lugaresInteresCreateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            });        
         }
     ]);
 })(window.angular);
