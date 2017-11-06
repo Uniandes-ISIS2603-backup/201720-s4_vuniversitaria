@@ -63,17 +63,19 @@ public class ArrendadorResource {
         }
         return new ArrendadorDetailDTO(arrendadorLogic.getArrendador(id));
     }
-
     
     @PUT
     @Path("{id: [0-9][0-9]*}")
     public ArrendadorDetailDTO updateArrendador(@PathParam("id") Long id, ArrendadorDetailDTO arrendador) throws BusinessLogicException {
-        arrendador.setId(id);
-        ArrendadorEntity entity = arrendadorLogic.getArrendador(id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /arrendador/" + id + " no existe.", 404);
+        ArrendadorEntity entity = arrendador.toEntity();
+        entity.setId(id);
+        ArrendadorEntity oldEntity = arrendadorLogic.getArrendador(id);
+        if (oldEntity == null) {
+            throw new WebApplicationException("El arrendador no existe", 404);
         }
-        return new ArrendadorDetailDTO(arrendadorLogic.updateArrendador(id, arrendador.toEntity()));
+        
+        entity.setHospedajes(oldEntity.getHospedajes());
+        return new ArrendadorDetailDTO(arrendadorLogic.updateArrendador(id, entity));
     }
 
     @DELETE

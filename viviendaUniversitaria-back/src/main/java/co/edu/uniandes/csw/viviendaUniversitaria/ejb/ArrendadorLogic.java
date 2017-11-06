@@ -69,8 +69,11 @@ public class ArrendadorLogic {
         return arrendador;
     }
 
-    public ArrendadorEntity updateArrendador(Long id, ArrendadorEntity entity) {
+    public ArrendadorEntity updateArrendador(Long id, ArrendadorEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar arrendador con id={0}", id);
+        if(persistence.find(id)== null)
+            throw new BusinessLogicException("No existe el arrendador con el id dado");
+        entity.setId(id);
         ArrendadorEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar arrendador con id={0}", entity.getId());
         return newEntity;
