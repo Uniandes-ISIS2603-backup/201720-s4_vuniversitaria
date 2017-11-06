@@ -13,7 +13,8 @@
             $scope.actualizar = function () {
                 $http.put(hospedajeContext+'/'+$state.params.idHospedaje, {
                     tipoArrendamiento: $scope.tipoArrendamiento,
-                    descripcion: $scope.descripcion
+                    descripcion: $scope.descripcion,
+                    rutaImagen: $scope.rutaImagen
                 }).then(function (response) {
                     $state.go('hospedaje');
                 });

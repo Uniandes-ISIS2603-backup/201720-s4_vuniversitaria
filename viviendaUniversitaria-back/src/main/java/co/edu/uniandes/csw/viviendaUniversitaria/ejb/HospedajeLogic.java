@@ -78,6 +78,9 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
             if (entity.getDescripcion() == null) {
                 entity.setDescripcion(oldEntity.getDescripcion());
             }
+            if(entity.getRutaImagen() == null) {
+                entity.setRutaImagen(oldEntity.getRutaImagen());
+            }
         }
         return super.update(entity, id);
     }

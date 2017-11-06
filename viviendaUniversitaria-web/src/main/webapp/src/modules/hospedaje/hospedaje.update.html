@@ -13,6 +13,10 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="txtRutaImagen" class="col-sm-4 col-md-4 col-lg-4 col-xs-4 control-label">Imagen</label>
+            <input id="txtRutaImagen" type="text" class="col-sm-6 col-md-6 col-lg-6 col-xs-6 form-control-static" placeholder="ingrese un link de internet" ng-model="rutaImagen" ng-init="hospedajeActivo.rutaImagen" ng-value="hospedajeActivo.rutaImagen" required>
+        </div>
+        <div class="form-group">
             <label for="txtDescripción" class="col-sm-4 col-md-4 col-lg-4 col-xs-4 control-label">Descripcion</label>
             <textarea id="txtDescripción" type="textarea" class="col-sm-6 col-md-6 col-lg-6 col-xs-6 form-control-static" placeholder="ejemplo: mi hospedaje es muy bonito" ng-model="descripcion" ng-init="hospedajeActivo.descripcion" ng-value="hospedajeActivo.descripcion" required></textarea>
         </div>
