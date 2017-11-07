@@ -5,10 +5,8 @@
             <div class="panel-body">
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="ubicacionCreate">
-                            <span class="glyphicon glyphicon-plus-sign"></span> 
-                            Agregar una nueva ubicación
-                        </a>
+                       
+                       
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -21,15 +19,7 @@
                         <tbody>
                             <tr ng-repeat="ubicacion in ubicacionesRecords">
                                 <td id="{{$index}}-direccion"><a ui-sref="ubicacionDetail({ubicacionId: ubicacion.id})">{{ubicacion.direccion}}</a></td>
-                                <td id="{{$index}}-actions">
-                                     <a class="btn btn-info btn-sm" ui-sref="ubicacionEdit({ubicacionId: ubicacion.id})">
-                                        <span class="glyphicon glyphicon-edit"></span>
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" ui-sref="ubicacionDelete({ubicacionId: ubicacion.id})">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                    </a>  
-                                   
-                                </td>
+                             
                             </tr>
                         </tbody>
                     </table>
