@@ -6,7 +6,8 @@
             this.registrar = function () {
                 $http.post(hospedajeContext, {
                     tipoArrendamiento: $scope.tipoArrendamiento,
-                    descripcion: $scope.descripcion
+                    descripcion: $scope.descripcion,
+                    rutaImagen: $scope.rutaImagen
                 }).then(function (response) {
                     $scope.hospedajeActivo = response.data;
                     $state.go('hospedaje');
