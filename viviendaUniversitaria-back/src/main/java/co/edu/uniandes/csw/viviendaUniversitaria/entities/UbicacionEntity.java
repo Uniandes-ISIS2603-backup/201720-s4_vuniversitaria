@@ -41,9 +41,9 @@ public class UbicacionEntity extends BaseEntity{
      */
     private Long latitud;
     /**
-     * Atributo que modela la altitud de la ubicacion.
+     * Atributo que modela la longitud de la ubicacion.
      */
-    private Long altitud;
+    private Long longitud;
 
     /**
      * Retorna la latitud
@@ -60,18 +60,18 @@ public class UbicacionEntity extends BaseEntity{
         this.latitud = latitud;
     }
     /**
-     * Retorna la altitud
-     * @return altitud
+     * Retorna la longitud
+     * @return longitud
      */
-    public Long getAltitud() {
-        return altitud;
+    public Long getLongitud() {
+        return longitud;
     }
     /**
-     * Modifica la altitud 
-     * @param altitud 
+     * Modifica la longitud 
+     * @param longitud 
      */
-    public void setAltitud(Long altitud) {
-        this.altitud = altitud;
+    public void setLongitud(Long longitud) {
+        this.longitud = longitud;
     }
     /**
      * Retorna la direccion
@@ -106,7 +106,7 @@ public class UbicacionEntity extends BaseEntity{
         int hash = 5;
         hash = 37 * hash + Objects.hashCode(this.direccion);
         hash = 37 * hash + Objects.hashCode(this.latitud);
-        hash = 37 * hash + Objects.hashCode(this.altitud);
+        hash = 37 * hash + Objects.hashCode(this.longitud);
         return hash;
     }
 }

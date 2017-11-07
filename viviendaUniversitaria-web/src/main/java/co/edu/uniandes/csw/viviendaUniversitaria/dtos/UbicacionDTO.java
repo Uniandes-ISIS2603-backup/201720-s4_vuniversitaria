@@ -15,7 +15,7 @@ public class UbicacionDTO {
 
     private Long id;
     private Long latitud;
-    private Long altitud;
+    private Long longitud;
     private String direccion;
 
     public UbicacionDTO() {
@@ -25,7 +25,7 @@ public class UbicacionDTO {
     public UbicacionDTO(UbicacionEntity entity) {
         this.id = entity.getId();
         this.direccion = entity.getDireccion();
-        this.altitud = entity.getAltitud();
+        this.longitud = entity.getLongitud();
         this.latitud = entity.getLatitud();
     }
 
@@ -45,12 +45,12 @@ public class UbicacionDTO {
         this.latitud = latitud;
     }
 
-    public Long getAltitud() {
-        return altitud;
+    public Long getLongitud() {
+        return longitud;
     }
 
-    public void setAltitud(Long altitud) {
-        this.altitud = altitud;
+    public void setLongitud(Long longitud) {
+        this.longitud = longitud;
     }
 
     public String getDireccion() {
@@ -71,7 +71,7 @@ public class UbicacionDTO {
         entity.setId(this.id);
         entity.setDireccion(this.direccion);
         entity.setLatitud(this.latitud);
-        entity.setAltitud(altitud);
+        entity.setLongitud(longitud);
         return entity;
     }
 }

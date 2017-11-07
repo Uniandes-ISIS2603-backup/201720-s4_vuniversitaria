@@ -16,17 +16,30 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class UniversidadEntity  extends BaseEntity {
-    
+   
    /**
     * Atributo que modela el nombre de la universidad.
     */
     private String nombre;
+    /**
+     * Modela la ubicacion de la imagen.
+     */
+    private String imagen;
     /**
      * Atributo que modela la ubicacion de la universidad.
      */
     @PodamExclude
     @OneToOne
     private UbicacionEntity ubicacion;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
     
     /**
      * Retorna el nombre de la universidad. 
@@ -74,6 +87,7 @@ public class UniversidadEntity  extends BaseEntity {
     public int hashCode() {
         int hash = 7;
         hash = 37 * hash + Objects.hashCode(this.nombre);
+        hash = 37 * hash + Objects.hashCode(this.imagen);
         return hash;
     }
     
