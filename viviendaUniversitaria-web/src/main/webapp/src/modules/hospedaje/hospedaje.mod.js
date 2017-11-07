@@ -9,7 +9,7 @@
                 views:{
                     'mainView':{
                         templateUrl: basePath+'hospedaje.html',
-                        controller: 'hospedajeCtrl',
+                        controller: 'hospedajeCtrl'
                     }
                 }
             }).state('hospedajeEspecifico', {
@@ -77,6 +77,41 @@
                         templateUrl: basePath+'regla/regla.create.html',
                         controller: 'hospedajeCtrl',
                         controllerAs: 'c'
+                    }
+                }
+            }).state('serviciosUpdate', {
+                url: '/hospedajes/{idHospedaje:int}/servicios/{idServicio:int}',
+                 param:{
+                    idHospedaje: null,
+                    idServicio: null
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'servicios/servicios.update.html',
+                        controller: 'hospedajeCtrl'
+                    }
+                }
+            }).state('serviciosDelete', {
+                url: '/hospedajes/{idHospedaje:int}/servicios/delete/{idServicio:int}',
+                 param:{
+                    idHospedaje: null,
+                    idServicio: null
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'servicios/servicios.delete.html',
+                        controller: 'hospedajeCtrl'
+                    }
+                }
+            }).state('serviciosCreate', {
+                url: '/hospedajes/{idHospedaje:int}/servicios/create',
+                 param:{
+                    idHospedaje: null
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'servicios/servicios.create.html',
+                        controller: 'hospedajeCtrl'
                     }
                 }
             })

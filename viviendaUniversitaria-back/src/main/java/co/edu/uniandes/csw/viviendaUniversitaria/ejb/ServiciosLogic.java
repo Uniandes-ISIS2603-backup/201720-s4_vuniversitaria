@@ -5,13 +5,13 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ServiciosEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.persistence.HospedajePersistence;
+import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.viviendaUniversitaria.persistence.ServicioPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.ws.rs.WebApplicationException;
 
 /**
@@ -19,17 +19,25 @@ import javax.ws.rs.WebApplicationException;
  * @author jc.sanguino10
  */
 @Stateless
-public class ServiciosLogic {
+public class ServiciosLogic extends GenericLogic<ServiciosEntity>{
 
-    @PersistenceContext(unitName = "viviendaUniversitariaPU")
-    protected EntityManager em;
+    private HospedajeLogic hospedajeLogic; // Variable para acceder a la persistencia de la aplicación.
+    
+    public ServiciosLogic()
+    {
+        super();
+    }
     
     @Inject
-    private HospedajePersistence hospedajePersistence; // Variable para acceder a la persistencia de la aplicación.
+    public ServiciosLogic(ServicioPersistence servicioPersistence, HospedajeLogic hospedajeLogic) throws InstantiationException, IllegalAccessException {
+        super(servicioPersistence, ServiciosEntity.class);
+        this.hospedajeLogic = hospedajeLogic;
+    }
 
-    public List<ServiciosEntity> findAll(Long idHospedaje) throws WebApplicationException {
+    public List<ServiciosEntity> findAll(Long idHospedaje) throws WebApplicationException, BusinessLogicException {
 
-        List<ServiciosEntity> respuesta = hospedajePersistence.find(idHospedaje).getServicios();
+        HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
+        List<ServiciosEntity> respuesta = hospedaje.getServicios();
         if (respuesta == null || respuesta.isEmpty()) {
             throw new WebApplicationException("No existen servicios en el hospedaje con id: " + idHospedaje, 405);
         } else {
@@ -37,7 +45,7 @@ public class ServiciosLogic {
         }
     }
 
-    public ServiciosEntity findServicio(Long idHospedaje, Long idServicio) throws WebApplicationException {
+    public ServiciosEntity findServicio(Long idHospedaje, Long idServicio) throws WebApplicationException, BusinessLogicException {
         List<ServiciosEntity> listServicios = findAll(idHospedaje);
         ServiciosEntity servicioBuscado = null;
         for (int i = 0; i < listServicios.size() && servicioBuscado == null; i++) {
@@ -52,43 +60,37 @@ public class ServiciosLogic {
         }
     }
 
-    public ServiciosEntity createServicio(Long idHospedaje, ServiciosEntity entidad) throws WebApplicationException {
-
+    public ServiciosEntity createServicio(Long idHospedaje, ServiciosEntity entidad) throws WebApplicationException, BusinessLogicException {
         if (entidad.getId() == null) {
             throw new WebApplicationException("el servicio no cuenta con un id valido", 407);
         } else {
-            entidad.setHospedaje(hospedajePersistence.find(idHospedaje));
-            hospedajePersistence.find(idHospedaje).getServicios().add(entidad);
+            entidad.setHospedaje(hospedajeLogic.find(idHospedaje));
+            hospedajeLogic.find(idHospedaje).getServicios().add(entidad);
             return findServicio(idHospedaje, entidad.getId());
         }
+
     }
 
-    public ServiciosEntity updateServicio(Long idHospedaje, Long id, ServiciosEntity entidad) throws WebApplicationException {
+    public ServiciosEntity updateServicio(Long idHospedaje, Long id, ServiciosEntity entidad) throws WebApplicationException, BusinessLogicException {
         if (findServicio(idHospedaje, id) == null) {
             throw new WebApplicationException("el servicio no cuenta con un id valido", 407);
         } else {
-            int existe = hospedajePersistence.find(idHospedaje).getServicios().indexOf(findServicio(idHospedaje, id));
-            if (existe < 0) {
-                throw new WebApplicationException("no existe el servicio con id: " + id, 405);
-            } else {
-                entidad.setHospedaje(hospedajePersistence.find(idHospedaje));
-                ServiciosEntity entity = em.merge(entidad);
-                return entity;
+            ServiciosEntity old = findServicio(idHospedaje, id);
+            entidad.setHospedaje(old.getHospedaje());
+            entidad.setId(id);
+            if(entidad.getDescripcion()==null || entidad.getDescripcion().equals(""))
+            {
+                entidad.setDescripcion(old.getDescripcion());
             }
+            return persistence.update(entidad);
         }
     }
 
-    public void delete(Long idHospedaje, Long idServicio) throws WebApplicationException {
+    public void delete(Long idHospedaje, Long idServicio) throws WebApplicationException, BusinessLogicException {
         if (findServicio(idHospedaje, idServicio) == null) {
             throw new WebApplicationException("el servicio no cuenta con un id valido", 407);
         } else {
-            int existe = hospedajePersistence.find(idHospedaje).getServicios().indexOf(findServicio(idHospedaje, idServicio));
-            if (existe < 0) {
-                throw new WebApplicationException("no existe el servicio con id: " + idServicio, 405);
-            } else {
-                hospedajePersistence.find(idHospedaje).getServicios().remove(existe);
-
-            }
+            persistence.delete(idServicio);
         }
     }
 }
