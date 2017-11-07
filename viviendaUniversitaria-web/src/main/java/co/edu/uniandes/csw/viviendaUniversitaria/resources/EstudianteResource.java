@@ -82,7 +82,6 @@ public class EstudianteResource {
     @PUT
     @Path("{cedula: \\d+}")
     public EstudianteDTO updateEstudiante(@PathParam("cedula") Long cedula, EstudianteDTO estu) throws BusinessLogicException {
-        estu.setCedula(cedula);
         EstudianteEntity entity = estudiante.find(cedula);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + cedula + ALGO2, 404);

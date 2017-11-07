@@ -1,0 +1,73 @@
+<div class="panel panel-info"> 
+    <div class="panel-heading">
+                <h4><b>Información detallada de la factura</b></h4>
+            </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <img class="img-responsive" ng-src="resources/images/inbox.PNG"/>
+            </div>
+            <div class="col-md-3">
+                <dl>   
+                    <hr>
+                    <dt class="bold">Identificador único:</dt>
+                    <dd>{{currentFactura.id}}</dd>
+                    
+                    <hr>
+                    <dt class="bold">Fecha:</dt>
+                    <dd>{{currentFactura.fecha}}</dd>
+                    
+                    <hr>
+                    <dt class="bold">Iva aplicado:</dt>
+                    <dd>{{currentFactura.iva}}</dd>
+                    
+                    <hr>
+                    <dt class="bold">Total:</dt>
+                    <dd>{{currentFactura.total}}</dd>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-info">
+        <div class="panel-heading">
+            <h4>Detalles adicionales de la reserva</h4>
+        </div>
+        <div class="panel-body">
+            <table class="table" >
+                <tbody ng-repeat=" detalleReserva in listaDetallesReserva">
+                    
+                    <tr>
+                        <td class="well">Identificador: {{detalleReserva.id}}</td>
+                    </tr>
+                    <tr>
+                        <td class="well">Subtotal: {{detalleReserva.subTotal}}</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+</div>
+<div class="panel panel-info">
+        <div class="panel-heading">
+            <h4>Detalles adicionales de los servicios</h4>
+        </div>
+        <div class="panel-body">
+            <table class="table" >
+                <tbody ng-repeat=" detalleServicio in listaDetallesServicio">
+                    
+                    <tr>
+                        <td class="well">Identificador: {{detalleServicio.id}}</td>
+                    </tr>
+                     <tr>
+                        <td class="well">Cantidad: {{detalleServicio.cantidad}}</td>
+                    </tr>
+                    <tr>
+                        <td class="well">Subtotal: {{detalleReserva.subTotal}}</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+</div>

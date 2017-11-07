@@ -37,9 +37,8 @@ public class CalificacionResource {
  
                
     @POST
-    @Path("hospedajes/{idHospedaje: \\d+}")
-    public CalificacionDetailDTO createCalificacion(@PathParam("cedulaEstudiante")Long cedulaEstudiante,@PathParam("idHospedaje") Long idHospedaje, CalificacionDTO calificacionDetail) throws BusinessLogicException {
-        return new CalificacionDetailDTO(calificacionLogic.create(cedulaEstudiante, idHospedaje, calificacionDetail.toEntity()));
+    public CalificacionDetailDTO createCalificacion(@PathParam("idHospedaje") Long idHospedaje, CalificacionDTO calificacionDetail) throws BusinessLogicException {
+        return new CalificacionDetailDTO(calificacionLogic.create(idHospedaje, calificacionDetail.toEntity()));
     }
     
     private List<CalificacionDetailDTO> getListaCalificacionesHospedaje(List<CalificacionEntity> entityList){
@@ -78,11 +77,11 @@ public class CalificacionResource {
     
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteCalificacion(@PathParam("cedulaEstudiante") Long cedulaEstudiante, @PathParam("id") Long id) throws BusinessLogicException {
-        CalificacionEntity entity = calificacionLogic.getCalificacionEstudiante(cedulaEstudiante, id);
+    public void deleteCalificacion(@PathParam("idHospedaje") Long idHospedaje, @PathParam("id") Long id) throws BusinessLogicException {
+        CalificacionEntity entity = calificacionLogic.getCalificacionHospedaje(idHospedaje, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /estudiantes/" + cedulaEstudiante + "/calificaciones/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /hospedajes/" + idHospedaje + "/calificaciones/" + id + " no existe.", 404);
         }
-        calificacionLogic.remove(cedulaEstudiante, id);
+        calificacionLogic.remove(idHospedaje, id);
     }    
 }

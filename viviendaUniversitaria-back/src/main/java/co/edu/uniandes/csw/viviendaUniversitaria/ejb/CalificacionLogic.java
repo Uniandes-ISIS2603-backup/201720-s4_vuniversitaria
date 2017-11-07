@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.CalificacionPersistence;
@@ -108,24 +107,22 @@ public class CalificacionLogic {
         return calificaciones.get(ind);
     }
             
-    public CalificacionEntity create(long idEstudiante, Long idHospedaje, CalificacionEntity entity) throws BusinessLogicException {
-        EstudianteEntity usuario=estudianteLogic.find(idEstudiante);
+    public CalificacionEntity create(Long idHospedaje, CalificacionEntity entity) throws BusinessLogicException {
+        
         HospedajeEntity hospedaje= hospedajeLogic.find(idHospedaje);
         
-        if(usuario== null || hospedaje==null)
-            throw new BusinessLogicException("El estudiante o el hospedaje no existe.");
-        
-        entity.setEstudiante(usuario);
+        if(hospedaje==null)
+            throw new BusinessLogicException("El hospedaje no existe.");
         
         entity.setHospedaje(hospedaje);
         return createCalificacion(entity);
     }
 
     public void remove(long idUsuario,long id) throws BusinessLogicException {
-        CalificacionEntity ent=getCalificacionEstudiante(idUsuario,id);
-        EstudianteEntity estudiante= estudianteLogic.find(idUsuario);
+        CalificacionEntity ent= getCalificacionHospedaje(idUsuario,id);
+        HospedajeEntity estudiante= hospedajeLogic.find(idUsuario);
         if(estudiante== null)
-            throw new BusinessLogicException("El estudiante no esta registrado.");
+            throw new BusinessLogicException("El hospedaje no esta registrado.");
                     
         estudiante.getCalificaciones().remove(ent);
         persistence.delete(id);
