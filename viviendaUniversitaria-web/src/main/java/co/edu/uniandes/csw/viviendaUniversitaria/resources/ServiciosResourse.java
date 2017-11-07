@@ -1,4 +1,4 @@
-/*
+/* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.ServiciosDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.ServiciosLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ServiciosEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -36,7 +37,7 @@ public class ServiciosResourse {
     private ServiciosLogic logic;
 
     @GET
-    public List<ServiciosDetailDTO> getList(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException {
+    public List<ServiciosDetailDTO> getList(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
         List<ServiciosEntity> listServicios = logic.findAll(idHospedaje);
         List<ServiciosDetailDTO> respuesta = new ArrayList<>();
         for (ServiciosEntity listServicio : listServicios) {
@@ -47,26 +48,26 @@ public class ServiciosResourse {
 
     @GET
     @Path("{id: \\d+}")
-    public ServiciosDetailDTO getServicio(@PathParam("idHospedaje") long idHospedaje, @PathParam("id") long id) throws WebApplicationException {
+    public ServiciosDetailDTO getServicio(@PathParam("idHospedaje") long idHospedaje, @PathParam("id") long id) throws WebApplicationException, BusinessLogicException {
         return new ServiciosDetailDTO(logic.findServicio(idHospedaje, id));
     }
 
     @POST
-    public ServiciosDetailDTO createServicio(@PathParam("idHospedaje") long idHospedaje, ServiciosDetailDTO nuevoServicio) throws WebApplicationException {
+    public ServiciosDetailDTO createServicio(@PathParam("idHospedaje") long idHospedaje, ServiciosDetailDTO nuevoServicio) throws WebApplicationException, BusinessLogicException {
         return new ServiciosDetailDTO(logic.createServicio(idHospedaje, nuevoServicio.toEntity()));
 
     }
 
     @PUT
     @Path("{id: \\d+}")
-    public ServiciosDetailDTO updateServicio(@PathParam("idHospedaje") Long idHospedaje,@PathParam("id") Long id, ServiciosDetailDTO servicioAtualizado) throws WebApplicationException {
+    public ServiciosDetailDTO updateServicio(@PathParam("idHospedaje") Long idHospedaje,@PathParam("id") Long id, ServiciosDetailDTO servicioAtualizado) throws WebApplicationException, BusinessLogicException {
         return new ServiciosDetailDTO(logic.updateServicio(idHospedaje,id, servicioAtualizado.toEntity()));
     }
     
 
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteServicio(@PathParam("idHospedaje") Long idHospedaje, @PathParam("id") Long id) throws WebApplicationException {
+    public void deleteServicio(@PathParam("idHospedaje") Long idHospedaje, @PathParam("id") Long id) throws WebApplicationException, BusinessLogicException {
         logic.delete(idHospedaje, id);
     }
 }

@@ -1,0 +1,34 @@
+<div class="panel panel-info"> 
+    <div class="panel-heading">
+                <h4><b>Información detallada de la reserva</b></h4>
+            </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <img class="img-responsive" ng-src="resources/images/kpia.PNG"/>
+            </div>
+            <div class="col-md-3">
+                <dl>   
+                    <hr>
+                    <dt class="bold">Identificador único:</dt>
+                    <dd>{{currentReserva.id}}</dd>
+                    <hr>
+                    <dt class="bold">Hospedaje asociado:</dt>
+                    <dd>{{currentReserva.idHospedaje}}</dd>
+                    <hr>
+                    <dt class="bold">Cédula del huésped</dt>
+                    <dd>{{currentReserva.cedulaHuesped}}</dd>
+                    
+                    <hr>
+                    <dt class="bold">Fecha de inicio</dt>
+                    <dd>{{currentReserva.fechaInicio}}</dd>
+                    
+                    <hr>
+                    <dt class="bold">Fecha de fin</dt>
+                    <dd>{{currentReserva.fechaFin}}</dd>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
