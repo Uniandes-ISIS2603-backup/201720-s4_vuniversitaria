@@ -41,6 +41,8 @@ and open the template in the editor.
                             <td id="{{$index}}-iva">{{factura.iva}}</td>
                             <td id="{{$index}}-actions">
                                     <a class="btn btn-default btn-sm" ui-sref="facturasDetail({facturaId: factura.id})"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                    <a class="btn btn-default btn-sm" ui-sref="facturaUpdate({facturaId: factura.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-danger btn-sm" ui-sref="facturaDelete({facturaId: factura.id})"><span class="glyphicon glyphicon-trash"></span></a>
                                 </td>
                             </tr>
                         </tbody>

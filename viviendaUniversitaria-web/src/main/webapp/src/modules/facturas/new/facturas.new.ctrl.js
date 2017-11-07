@@ -7,17 +7,12 @@
            $http.get("api/reservas").then(function (response) {
                 $scope.reservasRecords = response.data;
             });
-           $scope.createFactura = function (idEstudiante, idHospedaje) {
-            $http.post(facturasContext + '/' + $state.params.idEstudiante+'/'+$state.params.idHospedaje, {
+           $scope.createFactura = function () {
+            $http.post(facturasContext + '/123/1', {
                 id : Math.floor((Math.random() * 100) + 1),
                 fecha: $scope.fecha,
                 iva: $scope.iva,
                 total:$scope.total
-            }).then(function (response)
-            {
-                $state.go("facturasDetail",{facturaId:response.data.id}, {reload:true});
-               
-            
             });
         };
   

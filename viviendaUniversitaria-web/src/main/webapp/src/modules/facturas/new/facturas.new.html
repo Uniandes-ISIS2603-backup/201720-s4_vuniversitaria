@@ -37,7 +37,7 @@
                             <td id="{{$index}}-Id">{{reserva.id}}</td>
                                 
                                 <td id="{{$index}}-actions">
-                                    <button id="confirm-add" ng-click="createFactura(reserva.idEstudiante,reserva.idHospedaje)" class="btn btn-info">Agregar</button>
+                                    <button id="confirm-add" ng-click="createFactura()" class="btn btn-info">Agregar</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -59,7 +59,7 @@
                         <div class="col-sm-5 col-md-5 col-lg-5 col-xs-5">
                 <input type="button" value="Cancelar" ui-sref="facturasList" class="col-sm-5 col-md-5 col-lg-5 col-xs-5 btn btn-info btn-group-lg">
                 <p class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></p>
-                <input type="submit" ng-click="estudianteNewCtrl.createFactura()" value="Crear"  class="col-sm-5 col-md-5 col-lg-5 col-xs-5 btn btn-success">
+                <input type="submit" ng-click="facturaNewCtrl.createFactura()" value="Crear"  class="col-sm-5 col-md-5 col-lg-5 col-xs-5 btn btn-success">
             </div>
                     </div>
                 </form>

@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label>Lista consolidada de reservas</label></div>
+            <div class="panel-heading"><label>Lista consolidada de reserva</label></div>
             <div class="panel-body">
                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                    <div class="btn-group mr-2" role="group" aria-label="First group">
@@ -18,7 +18,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Identificación únika</th>    
+                                <th>Identificación única</th>    
                                 <th>Cédula del huésped</th> 
                                 <th>Fecha de inicio</th> 
                                 <th>Fecha de fin</th> 
@@ -36,6 +36,8 @@
                             <td id="{{$index}}-hospedaje">{{reserva.idHospedaje}}</td>
                             <td id="{{$index}}-actions">
                                 <a class="btn btn-default btn-sm" ui-sref="reservasDetail({reservaId: reserva.id})"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a class="btn btn-default btn-sm" ui-sref="reservaUpdate({reservaId: reserva.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a class="btn btn-danger btn-sm" ui-sref="reservaDelete({reservaId: reserva.id})"><span class="glyphicon glyphicon-trash"></span></a>
                             </td>
                             </tr>
                         </tbody>
