@@ -6,8 +6,11 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.EstudiantePersistence;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -30,6 +33,19 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
     
     public OrigenEntity getOrigen(Long cedula) throws BusinessLogicException {
         return find(cedula).getOrigen();
+    }
+    
+    @Override
+    public EstudianteEntity update(EstudianteEntity entity, Long id) throws WebApplicationException {
+        try {
+            EstudianteEntity oldEntity = super.find(id);
+            if(oldEntity != null) {
+                entity.setCedula(oldEntity.getCedula());
+            }
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(EstudianteLogic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return super.update(entity, id);
     }
 
     public CalificacionEntity addCalificacion(Long idCalificacion, Long idEstudiante) throws BusinessLogicException {

@@ -40,10 +40,10 @@ insert into UniversidadEntity (nombre) values ('Elmira');
 insert into UniversidadEntity (nombre) values ('Roseann');
 
 --pruebas EstudianteEntity
-insert into EstudianteEntity (cedula, nombre) values (1, 'amilkar');
-insert into EstudianteEntity (cedula, nombre) values (2, 'camilo');
-insert into EstudianteEntity (cedula, nombre) values (3, 'kelly');
-insert into EstudianteEntity (cedula, nombre) values (4, 'william');
+insert into EstudianteEntity (cedula, nombre) values (12, 'amilkar');
+insert into EstudianteEntity (cedula, nombre) values (23, 'camilo');
+insert into EstudianteEntity (cedula, nombre) values (34, 'kelly');
+insert into EstudianteEntity (cedula, nombre) values (45, 'william');
 
 --pruebas OrigenEntity
 insert into OrigenEntity ( name) values ( 'bucaramanga');
