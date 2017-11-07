@@ -3,8 +3,8 @@
     mod.constant("ubicacionesContext", "api/ubicaciones");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/ubicaciones/';
-            var basePathUniversidad = 'src/modules/universidades/';
-            $urlRouterProvider.otherwise("/ubicaciones");
+            $urlRouterProvider.otherwise("/ubicacionesList");
+           
             $stateProvider.state('ubicaciones', {
                 url: '/ubicaciones',
                 abstract: true,
@@ -15,15 +15,25 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('ubicacionesList',{
+                url: '/list',
+                parent: 'ubicaciones',
+                views:{
+                    'listView':{
+                        templateUrl: basePath + 'ubicaciones.list.html',
+                        controller: 'ubicacionCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             }).state('ubicacionDetail', {
-                url: '/{ubicacionesId:int}/detail',
+                url: '/{ubicacionId:int}/detail',
                 parent: 'ubicaciones',
                 param: {
-                    ubicacionesId: null
+                    ubicacionId: null
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePathUniversidad + 'ubicaciones.detail.html',
+                        templateUrl: basePath + 'ubicaciones.detail.html',
                         controller: 'ubicacionCtrl',
                         controllerAs: 'ctrl'
                     }
