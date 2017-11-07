@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createFactura">Generar una nueva factura</label>
+                <label ng-if="edit" id="editAuthor">Edita la factura </label></div>
+            <div class="panel-body">
+                <form ng-submit="createFactura()" name="factura">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="fecha" class="col-sm-2">Fecha</label>
+                            <input id="fecha" required ng-model="fecha" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="iva" class="col-sm-2">IVA a aplicar:</label>
+                            <input id="estudianteCedula" required ng-model="iva" class="col-sm-6"/>                        
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="total" class="col-sm-2">Selecciona el total de la factura:</label>
+                            <input id="total" required ng-model="total" class="col-sm-6"/>                        
+                        </div>
+                    </div>
+                    <div class="panel-body" >
+                <div class="col-md-8">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Identificador de la reserva</th>    
+                                <th>Agregar reserva</th>  
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="reserva in reservasRecords">
+                            <td id="{{$index}}-Id">{{reserva.id}}</td>
+                                
+                                <td id="{{$index}}-actions">
+                                    <button id="confirm-add" ng-click="createFactura(reserva.idEstudiante,reserva.idHospedaje)" class="btn btn-info">Agregar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                
+                </div>
+                
+            </div>
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!estudiante.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="col-sm-5 col-md-5 col-lg-5 col-xs-5">
+                <input type="button" value="Cancelar" ui-sref="facturasList" class="col-sm-5 col-md-5 col-lg-5 col-xs-5 btn btn-info btn-group-lg">
+                <p class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></p>
+                <input type="submit" ng-click="estudianteNewCtrl.createFactura()" value="Crear"  class="col-sm-5 col-md-5 col-lg-5 col-xs-5 btn btn-success">
+            </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
