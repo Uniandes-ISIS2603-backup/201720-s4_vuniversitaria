@@ -5,6 +5,7 @@
     mod.controller('universidadNewCtrl', ['$scope', '$http', 'universidadesContext','$state','ubicacionContext',
         function ($scope, $http, universidadesContext, $state,ubicacionContext ) {
             $scope.createUniversidad = function () {
+
                 $http.post(ubicacionContext,{
                     direccion: $scope.universidadDireccion,
                     altitud: $scope.universidadAltitud,

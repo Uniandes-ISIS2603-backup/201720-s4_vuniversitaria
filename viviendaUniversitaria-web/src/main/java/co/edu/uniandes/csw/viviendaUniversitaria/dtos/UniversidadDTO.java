@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.UniversidadEntity;
-
 /**
  *
  * @author c.santacruza
