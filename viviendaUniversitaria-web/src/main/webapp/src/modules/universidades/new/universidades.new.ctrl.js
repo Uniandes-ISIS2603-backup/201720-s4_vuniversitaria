@@ -5,21 +5,22 @@
     mod.controller('universidadNewCtrl', ['$scope', '$http', 'universidadesContext','$state','ubicacionContext',
         function ($scope, $http, universidadesContext, $state,ubicacionContext ) {
             $scope.createUniversidad = function () {
-
+                
+                var ubi = $scope.ubi;
                 $http.post(ubicacionContext,{
                     direccion: $scope.universidadDireccion,
-                    altitud: $scope.universidadAltitud,
+                    longitud: $scope.universidadLongitud,
                     latitud: $scope.universidadLatitud
                 }).then(function(response){
-                    $scope.ubicacion = response.data;
-                }),
+                    ubi = response.data.id;
+                });
                 $http.post(universidadesContext, {
-                    nombre: $scope.universidadNombre,
-                    ubicacion: $scope.ubicacion.id
+                    name: $scope.universidadNombre,
+                    ubicacion: ubi
                 }).then(function (response) {
                     //universidad created successfully
                     $state.go('universidadesList', {}, {reload: true});
-                });
+                }); 
             };
         }
     ]);
