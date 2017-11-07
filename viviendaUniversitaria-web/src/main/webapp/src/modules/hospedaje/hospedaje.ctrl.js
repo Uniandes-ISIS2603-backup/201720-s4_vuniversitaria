@@ -86,7 +86,7 @@
             };
             $scope.crearCalificacion = function(){
                 $http.post(hospedajeContext + '/' +  $state.params.idHospedaje + '/calificaciones',{
-                    id : $scope.id,
+                    id : 200,
                     valoracion : $scope.valoracion,
                     comentario : $scope.comentario,
                     fecha: $scope.fecha
