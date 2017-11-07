@@ -40,10 +40,10 @@ insert into UniversidadEntity (nombre) values ('Elmira');
 insert into UniversidadEntity (nombre) values ('Roseann');
 
 --pruebas EstudianteEntity
-insert into EstudianteEntity (cedula, nombre) values (12, 'amilkar');
-insert into EstudianteEntity (cedula, nombre) values (23, 'camilo');
-insert into EstudianteEntity (cedula, nombre) values (34, 'kelly');
-insert into EstudianteEntity (cedula, nombre) values (45, 'william');
+insert into EstudianteEntity (cedula, nombre) values (1, 'amilkar');
+insert into EstudianteEntity (cedula, nombre) values (2, 'camilo');
+insert into EstudianteEntity (cedula, nombre) values (3, 'kelly');
+insert into EstudianteEntity (cedula, nombre) values (4, 'william');
 
 --pruebas OrigenEntity
 insert into OrigenEntity ( name) values ( 'bucaramanga');
@@ -227,11 +227,24 @@ insert into REGLAENTITY (regla,hospedaje_id) values ('No se aceptan niños',3);
 
 update HOSPEDAJEENTITY set arrendador_id = 3177523825303 where id = 1;
 update HOSPEDAJEENTITY set arrendador_id = 3177523825303 where id = 2;
-update HOSPEDAJEENTITY set arrendador_id = 3177523825303 where id = 3;
+update HOSPEDAJEENTITY set arrendador_id = 968668294465 where id = 3;
+update HOSPEDAJEENTITY set arrendador_id = 203123592715 where id = 4;
+update HOSPEDAJEENTITY set arrendador_id = 7095082710217 where id = 5;
+update HOSPEDAJEENTITY set arrendador_id = 8364709267017 where id = 6;
+update HOSPEDAJEENTITY set arrendador_id = 3026925437839 where id = 7;
+update HOSPEDAJEENTITY set arrendador_id = 7687381485806 where id = 8;
+update HOSPEDAJEENTITY set arrendador_id = 3991096447077 where id = 9;
+update HOSPEDAJEENTITY set arrendador_id = 3489848653801 where id = 10;
+update HOSPEDAJEENTITY set arrendador_id = 1163763388482 where id = 10;
+update HOSPEDAJEENTITY set arrendador_id = 1163763388482 where id = 10;
 update CALIFICACIONENTITY set hospedaje_id = 1 where id = 1;
 update CALIFICACIONENTITY set hospedaje_id = 1 where id = 2;
 update CALIFICACIONENTITY set hospedaje_id = 2 where id = 3;
 update CALIFICACIONENTITY set hospedaje_id = 3 where id = 4;
+update CALIFICACIONENTITY set estudiante_id = 1 where id = 1;
+update CALIFICACIONENTITY set estudiante_id = 2 where id = 4;
+update CALIFICACIONENTITY set estudiante_id = 3 where id = 3;
+update CALIFICACIONENTITY set estudiante_id = 4 where id = 2;
 
 
 update ServiciosEntity set hospedaje_id =1 where id =1;

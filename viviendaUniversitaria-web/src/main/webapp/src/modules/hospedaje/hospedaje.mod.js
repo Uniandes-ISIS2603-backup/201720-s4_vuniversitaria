@@ -34,6 +34,18 @@
                         controller: 'hospedajeCtrl'
                     }
                 }
+            }).state('calificacionesDelete', {
+                url: '/hospedajes/{idHospedaje:int}/calificaciones/delete/{idCalificacion:int}',
+                 param:{
+                    idHospedaje: null,
+                    idCalificacion: null
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'calificaciones/calificaciones.delete.html',
+                        controller: 'hospedajeCtrl'
+                    }
+                }
             }).state('hospedajeEliminar', {
                 url: '/hospedajes/{idHospedaje:int}',
                  param:{
@@ -77,6 +89,17 @@
                         templateUrl: basePath+'regla/regla.create.html',
                         controller: 'hospedajeCtrl',
                         controllerAs: 'c'
+                    }
+                }
+            }).state('calificacionesCreate', {
+                url: '/hospedajes/{idHospedaje:int}/calificaciones',
+                 param:{
+                    idHospedaje: null
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'calificaciones/calificaciones.create.html',
+                        controller: 'hospedajeCtrl'
                     }
                 }
             }).state('serviciosUpdate', {
