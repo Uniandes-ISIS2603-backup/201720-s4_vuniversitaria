@@ -40,17 +40,18 @@ public class OrigenLogic extends GenericLogic<OrigenEntity> {
         estudianteEntity.setOrigen(origenEntity);
         return estudianteEntity;
     }
-// POR REGLA DE NEGOCIO NO SE BORRA UN ORIGEN DE UN ESTUDIANTE
-//    public void removeEstudiante(Long id, Long idOrigen) throws BusinessLogicException{
-//        EstudianteEntity estuEntity = new EstudianteEntity();
-//        estuEntity.setId(id);
-//        List<EstudianteEntity> list = find(idOrigen).getEstudiantes();
-//        int i = list.indexOf(estuEntity);
-//        if (i < 0) {
-//            throw new BusinessLogicException("El recurso "+idOrigen+"/origen/" + id + "/Estudiante no existe.");
-//        }
-//        list.remove(estuEntity);
-//    }
+/**
+ * borra todos los estudiantes asociados a dicho origen
+ * @param idOrigen
+ * @throws BusinessLogicException 
+ */
+    public void removeEstudiantes(Long idOrigen) throws BusinessLogicException{
+        List<EstudianteEntity> list = find(idOrigen).getEstudiantes();
+        if (list.isEmpty()) {
+            throw new BusinessLogicException("El recurso "+idOrigen+"/origen/" + "/no tiene estudiantes.");
+        }
+        list.clear();
+    }
     
     //este es el get para un estudiante en la relacion Origen-Estudiante
     public EstudianteEntity findEstudiantes(Long origenId, Long id) throws BusinessLogicException {

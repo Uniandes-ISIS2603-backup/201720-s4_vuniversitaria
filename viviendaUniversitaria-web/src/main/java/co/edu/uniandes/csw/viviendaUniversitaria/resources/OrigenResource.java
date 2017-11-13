@@ -102,7 +102,6 @@ public class OrigenResource {
     }
 
     
-//NO SE PUEDE BORRAR POR REGLAS DE NEGOCIO
     @DELETE
     @Path("{id: \\d+}")
     public void deleteOrigen(@PathParam("id") Long id) throws BusinessLogicException {
@@ -110,6 +109,7 @@ public class OrigenResource {
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + id + ALGO2, 404);
         }
+        origenLogic.removeEstudiantes(id);
         origenLogic.delete(id);
 
     }
@@ -120,4 +120,5 @@ public class OrigenResource {
         }
         return list;
     }
+
 }

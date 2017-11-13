@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -104,18 +105,4 @@ public class OrigenEstudianteResource {
         return new EstudianteDTO(origenLogic.createEstudiante(estudiantesId,origensId));
     }
 
-    /**
-     * Desasocia un Estudiante existente de un Origen existente
-     *
-     * @param OrigensId Identificador de la instancia de Origen
-     * @param EstudiantesId Identificador de la instancia de Estudiante
-     * 
-     */
-// POR REGLA DE NEGOCIO NO SE BORRA UN ORIGEN DE UN ESTUDIANTE
-//    @DELETE
-//    @Path("{EstudiantesId: \\d+}")
-//    public void removeEstudiantes(@PathParam("OrigenesId") Long origensId, @PathParam("EstudiantesId") Long estudiantesId) throws BusinessLogicException {
-//        
-//        origenLogic.removeEstudiante(estudiantesId,origensId);
-//    }
 }
