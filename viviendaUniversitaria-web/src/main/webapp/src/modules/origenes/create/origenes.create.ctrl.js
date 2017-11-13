@@ -2,7 +2,7 @@
     var mod = ng.module("origenModule");
     mod.constant("origenesContext", "api/origenes");
     mod.controller('origenCreateCtrl', ['$scope', '$http', 'estudiantesContext', '$state', 'origenesContext', '$rootScope',
-        function ($scope, $http, origenesContext, $state, booksContext, $rootScope) {
+        function ($scope, $http, estudiantesContext, $state, origenesContext, $rootScope) {
             $rootScope.edit = false;
             $scope.createOrigen = function () {
                 $http.post(origenesContext, {
