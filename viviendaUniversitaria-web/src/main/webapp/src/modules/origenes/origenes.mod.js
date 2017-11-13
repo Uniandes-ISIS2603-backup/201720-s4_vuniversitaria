@@ -61,6 +61,30 @@
                         ,controller:'origenUpdateCtrl'
                     }
                 }
+            }).state('origenDelete',{
+                url:'{origenId:int}/delete'
+                ,parent:'origenes'
+                ,param:{
+                    origenId:null
+                }
+                ,views:{
+                    'detailView':{
+                        templateUrl: basePath + '/delete/origenes.delete.html'
+                        ,controller:'origenDeleteCtrl'
+                    }
+                }
+            }).state('origenCreate',{
+                url:'/create'
+                ,parent:'origenes'
+                ,param:{
+                    origenId:null
+                }
+                ,views:{
+                    'detailView':{
+                        templateUrl: basePath + '/create/origenes.create.html'
+                        ,controller:'origenCreateCtrl'
+                    }
+                }
             });
         }]);
 })(window.angular);

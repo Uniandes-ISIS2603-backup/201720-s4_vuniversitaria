@@ -109,7 +109,6 @@ public class OrigenResource {
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + id + ALGO2, 404);
         }
-        origenLogic.removeEstudiantes(id);
         origenLogic.delete(id);
 
     }
