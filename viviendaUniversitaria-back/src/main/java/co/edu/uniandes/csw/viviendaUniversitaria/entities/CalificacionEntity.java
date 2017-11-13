@@ -17,7 +17,7 @@ import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
+ * Entidad de la calificacion
  * @author kk.penaranda
  */
 @Entity
@@ -157,6 +157,11 @@ public class CalificacionEntity implements Serializable {
         this.comentario = comentario;
     }
     
+    /**
+     * Compara dos entidades verificando si son la misma
+     * @param obj 
+     * @return true si son iguales, false de lo contrario
+     */
     @Override
     public boolean equals(Object obj) {
         if(obj == null ){
@@ -171,6 +176,10 @@ public class CalificacionEntity implements Serializable {
         return super.equals(obj);
     }
 
+    /**
+     * Metodo
+     * @return entero 
+     */
     @Override
     public int hashCode() {
         int hash = 7;

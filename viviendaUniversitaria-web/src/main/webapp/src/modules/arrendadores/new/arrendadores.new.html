@@ -8,19 +8,19 @@
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="arrendadorId" class="col-sm-2">Cedula:</label>
-                            <input id="arrendadorId" ng-model="arrendadorId" class="col-sm-6"/>
+                            <input type="number" min="10000" class="col-sm-6" id="arrendadorId" required ng-model="arrendadorId" placeholder="e.g.100000"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="arrendadorName" class="col-sm-2">Nombre:</label>
-                            <input id="arrendadorName" required ng-model="arrendadorName" class="col-sm-6"/>
+                            <input type="text" id="arrendadorName" required ng-model="arrendadorName" class="col-sm-6" placeholder="e.g. Kelly Peñaranda"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="arrendadorRutaImagen" class="col-sm-2">Ruta imagen:</label>
-                            <input id="arrendadorRutaImagen" required ng-model="arrendadorRutaImagen" class="col-sm-6"/>
+                            <input id="arrendadorRutaImagen" ng-model="arrendadorRutaImagen" class="col-sm-6" placeholder="e.g. https://peopledotcom.files.wordpress.com/2016/09/kaia-gerber-660.jpg?w=660"/>
                         </div>
                     </div>
                     

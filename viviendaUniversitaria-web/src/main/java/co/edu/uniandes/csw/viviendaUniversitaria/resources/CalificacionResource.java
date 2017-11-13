@@ -32,15 +32,45 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class CalificacionResource {    
-    @Inject
+    
+    /**
+     * Variable que permite acceder a logica de la calificacion
+     */
     private CalificacionLogic calificacionLogic; // Variable para acceder a la lógica de la aplicación.  
  
-               
+    /**
+     * Constructor por defecto
+     */
+    public CalificacionResource(){
+        //Constructor por defecto
+    }
+        
+    /**
+     * Constructor en el que se inicializa para acceder a la logica
+     * @param calificacionLogic 
+     */
+    @Inject
+    public CalificacionResource(CalificacionLogic calificacionLogic){
+        this.calificacionLogic = calificacionLogic;
+    }
+    
+    /**
+     * Crea una nueva calificacion asociandola a un hospedaje
+     * @param idHospedaje
+     * @param calificacionDetail
+     * @return calificacion hecha
+     * @throws BusinessLogicException 
+     */                   
     @POST
     public CalificacionDetailDTO createCalificacion(@PathParam("idHospedaje") Long idHospedaje, CalificacionDTO calificacionDetail) throws BusinessLogicException {
         return new CalificacionDetailDTO(calificacionLogic.create(idHospedaje, calificacionDetail.toEntity()));
     }
     
+    /**
+     * Lista de calificaciones
+     * @param entityList
+     * @return lista de calificaciones
+     */
     private List<CalificacionDetailDTO> getListaCalificacionesHospedaje(List<CalificacionEntity> entityList){
         List<CalificacionDetailDTO> lista = new ArrayList<>();
         for (CalificacionEntity entity : entityList) {
@@ -49,7 +79,11 @@ public class CalificacionResource {
         return lista;
     }   
     
-    
+    /**
+     * Lista de calificaciones de un hospedaje
+     * @param idHospedaje
+     * @return lsita
+     */
     @GET
     public List<CalificacionDetailDTO> getCalificacionesHospedaje(@PathParam("idHospedaje") Long idHospedaje){
         try {
@@ -59,7 +93,13 @@ public class CalificacionResource {
         }
         return null;
     }
-        
+     
+    /**
+     * Retorna una calificacion especifica de un hospedaje
+     * @param idHospedaje
+     * @param id
+     * @return calificacion
+     */
     @GET
     @Path("{id: \\d+}")
     public CalificacionDTO getCalificacion(@PathParam("idHospedaje") Long idHospedaje, @PathParam("id") Long id) {
@@ -75,6 +115,12 @@ public class CalificacionResource {
         return null;
     }
     
+    /**
+     * Elimina una calificacion de un hospedaje
+     * @param idHospedaje
+     * @param id
+     * @throws BusinessLogicException 
+     */
     @DELETE
     @Path("{id: \\d+}")
     public void deleteCalificacion(@PathParam("idHospedaje") Long idHospedaje, @PathParam("id") Long id) throws BusinessLogicException {

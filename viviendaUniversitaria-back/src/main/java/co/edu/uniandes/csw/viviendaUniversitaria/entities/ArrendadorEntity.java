@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
+ * Entidad con los atributos del arrendador
  * @author kk.penaranda
  */
 @Entity
@@ -97,14 +97,27 @@ public class ArrendadorEntity implements Serializable {
         
     }
     
+    /**
+     * Imagen asociada al arrendador
+     * @return imagen
+     */
     public String getRuta(){
         return rutaImagen;
     }
     
+    /**
+     * Establece la ruta de la imagen del arrendador
+     * @param ruta 
+     */
     public void setRuta(String ruta){
         this.rutaImagen= ruta;
     }
     
+    /**
+     * Metodo para verificar que dos entidades son iguales
+     * @param obj
+     * @return true si son iguales, false si lo contrario
+     */
     @Override
     public boolean equals(Object obj) {
         if(obj == null ){
@@ -119,6 +132,10 @@ public class ArrendadorEntity implements Serializable {
         return super.equals(obj);
     }
 
+    /**
+     * Metodo
+     * @return entero
+     */
     @Override
     public int hashCode() {
         int hash = 5;

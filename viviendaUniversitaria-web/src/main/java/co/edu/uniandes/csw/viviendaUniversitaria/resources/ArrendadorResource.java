@@ -35,11 +35,35 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class ArrendadorResource {
-    @Inject
-    ArrendadorLogic arrendadorLogic; // Variable para acceder a la lógica de la aplicación. 
+    
+    /**
+     * Variable para acceder a la lógica de la aplicación.
+     */
+    private ArrendadorLogic arrendadorLogic;  
 
+    /**
+     * Constructor por defecto
+     */
+    public ArrendadorResource(){
+        //Constructor vacio
+    }
+    
+    @Inject
+    public ArrendadorResource(ArrendadorLogic arrendadorLogic){
+        this.arrendadorLogic= arrendadorLogic;
+    }
+    
+    /**
+     * Logger para mostrar los mensajes
+     */
     private static final Logger LOGGER = Logger.getLogger(ArrendadorPersistence.class.getName());
     
+    /**
+     * Agrega un nuevo arrendador
+     * @param arrendador
+     * @return informacion detallada del arrendador
+     * @throws BusinessLogicException 
+     */
     @POST
     public ArrendadorDetailDTO createArrendador(ArrendadorDetailDTO arrendador) throws BusinessLogicException {
         ArrendadorEntity arrendadorEntity = arrendador.toEntity();
@@ -47,6 +71,11 @@ public class ArrendadorResource {
         return new ArrendadorDetailDTO(nuevoArrendador);
     }
 
+    /**
+     * Lista de arrendadores.
+     * @return Lista de arrendadores
+     * @throws BusinessLogicException 
+     */
     @GET
     public List<ArrendadorDetailDTO> getArrendadores() throws BusinessLogicException {
          if(listEntity2DetailDTO(arrendadorLogic.getArrendadores()).isEmpty())
@@ -54,6 +83,12 @@ public class ArrendadorResource {
         return listEntity2DetailDTO(arrendadorLogic.getArrendadores());
     }
 
+    /**
+     * Obtiene el arrendador dado por parametro
+     * @param id
+     * @return informacion del arrendador
+     * @throws BusinessLogicException 
+     */
     @GET
     @Path("{id: [0-9][0-9]*}")
     public ArrendadorDetailDTO getArrendador(@PathParam("id") Long id) throws BusinessLogicException {
@@ -64,6 +99,13 @@ public class ArrendadorResource {
         return new ArrendadorDetailDTO(arrendadorLogic.getArrendador(id));
     }
     
+    /**
+     * Actualiza la informacion de un arrendador
+     * @param id del arrendador a actualizar
+     * @param arrendador
+     * @return Informacion actualizada
+     * @throws BusinessLogicException 
+     */
     @PUT
     @Path("{id: [0-9][0-9]*}")
     public ArrendadorDetailDTO updateArrendador(@PathParam("id") Long id, ArrendadorDetailDTO arrendador) throws BusinessLogicException {
@@ -78,6 +120,11 @@ public class ArrendadorResource {
         return new ArrendadorDetailDTO(arrendadorLogic.updateArrendador(id, entity));
     }
 
+    /**
+     * Elimina los datos de un arrendador
+     * @param id
+     * @throws BusinessLogicException 
+     */
     @DELETE
     @Path("{id: [0-9][0-9]*}")
     public void deleteArrendador(@PathParam("id") Long id) throws BusinessLogicException {
@@ -88,6 +135,12 @@ public class ArrendadorResource {
         }
         arrendadorLogic.deleteArrendador(id);
     }
+    
+    /**
+     * Lista de arrendadores
+     * @param entityList
+     * @return lista
+     */
     private List<ArrendadorDetailDTO> listEntity2DetailDTO(List<ArrendadorEntity> entityList) {
         List<ArrendadorDetailDTO> list = new ArrayList<>();
         for (ArrendadorEntity entity : entityList) {
@@ -96,6 +149,12 @@ public class ArrendadorResource {
         return list;
     }
     
+    /**
+     * Asociacion con las acciones realizadas para los hospedajes
+     * @param id
+     * @return la clase de la asociacion 
+     * @throws BusinessLogicException 
+     */
     @Path("{id: [0-9][0-9]*}/hospedajes")
     public Class<ArrendadorHospedajeResource> getHospedajesArrendador(@PathParam("id") Long id) throws BusinessLogicException {
         ArrendadorEntity entity = arrendadorLogic.getArrendador(id);

@@ -32,9 +32,32 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ArrendadorHospedajeResource {
 
-    @Inject
+    /**
+     * Variable para acceder a la logica del arrendador
+     */
     private ArrendadorLogic arrendadorLogic;
     
+    /**
+     * Constructor por defecto
+     */
+    public ArrendadorHospedajeResource(){
+        //Constructor por defecto
+    }
+    
+    /**
+     * Constructor que inicializa la logica de la aplicacion
+     * @param arrendadorLogic 
+     */
+    @Inject
+    public ArrendadorHospedajeResource(ArrendadorLogic arrendadorLogic){
+        this.arrendadorLogic = arrendadorLogic;
+    }
+    
+    /**
+     * Retorna la lista de hospedajes del arrendador
+     * @param entityList
+     * @return lista del DTO detallado del hospedaje
+     */
     private List<HospedajeDetaillDTO> getListaHospedajesArrendador(List<HospedajeEntity> entityList){
         List<HospedajeDetaillDTO> listaHospedaje = new ArrayList<>();
         for (HospedajeEntity entity : entityList) {
@@ -43,12 +66,22 @@ public class ArrendadorHospedajeResource {
         return listaHospedaje;
     }
     
-        
+    /**
+     * Da los hospedajes del arrendador
+     * @param id
+     * @return lista de hospedajes
+     */    
     @GET
     public List<HospedajeDetaillDTO> getHospedajes(@PathParam("id") Long id) {
         return getListaHospedajesArrendador(arrendadorLogic.getHospedajesArrendador(id));
     }
 
+    /**
+     * Retorna un hospedaje especifico del arrendador
+     * @param id del arrendador
+     * @param hospedajeId hospedaje a buscar
+     * @return informacion del hospedaje encontrado
+     */
     @GET
     @Path("{hospedajeId: [0-9][0-9]*}")
     public HospedajeDetaillDTO getHospedajePorId(@PathParam("id") Long id, @PathParam("hospedajeId") Long hospedajeId) {
@@ -60,12 +93,25 @@ public class ArrendadorHospedajeResource {
         return null;
     }
     
+    /**
+     * Agrega hospedajes a un arrendador
+     * @param id
+     * @param hospedajeId
+     * @return informacion de un hospedaje
+     * @throws BusinessLogicException 
+     */
     @POST
     @Path("{hospedajeId: [0-9][0-9]*}")
     public HospedajeDetaillDTO addHospedajesArrendador(@PathParam("id") Long id, @PathParam("hospedajeId") Long hospedajeId) throws BusinessLogicException {
         return new HospedajeDetaillDTO(arrendadorLogic.addHospedaje(id, hospedajeId));
     }
     
+    /**
+     * Elimina un hospedaje del arrendador.
+     * @param id del arrendador
+     * @param hospedajeId hospedaje que se va a eliminar
+     * @throws BusinessLogicException 
+     */
     @DELETE
     @Path("{hospedajeId: [0-9][0-9]*}")
     public void deleteHospedajesArrendador(@PathParam("id") Long id, @PathParam("hospedajeId") Long hospedajeId) throws BusinessLogicException{
