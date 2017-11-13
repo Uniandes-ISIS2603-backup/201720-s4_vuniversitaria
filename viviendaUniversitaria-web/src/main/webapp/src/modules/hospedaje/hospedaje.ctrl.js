@@ -21,6 +21,14 @@
                 });
             }
             ;
+            
+            if ($state.params.idCalificacion !== undefined) {
+                $http.get(hospedajeContext + '/' + $state.params.idHospedaje + '/calificaciones/' + $state.params.idCalificacion).then(function (response) {
+                    $scope.calificacionActivo = response.data;
+                });
+            }
+            ;
+            
             $scope.eliminarRegla = function (idHospedaje, idRegla) {
                 $http.delete(hospedajeContext + '/' + idHospedaje + '/reglas/' + idRegla).then(function (response) {
                     $http.get(hospedajeContext + '/' + $state.params.idHospedaje).then(function (response) {
@@ -63,6 +71,25 @@
                     id : 9,
                     descripcion : $scope.descripcion,
                     costo : $scope.costos
+                }).then(function(response) {
+                    $state.go('hospedajeEspecifico', {idHospedaje: $state.params.idHospedaje});
+                });
+            };
+            
+            $scope.actualCalificacionId = $state.params.idCalificacion;
+            $scope.eliminarCalificacion =function()
+            {
+                $http.delete(hospedajeContext + '/' + $state.params.idHospedaje + '/calificaciones/'+ $state.params.idCalificacion
+                ).then(function(response) {
+                    $state.go('hospedajeEspecifico', {idHospedaje: $state.params.idHospedaje});
+                });
+            };
+            $scope.crearCalificacion = function(){
+                $http.post(hospedajeContext + '/' +  $state.params.idHospedaje + '/calificaciones',{
+                    id : 200,
+                    valoracion : $scope.valoracion,
+                    comentario : $scope.comentario,
+                    fecha: $scope.fecha
                 }).then(function(response) {
                     $state.go('hospedajeEspecifico', {idHospedaje: $state.params.idHospedaje});
                 });

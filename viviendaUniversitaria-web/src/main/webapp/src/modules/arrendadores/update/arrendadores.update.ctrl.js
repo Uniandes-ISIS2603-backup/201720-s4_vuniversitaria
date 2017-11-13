@@ -17,7 +17,7 @@
                     });
 
 
-                    $scope.createArrendador = function () {
+                    $scope.updateArrendador = function () {
                         $http.put(arrendadoresContext + "/" + idArrendador, {
                             id: $scope.arrendadorId,
                             nombre: $scope.arrendadorName,

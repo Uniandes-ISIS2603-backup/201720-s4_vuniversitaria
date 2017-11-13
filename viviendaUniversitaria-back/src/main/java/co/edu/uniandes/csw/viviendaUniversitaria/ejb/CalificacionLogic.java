@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.CalificacionPersistence;
@@ -20,22 +19,44 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ * Logica de la clase Calificacion
  * @author kk.penaranda
  */
 @Stateless
 public class CalificacionLogic {
+    /**
+     * Logger para los mensajes
+     */
     private static final Logger LOGGER = Logger.getLogger(CalificacionLogic.class.getName());
 
-    private  CalificacionPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    /**
+     *  Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+     */
+    private  CalificacionPersistence persistence; 
     
+    /**
+     * Logica de la clase hospedaje
+     */
     private  HospedajePersistence hospedajeLogic;
     
+    /**
+     * Logica del estudiante que realice la calificacion
+     */
     private EstudiantePersistence estudianteLogic;
     
+    /**
+     * Constructor por defecto
+     */
     public CalificacionLogic(){
         //Constructor por defecto
     }
+    
+    /**
+     * Constructor de la logica de la calificacion
+     * @param hospedajeLogic
+     * @param estudianteLogic
+     * @param persistence 
+     */
     @Inject
     public CalificacionLogic(HospedajePersistence hospedajeLogic, EstudiantePersistence estudianteLogic, CalificacionPersistence persistence){
         this.estudianteLogic= estudianteLogic;
@@ -43,21 +64,25 @@ public class CalificacionLogic {
         this.persistence = persistence;
     }
 
+    /**
+     * Metodo para crear las calificaciones
+     * @param entity de la calificacion
+     * @return Entidad de la calificacion
+     * @throws BusinessLogicException 
+     */
     public CalificacionEntity createCalificacion(CalificacionEntity entity) throws BusinessLogicException {
         if (persistence.find(entity.getId())!= null)
             throw new BusinessLogicException("Ya existe una Calificacion con el id \"" + entity.getId()+ "\"");
         persistence.create(entity);
         return entity;
     }
-    
-        public List<CalificacionEntity> getCalificaciones() {
-        LOGGER.info("Inicia proceso de consultar todas las calificaciones");
-        List<CalificacionEntity> calificaciones = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas las calificaciones");
-        return calificaciones;
-    }
-        
-        public CalificacionEntity getCalificacion(Long id) {
+            
+    /**
+     * Obtiene una calificacion dada por parametro
+     * @param id
+     * @return calificacion buscada
+     */
+    public CalificacionEntity getCalificacion(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar calificacion con id={0}", id);
         CalificacionEntity calificacion = persistence.find(id);
         if (calificacion == null) {
@@ -67,6 +92,12 @@ public class CalificacionLogic {
         return calificacion;
     }
     
+    /**
+     * Lista de calificaciones de un hospedaje
+     * @param idHospedaje
+     * @return lista de entidades de calificacion
+     * @throws BusinessLogicException 
+     */
     public List<CalificacionEntity> getCalificacionesHospedaje(Long idHospedaje) throws BusinessLogicException {
         
         HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
@@ -79,7 +110,13 @@ public class CalificacionLogic {
         return hospedaje.getCalificaciones();
     }
     
-    
+    /**
+     * Dar una calificacion asociada a un estudiante
+     * @param idEstudiante
+     * @param id de la calificacion
+     * @return calificacion del estudiante
+     * @throws BusinessLogicException 
+     */
     public CalificacionEntity getCalificacionEstudiante(Long idEstudiante, Long id) throws BusinessLogicException {
         CalificacionEntity calificacion= new CalificacionEntity();
         calificacion.setId(id);
@@ -94,6 +131,13 @@ public class CalificacionLogic {
         return calificaciones.get(ind);
     }
     
+    /**
+     * Dar la calificacion de un estudiante
+     * @param idHospedaje
+     * @param id de la calificacion
+     * @return entidad de la calificacion
+     * @throws BusinessLogicException 
+     */
     public CalificacionEntity getCalificacionHospedaje(Long idHospedaje, Long id) throws BusinessLogicException {
         CalificacionEntity calificacion= new CalificacionEntity();
         calificacion.setId(id);
@@ -107,25 +151,36 @@ public class CalificacionLogic {
         
         return calificaciones.get(ind);
     }
-            
-    public CalificacionEntity create(long idEstudiante, Long idHospedaje, CalificacionEntity entity) throws BusinessLogicException {
-        EstudianteEntity usuario=estudianteLogic.find(idEstudiante);
+        
+    /**
+     * Crea una nueva calificacion para un hospedaje
+     * @param idHospedaje hospedaje al que se calificara
+     * @param entity calificacion
+     * @return entidad de la calificacion
+     * @throws BusinessLogicException 
+     */    
+    public CalificacionEntity create(Long idHospedaje, CalificacionEntity entity) throws BusinessLogicException {
+        
         HospedajeEntity hospedaje= hospedajeLogic.find(idHospedaje);
         
-        if(usuario== null || hospedaje==null)
-            throw new BusinessLogicException("El estudiante o el hospedaje no existe.");
-        
-        entity.setEstudiante(usuario);
+        if(hospedaje==null)
+            throw new BusinessLogicException("El hospedaje no existe.");
         
         entity.setHospedaje(hospedaje);
         return createCalificacion(entity);
     }
-
+ 
+    /**
+     * Elimina una calificacion de un hospedaje
+     * @param idUsuario hospedaje 
+     * @param id de la calificacion
+     * @throws BusinessLogicException 
+     */
     public void remove(long idUsuario,long id) throws BusinessLogicException {
-        CalificacionEntity ent=getCalificacionEstudiante(idUsuario,id);
-        EstudianteEntity estudiante= estudianteLogic.find(idUsuario);
+        CalificacionEntity ent= getCalificacionHospedaje(idUsuario,id);
+        HospedajeEntity estudiante= hospedajeLogic.find(idUsuario);
         if(estudiante== null)
-            throw new BusinessLogicException("El estudiante no esta registrado.");
+            throw new BusinessLogicException("El hospedaje no esta registrado.");
                     
         estudiante.getCalificaciones().remove(ent);
         persistence.delete(id);

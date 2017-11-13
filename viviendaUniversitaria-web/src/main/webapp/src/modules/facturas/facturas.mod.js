@@ -45,6 +45,30 @@
                         controller: 'facturaNewCtrl'
                     }
                 }
+            }).state('facturaDelete', {
+                url: '/delete/{facturaId:int}',
+                parent: 'facturas',
+                param: {
+                   facturaId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/delete/facturas.delete.html',
+                        controller: 'facturaDeleteCtrl'
+                    }
+                }
+            }).state('facturaUpdate', {
+                url: '/update/{facturaId:int}',
+                parent: 'facturas',
+                param: {
+                    facturaId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/facturas.new.html',
+                        controller: 'facturaUpdateCtrl'
+                    }
+                }
             });            
         }]);
 })(window.angular);

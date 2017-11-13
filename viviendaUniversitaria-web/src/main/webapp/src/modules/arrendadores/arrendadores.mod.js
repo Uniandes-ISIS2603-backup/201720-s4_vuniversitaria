@@ -53,7 +53,7 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/new/arrendadores.new.html',
+                        templateUrl: basePath + '/update/arrendadores.update.html',
                         controller: 'arrendadorUpdateCtrl'
                     }
                 }

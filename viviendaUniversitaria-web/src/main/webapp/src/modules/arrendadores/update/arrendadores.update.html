@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="editArrendador">Editar Arrendador</label></div>
+            <div class="panel-body">
+                <form ng-submit="updateArrendador()" name="arrendador">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="arrendadorId" class="col-sm-2">Cedula:</label>
+                            <input disabled= "disabled" id="arrendadorId" ng-model="arrendadorId" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="arrendadorName" class="col-sm-2">Nombre:</label>
+                            <input type = "text" id="arrendadorName" required ng-model="arrendadorName" class="col-sm-6" placeholder="e.g. Katherine Peñaranda"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="arrendadorRutaImagen" class="col-sm-2">Ruta imagen:</label>
+                            <input id="arrendadorRutaImagen" ng-model="arrendadorRutaImagen" class="col-sm-6" placeholder="e.g. https://peopledotcom.files.wordpress.com/2016/09/kaia-gerber-660.jpg?w=660"/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!arrendador.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Advertencia!</strong><p>Todos los campos son necesarios*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="arrendador.$valid" type="submit" value="Guardar" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="arrendadoresList">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

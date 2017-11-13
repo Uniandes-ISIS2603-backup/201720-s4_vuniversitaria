@@ -5,11 +5,7 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.UbicacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.UniversidadEntity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -18,7 +14,10 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class UniversidadDTO {
 
     private Long id;
+    
     private String name;
+    
+    private String imagen;
 
     public UniversidadDTO() {
         //Vacio por default
@@ -28,9 +27,18 @@ public class UniversidadDTO {
     public UniversidadDTO(UniversidadEntity entity) {
         this.id = entity.getId();
         this.name = entity.getNombre();
+        this.imagen  = entity.getImagen();
 
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -56,6 +64,7 @@ public class UniversidadDTO {
         UniversidadEntity entity = new UniversidadEntity();
         entity.setId(this.id);
         entity.setNombre(this.name);
+        entity.setImagen((this.imagen));
 
         return entity;
     }

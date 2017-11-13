@@ -27,7 +27,7 @@
                 url: '/{reservaId:int}/detail',
                 parent: 'reservas',
                 param: {
-                    facturaId: null
+                    reservaId: null
                 },
                 views: {
                     'detailView': {
@@ -36,17 +36,41 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('createReserva', {
+            }).state('reservasCreate', {
                 url: '/create',
                 parent: 'reservas',
                 param: {
-                    facturaId: null
+                    reservaId: null
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'reservas.new.ctrl.html',
+                        templateUrl: basePath + 'new/reservas.new.html',
                         controller: 'reservaNewCtrl',
                         controllerAs: 'ctrl'
+                    }
+                }
+            }).state('reservaDelete', {
+                url: '/delete/{reservaId:int}',
+                parent: 'reservas',
+                param: {
+                   reservaId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'delete/reservas.delete.html',
+                        controller: 'reservaDeleteCtrl'
+                    }
+                }
+            }).state('reservaUpdate', {
+                url: '/update/{reservaId:int}',
+                parent: 'reservas',
+                param: {
+                    reservaId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'new/reservas.new.html',
+                        controller: 'reservaUpdateCtrl'
                     }
                 }
             });            

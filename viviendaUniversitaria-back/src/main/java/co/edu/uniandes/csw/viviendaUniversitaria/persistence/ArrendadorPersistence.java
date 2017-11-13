@@ -15,18 +15,25 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Persistencia del arrendador
  * @author kk.penaranda
  */
 @Stateless
 public class ArrendadorPersistence {
+    
+    /**
+     * Logger para mostrar los comentarios
+     */
     private static final Logger LOGGER = Logger.getLogger(ArrendadorPersistence.class.getName());
 
+    /**
+     * Entidad 
+     */
     @PersistenceContext(unitName = "viviendaUniversitariaPU")
     protected EntityManager em;
     
     /**
-     *
+     * Crea el objeto arrendador
      * @param entity objeto Arrendador que se creará en la base de datos
      * @return devuelve la entidad creada con un identificador dado por la base de datos.
      */
