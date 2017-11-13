@@ -9,12 +9,11 @@ import co.edu.uniandes.csw.viviendaUniversitaria.dtos.OrigenDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.OrigenLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.viviendaUniversitaria.persistence.OrigenPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -104,17 +103,16 @@ public class OrigenResource {
 
     
 //NO SE PUEDE BORRAR POR REGLAS DE NEGOCIO
-//    @DELETE
-//    @Path("{id: \\d+}")
-//    public void deleteOrigen(@PathParam("id") Long id) throws BusinessLogicException {
-//        LOGGER.log(Level.INFO, "Inicia proceso de borrar una Origen con id {0}", id);
-//        OrigenEntity entity = origenLogic.find(id);
-//        if (entity == null) {
-//            throw new WebApplicationException(ALGO1 + id + ALGO2, 404);
-//        }
-//        origenLogic.delete(id);
-//
-//    }
+    @DELETE
+    @Path("{id: \\d+}")
+    public void deleteOrigen(@PathParam("id") Long id) throws BusinessLogicException {
+        OrigenEntity entity = origenLogic.find(id);
+        if (entity == null) {
+            throw new WebApplicationException(ALGO1 + id + ALGO2, 404);
+        }
+        origenLogic.delete(id);
+
+    }
     private List<OrigenDTO> listEntity2DTO(List<OrigenEntity> entityList) {
         List<OrigenDTO> list = new ArrayList<>();
         for (OrigenEntity entity : entityList) {
