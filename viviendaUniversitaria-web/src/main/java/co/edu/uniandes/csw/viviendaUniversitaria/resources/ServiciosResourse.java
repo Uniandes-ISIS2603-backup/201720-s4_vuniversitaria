@@ -32,9 +32,24 @@ import javax.ws.rs.core.MediaType;
 
 public class ServiciosResourse {
 
-    @Inject
+    /**
+     * Relacion con el logic de servicios
+     */
     private ServiciosLogic logic;
 
+    /**
+     * Constructor por default
+     */
+    public ServiciosResourse() {
+    }
+    /**
+     * Contructor usado por el ejb
+     * @param logic 
+     */
+    @Inject
+    public ServiciosResourse(ServiciosLogic logic) {
+        this.logic = logic;
+    }
     /**
      * Servicio get ALL
      * @param idHospedaje
