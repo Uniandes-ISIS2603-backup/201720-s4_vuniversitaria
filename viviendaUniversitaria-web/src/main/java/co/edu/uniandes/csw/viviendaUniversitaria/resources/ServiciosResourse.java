@@ -20,7 +20,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 
@@ -36,8 +35,14 @@ public class ServiciosResourse {
     @Inject
     private ServiciosLogic logic;
 
+    /**
+     * Servicio get ALL
+     * @param idHospedaje
+     * @return List de ServiciosDetailDTO
+     * @throws BusinessLogicException 
+     */
     @GET
-    public List<ServiciosDetailDTO> getList(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
+    public List<ServiciosDetailDTO> getList(@PathParam("idHospedaje") Long idHospedaje) throws BusinessLogicException {
         List<ServiciosEntity> listServicios = logic.findAll(idHospedaje);
         List<ServiciosDetailDTO> respuesta = new ArrayList<>();
         for (ServiciosEntity listServicio : listServicios) {
@@ -46,28 +51,54 @@ public class ServiciosResourse {
         return respuesta;
     }
 
+    /**
+     * Servicio get por id
+     * @param idHospedaje
+     * @param id
+     * @return ServiciosDetailDTO
+     * @throws BusinessLogicException 
+     */
     @GET
     @Path("{id: \\d+}")
-    public ServiciosDetailDTO getServicio(@PathParam("idHospedaje") long idHospedaje, @PathParam("id") long id) throws WebApplicationException, BusinessLogicException {
+    public ServiciosDetailDTO getServicio(@PathParam("idHospedaje") long idHospedaje, @PathParam("id") long id) throws BusinessLogicException {
         return new ServiciosDetailDTO(logic.findServicio(idHospedaje, id));
     }
 
+    /**
+     * Servicio post
+     * @param idHospedaje
+     * @param nuevoServicio
+     * @return ServiciosDetailDTO
+     * @throws BusinessLogicException 
+     */
     @POST
-    public ServiciosDetailDTO createServicio(@PathParam("idHospedaje") long idHospedaje, ServiciosDetailDTO nuevoServicio) throws WebApplicationException, BusinessLogicException {
+    public ServiciosDetailDTO createServicio(@PathParam("idHospedaje") long idHospedaje, ServiciosDetailDTO nuevoServicio) throws BusinessLogicException {
         return new ServiciosDetailDTO(logic.createServicio(idHospedaje, nuevoServicio.toEntity()));
 
     }
 
+    /**
+     * Servicio put
+     * @param idHospedaje
+     * @param id
+     * @param servicioAtualizado
+     * @return ServiciosDetailDTO
+     * @throws BusinessLogicException 
+     */
     @PUT
     @Path("{id: \\d+}")
-    public ServiciosDetailDTO updateServicio(@PathParam("idHospedaje") Long idHospedaje,@PathParam("id") Long id, ServiciosDetailDTO servicioAtualizado) throws WebApplicationException, BusinessLogicException {
+    public ServiciosDetailDTO updateServicio(@PathParam("idHospedaje") Long idHospedaje,@PathParam("id") Long id, ServiciosDetailDTO servicioAtualizado) throws BusinessLogicException {
         return new ServiciosDetailDTO(logic.updateServicio(idHospedaje,id, servicioAtualizado.toEntity()));
     }
-    
-
+    /**
+     * Servicio delete
+     * @param idHospedaje
+     * @param id
+     * @throws BusinessLogicException 
+     */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteServicio(@PathParam("idHospedaje") Long idHospedaje, @PathParam("id") Long id) throws WebApplicationException, BusinessLogicException {
+    public void deleteServicio(@PathParam("idHospedaje") Long idHospedaje, @PathParam("id") Long id) throws BusinessLogicException {
         logic.delete(idHospedaje, id);
     }
 }
