@@ -48,10 +48,9 @@ public class ServiciosLogic extends GenericLogic<ServiciosEntity> {
     }
 
     /**
-     * Obtiene los servicios de un hospedaje en especifico
-     *
+     *Obtiene los servicios de un hospedaje en especifico
      * @param idHospedaje
-     * @returnLista de servicios de un hospedaje en especifico
+     * @return Lista de servicios de un hospedaje en especifico
      * @throws WebApplicationException
      * @throws BusinessLogicException
      */
