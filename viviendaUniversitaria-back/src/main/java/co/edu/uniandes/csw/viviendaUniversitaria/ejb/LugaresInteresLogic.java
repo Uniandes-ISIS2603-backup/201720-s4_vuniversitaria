@@ -44,9 +44,6 @@ public class LugaresInteresLogic extends GenericLogic<LugaresInteresEntity> {
     @Override
     public LugaresInteresEntity update(LugaresInteresEntity entity, Long id) {
         LugaresInteresEntity old = persistence.find(id);
-        if (entity.getDistancia() == 0.0 && old.getDistancia() > entity.getDistancia()) {
-            entity.setDistancia(old.getDistancia());
-        }
         if (entity.getDescripcion() == null) {
             entity.setDescripcion(old.getDescripcion());
         }

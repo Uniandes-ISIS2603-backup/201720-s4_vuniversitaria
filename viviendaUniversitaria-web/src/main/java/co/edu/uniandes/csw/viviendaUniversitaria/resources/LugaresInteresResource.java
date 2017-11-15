@@ -28,17 +28,23 @@ import javax.ws.rs.Produces;
  *
  * @author jc.sanguino10
  */
-@Path("lugaresInteres")
+@Path("/lugaresInteres")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class LugaresInteresResource {
 
-    @Inject
     LugaresInteresLogic logic;
-    @Inject
     UbicacionLogic logicUbicacion;
 
+    public LugaresInteresResource() {
+    }
+
+    @Inject
+    public LugaresInteresResource(LugaresInteresLogic logic, UbicacionLogic logicUbicacion) {
+        this.logic = logic;
+        this.logicUbicacion = logicUbicacion;
+    }
     @GET
     public List<LugaresInteresDetailDTO> getList() {
         List<LugaresInteresEntity> list = logic.findAll();
