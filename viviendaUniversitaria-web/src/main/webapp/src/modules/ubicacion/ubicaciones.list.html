@@ -21,15 +21,6 @@
                         <tbody>
                             <tr ng-repeat="ubicacion in ubicacionesRecords">
                                 <td id="{{$index}}-direccion"><a ui-sref="ubicacionDetail({ubicacionId: ubicacion.id})">{{ubicacion.direccion}}</a></td>
-                                <td id="{{$index}}-actions">
-                                     <a class="btn btn-info btn-sm" ui-sref="ubicacionEdit({ubicacionId: ubicacion.id})">
-                                        <span class="glyphicon glyphicon-edit"></span>
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" ui-sref="ubicacionDelete({ubicacionId: ubicacion.id})">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                    </a>  
-                                   
-                                </td>
                             </tr>
                         </tbody>
                     </table>

@@ -70,12 +70,13 @@ public class UniversidadResource {
     @PUT
     @Path("{idUni: \\d+}")
     public UniversidadDetailDTO updateUniversidad(@PathParam("idUni") Long idUni, UniversidadDetailDTO ubi) throws BusinessLogicException {
-        UniversidadEntity x = logic.find(idUni);
-        if (x == null) {
-            throw new WebApplicationException("El recurso con id" + idUni + "no existe", 404);
+      UniversidadEntity entity = ubi.toEntity();
+        entity.setId(idUni);
+        UniversidadEntity oldEntity = logic.find(idUni);
+        if (oldEntity == null) {
+            throw new WebApplicationException("La universidad no existe", 404);
         }
-        UniversidadEntity entity = logic.update(ubi.toEntity(), idUni);
-        return new UniversidadDetailDTO(entity);
+        return new UniversidadDetailDTO(logic.update(entity,idUni));
     }
 
     @DELETE

@@ -14,7 +14,7 @@
             $scope.editUniversidad = function(){
                 $http.put(universidadesContext +'/'+ idUni,{
                     
-                    nombre: $scope.nombre,
+                    nombre: $scope.name,
                     direccion: $scope.direccion,
                     latitud: $scope.latitud,
                     altitud:$scope.altitud

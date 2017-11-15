@@ -2,7 +2,7 @@
     var mod = ng.module("ubicacionModule", ['ui.router']);
     mod.constant("ubicacionesContext", "api/ubicaciones");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/ubicaciones/';
+            var basePath = 'src/modules/ubicacion/';
             $urlRouterProvider.otherwise("/ubicacionesList");
            
             $stateProvider.state('ubicaciones', {
