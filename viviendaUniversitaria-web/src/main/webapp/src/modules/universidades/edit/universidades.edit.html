@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="panel panel-primary">
         <div class="panel-heading text-center">
-            <h3>Editar Universidad : {{universidadActual.id}}</h3>
+            <h3>Editar Universidad : {{uniActual.name}}</h3>
         </div>
         <div class="panel panel-body">
             <form class="form-horizontal" name ="universidad">
@@ -10,23 +10,24 @@
                         Nombre:
                     </label>
                     <div class="col-md-10">
-                        <input id="nombre" ng-model="name" ng-value="universidadActual.name" class="form-control" type="text"  required>
+                        <input id="nombre" ng-model="name" ng-init="uniActual.name" ng-value="uniActual.name" class="form-control" type="text"  required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="direccion" class="col-sm-2 control-label" >
-                        Dirección:{{universidadActual.direccion}}
+                        Dirección:
                     </label>
                     <div class="col-md-10">
-                        <input id="direccion" ng-model="direccion" ng-value ="universidadActual.direccion" class="form-control" type="text"  required>
+                        <input id="direccion" ng-model="direccion" ng-init="uniActual.ubicacion.direccion" ng-value ="uniActual.ubicacion.direccion" class="form-control" type="text"  required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="altitud" class="col-sm-2 control-label" >
-                        Altitud:
+                    <label for="longitud" class="col-sm-2 control-label" >
+                        Longitud :
                     </label>
                     <div class="col-md-10">
-                        <input id="altitud" type="number" ng-model="altitud" ng-value ="universidadActual.altitud" class="form-control" type="text"  required>
+                        <input id="longitud" ng-model="longitud" ng-init="uniActual.ubicacion.longitud" ng-value ="uniActual.ubicacion.longitud" class="form-control" type="text"  required>
+
                     </div>
                 </div>
                 <div class="form-group">
@@ -34,21 +35,13 @@
                         Latitud:
                     </label>
                     <div class="col-md-10">
-                        <input id="latitud" ng-model="latitud"  ng-value="universidadActual.latitud" class="form-control" type="text"  required>
+                        <input id="latitud" ng-model="latitud" type="number" ng-init="uniActual.ubicacion.latitud" ng-value="uniActual.ubicacion.latitud" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="form-group col-sm-12" ng-if="!universidad.$valid">
-
-                        <div class="alert alert-warning " >
-                            <strong>Warning!</strong><p>All inputs are required*</p>
-                        </div> 
-                    </div> 
-                </div> 
-                <div class="form-group">
                     <div class="form-group col-md-10">
-                        <input ng-show="universidad.$valid" type="button" value="Guardar cambios" class="btn btn-success" ng-click="editUniversidad()">
+                        <input type="button" value="Guardar cambios" class="btn btn-success" ng-click="editUniversidad()">
                         <a class="btn btn-info" ui-sref="universidadesList">Cancelar</a>
                     </div>
                 </div>

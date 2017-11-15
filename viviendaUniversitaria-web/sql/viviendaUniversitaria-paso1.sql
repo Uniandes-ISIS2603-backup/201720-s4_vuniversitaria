@@ -124,26 +124,26 @@ insert into APP.CALIFICACIONENTITY (valoracion, fecha, comentario) values (43, '
 
 --Consulta
 
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('descipcion', 20,20);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Kamillah', 29, 61);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Ora', 13, 9);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Towny', 19, 71);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Batsheva', 25, 62);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Modestine', 17, 92);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Sande', 90, 11);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Willey', 10, 64);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Marijo', 85, 37);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Danette', 90, 23);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Gabriel', 59, 93);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Diarmid', 84, 80);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('George', 26, 33);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Aleta', 91, 30);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Vickie', 73, 8);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Ailbert', 28, 41);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Zachery', 46, 75);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Eilis', 60, 70);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Dorelle', 86, 39);
-insert into APP.UBICACIONENTITY (direccion, latitud, altitud) values ('Rhoda', 62, 3);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('descipcion', 20,20);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Kamillah', 29, 61);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Ora', 13, 9);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Towny', 19, 71);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Batsheva', 25, 62);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Modestine', 17, 92);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Sande', 90, 11);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Willey', 10, 64);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Marijo', 85, 37);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Danette', 90, 23);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Gabriel', 59, 93);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Diarmid', 84, 80);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('George', 26, 33);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Aleta', 91, 30);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Vickie', 73, 8);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Ailbert', 28, 41);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Zachery', 46, 75);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Eilis', 60, 70);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Dorelle', 86, 39);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Rhoda', 62, 3);
 
 --Servicios
 insert into ServiciosEntity (descripcion, costo) values ('Marietta', 96.55);
