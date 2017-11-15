@@ -5,7 +5,6 @@
         function ($scope, $http, lugaresInteresContext, $state) {   
             
             $scope.create = function(){
-                console.log("llegue");
             $http.post(lugaresInteresContext + '/' + $scope.idUb, {
                 descripcion : $scope.descripcion,
                 distancia: $scope.distancia,
