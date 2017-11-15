@@ -13,6 +13,9 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.LugaresInteresEntity;
  */
 public class LugaresInteresDetailDTO extends LugaresInteresDTO {
 
+    /**
+     * Atributo de la relacion con UbicacionDTO
+     */
     private UbicacionDTO ubicacion;
 
     public LugaresInteresDetailDTO() {
@@ -49,10 +52,18 @@ public class LugaresInteresDetailDTO extends LugaresInteresDTO {
 
     }
 
+    /**
+     * Retorna la asociacion del dto con ubicacion dto
+     * @return ubicacion
+     */
     public UbicacionDTO getUbicacion() {
         return ubicacion;
     }
 
+    /**
+     * Cambia la asociacion del dto con ubicacion dto
+     * @param ubicacion 
+     */
     public void setUbicacion(UbicacionDTO ubicacion) {
         this.ubicacion = ubicacion;
     }

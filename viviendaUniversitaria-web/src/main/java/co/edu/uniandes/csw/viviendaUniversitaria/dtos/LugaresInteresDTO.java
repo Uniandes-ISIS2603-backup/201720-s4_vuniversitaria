@@ -14,15 +14,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.LugaresInteresEntity;
 public class LugaresInteresDTO {
 
     /**
-     * Atributo donde se describe la ubicacion de un lugar de interes
-     */
-    // private UbicacionEntity ubicacion;
-    /**
-     * atributo que modela el hsopedaje al que pertenece el LugarInteres
-     */
-    //private List<HospedajeLugarEntity> hospedajesLugares;
-    /**
-     * id del Lugar de Interes
+     * Atributo que modela el id del Lugar de Interes
      */
     private Long id;
     /**
@@ -44,7 +36,6 @@ public class LugaresInteresDTO {
      */
     public LugaresInteresDTO() {
         //Constructor vacío por default
-
     }
 
     /**
@@ -60,38 +51,83 @@ public class LugaresInteresDTO {
         this.distancia = lugarInteres.getDistancia();
     }
 
+    /**
+     * Retorna el id del dto Lugar de Interes
+     *
+     * @return id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Cambia el id del dto Lugar de Interes
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Retorna la descripcion del dto Lugar de Interes
+     *
+     * @return descripcion
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     * Cambia la descripcion del dto Lugar de Interes
+     *
+     * @param descripcion
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    /**
+     * Retorna la distancia del dto Lugar de Interes
+     *
+     * @return distancia
+     */
     public double getDistancia() {
         return distancia;
     }
 
+    /**
+     * Cambia la distancia del dto Lugar de Interes
+     *
+     * @param distancia
+     */
     public void setDistancia(double distancia) {
         this.distancia = distancia;
     }
 
+    /**
+     * Retorna la ruta de imagen del dto Lugar de Interes
+     *
+     * @return rutaImagen
+     */
     public String getRutaImagen() {
         return rutaImagen;
     }
 
+    /**
+     * Cambia la ruta de imagen del dto Lugar de Interes
+     *
+     * @param rutaImagen
+     */
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
     }
 
+    /**
+     * Realiza el cambio de un dto Lugar de Interes a un entity
+     *
+     * @return LugarInteresEntity
+     */
     public LugaresInteresEntity toEntity() {
         LugaresInteresEntity lugaresInteresEntity = new LugaresInteresEntity();
         lugaresInteresEntity.setDescripcion(this.descripcion);
