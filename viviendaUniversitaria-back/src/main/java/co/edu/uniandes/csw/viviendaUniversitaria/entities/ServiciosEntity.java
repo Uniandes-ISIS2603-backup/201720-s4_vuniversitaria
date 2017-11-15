@@ -26,7 +26,10 @@ public class ServiciosEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "servicio", fetch = FetchType.LAZY)
     private List<DetalleServicioEntity> detalleServicio;
-    
+
+    /**
+     * Asociacion con un hospedaje
+     */
     @PodamExclude
     @ManyToOne
     private HospedajeEntity hospedaje;
@@ -39,60 +42,120 @@ public class ServiciosEntity extends BaseEntity implements Serializable {
      * hospedaje
      */
     private double costo;
-    
+    /**
+     * Nombre del servicio
+     */
     private String name;
-
-
-    public List<DetalleServicioEntity> getDetalleServicio() {
-        return detalleServicio;
-    }
 
     //--------------------------------------------//
     //--------------GETTERS AND SETTERS-----------//
     //--------------------------------------------//
+    /**
+     * Retorna la asociacion con detalle de servicios
+     *
+     * @return
+     */
+    public List<DetalleServicioEntity> getDetalleServicio() {
+        return detalleServicio;
+    }
+
+    /**
+     * Envia la asociacion con detalle de servicio
+     *
+     * @param detalleServicio
+     */
     public void setDetalleServicio(List<DetalleServicioEntity> detalleServicio) {
         this.detalleServicio = detalleServicio;
     }
 
+    /**
+     * Get de hospedaje
+     *
+     * @return hospedaje
+     */
     public HospedajeEntity getHospedaje() {
         return hospedaje;
     }
 
+    /**
+     * Envia un hospedaje al servicio
+     *
+     * @param hospedaje
+     */
     public void setHospedaje(HospedajeEntity hospedaje) {
         this.hospedaje = hospedaje;
     }
-    
 
+    /**
+     * Retorna la descripcion del servicio
+     *
+     * @return descripcion
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     * Envia una descripcion al servicio
+     *
+     * @param descripcion
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    /**
+     * Retorna el costo del servicio
+     *
+     * @return costo
+     */
     public double getCosto() {
         return costo;
     }
 
+    /**
+     * Cambia el costo del servicio
+     *
+     * @param costo
+     */
     public void setCosto(double costo) {
         this.costo = costo;
     }
 
+    /**
+     * Retorna el nombre del servicio
+     *
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Cambia el nombre del servicio
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * 
+     * @param obj
+     * @return 
+     */
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof ServiciosEntity) return super.equals(obj);
+        if (obj instanceof ServiciosEntity) {
+            return super.equals(obj);
+        }
         return false;
     }
-
+    /**
+     * 
+     * @return 
+     */
     @Override
     public int hashCode() {
         int hash = 5;
