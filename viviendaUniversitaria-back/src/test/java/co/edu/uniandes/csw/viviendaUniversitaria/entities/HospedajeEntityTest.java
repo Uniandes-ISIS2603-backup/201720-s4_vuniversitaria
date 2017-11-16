@@ -393,7 +393,7 @@ public class HospedajeEntityTest {
      */
     @Test
     public void testGetFacturas() {
-         HospedajeEntity hospedajeT = data.get(0);
+        HospedajeEntity hospedajeT = data.get(0);
         hospedajeT.setFacturas(generarFacturas());
         Assert.assertNotNull(hospedajeT.getFacturas());
         Assert.assertTrue(hospedajeT.getFacturas().size() == 3);
