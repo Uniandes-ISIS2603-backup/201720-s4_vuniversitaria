@@ -37,8 +37,8 @@ public class HospedajeEntityTest {
     
     @Before
     public void setUp() {
-            clearData();
-            insertData();
+        clearData();
+        insertData();
     }
 
     private void clearData() {
@@ -462,6 +462,50 @@ public class HospedajeEntityTest {
         hospedajeT.incrementarCalificación(c);
         Assert.assertEquals(hospedajeT.getValoracion(),new Double((2+10)/2));
         Assert.assertEquals(new Integer(2), hospedajeT.getCantidadVotaciones());
+    }
+
+    /**
+     * Test of getRutaImagen method, of class HospedajeEntity.
+     */
+    @Test
+    public void testGetRutaImagen() {
+        HospedajeEntity hospedajeT = data.get(0);
+        HospedajeEntity hospedaje = new HospedajeEntity();
+        hospedaje.setRutaImagen(hospedajeT.getRutaImagen());
+        Assert.assertTrue(hospedaje.getRutaImagen().equals(hospedajeT.getRutaImagen()));
+    }
+
+    /**
+     * Test of setRutaImagen method, of class HospedajeEntity.
+     */
+    @Test
+    public void testSetRutaImagen() {
+        HospedajeEntity hospedajeT = data.get(0);
+        HospedajeEntity hospedaje = new HospedajeEntity();
+        hospedaje.setRutaImagen(hospedajeT.getRutaImagen());
+        Assert.assertTrue(hospedaje.getRutaImagen().equals(hospedajeT.getRutaImagen()));
+    }
+
+    /**
+     * Test of getCantidadVotaciones method, of class HospedajeEntity.
+     */
+    @Test
+    public void testGetCantidadVotaciones() {
+        HospedajeEntity hospedajeT = data.get(0);
+        HospedajeEntity hospedaje = new HospedajeEntity();
+        hospedaje.setCantidadVotaciones(hospedajeT.getCantidadVotaciones());
+        Assert.assertTrue(hospedaje.getCantidadVotaciones().equals(hospedajeT.getCantidadVotaciones()));
+    }
+
+    /**
+     * Test of setCantidadVotaciones method, of class HospedajeEntity.
+     */
+    @Test
+    public void testSetCantidadVotaciones() {
+        HospedajeEntity hospedajeT = data.get(0);
+        HospedajeEntity hospedaje = new HospedajeEntity();
+        hospedaje.setCantidadVotaciones(hospedajeT.getCantidadVotaciones());
+        Assert.assertTrue(hospedaje.getCantidadVotaciones().equals(hospedajeT.getCantidadVotaciones()));
     }
     
 }

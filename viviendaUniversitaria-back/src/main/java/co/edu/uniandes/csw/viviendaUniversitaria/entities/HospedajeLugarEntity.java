@@ -100,6 +100,10 @@ public class HospedajeLugarEntity extends BaseEntity {
         return false;
     }
 
+    /**
+     * Retorna el código hash de la entidad.
+     * @return Código hash de la entidad.
+     */
     @Override
     public int hashCode() {
         int hash = 7;
