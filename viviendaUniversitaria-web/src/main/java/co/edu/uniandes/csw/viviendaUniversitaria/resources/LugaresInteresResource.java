@@ -24,85 +24,61 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
-
 /**
  *
  * @author jc.sanguino10
  */
-@Path("lugaresInteres")
+@Path("/lugaresInteres")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class LugaresInteresResource {
 
-    @Inject
     LugaresInteresLogic logic;
-    @Inject
     UbicacionLogic logicUbicacion;
 
-    @GET
-    public List<LugaresInteresDetailDTO> getList() throws WebApplicationException {
-        try {
-            List<LugaresInteresEntity> list = logic.findAll();
-            List<LugaresInteresDetailDTO> respuesta = new ArrayList<LugaresInteresDetailDTO>();
-            for (LugaresInteresEntity lugaresInteresEntity : list) {
-                respuesta.add(new LugaresInteresDetailDTO(lugaresInteresEntity));
-                System.err.println(lugaresInteresEntity);
-            }
-            return respuesta;
-        } catch (WebApplicationException e) {
-            throw e;
-        }
+    public LugaresInteresResource() {
+    }
 
+    @Inject
+    public LugaresInteresResource(LugaresInteresLogic logic, UbicacionLogic logicUbicacion) {
+        this.logic = logic;
+        this.logicUbicacion = logicUbicacion;
+    }
+    @GET
+    public List<LugaresInteresDetailDTO> getList() {
+        List<LugaresInteresEntity> list = logic.findAll();
+        List<LugaresInteresDetailDTO> respuesta = new ArrayList<LugaresInteresDetailDTO>();
+        for (LugaresInteresEntity lugaresInteresEntity : list) {
+            respuesta.add(new LugaresInteresDetailDTO(lugaresInteresEntity));
+        }
+        return respuesta;
     }
 
     @GET
     @Path("{id: \\d+}")
-    public LugaresInteresDetailDTO getLugares(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException {
-        try {
-            LugaresInteresDetailDTO respuesta = new LugaresInteresDetailDTO(logic.find(id));
-            return respuesta;
-
-        } catch (WebApplicationException e) {
-            throw e;
-        }
-
+    public LugaresInteresDetailDTO getLugares(@PathParam("id") long id) throws BusinessLogicException {
+        return new LugaresInteresDetailDTO(logic.find(id));
     }
 
     @POST
     @Path("{idUbicacion: \\d+}")
-    public LugaresInteresDetailDTO createLugar(@PathParam("idUbicacion") Long idUbicacion, LugaresInteresDetailDTO nuevolugar) throws WebApplicationException, BusinessLogicException {
-
+    public LugaresInteresDetailDTO createLugar(@PathParam("idUbicacion") Long idUbicacion, LugaresInteresDetailDTO nuevolugar) throws BusinessLogicException {
         UbicacionDTO ubicacion = new UbicacionDTO(logicUbicacion.find(idUbicacion));
         nuevolugar.setUbicacion(ubicacion);
-        try {
-            return new LugaresInteresDetailDTO(logic.create(nuevolugar.toEntity()));
-        } catch (WebApplicationException ex) {
-            throw ex;
-        }
+        return new LugaresInteresDetailDTO(logic.create(nuevolugar.toEntity()));
     }
 
     @PUT
     @Path("{id: \\d+}")
-    public LugaresInteresDTO updateLugar(@PathParam("id") Long id, LugaresInteresDTO lugarAtualizado) throws WebApplicationException {
-        try {
-            lugarAtualizado.setId(id);
-            return new LugaresInteresDTO(logic.update(lugarAtualizado.toEntity(), id));
-        } catch (WebApplicationException e) {
-            throw e;
-        }
-
+    public LugaresInteresDTO updateLugar(@PathParam("id") Long id, LugaresInteresDTO lugarAtualizado) {
+        lugarAtualizado.setId(id);
+        return new LugaresInteresDTO(logic.update(lugarAtualizado.toEntity(), id));
     }
 
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteLugar(@PathParam("id") Long id) throws WebApplicationException, BusinessLogicException {
-        try {
-            logic.delete(id);
-        } catch (WebApplicationException e) {
-            throw e;
-
-        }
+    public void deleteLugar(@PathParam("id") Long id) throws BusinessLogicException {
+        logic.delete(id);
     }
 }

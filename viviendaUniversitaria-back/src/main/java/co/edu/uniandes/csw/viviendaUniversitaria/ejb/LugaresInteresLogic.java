@@ -16,40 +16,44 @@ import javax.ws.rs.WebApplicationException;
  * @author jc.sanguino10
  */
 @Stateless
-public class LugaresInteresLogic extends GenericLogic<LugaresInteresEntity>{
- /**
-  * Constructor vacio por defecto
-  */
-   public LugaresInteresLogic()
-   {
-       super();
-   }
-   @Inject
-   public LugaresInteresLogic(LugaresInteresPersistence persistence)
-   {
-       super(persistence,LugaresInteresEntity.class);
-   }
-   @Override
-   public LugaresInteresEntity update(LugaresInteresEntity entity, Long id)throws WebApplicationException
-   {
-       LugaresInteresEntity old = persistence.find(id);
-       if(entity.getDistancia()==0 && old.getDistancia()>entity.getDistancia())
-       {
-           entity.setDistancia(old.getDistancia());
-       }
-       if(entity.getDescripcion()==null || entity.getDescripcion().equals(""))
-       {
-           entity.setDescripcion(old.getDescripcion());
-       }
-       if(entity.getRutaImagen()==null || entity.getRutaImagen().equals(""))
-       {
-           entity.setRutaImagen(old.getRutaImagen());
-       }
-       if(entity.getUbicacion()==null)
-       {
-           entity.setUbicacion(old.getUbicacion());
-       }
-       return persistence.update(entity);
-   }
-    
+public class LugaresInteresLogic extends GenericLogic<LugaresInteresEntity> {
+
+    /**
+     * Constructor vacio por defecto
+     */
+    public LugaresInteresLogic() {
+        super();
+    }
+
+    /**
+     * Constructor de la clase
+     * @param persistence 
+     */
+    @Inject
+    public LugaresInteresLogic(LugaresInteresPersistence persistence) {
+        super(persistence, LugaresInteresEntity.class);
+    }
+
+    /**
+     * Update de un lugar de interes
+     * @param entity
+     * @param id
+     * @return
+     * @throws WebApplicationException 
+     */
+    @Override
+    public LugaresInteresEntity update(LugaresInteresEntity entity, Long id) {
+        LugaresInteresEntity old = persistence.find(id);
+        if (entity.getDescripcion() == null) {
+            entity.setDescripcion(old.getDescripcion());
+        }
+        if (entity.getRutaImagen() == null) {
+            entity.setRutaImagen(old.getRutaImagen());
+        }
+        if (entity.getUbicacion() == null) {
+            entity.setUbicacion(old.getUbicacion());
+        }
+        return persistence.update(entity);
+    }
+
 }

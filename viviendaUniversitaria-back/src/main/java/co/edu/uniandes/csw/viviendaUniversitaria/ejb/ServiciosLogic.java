@@ -19,21 +19,41 @@ import javax.ws.rs.WebApplicationException;
  * @author jc.sanguino10
  */
 @Stateless
-public class ServiciosLogic extends GenericLogic<ServiciosEntity>{
+public class ServiciosLogic extends GenericLogic<ServiciosEntity> {
 
-    private HospedajeLogic hospedajeLogic; // Variable para acceder a la persistencia de la aplicación.
-    
-    public ServiciosLogic()
-    {
+    /*
+    * Variable para acceder a la persistencia de la aplicación.
+     */
+    private HospedajeLogic hospedajeLogic;
+
+    /**
+     * Constructor por defecto, necesario para el uso del Generic
+     */
+    public ServiciosLogic() {
         super();
     }
-    
+
+    /**
+     * Constructor de la clase
+     *
+     * @param servicioPersistence
+     * @param hospedajeLogic
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
     @Inject
     public ServiciosLogic(ServicioPersistence servicioPersistence, HospedajeLogic hospedajeLogic) throws InstantiationException, IllegalAccessException {
         super(servicioPersistence, ServiciosEntity.class);
         this.hospedajeLogic = hospedajeLogic;
     }
 
+    /**
+     *Obtiene los servicios de un hospedaje en especifico
+     * @param idHospedaje
+     * @return Lista de servicios de un hospedaje en especifico
+     * @throws WebApplicationException
+     * @throws BusinessLogicException
+     */
     public List<ServiciosEntity> findAll(Long idHospedaje) throws WebApplicationException, BusinessLogicException {
 
         HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
@@ -45,6 +65,15 @@ public class ServiciosLogic extends GenericLogic<ServiciosEntity>{
         }
     }
 
+    /**
+     * Retorna un servicio de un hospedaje en especifico
+     *
+     * @param idHospedaje
+     * @param idServicio
+     * @return Un servicio
+     * @throws WebApplicationException
+     * @throws BusinessLogicException
+     */
     public ServiciosEntity findServicio(Long idHospedaje, Long idServicio) throws WebApplicationException, BusinessLogicException {
         List<ServiciosEntity> listServicios = findAll(idHospedaje);
         ServiciosEntity servicioBuscado = null;
@@ -60,7 +89,16 @@ public class ServiciosLogic extends GenericLogic<ServiciosEntity>{
         }
     }
 
-    public ServiciosEntity createServicio(Long idHospedaje, ServiciosEntity entidad) throws WebApplicationException, BusinessLogicException {
+    /**
+     * Crea un servicio en un hospedaje especifico
+     *
+     * @param idHospedaje
+     * @param entidad
+     * @return
+     * @throws WebApplicationException
+     * @throws BusinessLogicException
+     */
+    public ServiciosEntity createServicio(Long idHospedaje, ServiciosEntity entidad) throws BusinessLogicException {
         if (entidad.getId() == null) {
             throw new WebApplicationException("el servicio no cuenta con un id valido", 407);
         } else {
@@ -71,26 +109,48 @@ public class ServiciosLogic extends GenericLogic<ServiciosEntity>{
 
     }
 
-    public ServiciosEntity updateServicio(Long idHospedaje, Long id, ServiciosEntity entidad) throws WebApplicationException, BusinessLogicException {
+    /**
+     * Actualiza el servicio de un hospedaje
+     *
+     * @param idHospedaje
+     * @param id
+     * @param entidad
+     * @return servicio actualizado
+     * @throws BusinessLogicException
+     */
+    public ServiciosEntity updateServicio(Long idHospedaje, Long id, ServiciosEntity entidad) throws BusinessLogicException {
         if (findServicio(idHospedaje, id) == null) {
-            throw new WebApplicationException("el servicio no cuenta con un id valido", 407);
+            throw servicioIdInvalido();
         } else {
             ServiciosEntity old = findServicio(idHospedaje, id);
             entidad.setHospedaje(old.getHospedaje());
             entidad.setId(id);
-            if(entidad.getDescripcion()==null || entidad.getDescripcion().equals(""))
-            {
+            if (entidad.getDescripcion() == null) {
                 entidad.setDescripcion(old.getDescripcion());
             }
             return persistence.update(entidad);
         }
     }
-
-    public void delete(Long idHospedaje, Long idServicio) throws WebApplicationException, BusinessLogicException {
+        /**
+         * Elimina el servicio de un hospedaje en especifico
+         *
+         * @param idHospedaje
+         * @param idServicio
+         * @throws BusinessLogicException
+         */
+    public void delete(Long idHospedaje, Long idServicio) throws BusinessLogicException {
         if (findServicio(idHospedaje, idServicio) == null) {
-            throw new WebApplicationException("el servicio no cuenta con un id valido", 407);
+            throw servicioIdInvalido();
         } else {
             persistence.delete(idServicio);
         }
+    }
+
+    /**
+     * Lanza una excepcion si no encuentra un servicio con el id indicado
+     * @return WebApplicationException
+     */
+    public WebApplicationException servicioIdInvalido() {
+       return new WebApplicationException("el servicio no cuenta con un id valido", 407);
     }
 }

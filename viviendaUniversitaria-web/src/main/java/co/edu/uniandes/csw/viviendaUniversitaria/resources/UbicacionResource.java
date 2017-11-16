@@ -66,16 +66,13 @@ public class UbicacionResource {
     @PUT
     @Path("/{idUbicacion: [0-9][0-9]*}")
     public UbicacionDetailDTO updateUbicacion(@PathParam("idUbicacion") Long id, UbicacionDetailDTO ubi) throws BusinessLogicException {
-         UbicacionEntity x = logic.find(id);
-        if (x == null) {
-            throw new WebApplicationException("El recurso con id" + id + "no existe", 404);
+       UbicacionEntity entity = ubi.toEntity();
+        entity.setId(id);
+        UbicacionEntity oldEntity = logic.find(id);
+        if (oldEntity == null) {
+            throw new WebApplicationException("La ubicacion no existe", 404);
         }
-        if (logic.find(id) != null && id.equals(ubi.getId())) {
-            UbicacionEntity entity = logic.update(ubi.toEntity(), id);
-            return new UbicacionDetailDTO(entity);
-        } else {
-            throw new WebApplicationException("La ubicacion con ese id no existe");
-        }
+        return new UbicacionDetailDTO(logic.update(entity,id));
     }
     @POST
     public UbicacionDetailDTO createUbicacion(UbicacionDetailDTO ubi) throws BusinessLogicException {
