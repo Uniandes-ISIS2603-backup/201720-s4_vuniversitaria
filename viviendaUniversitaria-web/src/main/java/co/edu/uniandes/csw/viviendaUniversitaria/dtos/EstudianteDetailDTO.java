@@ -23,12 +23,6 @@ public class EstudianteDetailDTO extends EstudianteDTO {
     //relacion uno a muchos con calificacion
     private List<CalificacionDTO> calificaciones;
 
-//    //relacion uno a muchos
-//    private List<FacturaDTO> facturas;
-//
-//    //relacion a una reserva
-//    private ReservaDTO reserva;
-
     public EstudianteDetailDTO() {
         super();
     }
@@ -45,23 +39,13 @@ public class EstudianteDetailDTO extends EstudianteDTO {
         } else {
             entity.setOrigen(null);
         }
-//        if (entity.getFacturas() != null) {
-//            facturas = new ArrayList<>();
-//            for (FacturaEntity facEntity : entity.getFacturas()) {
-//                facturas.add(new FacturaDTO(facEntity));
-//            }
-//        }
+
         if (entity.getCalificaciones() != null) {
             calificaciones = new ArrayList<>();
             for (CalificacionEntity cali : entity.getCalificaciones()) {
                 calificaciones.add(new CalificacionDTO(cali));
             }
         }
-//        if (entity.getReservas() != null) {
-//            this.reserva = new ReservaDTO(entity.getReserva());
-//        } else {
-//            entity.setReserva(null);
-//        }
     }
 
     @Override
@@ -78,16 +62,7 @@ public class EstudianteDetailDTO extends EstudianteDTO {
             }
             entity.setCalificaciones(calificacionEntity);
         }
-//        if (this.getFacturasDTO() != null) {
-//            List<FacturaEntity> facturaEntity = new ArrayList<>();
-//            for (FacturaDTO facturaDTO : getFacturasDTO()) {
-//                facturaEntity.add(facturaDTO.toEntity());
-//            }
-//            entity.setFacturas(facturaEntity);
-//        }
-//        if (this.getReservaDTO() != null) {
-//            entity.setReserva(this.getReservaDTO().toEntity());
-//        }
+
         return null;
     }
     /**
@@ -104,20 +79,6 @@ public class EstudianteDetailDTO extends EstudianteDTO {
         this.origen=origen;
     }
     /**
-     * 
-     * @return la reserva
-     */
-//    public ReservaDTO getReservaDTO(){
-//        return reserva;
-//    }
-    /**
-     * s
-     * @param reserva
-     */
-//    public void setReservaDTO(ReservaDTO reserva){
-//        this.reserva=reserva;
-//    }
-    /**
      * @return la calificacion
      */
     public List<CalificacionDTO> getCalificacionesDTO() {
@@ -130,20 +91,6 @@ public class EstudianteDetailDTO extends EstudianteDTO {
     public void setCalificacionesDTO(List<CalificacionDTO> calificaciones) {
         this.calificaciones = calificaciones;
     }
-
-    /**
-     * @return una lista de facturas
-     */
-//    public List<FacturaDTO> getFacturasDTO() {
-//        return facturas;
-//    }
-
-    /**
-     * @param facturas
-     */
-//    public void setFacturasDTO(List<FacturaDTO> facturas) {
-//        this.facturas = facturas;
-//    }
 
     
 }
