@@ -100,13 +100,13 @@ public class FacturaEntityTest {
      */
     @Test
     public void testGetDetallesReserva() {
-        FacturaEntity hospedajeT = data.get(0);
-        hospedajeT.setDetallesReserva(generarDetalleReserva());
-        Assert.assertNotNull(hospedajeT.getDetallesReserva());
-        Assert.assertTrue(hospedajeT.getDetallesReserva().size() == 3);
-        Assert.assertTrue(hospedajeT.getDetallesReserva().get(0).getId().equals(new Long(1)));
-        Assert.assertTrue(hospedajeT.getDetallesReserva().get(1).getId().equals(new Long(2)));
-        Assert.assertTrue(hospedajeT.getDetallesReserva().get(2).getId().equals(new Long(3)));
+        FacturaEntity factura = data.get(0);
+        factura.setDetallesReserva(generarDetalleReserva());
+        Assert.assertNotNull(factura.getDetallesReserva());
+        Assert.assertTrue(factura.getDetallesReserva().size() == 3);
+        Assert.assertTrue(factura.getDetallesReserva().get(0).getId().equals(new Long(1)));
+        Assert.assertTrue(factura.getDetallesReserva().get(1).getId().equals(new Long(2)));
+        Assert.assertTrue(factura.getDetallesReserva().get(2).getId().equals(new Long(3)));
     }
     
     private List<DetalleReservaEntity> generarDetalleReserva()
