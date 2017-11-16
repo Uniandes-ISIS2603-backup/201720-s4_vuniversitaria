@@ -364,10 +364,10 @@ public class HospedajeEntity extends BaseEntity {
     /**
      * Incremaenta la cantidad de voraciónes y actualiza la valoración total.
      *
-     * @param calificación calificación a agregar.
+     * @param calificacion calificación a agregar.
      */
-    public void incrementarCalificación(CalificacionEntity calificación) {
-        valoracion = ((valoracion * cantidadVotaciones) + calificación.getValoracion()) / (cantidadVotaciones + 1);
+    public void incrementarCalificacion(CalificacionEntity calificacion) {
+        valoracion = ((valoracion * cantidadVotaciones) + calificacion.getValoracion()) / (cantidadVotaciones + 1);
         cantidadVotaciones++;
     }   
 }

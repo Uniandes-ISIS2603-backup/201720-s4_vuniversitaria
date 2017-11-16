@@ -443,7 +443,6 @@ public class HospedajeEntityTest {
     @Test
     public void testHashCode() {
         HospedajeEntity hospedajeT = data.get(0);
-        Long id = new Long(3);
         hospedajeT.setId(new Long(3));
         Assert.assertEquals(data.get(0).hashCode(), hospedajeT.hashCode());
     }
@@ -459,7 +458,7 @@ public class HospedajeEntityTest {
         hospedajeT.setCantidadVotaciones(1);
         CalificacionEntity c = new CalificacionEntity();
         c.setValoracion(10);
-        hospedajeT.incrementarCalificación(c);
+        hospedajeT.incrementarCalificacion(c);
         Assert.assertEquals(hospedajeT.getValoracion(),new Double((2+10)/2));
         Assert.assertEquals(new Integer(2), hospedajeT.getCantidadVotaciones());
     }
