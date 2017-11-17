@@ -15,6 +15,9 @@ import javax.ejb.Stateless;
 @Stateless
 public class DetalleReservaPersistence extends GenericPresistence<DetalleReservaEntity> {
 
+    /**
+     * Construye el generico para la clase especificada.
+     */
     public DetalleReservaPersistence() {
         super(DetalleReservaEntity.class);
     }

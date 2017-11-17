@@ -33,21 +33,24 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class ReglaPersistenceTest {
-    
+
+    @Inject
+    HospedajePersistence hp;
+
     public ReglaPersistenceTest() {
     }
-    
+
     @Inject
     private ReglaPersistence persistence;
-    
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Inject
     UserTransaction utx;
-    
+
     private List<ReglaEntity> data = new ArrayList<ReglaEntity>();
-    
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -56,7 +59,7 @@ public class ReglaPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     @Before
     public void setUp() {
         try {
@@ -74,51 +77,53 @@ public class ReglaPersistenceTest {
             }
         }
     }
-    
+
     private void clearData() {
         em.createQuery("delete from ReglaEntity").executeUpdate();
     }
 
-
- private void insertData() {
+    private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) {                    
+        for (int i = 0; i < 3; i++) {
             ReglaEntity entity = factory.manufacturePojo(ReglaEntity.class);
-
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
      * Test of create method, of class ReglaPersistence.
+     *
+     * @throws java.lang.Exception
      */
     @Test
     public void testCreate() throws Exception {
         PodamFactory factory = new PodamFactoryImpl();
-    ReglaEntity newEntity = factory.manufacturePojo(ReglaEntity.class);
-    ReglaEntity result = persistence.create(newEntity);
+        ReglaEntity newEntity = factory.manufacturePojo(ReglaEntity.class);
+        ReglaEntity result = persistence.create(newEntity);
 
-    Assert.assertNotNull(result);
-    ReglaEntity entity = em.find(ReglaEntity.class, result.getId());
-    Assert.assertNotNull(entity);
-    Assert.assertEquals(newEntity.getRegla(), entity.getRegla());
+        Assert.assertNotNull(result);
+        ReglaEntity entity = em.find(ReglaEntity.class, result.getId());
+        Assert.assertNotNull(entity);
+        Assert.assertEquals(newEntity.getRegla(), entity.getRegla());
     }
 
     /**
      * Test of update method, of class ReglaPersistence.
+     *
+     * @throws java.lang.Exception
      */
     @Test
     public void testUpdate() throws Exception {
@@ -133,6 +138,8 @@ public class ReglaPersistenceTest {
 
     /**
      * Test of delete method, of class ReglaPersistence.
+     *
+     * @throws java.lang.Exception
      */
     @Test
     public void testDelete() throws Exception {
@@ -144,6 +151,8 @@ public class ReglaPersistenceTest {
 
     /**
      * Test of find method, of class ReglaPersistence.
+     *
+     * @throws java.lang.Exception
      */
     @Test
     public void testFind() throws Exception {
@@ -156,6 +165,8 @@ public class ReglaPersistenceTest {
 
     /**
      * Test of findAll method, of class ReglaPersistence.
+     *
+     * @throws java.lang.Exception
      */
     @Test
     public void testFindAll() throws Exception {
@@ -171,5 +182,22 @@ public class ReglaPersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
+    /**
+     * Test of findAll method, of class ReglaPersistence.
+     */
+    @Test
+    public void testFind2() {
+        ReglaEntity r = data.get(0);
+        r.setId(new Long(0));
+        HospedajeEntity h = new HospedajeEntity();
+        h.setId(new Long(1));
+        List<ReglaEntity> reglas = new ArrayList<>();
+        reglas.add(r);
+        h.setReglas(reglas);
+        Assert.assertNull(persistence.find(r.getId(), h.getId()));
+        hp.create(h);
+        Assert.assertNull(persistence.find(r.getId(), h.getId()));
+    }
+
 }

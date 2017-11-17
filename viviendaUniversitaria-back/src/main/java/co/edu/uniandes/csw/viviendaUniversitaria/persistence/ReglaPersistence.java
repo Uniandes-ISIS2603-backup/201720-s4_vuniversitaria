@@ -18,25 +18,30 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class ReglaPersistence extends GenericPresistence<ReglaEntity> {
 
+    /**
+     * Construye el generico para la clase especificada.
+     */
     public ReglaPersistence() {
         super(ReglaEntity.class);
     }
 
+    /**
+     * Consulta la regla de acuerdo a el hospedaje.
+     *
+     * @param idHospedaje Id del hospedaje especificado.
+     * @param id Id de la regla a buscar.
+     * @return Retorna la regla buscada. Null en caso de no encontrarla.
+     */
     public ReglaEntity find(Long idHospedaje, Long id) {
         LOG.log(Level.INFO, "Consultando regla con id={0}", id);
         TypedQuery<ReglaEntity> q = em.createQuery("select p from ReglaEntity p where (p.hospedaje.id = :idHospedaje) and (p.id = :idRegla)", ReglaEntity.class);
         q.setParameter("idHospedaje", idHospedaje);
         q.setParameter("idRegla", id);
         List<ReglaEntity> results = q.getResultList();
-        ReglaEntity regla = null;
-        if (results == null) {
-            regla = null;
-        } else if (results.isEmpty()) {
-            regla = null;
-        } else if (results.size() >= 1) {
-            regla = results.get(0);
+        if (!results.isEmpty()) {
+            return results.get(0);
         }
-        return regla;
+        return null;
     }
 
 }

@@ -15,6 +15,9 @@ import javax.ejb.Stateless;
 @Stateless
 public class HospedajeLugarPersistence extends GenericPresistence<HospedajeLugarEntity> {
 
+    /**
+     * Construye el generico para la clase especificada.
+     */
     public HospedajeLugarPersistence() {
         super(HospedajeLugarEntity.class);
     }

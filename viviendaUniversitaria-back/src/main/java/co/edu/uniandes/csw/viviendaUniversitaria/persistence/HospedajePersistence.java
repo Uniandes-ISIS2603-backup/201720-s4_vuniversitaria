@@ -18,12 +18,19 @@ import javax.ejb.Stateless;
 public class HospedajePersistence extends GenericPresistence<HospedajeEntity> {
 
     /**
-     * Iniección de la entidad
+     * Construye el generico para la clase especificada.
      */
     public HospedajePersistence() {
         super(HospedajeEntity.class);
     }
 
+    /**
+     * Actualiza el servicio especificado para el servicio especificado.
+     * @param idHospedaje Hospedaje al que se le actualiza el servicio.
+     * @param id Id del servicio.
+     * @param entity Entidad con la información nueva.
+     * @return Retorna el servicio modificado.
+     */
     public ServiciosEntity updateServicio(Long idHospedaje, Long id, ServiciosEntity entity) {
         HospedajeEntity hospedaje = find(idHospedaje);
         int i = hospedaje.getServicios().indexOf(entity);
