@@ -53,18 +53,18 @@ public class UbicacionEntity extends BaseEntity{
         return latitud;
     }
     /**
-     * Modifica la latitud
-     * @param latitud 
-     */
-    public void setLatitud(Long latitud) {
-        this.latitud = latitud;
-    }
-    /**
      * Retorna la longitud
      * @return longitud
      */
     public Long getLongitud() {
         return longitud;
+    }
+    /**
+     * Retorna la direccion
+     * @return direccion
+     */
+    public String getDireccion() {
+        return direccion;
     }
     /**
      * Modifica la longitud 
@@ -73,12 +73,12 @@ public class UbicacionEntity extends BaseEntity{
     public void setLongitud(Long longitud) {
         this.longitud = longitud;
     }
-    /**
-     * Retorna la direccion
-     * @return direccion
+     /**
+     * Modifica la latitud
+     * @param latitud 
      */
-    public String getDireccion() {
-        return direccion;
+    public void setLatitud(Long latitud) {
+        this.latitud = latitud;
     }
     /**
      * Modifica la direccion
