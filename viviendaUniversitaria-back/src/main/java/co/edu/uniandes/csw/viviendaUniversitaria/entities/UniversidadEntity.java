@@ -32,15 +32,20 @@ public class UniversidadEntity  extends BaseEntity {
     @OneToOne
     private UbicacionEntity ubicacion;
 
+    /**
+     * Retorna la url de la imagen
+     * @return 
+     */
     public String getImagen() {
         return imagen;
     }
-
+    /**
+     * Modifica la url de la imagen.
+     * @param imagen 
+     */
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
-    
-    
     /**
      * Retorna el nombre de la universidad. 
      * @return nombre

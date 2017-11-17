@@ -76,11 +76,8 @@ public class UbicacionResource {
     }
     @POST
     public UbicacionDetailDTO createUbicacion(UbicacionDetailDTO ubi) throws BusinessLogicException {
-        UbicacionEntity x = logic.find(ubi.getId());
-        if (x != null) {
-            throw new WebApplicationException("El recurso con id" + ubi.getId() + "ya existe", 404);
-        }
-            return new UbicacionDetailDTO(this.logic.create(ubi.toEntity()));
-        
+       UbicacionEntity ubicacionEntity = ubi.toEntity();
+        UbicacionEntity nuevaUbi = logic.create(ubicacionEntity);
+        return new UbicacionDetailDTO(nuevaUbi);
     }
 }

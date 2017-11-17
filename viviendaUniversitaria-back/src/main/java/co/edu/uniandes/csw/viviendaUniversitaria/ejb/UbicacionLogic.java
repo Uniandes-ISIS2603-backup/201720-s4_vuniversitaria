@@ -15,8 +15,6 @@ import javax.inject.Inject;
  */
 @Stateless
 public class UbicacionLogic extends GenericLogic<UbicacionEntity>{
-
-    
     /**
      * Constructor vacio.
      */

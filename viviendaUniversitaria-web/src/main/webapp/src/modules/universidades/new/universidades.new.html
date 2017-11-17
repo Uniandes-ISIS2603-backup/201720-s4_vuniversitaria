@@ -23,11 +23,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="universidadAltitud" class="col-sm-2 control-label" >
-                        Altitud:
+                    <label for="universidadLongitud" class="col-sm-2 control-label" >
+                        Longitud :
                     </label>
                     <div class="col-md-10">
-                        <input id="universidadAltitud" ng-model="universidadAltitud" class="form-control" type="text" placeholder=" 40.75793" required>
+                        <input id="universidadLongitud" ng-model="universidadLongitud" class="form-control" type="number" placeholder=" 40.75793" required>
+
                     </div>
                 </div>
                 <div class="form-group">
@@ -35,7 +36,7 @@
                         Latitud:
                     </label>
                     <div class="col-md-10">
-                        <input id="universidadLatitud" ng-model="universidadLatitud" class="form-control" type="text" placeholder=" -73.98551" required>
+                        <input id="universidadLatitud" ng-model="universidadLatitud" class="form-control" type="number" placeholder=" -73.98551" required>
                     </div>
                 </div>
 
@@ -43,13 +44,13 @@
                     <div class="form-group col-sm-12" ng-if="!universidad.$valid">
 
                         <div class="alert alert-warning " >
-                            <strong>Warning!</strong><p>All inputs are required*</p>
+                            <strong>Cuidado!</strong><p>Todos los campos son requeridos*</p>
                         </div> 
                     </div> 
                 </div> 
                 <div class="form-group">
                     <div class="form-group col-md-10">
-                        <input ng-show="universidad.$valid" type="submit" value="Guardar" class="btn btn-success"/>
+                        <input ng-show="universidad.$valid" type="submit" value="Guardar"  class="btn btn-success"/>
                         <a class="btn btn-info" ui-sref="universidadesList">Cancelar</a>
                     </div>
                 </div>

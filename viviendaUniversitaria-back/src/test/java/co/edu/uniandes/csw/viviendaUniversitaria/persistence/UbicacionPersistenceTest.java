@@ -73,7 +73,7 @@ public class UbicacionPersistenceTest {
     }
 
     private void clearData() {
-        em.createQuery("delete from EstudianteEntity").executeUpdate();
+        em.createQuery("delete from UbicacionEntity").executeUpdate();
     }
 
     private void insertData() {
@@ -132,12 +132,14 @@ public class UbicacionPersistenceTest {
         newEntity.setId(entity.getId());
         newEntity.setDireccion(entity.getDireccion());
         newEntity.setLatitud(entity.getLatitud());
+        newEntity.setLongitud(entity.getLongitud());
         persistence.update(newEntity);
 
         UbicacionEntity resp = em.find(UbicacionEntity.class, entity.getId());
         Assert.assertNotNull(resp);
         Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
         Assert.assertEquals(newEntity.getLatitud(), entity.getLatitud());
+        Assert.assertEquals(newEntity.getLongitud(), entity.getLongitud());
     }
 
     /**
@@ -161,6 +163,7 @@ public class UbicacionPersistenceTest {
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
         Assert.assertEquals(newEntity.getLatitud(), entity.getLatitud());
+        Assert.assertEquals(newEntity.getLongitud(), entity.getLongitud());
     }
 
     /**
