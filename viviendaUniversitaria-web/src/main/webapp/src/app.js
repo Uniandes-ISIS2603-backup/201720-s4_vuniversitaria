@@ -3,6 +3,7 @@
         // External dependencies
         'ui.router',
         'ui.bootstrap',
+        'ui-gmap-google-map',
         // Internal modules dependencies  
         'reservaModule',
         'facturaModule',
@@ -12,7 +13,8 @@
         'ubicacionModule',
         'arrendadorModule',
         'lugaresInteresModule',
-        'hospedajeModule'          
+        'hospedajeModule',
+        ''
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
