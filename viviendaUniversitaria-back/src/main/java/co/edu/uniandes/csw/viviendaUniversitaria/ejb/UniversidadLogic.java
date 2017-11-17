@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.UniversidadEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.UniversidadPersistence;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -17,9 +16,15 @@ import javax.inject.Inject;
  */
 @Stateless
 public class UniversidadLogic extends GenericLogic<UniversidadEntity> {
-
+    
+    /**
+     * Atributo que modela la logica de ubicación.
+     */
     private UbicacionLogic logicUbicacion;
-
+    
+    /**
+     * Constructor vacio.
+     */
     public UniversidadLogic() {
         super();
     }
@@ -27,14 +32,14 @@ public class UniversidadLogic extends GenericLogic<UniversidadEntity> {
     /**
      *  Injecta la persistencia y la logica de las relaciones
      * @param persistence
-     * @param logicUbicacion
+     * @param logicUbi
      * @throws IllegalAccessException
      * @throws InstantiationException
      */
     @Inject
-    public UniversidadLogic(UniversidadPersistence persistence, UbicacionLogic logicUbicacion) throws IllegalAccessException, InstantiationException {
+    public UniversidadLogic(UniversidadPersistence persistence, UbicacionLogic logicUbi) throws IllegalAccessException, InstantiationException {
         super(persistence, UniversidadEntity.class);
-        this.logicUbicacion = logicUbicacion;
+        this.logicUbicacion = logicUbi;
     }
    
 }

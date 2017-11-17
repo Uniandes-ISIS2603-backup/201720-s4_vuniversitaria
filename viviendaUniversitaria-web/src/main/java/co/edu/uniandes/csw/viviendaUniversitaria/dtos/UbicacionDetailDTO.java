@@ -13,7 +13,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.UbicacionEntity;
  */
 public class UbicacionDetailDTO extends UbicacionDTO {
      /**
-     * Constructor por defecto
+     * Constructor por defecto.
      */
     public UbicacionDetailDTO() {
         //Vacio por default

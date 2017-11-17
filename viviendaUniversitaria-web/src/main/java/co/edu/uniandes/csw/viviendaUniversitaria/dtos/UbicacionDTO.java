@@ -12,16 +12,34 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.UbicacionEntity;
  * @author c.santacruza
  */
 public class UbicacionDTO {
-
+    /**
+     * Representa el id de una ubicacion.
+     */
     private Long id;
+    /**
+     * Representa la latitud de una ubicacion.
+     */
     private Long latitud;
+    /**
+     * Representa la longitud de una ubicacion.
+     */
     private Long longitud;
+    /**
+     * Representa la direccion de una ubicacion.
+     */
     private String direccion;
 
+    /**
+     * Contructor vacio.
+     */
     public UbicacionDTO() {
         //Vacio por defecto        
     }
 
+    /**
+     * Contructor original
+     * @param entity 
+     */
     public UbicacionDTO(UbicacionEntity entity) {
         this.id = entity.getId();
         this.direccion = entity.getDireccion();
@@ -29,34 +47,59 @@ public class UbicacionDTO {
         this.latitud = entity.getLatitud();
     }
 
+    /**
+     * Retorna el id de la ubicacion.
+     * @return 
+     */
     public Long getId() {
         return id;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    /**
+     * Retorna la latitud de la ubicacion.
+     * @return 
+     */
     public Long getLatitud() {
         return latitud;
     }
-
-    public void setLatitud(Long latitud) {
-        this.latitud = latitud;
-    }
-
-    public Long getLongitud() {
+    /**
+     * Retorna la longitud de la ubicacion
+     * @return 
+     */
+     public Long getLongitud() {
         return longitud;
     }
-
-    public void setLongitud(Long longitud) {
-        this.longitud = longitud;
-    }
-
+     /**
+     *Retorna la direccion de una ubicacion
+     * @return 
+     */
     public String getDireccion() {
         return direccion;
     }
-
+     /**
+      * Modifica el id de una ubicacion
+      * @param id 
+      */
+    public void setId(Long id) {
+        this.id = id;
+    }
+    /**
+     * Modifica la latitud de una ubicacion
+     * @param latitud 
+     */
+    public void setLatitud(Long latitud) {
+        this.latitud = latitud;
+    }
+    /**
+     * Modifica la longitud de una ubicacion
+     * @param longitud 
+     */
+    public void setLongitud(Long longitud) {
+        this.longitud = longitud;
+    }
+    /**
+     * Modifica la direccion de una ubicacion
+     * @param direccion 
+     */
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
