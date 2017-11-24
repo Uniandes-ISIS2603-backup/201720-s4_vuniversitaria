@@ -42,7 +42,7 @@ public class UniversidadDTO {
     public UniversidadDTO(UniversidadEntity entity) {
         this.id = entity.getId();
         this.name = entity.getNombre();
-        this.imagen = entity.getUrlImagen();
+        this.imagen = entity.getImagen();
 
     }
 
@@ -98,7 +98,7 @@ public class UniversidadDTO {
         UniversidadEntity entity = new UniversidadEntity();
         entity.setId(this.id);
         entity.setNombre(this.name);
-        entity.setUrlImagen((this.imagen));
+        entity.setImagen((this.imagen));
 
         return entity;
     }

@@ -40,13 +40,6 @@ public class UniversidadEntity  extends BaseEntity {
         return imagen;
     }
     /**
-     * Modifica la url de la imagen.
-     * @param imagen 
-     */
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-    /**
      * Retorna el nombre de la universidad. 
      * @return nombre
      */
@@ -54,18 +47,25 @@ public class UniversidadEntity  extends BaseEntity {
         return nombre;
     }
     /**
-     * Modifica el nombre de la ubicacion.
-     * @param nombre 
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    /**
      * Retorna la ubicacion de la universidad.
      * @return ubicacion
      */
     public UbicacionEntity getUbicacion() {
         return ubicacion;
+    }
+     /**
+     * Modifica la url de la imagen.
+     * @param imagen 
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    /**
+     * Modifica el nombre de la ubicacion.
+     * @param nombre 
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     /**
      * Modifica la ubicacion de la universidad.
