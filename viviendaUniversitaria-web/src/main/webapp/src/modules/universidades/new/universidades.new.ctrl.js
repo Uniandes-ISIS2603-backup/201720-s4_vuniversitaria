@@ -8,7 +8,6 @@
             var ubi = $scope.ubi;
              
             $scope.createUniversidad = function () {
-                console.log("Entre en el metodo");
                 $http.post(ubicacionContext,{
                     direccion: $scope.universidadDireccion,
                     longitud: $scope.universidadLongitud,
@@ -23,7 +22,6 @@
                     
                 }) .then(function (response) {
                     //universidad created successfully
-            console.log("Sali exitosamente");
                     $state.go('universidadesList', {}, {reload: true});
                 });  
             };

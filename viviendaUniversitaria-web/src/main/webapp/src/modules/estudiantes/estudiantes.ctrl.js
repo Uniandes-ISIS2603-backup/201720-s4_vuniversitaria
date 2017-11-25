@@ -12,7 +12,6 @@
             });
             
             $scope.createEjemaquina = function (origenId) {
-                console.log(origenId);
                 $http.get(origenContext + '/' + origenId + "/estudiantes").then(function (response) {
                     $scope.estudiantesRecords = response.data;
                 });
