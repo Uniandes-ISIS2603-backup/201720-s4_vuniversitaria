@@ -32,7 +32,7 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
     public ReglaLogic(ReglaPersistence reglaPersistence, HospedajeLogic hospedajeLogic) throws InstantiationException, IllegalAccessException {
         super(reglaPersistence, ReglaEntity.class);
         this.hospedajeLogic = hospedajeLogic;
-    }
+    }    
     
     public List<ReglaEntity> findAll(Long idHospedaje) throws WebApplicationException, BusinessLogicException {
         LOG.log(Level.INFO, "Consultando todas las reglas de un hospedaje. \nid:{0}", idHospedaje);
@@ -64,6 +64,14 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
         HospedajeEntity hospedaje = hospedajeLogic.find(idhospedaje);
         entidad.setHospedaje(hospedaje);
         return ((ReglaPersistence) persistence).update(entidad);
+    }
+    
+    public ReglaEntity find(Long idHospedaje, Long idRegla) throws WebApplicationException {
+        LOG.log(Level.INFO, "Actualizar la entidad con id: {0}", idRegla);
+        if (!exist(idRegla)) {
+            throw new WebApplicationException("No existe la regla con el id especificado", 405);
+        }
+        return ((ReglaPersistence) persistence).find(idHospedaje, idRegla);
     }
     
     public void delete(Long idhospedaje, Long idRegla) throws WebApplicationException, BusinessLogicException {

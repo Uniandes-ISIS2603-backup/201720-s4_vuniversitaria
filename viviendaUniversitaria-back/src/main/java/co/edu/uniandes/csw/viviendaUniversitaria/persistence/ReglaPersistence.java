@@ -24,4 +24,21 @@ public class ReglaPersistence extends GenericPresistence<ReglaEntity> {
     public ReglaPersistence() {
         super(ReglaEntity.class);
     }
+    
+    public ReglaEntity find(Long idHospedaje, Long id) {
+        LOG.log(Level.INFO, "Consultando regla con id={0}", id);
+        TypedQuery<ReglaEntity> q = em.createQuery("select p from ReglaEntity p where (p.hospedaje.id = :idHospedaje) and (p.id = :idRegla)", ReglaEntity.class);
+        q.setParameter("idHospedaje", idHospedaje);
+        q.setParameter("idRegla", id);
+        List<ReglaEntity> results = q.getResultList();
+        ReglaEntity regla = null;
+        if (results == null) {
+            regla = null;
+        } else if (results.isEmpty()) {
+            regla = null;
+        } else if (results.size() >= 1) {
+            regla = results.get(0);
+        }
+        return regla;
+    }
 }
