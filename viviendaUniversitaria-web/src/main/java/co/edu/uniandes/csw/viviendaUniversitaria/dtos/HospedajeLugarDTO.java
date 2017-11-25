@@ -19,7 +19,7 @@ public class HospedajeLugarDTO
     /**
      * Distancia entre el hospedaje y el lugar.
      */
-    private Long distancia;
+    private Double distancia;
 
     public HospedajeLugarDTO() {
         //Constructor por defecto
@@ -27,7 +27,6 @@ public class HospedajeLugarDTO
     
     public HospedajeLugarDTO(HospedajeLugarEntity entidad) {
         this.distancia = entidad.getDistancia();
-        this.id = entidad.getId();
     }
 
     public Long getId() {
@@ -38,11 +37,11 @@ public class HospedajeLugarDTO
         this.id = id;
     }
 
-    public Long getDistancia() {
+    public Double getDistancia() {
         return distancia;
     }
 
-    public void setDistancia(Long distancia) {
+    public void setDistancia(Double distancia) {
         this.distancia = distancia;
     }
     
@@ -51,7 +50,6 @@ public class HospedajeLugarDTO
     public HospedajeLugarEntity toEntity()
     {
         HospedajeLugarEntity ret = new HospedajeLugarEntity();
-        ret.setId(id);
         ret.setDistancia(distancia);
         return ret;
     }

@@ -3,7 +3,7 @@
         // External dependencies
         'ui.router',
         'ui.bootstrap',
-        'ui-gmap-google-map',
+         'uiGmapgoogle-maps',
         // Internal modules dependencies  
         'reservaModule',
         'facturaModule',
@@ -13,11 +13,15 @@
         'ubicacionModule',
         'arrendadorModule',
         'lugaresInteresModule',
-        'hospedajeModule',
-        ''
+        'hospedajeModule'
     ]);
-    // Resuelve problemas de las promesas
-    app.config(['$qProvider', function ($qProvider) {
+    //Resuelve problemas
+    app.config(['$qProvider','uiGmapGoogleMapApiProvider', function ($qProvider,uiGmapGoogleMapApiProvider) {
+               uiGmapGoogleMapApiProvider.configure({
+                 key: 'AIzaSyAGX2fd-BcdoHwrTtZbtrcxNM9j7WUrxSY',
+                 v: '3.20', //defaults to latest 3.X anyhow
+                 libraries: 'weather,geometry,visualization'
+        });
             $qProvider.errorOnUnhandledRejections(false);
         }]);
 })(window.angular);

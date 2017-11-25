@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDTO;
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.OrigenDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.EstudianteLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
@@ -50,18 +51,18 @@ public class EstudianteResource {
     
 
     @GET
-    public List<EstudianteDTO> finds() throws BusinessLogicException {
+    public List<EstudianteDetailDTO> finds() throws BusinessLogicException {
         return listEstudianteEntity2DTO(estudiante.findAll());
     }
 
     @GET
     @Path("{cedula: \\d+}")
-    public EstudianteDTO find(@PathParam("cedula") Long cedula) throws BusinessLogicException {
+    public EstudianteDetailDTO find(@PathParam("cedula") Long cedula) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.find(cedula);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + cedula + ALGO2, 404);
         }
-        return new EstudianteDTO(entity);
+        return new EstudianteDetailDTO(entity);
     }
 
     @POST
@@ -98,10 +99,10 @@ public class EstudianteResource {
         return CalificacionResource.class;
     }
 
-    private List<EstudianteDTO> listEstudianteEntity2DTO(List<EstudianteEntity> entityList) {
-        List<EstudianteDTO> list = new ArrayList<>();
+    private List<EstudianteDetailDTO> listEstudianteEntity2DTO(List<EstudianteEntity> entityList) {
+        List<EstudianteDetailDTO> list = new ArrayList<>();
         for (EstudianteEntity entity : entityList) {
-            list.add(new EstudianteDTO(entity));
+            list.add(new EstudianteDetailDTO(entity));
         }
         return list;
     }

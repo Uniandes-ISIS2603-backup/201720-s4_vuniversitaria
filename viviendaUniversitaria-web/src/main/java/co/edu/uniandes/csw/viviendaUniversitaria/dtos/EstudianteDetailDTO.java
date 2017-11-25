@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.FacturaEntity;
 import java.util.ArrayList;
 import java.util.List;
 

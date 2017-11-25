@@ -222,46 +222,6 @@ public class HospedajeEntityTest {
         Assert.assertTrue(hospedajeT.getServicios().get(1).getId().equals(new Long(2)));
         Assert.assertTrue(hospedajeT.getServicios().get(2).getId().equals(new Long(3)));        
     }
-
-    /**
-     * Test of getHospedajesLugares method, of class HospedajeEntity.
-     */
-    @Test
-    public void testGetHospedajesLugares() {
-        HospedajeEntity hospedajeT = data.get(0);
-        hospedajeT.setHospedajesLugares(generarHospedajeLigar());
-        Assert.assertNotNull(hospedajeT.getHospedajesLugares());
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().size() == 3);
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().get(0).getId().equals(new Long(1)));
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().get(1).getId().equals(new Long(2)));
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().get(2).getId().equals(new Long(3))); 
-    }
-    
-    private List<HospedajeLugarEntity> generarHospedajeLigar()
-    {
-        List<HospedajeLugarEntity> ret = new ArrayList<>();
-        for(int i = 1; i <= 3; i++) {
-            HospedajeLugarEntity add = new HospedajeLugarEntity();
-            add.setId(new Long(i));
-            ret.add(add);
-        }
-        return ret;
-    }
-
-    /**
-     * Test of setHospedajesLugares method, of class HospedajeEntity.
-     */
-    @Test
-    public void testSetHospedajesLugares() {
-        HospedajeEntity hospedajeT = data.get(0);
-        hospedajeT.setHospedajesLugares(generarHospedajeLigar());
-        Assert.assertNotNull(hospedajeT.getHospedajesLugares());
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().size() == 3);
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().get(0).getId().equals(new Long(1)));
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().get(1).getId().equals(new Long(2)));
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().get(2).getId().equals(new Long(3))); 
-    }
-
     /**
      * Test of getReservas method, of class HospedajeEntity.
      */

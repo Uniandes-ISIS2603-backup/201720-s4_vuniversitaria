@@ -149,5 +149,20 @@ public class HospedajeResource {
         }
         return ServiciosResourse.class;
     }
+    
+    /**
+     *
+     * @param idHospedaje
+     * @return Clase servicios
+     * @throws co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException
+     */
+    @Path("{idHospedaje: [0-9][0-9]*}/lugaresInteres")
+    public Class<LugarInteresResource> getLugaresInteres(@PathParam("idHospedaje") Long idHospedaje) throws BusinessLogicException {
+        HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
+        if (hospedaje == null) {
+            throw new WebApplicationException("Acceso: La entidad no existe", 405);
+        }
+        return LugarInteresResource.class;
+    }
 
 }

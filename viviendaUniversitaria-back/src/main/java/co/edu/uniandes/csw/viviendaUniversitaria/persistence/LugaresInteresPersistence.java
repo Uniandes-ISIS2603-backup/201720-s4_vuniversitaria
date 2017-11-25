@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
-
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.LugaresInteresEntity;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -21,5 +22,18 @@ public class LugaresInteresPersistence extends GenericPresistence<LugaresInteres
     public  LugaresInteresPersistence()
     {
         super(LugaresInteresEntity.class);
-    }  
+    }
+    
+    public LugaresInteresEntity findForName (String name)
+    {
+        TypedQuery tq = em.createQuery("select a from LugaresInteresEntity a where a.name = :nombre ", LugaresInteresEntity.class);
+        tq.setParameter("nombre", name);
+        List<LugaresInteresEntity> respuesta = tq.getResultList();
+        if(respuesta.isEmpty())
+        {
+            return null;
+        }
+        return respuesta.get(0);
+    }
+    
 }

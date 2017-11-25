@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDTO;
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.OrigenLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -38,10 +39,10 @@ public class OrigenEstudianteResource {
         this.origenLogic = origenLogic;
     }
     
-    private List<EstudianteDTO> estudiantesListEntity2DTO(List<EstudianteEntity> entityList) {
-        List<EstudianteDTO> list = new ArrayList<>();
+    private List<EstudianteDetailDTO> estudiantesListEntity2DTO(List<EstudianteEntity> entityList) {
+        List<EstudianteDetailDTO> list = new ArrayList<>();
         for (EstudianteEntity entity : entityList) {
-            list.add(new EstudianteDTO(entity));
+            list.add(new EstudianteDetailDTO(entity));
         }
         return list;
     }    
@@ -71,7 +72,7 @@ public class OrigenEstudianteResource {
      * 
      */
     @GET
-    public List<EstudianteDTO> listEstudiantes(@PathParam("OrigenesId") Long origensId) throws BusinessLogicException {
+    public List<EstudianteDetailDTO> listEstudiantes(@PathParam("OrigenesId") Long origensId) throws BusinessLogicException {
         return estudiantesListEntity2DTO(origenLogic.findAllEstudiantes(origensId));
     }
 
