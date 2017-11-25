@@ -65,7 +65,7 @@ public class HospedajeEntity extends BaseEntity {
      * Relación con hospedajeLugar.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<HospedajeLugarEntity> hospedajesLugares;
 
     /**

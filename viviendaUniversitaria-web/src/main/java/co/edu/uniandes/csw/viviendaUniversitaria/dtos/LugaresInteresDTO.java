@@ -48,7 +48,6 @@ public class LugaresInteresDTO {
         this.descripcion = lugarInteres.getDescripcion();
         this.id = lugarInteres.getId();
         this.rutaImagen = lugarInteres.getRutaImagen();
-        this.distancia = lugarInteres.getDistancia();
     }
 
     /**
@@ -131,7 +130,6 @@ public class LugaresInteresDTO {
     public LugaresInteresEntity toEntity() {
         LugaresInteresEntity lugaresInteresEntity = new LugaresInteresEntity();
         lugaresInteresEntity.setDescripcion(this.descripcion);
-        lugaresInteresEntity.setDistancia(this.distancia);
         lugaresInteresEntity.setRutaImagen(this.rutaImagen);
         lugaresInteresEntity.setId(this.id);
         return lugaresInteresEntity;

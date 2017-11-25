@@ -56,29 +56,6 @@ public class HospedajeLugarEntityTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of getId method, of class HospedajeLugarEntity.
-     */
-    @Test
-    public void testGetId() {
-        HospedajeLugarEntity hospedajeT = data.get(0);
-        HospedajeLugarEntity hospedaje = new HospedajeLugarEntity();
-        hospedaje.setId(hospedajeT.getId());
-        Assert.assertTrue(hospedajeT.getId().equals(hospedaje.getId()));
-    }
-
-    /**
-     * Test of setId method, of class HospedajeLugarEntity.
-     */
-    @Test
-    public void testSetId() {
-        HospedajeLugarEntity hospedajeT = data.get(0);
-        HospedajeLugarEntity hospedaje = new HospedajeLugarEntity();
-        hospedaje.setId(hospedajeT.getId());
-        Assert.assertTrue(hospedajeT.getId().equals(hospedaje.getId()));
-    }
-
     /**
      * Test of getDistancia method, of class HospedajeLugarEntity.
      */
@@ -147,30 +124,5 @@ public class HospedajeLugarEntityTest {
         HospedajeLugarEntity hospedajeL = new HospedajeLugarEntity();
         hospedajeL.setLugarInteres(lugar);
         Assert.assertTrue(hospedajeL.getLugarInteres().getId().equals(lugar.getId()));
-    }
-
-    /**
-     * Test of equals method, of class HospedajeLugarEntity.
-     */
-    @Test
-    public void testEquals() {
-        HospedajeLugarEntity hospedajeL = data.get(0);
-        Assert.assertTrue(hospedajeL.equals(data.get(0)));
-        hospedajeL.setId(new Long(2));
-        HospedajeEntity h = new HospedajeEntity();
-        h.setId(new Long(2));
-        Assert.assertFalse(hospedajeL.equals(h));
-    }
-
-    /**
-     * Test of hashCode method, of class HospedajeLugarEntity.
-     */
-    @Test
-    public void testHashCode() {
-        HospedajeLugarEntity hospedajeL = data.get(0);
-        Long id = new Long(3);
-        hospedajeL.setId(new Long(3));
-        Assert.assertEquals(data.get(0).hashCode(), hospedajeL.hashCode());
-    }
-    
+    }    
 }

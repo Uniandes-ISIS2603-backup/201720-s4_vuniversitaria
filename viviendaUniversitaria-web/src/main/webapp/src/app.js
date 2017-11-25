@@ -3,7 +3,6 @@
         // External dependencies
         'ui.router',
         'ui.bootstrap',
-        'ui-gmap-google-map',
         // Internal modules dependencies  
         'reservaModule',
         'facturaModule',

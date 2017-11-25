@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -33,17 +34,13 @@ public class LugaresInteresEntity extends BaseEntity implements Serializable {
      * Asociacion con hospedajeLugares
      */
     @PodamExclude
-    @OneToMany(mappedBy = "lugarInteres", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<HospedajeLugarEntity> hospedajesLugares;
+    @OneToMany(mappedBy = "lugarInteres",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    private List<HospedajeLugarEntity> hospedajeLugar;
     /**
      * Atributo que modela algunos comentarios del propietario sobre su
      * hospedaje
      */
     private String descripcion;
-    /**
-     * Modela la distancia desde el lugar de interes al hospedaje
-     */
-    private double distancia;
     /**
      * Imagen del lugar de interes
      */
@@ -61,17 +58,17 @@ public class LugaresInteresEntity extends BaseEntity implements Serializable {
      *
      * @return HospedajeLugares
      */
-    public List<HospedajeLugarEntity> getHospedajesLugares() {
-        return hospedajesLugares;
+    public List<HospedajeLugarEntity> getHospedajeLugar() {
+        return hospedajeLugar;
     }
 
     /**
      * Cambia los hospedajes cercanos
      *
-     * @param hospedajesLugares
+     * @param hospedajeLugar
      */
-    public void setHospedajesLugares(List<HospedajeLugarEntity> hospedajesLugares) {
-        this.hospedajesLugares = hospedajesLugares;
+    public void setHospedaLugar(List<HospedajeLugarEntity> hospedajeLugar) {
+        this.hospedajeLugar = hospedajeLugar;
     }
 
     /**
@@ -109,25 +106,6 @@ public class LugaresInteresEntity extends BaseEntity implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    /**
-     * Retorna la distancia a un lugar de interes
-     *
-     * @return distancia
-     */
-    public double getDistancia() {
-        return distancia;
-    }
-
-    /**
-     * Cambia la distancia a un lugar de interes
-     *
-     * @param distancia
-     */
-    public void setDistancia(double distancia) {
-        this.distancia = distancia;
-    }
-
     /**
      * Retorna la ruta de imagen del lugar de interes
      *
@@ -163,7 +141,6 @@ public class LugaresInteresEntity extends BaseEntity implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
     /**
      *
      * @param obj

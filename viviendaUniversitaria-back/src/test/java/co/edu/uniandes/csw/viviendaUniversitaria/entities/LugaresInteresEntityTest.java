@@ -46,12 +46,6 @@ public class LugaresInteresEntityTest {
         for (int i = 0; i < 2; i++) {
             LugaresInteresEntity entity = factory.manufacturePojo(LugaresInteresEntity.class);
             UbicacionEntity ubicacion = factory.manufacturePojo(UbicacionEntity.class);
-            ArrayList<HospedajeLugarEntity> muestraHospedajes = new ArrayList<>();
-            for (int j = 0; j < 2; j++) {
-                HospedajeLugarEntity hospedaje = factory.manufacturePojo(HospedajeLugarEntity.class);
-                muestraHospedajes.add(hospedaje);                       
-            }
-            entity.setHospedajesLugares(muestraHospedajes);
             entity.setUbicacion(ubicacion);
             data.add(entity);
         }
@@ -61,27 +55,6 @@ public class LugaresInteresEntityTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of getHospedajesLugares method, of class LugaresInteresEntity.
-     */
-    @Test
-    public void testGetHospedajesLugares() {
-        LugaresInteresEntity muestra = data.get(0);
-        muestra.setHospedajesLugares(data.get(1).getHospedajesLugares());
-        assertEquals(muestra.getHospedajesLugares().size(), data.get(1).getHospedajesLugares().size());
-    }
-
-    /**
-     * Test of setHospedajesLugares method, of class LugaresInteresEntity.
-     */
-    @Test
-    public void testSetHospedajesLugares() {
-        LugaresInteresEntity muestra = data.get(0);
-        muestra.setHospedajesLugares(data.get(1).getHospedajesLugares());
-        assertEquals(muestra.getHospedajesLugares().size(), data.get(1).getHospedajesLugares().size());
-    }
-
     /**
      * Test of getUbicacion method, of class LugaresInteresEntity.
      */
@@ -120,26 +93,6 @@ public class LugaresInteresEntityTest {
         LugaresInteresEntity muestra = data.get(0);
         muestra.setDescripcion(data.get(1).getDescripcion());
         assertEquals(muestra.getDescripcion(), data.get(1).getDescripcion());
-    }
-
-    /**
-     * Test of getDistancia method, of class LugaresInteresEntity.
-     */
-    @Test
-    public void testGetDistancia() {
-        LugaresInteresEntity muestra = data.get(0);
-        muestra.setDistancia(data.get(1).getDistancia());
-        assertTrue((muestra.getDistancia()-data.get(1).getDistancia())==0.0);
-    }
-
-    /**
-     * Test of setDistancia method, of class LugaresInteresEntity.
-     */
-    @Test
-    public void testSetDistancia() {
-        LugaresInteresEntity muestra = data.get(0);
-        muestra.setDistancia(data.get(1).getDistancia());
-        assertTrue((muestra.getDistancia()-data.get(1).getDistancia())==0.0);
     }
 
     /**
