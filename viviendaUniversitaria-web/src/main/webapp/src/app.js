@@ -12,8 +12,7 @@
         'ubicacionModule',
         'arrendadorModule',
         'lugaresInteresModule',
-        'hospedajeModule',
-        ''
+        'hospedajeModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
