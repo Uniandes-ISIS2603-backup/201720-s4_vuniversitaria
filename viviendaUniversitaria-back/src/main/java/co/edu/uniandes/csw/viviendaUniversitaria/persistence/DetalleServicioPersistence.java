@@ -9,7 +9,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.DetalleServicioEntity;
 import javax.ejb.Stateless;
 
 /**
- *
+ * Persistencia de detalle de servicio.
  * @author ws.duarte
  */
 @Stateless

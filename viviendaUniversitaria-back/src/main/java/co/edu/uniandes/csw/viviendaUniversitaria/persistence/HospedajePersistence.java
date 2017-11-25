@@ -11,7 +11,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.ServiciosEntity;
 import javax.ejb.Stateless;
 
 /**
- *
+ * 
  * @author NOA_WERMEID
  */
 @Stateless

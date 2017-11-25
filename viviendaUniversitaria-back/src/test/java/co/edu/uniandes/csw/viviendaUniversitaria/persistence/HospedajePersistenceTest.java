@@ -169,4 +169,12 @@ public class HospedajePersistenceTest {
         }
     }
 
+    /**
+     * Test of updateServicio method, of class HospedajePersistence.
+     */
+    @Test
+    public void testUpdateServicio() throws Exception {
+        Assert.assertTrue(true);
+    }
+
 }

@@ -9,7 +9,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.*;
 import javax.ejb.Stateless;
 
 /**
- *
+ * Perisitencia de lugar de hospedaje.
  * @author ws.duarte
  */
 @Stateless

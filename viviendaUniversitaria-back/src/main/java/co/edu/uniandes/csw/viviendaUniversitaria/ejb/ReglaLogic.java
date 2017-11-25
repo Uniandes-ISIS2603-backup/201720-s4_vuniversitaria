@@ -43,14 +43,6 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
         return hospedaje.getReglas();
     }
     
-    public ReglaEntity find(Long idHospedaje, Long idRegla) throws WebApplicationException {
-        LOG.log(Level.INFO, "Actualizar la entidad con id: {0}", idRegla);
-        if (!exist(idRegla)) {
-            throw new WebApplicationException("No existe la regla con el id especificado", 405);
-        }
-        return ((ReglaPersistence) persistence).find(idHospedaje, idRegla);
-    }
-    
     public ReglaEntity create(Long idhospedaje, ReglaEntity entidad) throws WebApplicationException, BusinessLogicException {
         LOG.log(Level.INFO, "Creacion de una nueva entidad regla l hospedaje id: {0}", idhospedaje);
         if (entidad.getId() != null && exist(entidad.getId())) {
@@ -74,11 +66,11 @@ public class ReglaLogic extends GenericLogic<ReglaEntity> {
         return ((ReglaPersistence) persistence).update(entidad);
     }
     
-    public void delete(Long idhospedaje, Long idRegla) throws WebApplicationException {
+    public void delete(Long idhospedaje, Long idRegla) throws WebApplicationException, BusinessLogicException {
         LOG.log(Level.INFO, "Actualizar la entidad con id: {0}", idRegla);
         if (!exist(idRegla)) {
             throw new WebApplicationException("No existe la regla con el id especificado", 405);
         }
-        persistence.delete(find(idhospedaje, idRegla).getId());
+        hospedajeLogic.find(idhospedaje).getReglas().remove(find(idRegla));
     }
 }
