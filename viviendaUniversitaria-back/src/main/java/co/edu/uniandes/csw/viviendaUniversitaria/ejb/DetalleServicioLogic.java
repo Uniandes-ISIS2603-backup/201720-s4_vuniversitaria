@@ -11,17 +11,25 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ * Logica de detalle de servicio
  * @author ws.duarte
  */
 @Stateless
 public class DetalleServicioLogic extends GenericLogic<DetalleServicioEntity> {
 
+    /**
+     * Construlle la logica de hospedaje
+     * @param persistence 
+     */
     @Inject
     public DetalleServicioLogic(DetalleServicioPersistence persistence) {
         super(persistence, DetalleServicioEntity.class);
     }
 
+    /**
+     * Costructor por defecto.
+     */
     public DetalleServicioLogic() {
+        //Toca dejarlo asi.
     }
 }

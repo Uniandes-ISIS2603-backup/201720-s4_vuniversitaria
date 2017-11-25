@@ -20,24 +20,43 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class HospedajeLugarPersistence{
 
-    protected static Logger LOG;
+    /**
+     * Logger para registro de mensajes.
+     */
+    private static final Logger log = Logger.getLogger(HospedajeLugarPersistence.class.getName());
 
+    /**
+     * Manejador de persistencia.
+     */
     @PersistenceContext(unitName = "viviendaUniversitariaPU")
     protected EntityManager em;
     
+    /**
+     * Constructor por defecto.
+     */
     public HospedajeLugarPersistence()
     {
-       LOG = Logger.getLogger(HospedajeLugarPersistence.class.getName());
+        //Se ve más bonita asi
     }
             
+    /**
+     * Crea un nuevo hospedaje lugar.
+     * @param entity Realación a aregistrar.
+     * @return Entidad registrada.
+     */
     public HospedajeLugarEntity create(HospedajeLugarEntity entity) {
-        LOG.log(Level.INFO, "Creando un nuevo hospedaje lugar");
+        log.log(Level.INFO, "Creando un nuevo hospedaje lugar");
         em.persist(entity);
-        LOG.log(Level.FINE, "se ha creado un nuevo hospedaje lugar");
+        log.log(Level.FINE, "se ha creado un nuevo hospedaje lugar");
         return entity;
     }
-
     
+    /**
+     * Busca una entidad con el id especifoicado
+     * @param idHospedaje Hospedaje de la relacion
+     * @param idLugarInteres Lugar de la relacion
+     * @return Entidad buscada.
+     */
     public HospedajeLugarEntity find(Long idHospedaje, Long idLugarInteres) {
         TypedQuery<HospedajeLugarEntity> tq = em.createQuery("select a from HospedajeLugarEntity a where a.hospedaje.id = :idHospedaje and  a.lugarInteres.id = :idLugarInteres", HospedajeLugarEntity.class);
         tq.setParameter("idHospedaje", idHospedaje);
@@ -46,23 +65,38 @@ public class HospedajeLugarPersistence{
         
     }
 
+    /**
+     * Consulta todas las relaciones de un hospedaje.
+     * @param idHospedaje Id del hospedaje.
+     * @return Lista de relaciones encontradas.
+     */
     public List<HospedajeLugarEntity> findAll(Long idHospedaje) {
-        LOG.log(Level.INFO, "Consultando todos los hospedaje lugar con id {0}", idHospedaje);
+        log.log(Level.INFO, "Consultando todos los hospedaje lugar con id {0}", idHospedaje);
         TypedQuery tq = em.createQuery("select a from HospedajeLugarEntity a where a.hospedaje.id = :idHospedaje", HospedajeLugarEntity.class);
         tq.setParameter("idHospedaje", idHospedaje);
         return tq.getResultList();
     }
 
+    /**
+     * Actualiza la relacion
+     * @param entity Entidad a actualizar.
+     * @return Entidad modificada.
+     */
     public HospedajeLugarEntity update(HospedajeLugarEntity entity) {
-        LOG.log(Level.INFO, "Actualizando un lugar hospedaje");
-        entity = em.merge(entity);
-        LOG.log(Level.FINE, "actualizando correctamente");
-        return entity;
+        log.log(Level.INFO, "Actualizando un lugar hospedaje");
+        HospedajeLugarEntity entity2 = em.merge(entity);
+        log.log(Level.FINE, "actualizando correctamente");
+        return entity2;
     }
 
+    /**
+     * Elimina una relacion.
+     * @param idHospedaje Ide del hospedaje
+     * @param IdLugarInteres Id del lugar
+     */
     public void delete(Long idHospedaje, Long IdLugarInteres) {
-        LOG.log(Level.INFO, "Eliminando un lugar hospedaje");
+        log.log(Level.INFO, "Eliminando un lugar hospedaje");
         em.remove(find(idHospedaje, IdLugarInteres));
-        LOG.log(Level.FINE, "eliminado correctamente");
+        log.log(Level.FINE, "eliminado correctamente");
     }  
 }
