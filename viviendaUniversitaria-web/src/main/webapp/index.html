@@ -11,11 +11,14 @@
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         
         <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/lodash/dist/lodash.js"></script>
+        <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+        <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-        <script src="bower_components/sweetalert/dist/sweetalert-dev.js"></script>
+        <!--script src="bower_components/sweetalert/dist/sweetalert-dev.js"></script>
         <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
-        <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css" />
+        <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css" -->
         
         <link rel="stylesheet" href="src/modules/hospedaje/MyStyle/style.css" />
         <!-- Estudiantes -->
@@ -54,7 +57,11 @@
         <script src="src/modules/universidades/delete/universidades.delete.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/universidades/edit/universidades.edit.ctrl.js" type="text/javascript"></script>
           <script src="src/modules/universidades/new/universidades.new.ctrl.js" type="text/javascript"></script>
-        <!-- Ubicacion -->
+        
+          <!--Mapa-->
+        <script src="src/modules/mapa/mapa.mod.js" type="text/javascript"></script>
+        <script src="src/modules/mapa/mapa.ctrl.js" type="text/javascript"></script>
+          <!-- Ubicacion -->
         <script src="src/modules/ubicacion/ubicaciones.mod.js" type="text/javascript"></script>
         <script src="src/modules/ubicacion/ubicaciones.ctrl.js" type="text/javascript"></script>
         
@@ -109,6 +116,7 @@
                                 <li><a ui-sref="origenesList">Origenes</a></li>
                                  <li><a ui-sref="universidadesList">Universidad</a></li>
                                 <li><a ui-sref="ubicacionesList">Ubicación</a></li>
+                                <li><a ui-sref="mapaTotal">Mapa</a></li>
                                 <li><a ui-sref="hospedaje" >Hospedajes</a></li>
                                 <li><a ui-sref="arrendadoresList" >Arrendadores</a></li>
                                 <li><a ui-sref="lugaresInteres"> Lugares Interes</a></li>
