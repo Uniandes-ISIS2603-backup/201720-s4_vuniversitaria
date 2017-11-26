@@ -3,8 +3,7 @@
     mod.constant("hospedajeContext", "api/hospedajes");
     mod.controller('hospedajeCtrl', ['$scope', '$http', 'hospedajeContext', '$state',
         function ($scope, $http, hospedajeContext, $state) {
-
-
+            
             $http.get(hospedajeContext).then(function (response) {
                 $scope.hospedajeList = response.data;
             });
@@ -45,6 +44,7 @@
                     $state.go('hospedajeEspecifico', {idHospedaje: $state.params.idHospedaje});
                 });
             };
+            
             $scope.actualizarServicio = function(idHospedaje, idServicio)
             {
                 if($scope.costo===undefined)
