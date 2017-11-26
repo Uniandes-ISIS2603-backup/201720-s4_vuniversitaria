@@ -17,7 +17,6 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * Clase que modela un hospedaje.
- *
  * @author ws.duarte
  */
 @Entity
@@ -43,6 +42,9 @@ public class HospedajeEntity extends BaseEntity {
      */
     private Integer cantidadVotaciones;
     
+    /**
+     * Ruta de la image asociada a este hospedaje.
+     */
     private String rutaImagen;
 
     /**
@@ -63,9 +65,12 @@ public class HospedajeEntity extends BaseEntity {
      * Relación con hospedajeLugar.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<HospedajeLugarEntity> hospedajesLugares;
 
+    /**
+     * Relación con facturas.
+     */
     @PodamExclude
     @OneToMany(mappedBy = "hospedaje", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<FacturaEntity> facturas;
@@ -98,19 +103,24 @@ public class HospedajeEntity extends BaseEntity {
     @OneToOne(fetch = FetchType.LAZY)
     private UbicacionEntity ubicacion;
 
+    /**
+     * Retorna la ruta de la imagen del hospedaje.
+     * @return Ruta de la imagen del hospedaje.
+     */
     public String getRutaImagen() {
         return rutaImagen;
     }
 
+    /**
+     * Cambia la ruta de la imagen del hospedaje.
+     * @param rutaImagen Nueva ruta de la imagen.
+     */
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
     }
-    
-    
 
     /**
      * Retorna el tipo de arreendamiento del hospedaje.
-     *
      * @return Tipo de arrendamiento del hospedaje.
      */
     public String getTipoArrendamiento() {
@@ -288,10 +298,18 @@ public class HospedajeEntity extends BaseEntity {
         this.ubicacion = ubicacion;
     }
 
+    /**
+     * Retorna la relación con facturas.
+     * @return  Relación con factura.
+     */
     public List<FacturaEntity> getFacturas() {
         return facturas;
     }
 
+    /**
+     * Cambia la relación con factura.
+     * @param facturas Nueva relación con factura.
+     */
     public void setFacturas(List<FacturaEntity> facturas) {
         this.facturas = facturas;
     }
@@ -311,6 +329,10 @@ public class HospedajeEntity extends BaseEntity {
         }
     }
 
+    /**
+     * Retorna el código hash respectivo a hospefdsaje.
+     * @return código hash.
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -342,11 +364,10 @@ public class HospedajeEntity extends BaseEntity {
     /**
      * Incremaenta la cantidad de voraciónes y actualiza la valoración total.
      *
-     * @param calificación calificación a agregar.
+     * @param calificacion calificación a agregar.
      */
-    public void incrementarCalificación(CalificacionEntity calificación) {
-
-        valoracion = ((valoracion * cantidadVotaciones) + calificación.getValoracion()) / (cantidadVotaciones + 1);
+    public void incrementarCalificacion(CalificacionEntity calificacion) {
+        valoracion = ((valoracion * cantidadVotaciones) + calificacion.getValoracion()) / (cantidadVotaciones + 1);
         cantidadVotaciones++;
     }   
 }

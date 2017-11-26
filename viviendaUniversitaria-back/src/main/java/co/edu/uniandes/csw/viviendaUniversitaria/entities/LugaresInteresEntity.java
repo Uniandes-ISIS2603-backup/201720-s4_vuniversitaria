@@ -7,8 +7,10 @@ package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -28,78 +30,140 @@ public class LugaresInteresEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToOne
     private UbicacionEntity ubicacion;
-    
+    /**
+     * Asociacion con hospedajeLugares
+     */
     @PodamExclude
-    @OneToMany(mappedBy = "lugarInteres", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<HospedajeLugarEntity> hospedajesLugares;
+    @OneToMany(mappedBy = "lugarInteres",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    private List<HospedajeLugarEntity> hospedajeLugar;
     /**
      * Atributo que modela algunos comentarios del propietario sobre su
      * hospedaje
      */
     private String descripcion;
     /**
-     * Modela la distancia desde el lugar de interes al hospedaje
-     */
-    private double distancia;
-    /**
      * Imagen del lugar de interes
      */
     private String rutaImagen;
-    
+    /**
+     * Nombre del lugar de interes
+     */
     private String name;
     //--------------------------------------------//
     //--------------GETTERS AND SETTERS-----------//
     //--------------------------------------------//
 
-    public List<HospedajeLugarEntity> getHospedajesLugares() {
-        return hospedajesLugares;
+    /**
+     * Retorna los hospedajes cercanos
+     *
+     * @return HospedajeLugares
+     */
+    public List<HospedajeLugarEntity> getHospedajeLugar() {
+        return hospedajeLugar;
     }
 
-    public void setHospedajesLugares(List<HospedajeLugarEntity> hospedajesLugares) {
-        this.hospedajesLugares = hospedajesLugares;
+    /**
+     * Cambia los hospedajes cercanos
+     *
+     * @param hospedajeLugar
+     */
+    public void setHospedaLugar(List<HospedajeLugarEntity> hospedajeLugar) {
+        this.hospedajeLugar = hospedajeLugar;
     }
 
+    /**
+     * Retorna la ubicacion de un lugar de interes
+     *
+     * @return
+     */
     public UbicacionEntity getUbicacion() {
         return ubicacion;
     }
 
+    /**
+     * Cambia la ubicacion de un lugar de interes
+     *
+     * @param ubicacion
+     */
     public void setUbicacion(UbicacionEntity ubicacion) {
         this.ubicacion = ubicacion;
     }
 
+    /**
+     * Retorna la descripcion de un lugar de Interes
+     *
+     * @return descripcion
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     * Cambia la descripcion del lugar de interes
+     *
+     * @param descripcion
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    public double getDistancia() {
-        return distancia;
-    }
-
-    public void setDistancia(double distancia) {
-        this.distancia = distancia;
-    }
-
+    /**
+     * Retorna la ruta de imagen del lugar de interes
+     *
+     * @return rutaImagen
+     */
     public String getRutaImagen() {
         return rutaImagen;
     }
 
+    /**
+     * Cambia la ruta de imagen de un lugar de interes
+     *
+     * @param rutaImagen
+     */
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
     }
 
+    /**
+     * Retorna el nombre de un lugar de interes
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Cambia el nombre de un lugar de interes
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
-    
-    
-    
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof LugaresInteresEntity) {
+            return super.equals(obj);
+        }
+        return false;
+    }
 
+    /**
+     *
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.descripcion);
+        hash = 97 * hash + Objects.hashCode(this.name);
+        hash = 97 * hash + Objects.hashCode(this.rutaImagen);
+        return hash;
+    }
 }

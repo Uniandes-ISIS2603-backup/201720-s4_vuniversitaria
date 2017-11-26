@@ -18,7 +18,6 @@ public class ServiciosDetailDTO extends ServiciosDTO {
     public ServiciosDetailDTO() {
         //Vacio por default
     }
-
     /**
      * Constructor para transformar un Entity a un DTO
      *
@@ -26,15 +25,5 @@ public class ServiciosDetailDTO extends ServiciosDTO {
      */
     public ServiciosDetailDTO(ServiciosEntity entity) {
         super(entity);
-    }
-
-    /**
-     * Transformar un DTO a un Entity
-     *
-     * @return 
-     */
-    @Override
-    public ServiciosEntity toEntity() {
-        return super.toEntity();
     }
 }

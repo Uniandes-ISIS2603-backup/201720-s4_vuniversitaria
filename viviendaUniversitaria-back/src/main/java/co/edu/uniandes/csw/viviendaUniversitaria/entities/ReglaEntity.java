@@ -76,6 +76,10 @@ public class ReglaEntity extends BaseEntity {
         }
     }
 
+    /**
+     * Retorna el código hash de la entidad.
+     * @return Código hash de la entidad.
+     */
     @Override
     public int hashCode() {
         int hash = 7;

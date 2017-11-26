@@ -17,13 +17,21 @@ import javax.ejb.Stateless;
 @Stateless
 public class UniversidadPersistence  extends GenericPresistence<UniversidadEntity>{
     
-
+    /**
+     * Contructor con persistence.
+     */
     public UniversidadPersistence(){
         super(UniversidadEntity.class);
     }
+    /**
+     * Metodo para hace un update de ubicacion.
+     * @param idUniversidad
+     * @param entity
+     * @return 
+     */
     public UbicacionEntity updateUbicacion (Long idUniversidad, UbicacionEntity entity) {
         UniversidadEntity universidad = find(idUniversidad);
-       universidad.setUbicacion(entity);
+        universidad.setUbicacion(entity);
         em.merge(universidad);
         return entity;
     }

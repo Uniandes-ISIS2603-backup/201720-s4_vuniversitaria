@@ -11,16 +11,23 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ * Logica del detalle de reserva
  * @author ws.duarte
  */
 @Stateless
 public class DetalleReservaLogic extends GenericLogic<DetalleReservaEntity> {
 
+    /**
+     * Constructor por defecto
+     */
     public DetalleReservaLogic() {
         super();
     }
 
+    /**
+     * Cosntrulle la logica 
+     * @param persistence persistencia a utilizar.
+     */
     @Inject
     public DetalleReservaLogic(DetalleReservaPersistence persistence) {
         super(persistence, DetalleReservaEntity.class);

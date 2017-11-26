@@ -13,44 +13,78 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.UniversidadEntity;
  */
 public class UniversidadDTO {
 
+    /**
+     * Modela el id del de la universidad.
+     */
     private Long id;
-    
+    /**
+     * Modela el nombre de la universidad.
+     */
     private String name;
-    
+    /**
+     * Modela la imagen de la universidad.
+     */
     private String imagen;
 
+    /**
+     * Contructor vacio.
+     */
     public UniversidadDTO() {
         //Vacio por default
 
     }
 
+    /**
+     * Contructor normal.
+     *
+     * @param entity
+     */
     public UniversidadDTO(UniversidadEntity entity) {
         this.id = entity.getId();
         this.name = entity.getNombre();
-        this.imagen  = entity.getImagen();
+        this.imagen = entity.getImagen();
 
     }
 
+    /**
+     *Retorna la imagen de la universidad.
+     * @return
+     */
     public String getImagen() {
         return imagen;
     }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    /**
+     * Retorna el nombre de la universidad.
+     * @return 
+     */
     public String getName() {
         return name;
     }
-
+    /**
+     * Retorna el id de la universidad.
+     * @return 
+     */
+    public Long getId() {   
+        return id;
+    }
+    /**
+     * Modifica la imagen de la universidad
+     * @param imagen 
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    /**
+     * Modifica el id de la universidad.
+     * @param id 
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+    /**
+     * Modifica el nombre de la universidad.
+     * @param name 
+     */
     public void setName(String name) {
         this.name = name;
     }

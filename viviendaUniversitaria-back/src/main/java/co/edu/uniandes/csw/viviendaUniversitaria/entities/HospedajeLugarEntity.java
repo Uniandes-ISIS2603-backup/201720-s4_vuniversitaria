@@ -1,8 +1,11 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -11,16 +14,17 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author ws.duarte
  */
 @Entity
-public class HospedajeLugarEntity extends BaseEntity {
+public class HospedajeLugarEntity implements Serializable {
 
     /**
      * Distancia entre el hospedaje y el lugar.
      */
-    private Long distancia;
+    private Double distancia;
 
     /**
      * Relación con el hospedaje.
      */
+    @Id
     @PodamExclude
     @ManyToOne
     private HospedajeEntity hospedaje;
@@ -28,6 +32,7 @@ public class HospedajeLugarEntity extends BaseEntity {
     /**
      * Relación con el lugar de interés.
      */
+    @Id
     @PodamExclude
     @ManyToOne
     private LugaresInteresEntity lugarInteres;
@@ -37,7 +42,7 @@ public class HospedajeLugarEntity extends BaseEntity {
      *
      * @return Distancia entre el hospedaje y el lugar de interés.
      */
-    public Long getDistancia() {
+    public Double getDistancia() {
         return distancia;
     }
 
@@ -46,7 +51,7 @@ public class HospedajeLugarEntity extends BaseEntity {
      *
      * @param distancia Nuevo valor de la distacia.
      */
-    public void setDistancia(Long distancia) {
+    public void setDistancia(Double distancia) {
         this.distancia = distancia;
     }
 

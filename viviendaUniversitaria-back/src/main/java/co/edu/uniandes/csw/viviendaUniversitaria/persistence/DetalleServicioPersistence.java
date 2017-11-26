@@ -9,12 +9,15 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.DetalleServicioEntity;
 import javax.ejb.Stateless;
 
 /**
- *
+ * Persistencia de detalle de servicio.
  * @author ws.duarte
  */
 @Stateless
 public class DetalleServicioPersistence extends GenericPresistence<DetalleServicioEntity> {
 
+    /**
+     * Construye el generico para la clase especificada.
+     */
     public DetalleServicioPersistence() {
         super(DetalleServicioEntity.class);
     }

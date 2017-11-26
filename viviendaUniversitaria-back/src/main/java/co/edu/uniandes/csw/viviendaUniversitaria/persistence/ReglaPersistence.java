@@ -12,18 +12,27 @@ import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Persistencia de la entidad regla.
  * @author NOA_WERMEID
  */
 @Stateless
 public class ReglaPersistence extends GenericPresistence<ReglaEntity> {
 
+    /**
+     * Construye el generico para la clase especificada.
+     */
     public ReglaPersistence() {
         super(ReglaEntity.class);
     }
-
+    
+    /**
+     * Consulta la entidad por el id especificado.
+     * @param idHospedaje Hospedaje al que pertenece la entidada.
+     * @param id Id de la entidad.
+     * @return Entidad buscada.
+     */
     public ReglaEntity find(Long idHospedaje, Long id) {
-        LOG.log(Level.INFO, "Consultando regla con id={0}", id);
+        log.log(Level.INFO, "Consultando regla con id={0}", id);
         TypedQuery<ReglaEntity> q = em.createQuery("select p from ReglaEntity p where (p.hospedaje.id = :idHospedaje) and (p.id = :idRegla)", ReglaEntity.class);
         q.setParameter("idHospedaje", idHospedaje);
         q.setParameter("idRegla", id);
@@ -38,5 +47,4 @@ public class ReglaPersistence extends GenericPresistence<ReglaEntity> {
         }
         return regla;
     }
-
 }

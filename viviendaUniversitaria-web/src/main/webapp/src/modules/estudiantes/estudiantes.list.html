@@ -1,26 +1,38 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label>Estudiantes list</label></div>
             <div class="panel-body">
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
                         <a class="btn btn-info" ui-sref="estudiantesCreate"><span class="glyphicon glyphicon-plus-sign"></span> Add new estudiante</a>
                     </div>
                 </div>
+                <form ng-submit="createEjemaquina(origenId)" name="ejemaquina">
+                    <div class="form-group row">
+                        <div class="form-group">
+                            <select ng-model="origenId" required  style=" background-color: white">
+                                <option ng-repeat="x in origenesRecords" value="{{x.id}}">{{x.name}}</option>
+                            </select>
+                        </div>
+                        <input ng-show="ejemaquina.$valid" type="submit" value="add" class="btn btn-success"/>
+                    </div>
+                </form>
                 <div class="col-md-8">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Nombre</th>    
                                 <th>Cedula</th> 
+                                <th>Origen</th> 
                                 <th>Actions</th>  
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="estudiante in estudiantesRecords">
-                            <td id="{{$index}}-Nombre">{{estudiante.nombre}}</td>
+                                <td id="{{$index}}-Nombre">{{estudiante.nombre}}</td>
                                 <td id="{{$index}}-Cedula">{{estudiante.cedula}}</td>
+                                <td id="{{$index}}-Origen">{{estudiante.origenDTO.name}}</td>
+
                                 <td id="{{$index}}-actions">
                                     <a class="btn btn-default btn-sm" ui-sref="estudianteUpdate({idEstudiante: estudiante.id})"><span class="glyphicon glyphicon-edit"></span></a>
                                     <a class="btn btn-danger btn-sm" ui-sref="estudianteDelete({estudianteId: estudiante.id})"><span class="glyphicon glyphicon-trash"></span></a>

@@ -15,7 +15,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ * Logica de un hospedaje.
  * @author ws.duarte
  */
 @Stateless
@@ -44,10 +44,16 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
         this.calificacionLogic = calificacionLogic;
     }
 
+    /**
+     * REgistra un hospedaje.
+     * @param entity Hospedaje a realizar.
+     * @return Hospedaje creado.
+     * @throws BusinessLogicException  Si se modifican datos no permitidos.
+     */
     @Override
     public HospedajeEntity create(HospedajeEntity entity) throws BusinessLogicException {
         if (entity.getCantidadVotaciones() != null || entity.getValoracion() != null) {
-            LOG.log(Level.SEVERE,"Violacion de la regla de negocio. No se puede inicializar un hospedaje con votos");
+            log.log(Level.SEVERE,"Violacion de la regla de negocio. No se puede inicializar un hospedaje con votos");
             throw new WebApplicationException("No se puede modificar los datos de la valoreacion del hospedaje", 412);
         }
         entity.setValoracion(0.0);
@@ -55,10 +61,17 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
         return super.create(entity); 
     }
 
+    /**
+     * Modifica un hospedaje
+     * @param entity informacion nueva
+     * @param id id a modificar
+     * @return Hospedaje modificado
+     * @throws WebApplicationException Si se modifican valores no permitidos
+     */
     @Override
     public HospedajeEntity update(HospedajeEntity entity, Long id) throws WebApplicationException {
         if (entity.getCantidadVotaciones() != null || entity.getValoracion() != null) {
-            LOG.log(Level.SEVERE,"Violacion de la regla de negocio. Actulizacionde la la valotacion o la cantiadad de votos");
+            log.log(Level.SEVERE,"Violacion de la regla de negocio. Actulizacionde la la valotacion o la cantiadad de votos");
             throw new WebApplicationException("No se puede modificar los datos de la valoreacion del hospedaje", 412);
         }
         HospedajeEntity oldEntity = persistence.find(id);
@@ -85,19 +98,21 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
         return super.update(entity, id);
     }
 
+    /**
+     * Agrega una calificacion a un hospedaje.
+     * @param idHospedaje id del hospedaje
+     * @param idCalificacion id de la calificacion
+     * @return Hospedaje modificado
+     * @throws BusinessLogicException Se agrega una calificacion ya existente.
+     */
     public HospedajeEntity agregarCalificacion(Long idHospedaje, Long idCalificacion) throws BusinessLogicException {
         HospedajeEntity hospedaje = find(idHospedaje);
         CalificacionEntity calificaicon = calificacionLogic.getCalificacion(idHospedaje);
         if (calificaicon.getHospedaje() != null) {
             throw new WebApplicationException("Esta calificacion ya se encuentra sociada a un hospedaje.\nPor favor verifique la ubicacion he intente de nuevo.", 412);
         }
-        calificaicon.setHospedaje(actualizarVotacion(hospedaje, calificaicon));
+        hospedaje.incrementarCalificacion(calificaicon);
+        calificaicon.setHospedaje(hospedaje);
         return find(idHospedaje);
-    }
-
-    private HospedajeEntity actualizarVotacion(HospedajeEntity hospedaje, CalificacionEntity calificacion) {
-        hospedaje.setValoracion(((hospedaje.getValoracion() * hospedaje.getCantidadVotaciones()) + calificacion.getValoracion()) / (hospedaje.getCantidadVotaciones() + 1));
-        hospedaje.setCantidadVotaciones(hospedaje.getCantidadVotaciones() + 1);
-        return update(hospedaje, hospedaje.getId());
     }
 }

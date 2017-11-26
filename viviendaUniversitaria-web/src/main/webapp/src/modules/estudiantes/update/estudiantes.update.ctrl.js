@@ -7,7 +7,6 @@
             if($state.params.idEstudiante !== undefined) {
                 $http.get(estudiantesContext+'/'+$state.params.idEstudiante).then(function (response) {    
                     $scope.estudianteActivo = response.data;
-                    console.log($scope.estudianteActivo);
                 });
             };
             

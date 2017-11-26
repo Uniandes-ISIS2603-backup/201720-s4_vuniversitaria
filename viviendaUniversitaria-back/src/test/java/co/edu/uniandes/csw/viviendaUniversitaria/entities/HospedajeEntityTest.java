@@ -37,8 +37,8 @@ public class HospedajeEntityTest {
     
     @Before
     public void setUp() {
-            clearData();
-            insertData();
+        clearData();
+        insertData();
     }
 
     private void clearData() {
@@ -222,46 +222,6 @@ public class HospedajeEntityTest {
         Assert.assertTrue(hospedajeT.getServicios().get(1).getId().equals(new Long(2)));
         Assert.assertTrue(hospedajeT.getServicios().get(2).getId().equals(new Long(3)));        
     }
-
-    /**
-     * Test of getHospedajesLugares method, of class HospedajeEntity.
-     */
-    @Test
-    public void testGetHospedajesLugares() {
-        HospedajeEntity hospedajeT = data.get(0);
-        hospedajeT.setHospedajesLugares(generarHospedajeLigar());
-        Assert.assertNotNull(hospedajeT.getHospedajesLugares());
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().size() == 3);
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().get(0).getId().equals(new Long(1)));
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().get(1).getId().equals(new Long(2)));
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().get(2).getId().equals(new Long(3))); 
-    }
-    
-    private List<HospedajeLugarEntity> generarHospedajeLigar()
-    {
-        List<HospedajeLugarEntity> ret = new ArrayList<>();
-        for(int i = 1; i <= 3; i++) {
-            HospedajeLugarEntity add = new HospedajeLugarEntity();
-            add.setId(new Long(i));
-            ret.add(add);
-        }
-        return ret;
-    }
-
-    /**
-     * Test of setHospedajesLugares method, of class HospedajeEntity.
-     */
-    @Test
-    public void testSetHospedajesLugares() {
-        HospedajeEntity hospedajeT = data.get(0);
-        hospedajeT.setHospedajesLugares(generarHospedajeLigar());
-        Assert.assertNotNull(hospedajeT.getHospedajesLugares());
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().size() == 3);
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().get(0).getId().equals(new Long(1)));
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().get(1).getId().equals(new Long(2)));
-        Assert.assertTrue(hospedajeT.getHospedajesLugares().get(2).getId().equals(new Long(3))); 
-    }
-
     /**
      * Test of getReservas method, of class HospedajeEntity.
      */
@@ -393,7 +353,7 @@ public class HospedajeEntityTest {
      */
     @Test
     public void testGetFacturas() {
-         HospedajeEntity hospedajeT = data.get(0);
+        HospedajeEntity hospedajeT = data.get(0);
         hospedajeT.setFacturas(generarFacturas());
         Assert.assertNotNull(hospedajeT.getFacturas());
         Assert.assertTrue(hospedajeT.getFacturas().size() == 3);
@@ -443,7 +403,6 @@ public class HospedajeEntityTest {
     @Test
     public void testHashCode() {
         HospedajeEntity hospedajeT = data.get(0);
-        Long id = new Long(3);
         hospedajeT.setId(new Long(3));
         Assert.assertEquals(data.get(0).hashCode(), hospedajeT.hashCode());
     }
@@ -459,9 +418,53 @@ public class HospedajeEntityTest {
         hospedajeT.setCantidadVotaciones(1);
         CalificacionEntity c = new CalificacionEntity();
         c.setValoracion(10);
-        hospedajeT.incrementarCalificación(c);
+        hospedajeT.incrementarCalificacion(c);
         Assert.assertEquals(hospedajeT.getValoracion(),new Double((2+10)/2));
         Assert.assertEquals(new Integer(2), hospedajeT.getCantidadVotaciones());
+    }
+
+    /**
+     * Test of getRutaImagen method, of class HospedajeEntity.
+     */
+    @Test
+    public void testGetRutaImagen() {
+        HospedajeEntity hospedajeT = data.get(0);
+        HospedajeEntity hospedaje = new HospedajeEntity();
+        hospedaje.setRutaImagen(hospedajeT.getRutaImagen());
+        Assert.assertTrue(hospedaje.getRutaImagen().equals(hospedajeT.getRutaImagen()));
+    }
+
+    /**
+     * Test of setRutaImagen method, of class HospedajeEntity.
+     */
+    @Test
+    public void testSetRutaImagen() {
+        HospedajeEntity hospedajeT = data.get(0);
+        HospedajeEntity hospedaje = new HospedajeEntity();
+        hospedaje.setRutaImagen(hospedajeT.getRutaImagen());
+        Assert.assertTrue(hospedaje.getRutaImagen().equals(hospedajeT.getRutaImagen()));
+    }
+
+    /**
+     * Test of getCantidadVotaciones method, of class HospedajeEntity.
+     */
+    @Test
+    public void testGetCantidadVotaciones() {
+        HospedajeEntity hospedajeT = data.get(0);
+        HospedajeEntity hospedaje = new HospedajeEntity();
+        hospedaje.setCantidadVotaciones(hospedajeT.getCantidadVotaciones());
+        Assert.assertTrue(hospedaje.getCantidadVotaciones().equals(hospedajeT.getCantidadVotaciones()));
+    }
+
+    /**
+     * Test of setCantidadVotaciones method, of class HospedajeEntity.
+     */
+    @Test
+    public void testSetCantidadVotaciones() {
+        HospedajeEntity hospedajeT = data.get(0);
+        HospedajeEntity hospedaje = new HospedajeEntity();
+        hospedaje.setCantidadVotaciones(hospedajeT.getCantidadVotaciones());
+        Assert.assertTrue(hospedaje.getCantidadVotaciones().equals(hospedajeT.getCantidadVotaciones()));
     }
     
 }

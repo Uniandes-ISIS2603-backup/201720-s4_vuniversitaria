@@ -14,7 +14,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class ServicioPersistence extends GenericPresistence<ServiciosEntity>{
-    
+/**
+ * Constructor que llama al super de la clase
+ */    
 public ServicioPersistence ()
 {
     super(ServiciosEntity.class);

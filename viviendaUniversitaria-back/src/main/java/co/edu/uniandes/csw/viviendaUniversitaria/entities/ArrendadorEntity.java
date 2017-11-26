@@ -81,7 +81,7 @@ public class ArrendadorEntity implements Serializable {
     /**
      * Retorna una lista de los hospedajes pertenecientes al arrendador
      *
-     * @return List<HospedajeEntity>
+     * @return List
      */
     public List<HospedajeEntity> getHospedajes() {
         return this.hospedaje;

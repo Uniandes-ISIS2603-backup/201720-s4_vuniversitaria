@@ -36,7 +36,7 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('universidadesCreate', {
+            }).state('universidadCreate', {
                 url: '/create',
                 parent: 'universidades',
                 views: {
@@ -44,6 +44,33 @@
                         templateUrl: basePath + '/new/universidades.new.html',
                         controller: 'universidadNewCtrl'
                     }
+                }
+            }).state('universidadEdit',{
+                url: '/edit/{universidadId:int}',
+                parent: 'universidades',
+                param:{
+                    universidadId: null
+                },
+                views:{
+                    'detailView':{
+                        templateUrl:basePath + '/'+'/edit/universidades.edit.html',
+                        controller: 'universidadEditCtrl',
+                        'controllerAs': 'editctrl'
+                    }
+                }
+            }).state('universidadDelete',{
+                url: '/delete/{universidadId:int}',
+                parent: 'universidades',
+                param:{
+                   universidadId: null
+               },
+                views:{
+                    'detailView':{
+                        templateUrl:basePath + '/delete/universidades.delete.html',
+                        controller: 'universidadesDeleteCtrl',
+                        controllerAs: 'deleteCtrl'
+                    }
+                    
                 }
             });
         }]);
