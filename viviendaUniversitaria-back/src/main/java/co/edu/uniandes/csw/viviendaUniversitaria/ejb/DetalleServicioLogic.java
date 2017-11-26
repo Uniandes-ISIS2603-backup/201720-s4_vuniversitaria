@@ -30,6 +30,6 @@ public class DetalleServicioLogic extends GenericLogic<DetalleServicioEntity> {
      * Costructor por defecto.
      */
     public DetalleServicioLogic() {
-        //Toca dejarlo asi.
+        super();
     }
 }
