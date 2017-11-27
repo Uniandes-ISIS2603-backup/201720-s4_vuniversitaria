@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("universidadModule", ['ui.router','uiGmapgoogle-maps']);
+    var mod = ng.module("universidadModule", ['ui.router']);
     mod.constant("universidadesContext", "api/universidades");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/universidades/';
@@ -34,11 +34,6 @@
                         templateUrl: basePath + 'universidades.detail.html',
                         controller: 'universidadCtrl',
                         controllerAs: 'ctrl'
-                    },
-                    'mapaView': {
-                        templateUrl: 'src/modules/mapa/mapa.html',
-                        controller: 'mapaCtrl',
-                        controllerAs: 'ctrl'
                     }
                 }
             }).state('universidadCreate', {
@@ -50,32 +45,32 @@
                         controller: 'universidadNewCtrl'
                     }
                 }
-            }).state('universidadEdit', {
+            }).state('universidadEdit',{
                 url: '/edit/{universidadId:int}',
                 parent: 'universidades',
-                param: {
+                param:{
                     universidadId: null
                 },
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + '/' + '/edit/universidades.edit.html',
+                views:{
+                    'detailView':{
+                        templateUrl:basePath + '/'+'/edit/universidades.edit.html',
                         controller: 'universidadEditCtrl',
                         'controllerAs': 'editctrl'
                     }
                 }
-            }).state('universidadDelete', {
+            }).state('universidadDelete',{
                 url: '/delete/{universidadId:int}',
                 parent: 'universidades',
-                param: {
-                    universidadId: null
-                },
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + '/delete/universidades.delete.html',
+                param:{
+                   universidadId: null
+               },
+                views:{
+                    'detailView':{
+                        templateUrl:basePath + '/delete/universidades.delete.html',
                         controller: 'universidadesDeleteCtrl',
                         controllerAs: 'deleteCtrl'
                     }
-
+                    
                 }
             });
         }]);

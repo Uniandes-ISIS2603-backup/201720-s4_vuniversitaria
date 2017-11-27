@@ -7,6 +7,10 @@
         <div ng-repeat=" universidad in universidadesRecords" class="col-sm-6 col-md-6 col-lg-3 col-xs-3">
             <div class="thumbnail" >
                 <img src="{{universidad.imagen}}" class="img-responsive imagen-mostrario" ui-sref="universidadDetail({universidadId: universidad.id})">
+                <p> 
+                   {{universidad.name}} <br>
+                   {{universidad.ubicacion.direccion}} <br>
+                </p>
             </div>
         </div>
     </div>
