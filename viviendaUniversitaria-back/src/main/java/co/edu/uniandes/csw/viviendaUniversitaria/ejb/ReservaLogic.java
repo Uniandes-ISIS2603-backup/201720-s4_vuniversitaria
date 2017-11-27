@@ -39,7 +39,6 @@ public class ReservaLogic {
     
     
     public ReservaEntity createReserva(ReservaEntity entity) throws BusinessLogicException {
-
         if (entity.getIdHospedaje() == null || entity.getCedulaHuesped() == null || entity.getId() == null) {
             throw new BusinessLogicException("No introdujo todos los valores");
         }

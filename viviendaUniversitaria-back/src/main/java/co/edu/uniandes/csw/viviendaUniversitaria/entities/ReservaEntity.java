@@ -23,11 +23,11 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author je.bejarano10
  */
 @Entity
-public class ReservaEntity implements Serializable {
+public class ReservaEntity extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
 
     private Long cedulaHuesped;
     private Long idHospedaje;
