@@ -39,7 +39,7 @@ public class UbicacionEntity extends BaseEntity{
     /**
      * Atributo que modela la latitud de la ubicacion.
      */
-    private Long latitud;
+    private Double latitud;
     /**
      * Atributo que modela la longitud de la ubicacion.
      */
@@ -49,7 +49,7 @@ public class UbicacionEntity extends BaseEntity{
      * Retorna la latitud
      * @return latitud
      */
-    public Long getLatitud() {
+    public Double getLatitud() {
         return latitud;
     }
     /**
@@ -77,7 +77,7 @@ public class UbicacionEntity extends BaseEntity{
      * Modifica la latitud
      * @param latitud 
      */
-    public void setLatitud(Long latitud) {
+    public void setLatitud(Double latitud) {
         this.latitud = latitud;
     }
     /**

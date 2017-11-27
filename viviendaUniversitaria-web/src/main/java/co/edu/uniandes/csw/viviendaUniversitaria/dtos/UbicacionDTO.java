@@ -19,7 +19,7 @@ public class UbicacionDTO {
     /**
      * Representa la latitud de una ubicacion.
      */
-    private Long latitud;
+    private Double latitud;
     /**
      * Representa la longitud de una ubicacion.
      */
@@ -58,7 +58,7 @@ public class UbicacionDTO {
      * Retorna la latitud de la ubicacion.
      * @return 
      */
-    public Long getLatitud() {
+    public Double getLatitud() {
         return latitud;
     }
     /**
@@ -86,7 +86,7 @@ public class UbicacionDTO {
      * Modifica la latitud de una ubicacion
      * @param latitud 
      */
-    public void setLatitud(Long latitud) {
+    public void setLatitud(Double latitud) {
         this.latitud = latitud;
     }
     /**
