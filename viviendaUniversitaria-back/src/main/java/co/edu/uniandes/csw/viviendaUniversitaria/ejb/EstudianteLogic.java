@@ -2,7 +2,6 @@ package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReservaEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -21,7 +20,6 @@ import javax.ws.rs.WebApplicationException;
 @Stateless
 public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
     private CalificacionLogic calificacionLogic;
-    private ReservaLogic reservaLogic;
     
     public EstudianteLogic() {
         super();
