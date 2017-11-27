@@ -98,7 +98,7 @@ public class UniversidadDTO {
         UniversidadEntity entity = new UniversidadEntity();
         entity.setId(this.id);
         entity.setNombre(this.name);
-        entity.setImagen((this.imagen));
+        entity.setImagen(this.imagen);
 
         return entity;
     }
