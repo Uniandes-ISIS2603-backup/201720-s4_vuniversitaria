@@ -114,12 +114,12 @@ public class EstudianteResource {
     }
 
     @Path("{cedulaEstudiante: \\d+}/reservas")
-    public Class<ReservaResource> getReservaResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
+    public Class<HospedajeReservaResource> getReservaResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.find(cedulaEstudiante);
         if (entity == null) {
             throw new WebApplicationException(ALGO1 + cedulaEstudiante + ALGO2, 404);
         }
-        return ReservaResource.class;
+        return HospedajeReservaResource.class;
     }
     
     @Path("{cedulaEstudiante: \\d+}/factura")

@@ -28,6 +28,15 @@ public class ArrendadorDTO {
      */
     private String ruta;    
         
+    /**
+     * Nombre de usuario
+     */
+    private String nombreUsuario;
+    
+    /**
+     * Conrasenia de usuario
+     */
+    private String contrasenia;
     
     /**
      * Constructor
@@ -44,6 +53,8 @@ public class ArrendadorDTO {
         this.id= entity.getId();
         this.nombre = entity.getNombre();
         this.ruta= entity.getRuta();
+        nombreUsuario = entity.getNombreUsuario();
+        contrasenia = entity.getContrasenia();
     }
     
     /**
@@ -97,6 +108,38 @@ public class ArrendadorDTO {
     }
     
     /**
+     * Retorna la contrasenuia de usuario.
+     * @return contrasenia
+     */
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    /**
+     * Cambia la contrasenia de usuario.
+     * @param Contrasenia nueva contrasenia.
+     */
+    public void setContrasenia(String Contrasenia) {
+        this.contrasenia = Contrasenia;
+    }
+
+    /**
+     * Retorna el nombre de usuario
+     * @return nombre de usuario
+     */
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    /**
+     * Cmbia el nombre de susario
+     * @param nombreUsuario nuevo nombre de usuario.
+     */
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+    
+    /**
      * Convierte la informacion a una entidad arrendador
      * @return 
      */
@@ -105,6 +148,8 @@ public class ArrendadorDTO {
         entity.setId(this.id);
         entity.setNombre(this.nombre);
         entity.setRuta(this.ruta);
+        entity.setContrasenia(contrasenia);
+        entity.setNombreUsuario(nombreUsuario);
         return entity;
     }
     

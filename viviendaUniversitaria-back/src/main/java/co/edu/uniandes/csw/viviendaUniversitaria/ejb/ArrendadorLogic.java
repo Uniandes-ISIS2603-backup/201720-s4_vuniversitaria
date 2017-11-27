@@ -187,5 +187,9 @@ public class ArrendadorLogic {
         hospedaje.setArrendador(null);
         arrendadorEntity.getHospedajes().remove(hospedaje);
     }
+    
+    public ArrendadorEntity buscarUsusario(String usuario) {
+        return persistence.buscarUsiario(usuario);
+    }
    
 }
