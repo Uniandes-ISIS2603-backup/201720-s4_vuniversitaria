@@ -7,14 +7,14 @@
                         <a class="btn btn-info" ui-sref="estudiantesCreate"><span class="glyphicon glyphicon-plus-sign"></span> Add new estudiante</a>
                     </div>
                 </div>
-                <form ng-submit="createEjemaquina(origenId)" name="ejemaquina">
+                <form ng-submit="crearFiltro(origenId)" name="filtro">
                     <div class="form-group row">
                         <div class="form-group">
                             <select ng-model="origenId" required  style=" background-color: white">
                                 <option ng-repeat="x in origenesRecords" value="{{x.id}}">{{x.name}}</option>
                             </select>
                         </div>
-                        <input ng-show="ejemaquina.$valid" type="submit" value="add" class="btn btn-success"/>
+                        <input ng-show="filtro.$valid" type="submit" value="add" class="btn btn-success"/>
                     </div>
                 </form>
                 <div class="col-md-8">

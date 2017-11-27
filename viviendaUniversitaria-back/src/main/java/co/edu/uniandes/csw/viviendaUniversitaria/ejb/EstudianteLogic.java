@@ -2,7 +2,9 @@ package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReservaEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.EstudiantePersistence;
 import java.util.List;
@@ -19,6 +21,7 @@ import javax.ws.rs.WebApplicationException;
 @Stateless
 public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
     private CalificacionLogic calificacionLogic;
+    private ReservaLogic reservaLogic;
     
     public EstudianteLogic() {
         super();
@@ -97,5 +100,22 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         entity.setFacturas(old.getFacturas());
         entity.setCalificaciones(old.getCalificaciones());
         return update(entity, id);
+    }
+
+    /**
+     * Agrega una reserva a un hospedaje.
+     * @param idEstudiante id del hospedaje
+     * @param reservaEntity la reserva
+     * @return Hospedaje modificado
+     * @throws BusinessLogicException Se agrega una calificacion ya existente.
+     */
+    public EstudianteEntity agregarReserva(Long idEstudiante, ReservaEntity reservaEntity) throws BusinessLogicException {
+        EstudianteEntity estudiante = find(idEstudiante);
+        if (reservaEntity.getEstudiante() != null) {
+            throw new WebApplicationException("Esta reserva ya se encuentra sociada a un estudiante.\nPor favor verifique la ubicacion he intente de nuevo.", 412);
+        }
+        estudiante.setReserva(reservaEntity);
+        reservaEntity.setEstudiante(estudiante);
+        return find(idEstudiante);
     }
 }

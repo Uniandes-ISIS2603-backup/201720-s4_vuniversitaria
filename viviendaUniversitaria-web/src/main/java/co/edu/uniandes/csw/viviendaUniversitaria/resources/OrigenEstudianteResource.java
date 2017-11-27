@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -66,7 +65,7 @@ public class OrigenEstudianteResource {
      * Obtiene una colección de instancias de EstudianteDTO asociadas a una
      * instancia de Origen
      *
-     * @param OrigensId Identificador de la instancia de Origen
+     * @param origensId Identificador de la instancia de Origen
      * @return Colección de instancias de EstudianteDTO asociadas a la instancia
      * de Origen
      * 
@@ -79,8 +78,8 @@ public class OrigenEstudianteResource {
     /**
      * Obtiene una instancia de Estudiante asociada a una instancia de Origen
      *
-     * @param OrigensId Identificador de la instancia de Origen
-     * @param EstudiantesId Identificador de la instancia de Estudiante
+     * @param origensId Identificador de la instancia de Origen
+     * @param estudiantesId Identificador de la instancia de Estudiante
      * @return
      * @throws co.edu.uniandes.csw.Estudiantestore.exceptions.BusinessLogicException
      * 
