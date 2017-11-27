@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.dtos.HospedajeDetaillDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.ReservaDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.ReservaDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.ReservaLogic;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReservaEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -55,7 +56,6 @@ public class ReservaResource {
     }
     /**
      * Crea una nueva reserva asociandola a un hospedaje
-     * @param idHospedaje
      * @param reservaDetail
      * @return reserva hecha
      * @throws BusinessLogicException 
@@ -65,8 +65,28 @@ public class ReservaResource {
         return new ReservaDetailDTO(reservaLogic.createReserva(reservaDetail.toEntity()));
     }
     
+     @GET
+    @Path("{id: \\d+}")
+    public ReservaDetailDTO find(@PathParam("id") Long id) throws BusinessLogicException {
+        ReservaEntity entity = reservaLogic.getReserva(id);
+        if (entity == null) {
+            throw new WebApplicationException("no existe" + id, 404);
+        }
+        return new ReservaDetailDTO(entity);
+    }
     
+    @GET
+    public List<ReservaDetailDTO> finds() throws BusinessLogicException {
+        return listReservaEntity2DTO(reservaLogic.getReservas());
+    }
     
+     private List<ReservaDetailDTO> listReservaEntity2DTO(List<ReservaEntity> entityList) {
+        List<ReservaDetailDTO> list = new ArrayList<>();
+        for (ReservaEntity entity : entityList) {
+            list.add(new ReservaDetailDTO(entity));
+        }
+        return list;
+    }
     
  
     
