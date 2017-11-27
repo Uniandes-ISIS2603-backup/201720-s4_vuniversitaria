@@ -30,16 +30,16 @@ ALTER TABLE UniversidadEntity ALTER COLUMN id RESTART WITH 1;
 
 --Universidad
 
-insert into UniversidadEntity (nombre) values ('Ardene');
-insert into UniversidadEntity (nombre) values ('Della');
-insert into UniversidadEntity (nombre) values ('Fredrick');
-insert into UniversidadEntity (nombre) values ('Leonora');
-insert into UniversidadEntity (nombre) values ('Emiline');
-insert into UniversidadEntity (nombre) values ('Marthe');
-insert into UniversidadEntity (nombre) values ('Alma');
-insert into UniversidadEntity (nombre) values ('Amery');
-insert into UniversidadEntity (nombre) values ('Elmira');
-insert into UniversidadEntity (nombre) values ('Roseann');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad Nacional de Colombia','http://s3-eu-west-1.amazonaws.com/rankia/images/valoraciones/0013/6061/nacional.jpg?1389192659');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad de Pamplona','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Escudo_Universidad_de_Pamplona.svg/1200px-Escudo_Universidad_de_Pamplona.svg.png');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad de Antioquia','http://portal.udea.edu.co/wps/wcm/connect/udea/3ef4bbd1-4ae7-4c87-b843-685c6f017501/logo-udea.png?MOD=AJPERES&CACHEID=ROOTWORKSPACE.Z18_L8L8H8C0LODDC0A6SSS2AD2GO4-3ef4bbd1-4ae7-4c87-b843-685c6f017501-lr.XbEn');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad Libre','http://www.unilibre.edu.co/cartagena/images/Logo/ulibre_ctg_h.png');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad de Cartagena Campus San Agustin','http://www.unicartagena.edu.co/images/identificadores/logotipo-lineal-oficial-unicartagena.png');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad Distrital Francisco José de Caldas','http://laud.udistrital.edu.co/sites/default/files/images/Escudo%20UD.jpg');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad EAN - Sede Nogal','https://upload.wikimedia.org/wikipedia/commons/e/e3/Escudo_de_la_Universidad_EAN_de_Bogot%C3%A1%2C_Colombia.jpg');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad Cooperativa de Colombia','http://equiposdevideoconferencias.com/wp-content/uploads/2017/08/logo-con-fondo-transparente.png');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad de los Andes','https://uniandes.edu.co/sites/default/files/logo-uniandes.png');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad Piloto de Colombia','http://www.unipiloto.edu.co/wp-content/uploads/2017/02/IMLogoHorizontalJPG.jpg');
 
 --pruebas EstudianteEntity
 insert into EstudianteEntity (cedula, nombre) values (1, 'amilkar');
@@ -126,15 +126,15 @@ insert into APP.CALIFICACIONENTITY (valoracion, fecha, comentario) values (43, '
 
 --Consulta
 
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('descipcion', 20,20);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Kamillah', 29, 61);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Ora', 13, 9);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Towny', 19, 71);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Batsheva', 25, 62);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Modestine', 17, 92);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Sande', 90, 11);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Willey', 10, 64);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Marijo', 85, 37);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra 45,Bógota',4.638268,-74.084003);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 5 #4-19, Pamplona, Norte de Santander', 7.386456, -72.650060);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 67 #53 - 108, Medellín, Antioquia', 6.350104, -75.560991);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 8 #580, Bogotá', 4.595211, -74.075549);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 6 #36-100, Cartagena, Bolívar',10.426046, -75.549706);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 7 #40B - 53, Bogotá', 4.628266, -74.065421);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 79 #11-45, Bogotá, Cundinamarca',4.663756, -74.055060);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 14a #40A-39, Bogotá',4.631761, -74.068707);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('a 1-99,, Cl. 22 #119,Bógota',4.604608, -74.065890);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Danette', 90, 23);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Gabriel', 59, 93);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Diarmid', 84, 80);
@@ -282,12 +282,16 @@ update ServiciosEntity set hospedaje_id =19 where id =19;
 update ServiciosEntity set hospedaje_id =19 where id =20;
 
 
-update UniversidadEntity set UBICACION_ID = 7 where id = 1;
-update UniversidadEntity set UBICACION_ID = 8 where id = 2;
-update UniversidadEntity set UBICACION_ID = 9 where id = 3;
-update UniversidadEntity set UBICACION_ID = 10 where id = 4;
-update UniversidadEntity set UBICACION_ID = 11 where id = 5;
-update UniversidadEntity set UBICACION_ID = 12 where id = 6;
+update UniversidadEntity set UBICACION_ID = 1 where id = 1;
+update UniversidadEntity set UBICACION_ID = 2 where id = 2;
+update UniversidadEntity set UBICACION_ID = 3 where id = 3;
+update UniversidadEntity set UBICACION_ID = 4 where id = 4;
+update UniversidadEntity set UBICACION_ID = 5 where id = 5;
+update UniversidadEntity set UBICACION_ID = 6 where id = 6;
+update UniversidadEntity set UBICACION_ID = 7 where id = 7;
+update UniversidadEntity set UBICACION_ID = 8 where id = 8;
+update UniversidadEntity set UBICACION_ID = 9 where id = 9;
+update UniversidadEntity set UBICACION_ID = 10 where id = 10;
 
 select * from APP.HospedajeEntity;
 select * from APP.ARRENDADORENTITY;
