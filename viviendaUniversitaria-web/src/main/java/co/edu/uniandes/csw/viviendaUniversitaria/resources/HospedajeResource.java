@@ -115,7 +115,7 @@ public class HospedajeResource {
     public List<ReservaDTO> darReserva(@PathParam("idHospedaje") Long idHospedaje) throws WebApplicationException, BusinessLogicException {
         return convertirReserva(hospedajeLogic.find(idHospedaje).getReservas());
     }
-
+//no se que hace este metodo, att: Amilkar
     private List<ReservaDTO> convertirReserva(List<ReservaEntity> reservas) {
         List<ReservaDTO> ret = new ArrayList<>();
         if (reservas != null) {
@@ -125,7 +125,16 @@ public class HospedajeResource {
         }
         return ret;
     }
-
+    @GET
+    @Path("{idHospedaje: \\d+}/reservas")
+    private Class<HospedajeReservaResource> getHospedajeReserva(@PathParam("idHospedaje") Long idHospedaje) throws BusinessLogicException{
+        HospedajeEntity entity = hospedajeLogic.find(idHospedaje);
+        if (entity == null) {
+            throw new WebApplicationException("no existe" + idHospedaje, 404);
+        }
+        return HospedajeReservaResource.class;
+    }
+    
     @Path("{idHospedaje: [0-9][0-9]*}/calificaciones")
     public Class<CalificacionResource> getCalificacionResource(@PathParam("idHospedaje") Long idHospedaje) throws BusinessLogicException {
         HospedajeEntity entity = hospedajeLogic.find(idHospedaje);
