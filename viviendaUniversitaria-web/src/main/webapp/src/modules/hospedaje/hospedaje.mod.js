@@ -91,6 +91,19 @@
                         controllerAs: 'c'
                     }
                 }
+            }).state('modificarRegla', {
+                url: '/hospedajes/{idHospedaje:int}/reglas/{idRegla:int}',
+                 param:{
+                    idHospedaje: null,
+                    idRegla: null
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePath+'regla/regla.modificar.html',
+                        controller: 'reglaUpdate',
+                        controllerAs: 'c'
+                    }
+                }
             }).state('calificacionesCreate', {
                 url: '/hospedajes/{idHospedaje:int}/calificaciones',
                  param:{

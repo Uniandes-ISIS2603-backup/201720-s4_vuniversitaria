@@ -126,6 +126,9 @@
                     <tr>
                         <td> {{r.regla}}</td>
                         <td>
+                            <button class="btn btn-warning" ui-sref="modificarRegla({idHospedaje: hospedajeActivo.id,idRegla: r.id})">
+                                <span class="glyphicon glyphicon-pencil" ></span>
+                            </button>
                             <button class="btn btn-danger" ng-click="eliminarRegla(hospedajeActivo.id, r.id)">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
