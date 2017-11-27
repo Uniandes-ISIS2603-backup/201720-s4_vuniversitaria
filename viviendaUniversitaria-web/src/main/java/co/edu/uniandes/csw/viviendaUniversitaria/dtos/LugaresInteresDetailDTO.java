@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeLugarEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.LugaresInteresEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,6 +20,10 @@ public class LugaresInteresDetailDTO extends LugaresInteresDTO {
      * Atributo de la relacion con UbicacionDTO
      */
     private UbicacionDTO ubicacion;
+    /**
+     * 
+     */
+    private List<HospedajeLugarInteresDTO> hospedajeLugar;
 
     public LugaresInteresDetailDTO() {
         //Constructor por defecto
@@ -36,6 +43,20 @@ public class LugaresInteresDetailDTO extends LugaresInteresDTO {
         else
         {
             ubicacion = new UbicacionDTO();
+        }
+        if(entity.getHospedajeLugar().isEmpty())
+        {
+            hospedajeLugar = new ArrayList<>();
+        }
+        else
+        {
+            List<HospedajeLugarEntity> listadoHospedajes = entity.getHospedajeLugar();
+            List<HospedajeLugarInteresDTO> dtos = new ArrayList<>();
+            for (HospedajeLugarEntity hospedajeLugar : listadoHospedajes) {
+                dtos.add(new HospedajeLugarInteresDTO(hospedajeLugar));
+            }
+            hospedajeLugar = dtos;
+            
         }
     }
 
@@ -67,6 +88,15 @@ public class LugaresInteresDetailDTO extends LugaresInteresDTO {
     public void setUbicacion(UbicacionDTO ubicacion) {
         this.ubicacion = ubicacion;
     }
+
+    public List<HospedajeLugarInteresDTO> getHospedajeLugar() {
+        return hospedajeLugar;
+    }
+
+    public void setHospedajeLugar(List<HospedajeLugarInteresDTO> hospedajeLugar) {
+        this.hospedajeLugar = hospedajeLugar;
+    }
+    
     
     
 }

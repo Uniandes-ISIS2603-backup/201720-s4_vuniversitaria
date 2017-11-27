@@ -23,14 +23,13 @@ public class LugaresInteresDTO {
      */
     private String descripcion;
     /**
-     * Modela la distancia desde el lugar de interes al hospedaje
-     */
-    private double distancia;
-    /**
      * Imagen del lugar de interes
      */
     private String rutaImagen;
-
+    /**
+     * 
+     */
+    private String name;
     /**
      * Constructor por defecto
      */
@@ -48,6 +47,7 @@ public class LugaresInteresDTO {
         this.descripcion = lugarInteres.getDescripcion();
         this.id = lugarInteres.getId();
         this.rutaImagen = lugarInteres.getRutaImagen();
+        this.name = lugarInteres.getName();
     }
 
     /**
@@ -85,25 +85,6 @@ public class LugaresInteresDTO {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    /**
-     * Retorna la distancia del dto Lugar de Interes
-     *
-     * @return distancia
-     */
-    public double getDistancia() {
-        return distancia;
-    }
-
-    /**
-     * Cambia la distancia del dto Lugar de Interes
-     *
-     * @param distancia
-     */
-    public void setDistancia(double distancia) {
-        this.distancia = distancia;
-    }
-
     /**
      * Retorna la ruta de imagen del dto Lugar de Interes
      *
@@ -121,6 +102,14 @@ public class LugaresInteresDTO {
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
     }
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     /**
      * Realiza el cambio de un dto Lugar de Interes a un entity
@@ -132,6 +121,7 @@ public class LugaresInteresDTO {
         lugaresInteresEntity.setDescripcion(this.descripcion);
         lugaresInteresEntity.setRutaImagen(this.rutaImagen);
         lugaresInteresEntity.setId(this.id);
+        lugaresInteresEntity.setName(this.name);
         return lugaresInteresEntity;
     }
 
