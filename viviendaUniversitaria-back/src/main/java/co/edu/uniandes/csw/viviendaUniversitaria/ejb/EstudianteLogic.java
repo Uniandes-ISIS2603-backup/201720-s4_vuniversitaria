@@ -98,4 +98,8 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         entity.setCalificaciones(old.getCalificaciones());
         return update(entity, id);
     }
+    
+    public EstudianteEntity buscarUsusario(String usuario) {
+        return ((EstudiantePersistence) persistence).buscarUsiario(usuario);
+    }
 }

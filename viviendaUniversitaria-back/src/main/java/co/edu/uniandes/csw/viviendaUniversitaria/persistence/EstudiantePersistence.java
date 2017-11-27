@@ -25,7 +25,10 @@ package co.edu.uniandes.csw.viviendaUniversitaria.persistence;
 
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
+import java.util.List;
+import java.util.logging.Level;
 import javax.ejb.Stateless;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -36,5 +39,16 @@ public class EstudiantePersistence extends GenericPresistence<EstudianteEntity>{
 
     public EstudiantePersistence() {
         super(EstudianteEntity.class);
+    }
+    
+    public EstudianteEntity buscarUsiario(String usuario) {
+        log.log(Level.INFO, "Consultando usuario ");
+        TypedQuery<EstudianteEntity> q = em.createQuery("select p from EstudianteEntity p where (p.nombreUsuario = :nombreUsuario)", EstudianteEntity.class);
+        q.setParameter("nombreUsuario", usuario);
+        List<EstudianteEntity> list = q.getResultList();
+        if(list != null && !list.isEmpty()) {
+            return list.get(0);
+        }
+        return null;
     }
 }
