@@ -35,6 +35,7 @@ public class UbicacionDetailDTO extends UbicacionDTO {
      */
     @Override
     public UbicacionEntity toEntity() {
-        return super.toEntity();
+        UbicacionEntity a = super.toEntity();
+        return a;
     }
 }

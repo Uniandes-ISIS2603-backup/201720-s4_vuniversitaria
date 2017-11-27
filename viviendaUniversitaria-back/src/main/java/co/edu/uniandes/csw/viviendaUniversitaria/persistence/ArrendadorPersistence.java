@@ -24,7 +24,7 @@ public class ArrendadorPersistence {
     /**
      * Logger para mostrar los comentarios
      */
-    private static final Logger LOGGER = Logger.getLogger(ArrendadorPersistence.class.getName());
+    private static final Logger logger = Logger.getLogger(ArrendadorPersistence.class.getName());
 
     /**
      * Entidad 
@@ -38,9 +38,9 @@ public class ArrendadorPersistence {
      * @return devuelve la entidad creada con un identificador dado por la base de datos.
      */
     public ArrendadorEntity create(ArrendadorEntity entity) {
-        LOGGER.info("Creando un arrendador nuevo");
+        logger.info("Creando un arrendador nuevo");
         em.persist(entity);
-        LOGGER.info("Creando un arrendador nuevo");
+        logger.info("Creando un arrendador nuevo");
         return entity;
     }
 
@@ -51,7 +51,7 @@ public class ArrendadorPersistence {
      * @return un arrendador con los cambios aplicados.
      */
     public ArrendadorEntity update(ArrendadorEntity arrendadorEntity) {
-        LOGGER.log(Level.INFO, "Actualizando Arrendador con id={0}", arrendadorEntity.getId());
+        logger.log(Level.INFO, "Actualizando Arrendador con id={0}", arrendadorEntity.getId());
         return em.merge(arrendadorEntity);
     }
 
@@ -61,7 +61,7 @@ public class ArrendadorPersistence {
      * @param id: id correspondiente al Arrendador a borrar.
      */
     public void delete(Long id) {
-        LOGGER.log(Level.INFO, "Borrando Arrendador con id={0}", id);
+        logger.log(Level.INFO, "Borrando Arrendador con id={0}", id);
         ArrendadorEntity arrendadorEntity = em.find(ArrendadorEntity.class, id);
         em.remove(arrendadorEntity);
     }
@@ -72,7 +72,7 @@ public class ArrendadorPersistence {
      * @return un arrendador.
      */
     public ArrendadorEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando Arrendador con id={0}", id);
+        logger.log(Level.INFO, "Consultando Arrendador con id={0}", id);
         return em.find(ArrendadorEntity.class, id);
     }
 
@@ -82,8 +82,19 @@ public class ArrendadorPersistence {
      * datos, "select u from ArrendadorEntity u" 
      */
     public List<ArrendadorEntity> findAll() {
-        LOGGER.info("Consultando todos los Arrendadores");
+        logger.info("Consultando todos los Arrendadores");
         TypedQuery query = em.createQuery("select u from ArrendadorEntity u", ArrendadorEntity.class);
         return query.getResultList();
+    }
+    
+    public ArrendadorEntity buscarUsiario(String usuario) {
+        logger.log(Level.INFO, "Consultando usuario");
+        TypedQuery<ArrendadorEntity> q = em.createQuery("select p from ArrendadorEntity p where (p.nombreUsuario = :nombreUsuario)", ArrendadorEntity.class);
+        q.setParameter("nombreUsuario", usuario);
+        List<ArrendadorEntity> list = q.getResultList();
+        if(list != null && !list.isEmpty()) {
+            return list.get(0);
+        }
+        return null;
     }
 }

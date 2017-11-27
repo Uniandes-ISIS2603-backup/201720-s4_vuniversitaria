@@ -116,4 +116,9 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         reservaEntity.setEstudiante(estudiante);
         return find(idEstudiante);
     }
+    
+     public EstudianteEntity buscarUsusario(String usuario) {
+         
+        return ((EstudiantePersistence)persistence).buscarUsiario(usuario);
+    }
 }
