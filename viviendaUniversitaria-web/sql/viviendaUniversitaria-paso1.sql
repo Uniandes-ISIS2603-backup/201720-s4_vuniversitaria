@@ -42,10 +42,10 @@ insert into UniversidadEntity (nombre,imagen) values ('Universidad de los Andes'
 insert into UniversidadEntity (nombre,imagen) values ('Universidad Piloto de Colombia','http://www.unipiloto.edu.co/wp-content/uploads/2017/02/IMLogoHorizontalJPG.jpg');
 
 --pruebas EstudianteEntity
-insert into EstudianteEntity (cedula, nombre) values (1, 'amilkar');
-insert into EstudianteEntity (cedula, nombre) values (2, 'camilo');
-insert into EstudianteEntity (cedula, nombre) values (3, 'kelly');
-insert into EstudianteEntity (cedula, nombre) values (4, 'william');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (1, 'amilkar','amilkar', '123');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (2, 'camilo','camilo', '124');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (3, 'kelly','kelly', '125');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (4, 'william','william', '126');
 
 --pruebas OrigenEntity
 insert into OrigenEntity ( name) values ( 'bucaramanga');
@@ -101,17 +101,16 @@ values ('Hospedaje 7', 'Albergues', 44,0,'http://www.xochitla.org.mx/imagenes/va
 
 -- Arrendador
 
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (3177523825303, 'Milo Pimentel', 'https://cdn3.uvnimg.com/dims4/default/1463aea/2147483647/resize/860x645%3E/quality/75/?url=https%3A%2F%2Fcdn1.uvnimg.com%2Fe9%2F83%2F55755c2844dc825c1fe2b3b8c026%2Fscreen-shot-2016-11-03-at-11.54.32%20AM.png');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (968668294465, 'Bertrand Velez', 'http://i.eldiario.com.ec/fotos-manabi-ecuador/2015/12/20151211022808_a-a-tres-da-as-de-la-gran-final.jpg');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (203123592715, 'Papageno Colon', 'https://pbs.twimg.com/media/CyIndfkW8AA39Rm.jpg:large');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (7095082710217, 'Ermanno Jesus', 'https://s-media-cache-ak0.pinimg.com/originals/b6/ae/18/b6ae189c11a971a1af4d17c1188a73ed.jpg');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (8364709267017, 'Lennie Camacho', 'https://pmcvarietylatino.files.wordpress.com/2016/08/screen-shot-2016-08-02-at-6-07-35-pm.png');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (3026925437839, 'Maurie Buffay', 'https://media1.popsugar-assets.com/files/thumbor/MBHtesX6rzydLZ-5oMHGS28vzpQ/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2014/07/28/951/n/1922283/91c8d314f242e434_thumb_temp_cover_file20701441406582209/i/Phoebe-Buffay-Friends-GIFs.jpg');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (7687381485806, 'Monique Geller', 'https://friendv.files.wordpress.com/2013/08/monica-geller.jpg');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (3991096447077, 'Andeee Green', 'http://akns-images.eonline.com/eol_images/Entire_Site/2014111/rs_560x415-140211085529-560.jennifer-aniston-friends.ls.21114_copy.jpg');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (1163763388482, 'Maddalena Collins', 'https://i.pinimg.com/736x/28/a3/c2/28a3c249e7963ae6dd1063c2157a8735--lily-himym-lily-aldrin.jpg');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (3489848653801, 'Astrix Pena', 'https://cbsb96radio.files.wordpress.com/2015/06/gettyimages-462704428.jpg');
-
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a0', 'er', 3177523825303, 'Milo Pimentel', 'https://cdn3.uvnimg.com/dims4/default/1463aea/2147483647/resize/860x645%3E/quality/75/?url=https%3A%2F%2Fcdn1.uvnimg.com%2Fe9%2F83%2F55755c2844dc825c1fe2b3b8c026%2Fscreen-shot-2016-11-03-at-11.54.32%20AM.png');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a1', 'er', 968668294465, 'Bertrand Velez', 'http://i.eldiario.com.ec/fotos-manabi-ecuador/2015/12/20151211022808_a-a-tres-da-as-de-la-gran-final.jpg');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a2', 'er', 203123592715, 'Papageno Colon', 'https://pbs.twimg.com/media/CyIndfkW8AA39Rm.jpg:large');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a3', 'er', 7095082710217, 'Ermanno Jesus', 'https://s-media-cache-ak0.pinimg.com/originals/b6/ae/18/b6ae189c11a971a1af4d17c1188a73ed.jpg');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a4', 'e12', 8364709267017, 'Lennie Camacho', 'https://pmcvarietylatino.files.wordpress.com/2016/08/screen-shot-2016-08-02-at-6-07-35-pm.png');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a5', 'e21', 3026925437839, 'Maurie Buffay', 'https://media1.popsugar-assets.com/files/thumbor/MBHtesX6rzydLZ-5oMHGS28vzpQ/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2014/07/28/951/n/1922283/91c8d314f242e434_thumb_temp_cover_file20701441406582209/i/Phoebe-Buffay-Friends-GIFs.jpg');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a6', 'e21', 7687381485806, 'Monique Geller', 'https://friendv.files.wordpress.com/2013/08/monica-geller.jpg');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a7', 'e21', 3991096447077, 'Andeee Green', 'http://akns-images.eonline.com/eol_images/Entire_Site/2014111/rs_560x415-140211085529-560.jennifer-aniston-friends.ls.21114_copy.jpg');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a8', 'e21', 1163763388482, 'Maddalena Collins', 'https://i.pinimg.com/736x/28/a3/c2/28a3c249e7963ae6dd1063c2157a8735--lily-himym-lily-aldrin.jpg');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a9', 'e21', 3489848653801, 'Astrix Pena', 'https://cbsb96radio.files.wordpress.com/2015/06/gettyimages-462704428.jpg');
 --Calificacion
 
 insert into APP.CALIFICACIONENTITY (valoracion, fecha, comentario) values (60, '12/12/2000', 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.');
@@ -201,17 +200,17 @@ insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje
 
 -- Ligares Interes
 
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Juan Valdez',' Perfecto lugar para un cafe 100% colombiano ', 8, 'http://www.masfranquicias.com/wp-content/uploads/2016/02/Juan_Valdez_Caf%C3%A917_Masfranquicias.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Exito','almacen de todo tipo de suministros ', 97, 'http://static.hsbnoticias.com/sites/default/files/styles/original/public/gallery/2015/03/mg-9788r.jpg?itok=khDChg30');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Banco davivienda','Banco davivienda perfecto para realizar pagos,giros,etc', 25, 'https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto,w_1200/v1470935784/entity/image/file/512/000/57acb2e82f41f3703b000512.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Parque la colina','centro comercial que cuenta con salas de cine, bancos, zona de comidas y diferentes almacenes de marca', 62, 'http://pyd.com.co/wp-content/uploads/2017/08/internet-parque-colina.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('MacDonalds',' restaurante MacDonalds con parqueadero y auto mac', 30, 'http://www.rchconstructores.com/wp-content/uploads/2011/08/mcdonalds01.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Clinica Colina','hospital privado', 67, 'https://imgcdn.larepublica.co/cms/2013/05/06224016/colina0507-1000.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('abraham lincoln','colegio privado bilingue ', 17, 'http://locationcolombia.com/wp-content/uploads/2014/05/BOGOTA-Colegio-Abraham-Lincoln-CIELITO-LINDO-1.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Petrobras','estacion de gasolina', 89, 'http://cdn.colombia.com/sdi/2014/03/07/a4a5db94d8bc431e98b54c02ade342af.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Comercial Papelera','papeleria con servicio de 24 horas', 77, 'https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto,w_1200/v1404939232/entity/image/file/022/000/53bdabdfb9dd5d74fb000022.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Bogota beer company','Bar', 74, 'http://cr00.epimg.net/radio/imagenes/2015/09/22/nacional/1442956730_087930_1442957047_noticia_normal.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Subway','restaurante de sandwich', 28, 'http://www.impulsonegocios.com/resources/original/IN_2015/-norberto20152/000subway070415.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Juan Valdez',' Perfecto lugar para un cafe 100% colombiano ', 'http://www.masfranquicias.com/wp-content/uploads/2016/02/Juan_Valdez_Caf%C3%A917_Masfranquicias.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Exito','almacen de todo tipo de suministros ', 'http://static.hsbnoticias.com/sites/default/files/styles/original/public/gallery/2015/03/mg-9788r.jpg?itok=khDChg30');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Banco davivienda','Banco davivienda perfecto para realizar pagos,giros,etc', 'https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto,w_1200/v1470935784/entity/image/file/512/000/57acb2e82f41f3703b000512.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Parque la colina','centro comercial que cuenta con salas de cine, bancos, zona de comidas y diferentes almacenes de marca', 'http://pyd.com.co/wp-content/uploads/2017/08/internet-parque-colina.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('MacDonalds',' restaurante MacDonalds con parqueadero y auto mac', 'http://www.rchconstructores.com/wp-content/uploads/2011/08/mcdonalds01.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Clinica Colina','hospital privado', 'https://imgcdn.larepublica.co/cms/2013/05/06224016/colina0507-1000.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('abraham lincoln','colegio privado bilingue ', 'http://locationcolombia.com/wp-content/uploads/2014/05/BOGOTA-Colegio-Abraham-Lincoln-CIELITO-LINDO-1.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Petrobras','estacion de gasolina', 'http://cdn.colombia.com/sdi/2014/03/07/a4a5db94d8bc431e98b54c02ade342af.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Comercial Papelera','papeleria con servicio de 24 horas', 'https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto,w_1200/v1404939232/entity/image/file/022/000/53bdabdfb9dd5d74fb000022.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Bogota beer company','Bar', 'http://cr00.epimg.net/radio/imagenes/2015/09/22/nacional/1442956730_087930_1442957047_noticia_normal.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Subway','restaurante de sandwich', 'http://www.impulsonegocios.com/resources/original/IN_2015/-norberto20152/000subway070415.jpg');
 
 -- Reglas
 insert into REGLAENTITY (regla,hospedaje_id) values ('Se pohiben las mascotas',1);
