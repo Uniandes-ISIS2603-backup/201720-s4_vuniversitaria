@@ -55,9 +55,9 @@ public class LugaresInteresPersistenceTest {
     UserTransaction utx;
 
     /**
-     *
+     *atributo para guardar los datos de prueba
      */
-    private List<LugaresInteresEntity> data = new ArrayList<LugaresInteresEntity>();
+    private List<LugaresInteresEntity> data = new ArrayList<>();
 
     public LugaresInteresPersistenceTest() {
     }
@@ -168,6 +168,17 @@ public class LugaresInteresPersistenceTest {
         persistence.delete(entity.getId());
         LugaresInteresEntity deleted = em.find(LugaresInteresEntity.class, entity.getId());
         Assert.assertNull(deleted);
+    }
+    
+        /**
+     * Test of findId method, of class LugaresInteresPersistence.
+     */
+    @org.junit.Test
+    public void testFindName() throws Exception {
+        LugaresInteresEntity entity = data.get(0);
+        LugaresInteresEntity newEntity = persistence.findForName(entity.getName());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
     }
 
 }

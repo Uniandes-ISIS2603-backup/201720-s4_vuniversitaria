@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.LugaresInteresDTO;
+import co.edu.uniandes.csw.viviendaUniversitaria.dtos.LugaresInteresDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.LugaresInteresLogic;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.LugaresInteresEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -60,11 +61,11 @@ public class LugarInteresResource {
      * @throws BusinessLogicException
      */
     @GET
-    public List<LugaresInteresDTO> getList(@PathParam("idHospedaje") Long idHospedaje) throws BusinessLogicException {
+    public List<LugaresInteresDetailDTO> getList(@PathParam("idHospedaje") Long idHospedaje) throws BusinessLogicException {
         List<LugaresInteresEntity> listLugaresInteres = logic.findAll(idHospedaje);
-        List<LugaresInteresDTO> respuesta = new ArrayList<>();
+        List<LugaresInteresDetailDTO> respuesta = new ArrayList<>();
         for (LugaresInteresEntity listLugaresIntere : listLugaresInteres) {
-            respuesta.add(new LugaresInteresDTO(listLugaresIntere));
+            respuesta.add(new LugaresInteresDetailDTO(listLugaresIntere));
         }
         return respuesta;
     }
@@ -79,8 +80,8 @@ public class LugarInteresResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public LugaresInteresDTO getLugarInteres(@PathParam("idHospedaje") long idHospedaje, @PathParam("id") long id) throws BusinessLogicException {
-        return new LugaresInteresDTO(logic.find(idHospedaje, id));
+    public LugaresInteresDetailDTO getLugarInteres(@PathParam("idHospedaje") long idHospedaje, @PathParam("id") long id) throws BusinessLogicException {
+        return new LugaresInteresDetailDTO(logic.find(idHospedaje, id));
     }
 
     /**
@@ -96,7 +97,6 @@ public class LugarInteresResource {
         return new LugaresInteresDTO(logic.create(idHospedaje, nuevoLugar.toEntity()));
 
     }
-
     /**
      * 
      * @param idHospedaje

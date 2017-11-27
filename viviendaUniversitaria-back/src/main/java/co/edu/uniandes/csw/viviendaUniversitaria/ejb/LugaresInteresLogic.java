@@ -14,6 +14,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.persistence.HospedajeLugarPersi
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.LugaresInteresPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -86,6 +87,7 @@ public class LugaresInteresLogic {
             hospedajesLugares.add(hospedajeLugar);
             lugar.setHospedaLugar(hospedajesLugares);
             lugaresInteres.add(lugar);
+            log.log(Level.INFO, "esta es la distancia: " + lugar.getHospedajeLugar().get(0).getDistancia());
         }
         return lugaresInteres;
     }
