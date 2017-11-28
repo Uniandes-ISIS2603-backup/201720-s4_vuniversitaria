@@ -178,6 +178,8 @@ public class HospedajeLugarPersistenceTest {
 
     private void clearData() {
         em.createQuery("delete from HospedajeLugarEntity").executeUpdate();
+        em.createQuery("delete from HospedajeEntity").executeUpdate();
+        em.createQuery("delete from LugarInteresEntity").executeUpdate();
     }
 
     private void insertData() {
