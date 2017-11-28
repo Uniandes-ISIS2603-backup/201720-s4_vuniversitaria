@@ -14,7 +14,7 @@
         <div class="center-block col-sm-6 col-md-6 col-lg-6 col-xs-6">
             <img class="imagen-detalle" src="{{hospedajeActivo.rutaImagen}}"  >
         </div>
-        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador' || true">
+        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
             <div class="row">
                 <input type="button" value="Editar" class="btn btn-warning btn-lg col-sm-5 col-md-5 col-lg-5 col-xs-5" ui-sref="hospedajeActualizar({idHospedaje: hospedajeActivo.id})">
                 <p class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></p>
