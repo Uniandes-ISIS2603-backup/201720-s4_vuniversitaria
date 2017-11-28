@@ -34,12 +34,24 @@ insert into UniversidadEntity (nombre,imagen) values ('Universidad Nacional de C
 insert into UniversidadEntity (nombre,imagen) values ('Universidad de Pamplona','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Escudo_Universidad_de_Pamplona.svg/1200px-Escudo_Universidad_de_Pamplona.svg.png');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad de Antioquia','http://portal.udea.edu.co/wps/wcm/connect/udea/3ef4bbd1-4ae7-4c87-b843-685c6f017501/logo-udea.png?MOD=AJPERES&CACHEID=ROOTWORKSPACE.Z18_L8L8H8C0LODDC0A6SSS2AD2GO4-3ef4bbd1-4ae7-4c87-b843-685c6f017501-lr.XbEn');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad Libre','http://www.unilibre.edu.co/cartagena/images/Logo/ulibre_ctg_h.png');
-insert into UniversidadEntity (nombre,imagen) values ('Universidad de Cartagena Campus San Agustin','http://www.unicartagena.edu.co/images/identificadores/logotipo-lineal-oficial-unicartagena.png');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad de Cartagena','http://www.unicartagena.edu.co/images/identificadores/logotipo-lineal-oficial-unicartagena.png');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad Distrital Francisco José de Caldas','http://laud.udistrital.edu.co/sites/default/files/images/Escudo%20UD.jpg');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad EAN - Sede Nogal','https://upload.wikimedia.org/wikipedia/commons/e/e3/Escudo_de_la_Universidad_EAN_de_Bogot%C3%A1%2C_Colombia.jpg');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad Cooperativa de Colombia','http://equiposdevideoconferencias.com/wp-content/uploads/2017/08/logo-con-fondo-transparente.png');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad de los Andes','https://uniandes.edu.co/sites/default/files/logo-uniandes.png');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad Piloto de Colombia','http://www.unipiloto.edu.co/wp-content/uploads/2017/02/IMLogoHorizontalJPG.jpg');
+--Consulta
+
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra 45,Bógota',4.638268,-74.084003);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 5 #4-19, Pamplona, Norte de Santander',7.108983, -73.110102);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 67 #53 - 108, Medellín, Antioquia', 4.625176, -74.074887);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 8 #580, Bogotá', 4.594794, -74.075559);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 6 #36-100, Cartagena, Bolívar',10.425718, -75.549864);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 7 #40B - 53, Bogotá', 4.628266, -74.065421);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 79 #11-45, Bogotá, Cundinamarca',4.663756, -74.055060);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 14a #40A-39, Bogotá',4.631761, -74.068707);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('a 1-99,, Cl. 22 #119,Bógota',4.604608, -74.065890);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 45a #9-77, Bogotá',4.632512, -74.065310);
 
 --pruebas EstudianteEntity
 insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (1, 'amilkar','amilkar', '123');
@@ -122,29 +134,6 @@ insert into APP.CALIFICACIONENTITY (valoracion, fecha, comentario) values (61, '
 insert into APP.CALIFICACIONENTITY (valoracion, fecha, comentario) values (36, '12/12/2000', 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.');
 insert into APP.CALIFICACIONENTITY (valoracion, fecha, comentario) values (46, '12/12/2000', 'Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.');
 insert into APP.CALIFICACIONENTITY (valoracion, fecha, comentario) values (43, '12/12/2000', 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.');
-
---Consulta
-
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra 45,Bógota',4.638268,-74.084003);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 5 #4-19, Pamplona, Norte de Santander', 7.386456, -72.650060);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 67 #53 - 108, Medellín, Antioquia', 6.350104, -75.560991);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 8 #580, Bogotá', 4.595211, -74.075549);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 6 #36-100, Cartagena, Bolívar',10.426046, -75.549706);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 7 #40B - 53, Bogotá', 4.628266, -74.065421);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 79 #11-45, Bogotá, Cundinamarca',4.663756, -74.055060);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 14a #40A-39, Bogotá',4.631761, -74.068707);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('a 1-99,, Cl. 22 #119,Bógota',4.604608, -74.065890);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Danette', 90, 23);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Gabriel', 59, 93);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Diarmid', 84, 80);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('George', 26, 33);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Aleta', 91, 30);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Vickie', 73, 8);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Ailbert', 28, 41);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Zachery', 46, 75);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Eilis', 60, 70);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Dorelle', 86, 39);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Rhoda', 62, 3);
 
 --Servicios
 insert into ServiciosEntity (descripcion, costo) values ('Marietta', 96.55);

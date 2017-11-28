@@ -57,8 +57,7 @@ public class ReservaLogic {
         HospedajeEntity hospedajeEntity = hospedajeLogic.find(entity.getIdHospedaje());
         hospedajeLogic.agregarReserva(hospedajeEntity.getId(),entity);
         estudianteLogic.agregarReserva(estudianteEntity.getId(),entity);
-        ReservaEntity rta = persistence.create(entity);
-        return rta;
+        return persistence.create(entity);
     }
 
     /**

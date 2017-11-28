@@ -1,0 +1,45 @@
+<div class="container">
+    <br>
+    <br>
+    <div ng-show="!estado">
+        <alert type="warning" close="closeAlert()"> El usuario no es valido </alert>
+    </div>
+    <br>
+    <form class="well form-horizontal" ng-submit="valudarUsuario(nombreUsuario, contrasenia)">
+        <fieldset>
+            <legend> Iniciar Sesion </legend>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" >Nombre de usuario</label> 
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="nombreUsuario" class="form-control" type="text" ng-model="nombreUsuario" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" >Contrasenia</label> 
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
+                        <input name="contrasenia" class="form-control" type="password" ng-model="contrasenia" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <p class="col-sm-4 col-md-4 col-lg-4 col-xs-4"></p>
+                <div class="form-group col-sm-2 col-md-2 col-lg-2 col-xs-2">
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-success" > <span class="glyphicon glyphicon-log-in"></span> Iniciar Sesion </button>
+                    </div>
+                </div>
+                <div class="form-group col-sm-2 col-md-2 col-lg-2 col-xs-2">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-success" ui-sref="home"> <span class="glyphicon glyphicon-log-out"></span> Cancelar </button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
