@@ -7,34 +7,60 @@
                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                    <div class="btn-group mr-2" role="group" aria-label="First group">
                         <a class="btn btn-info" ui-sref="reservasCreate"><span class="glyphicon glyphicon-plus-sign"></span> Crear reserva</a>
-                    </div>
+                      
+                   </div>
+                   <div>
+                       <button type="button" class="btn btn-success btn-md" ng-click="filterByMe('Y')">
+                                     <span class="glyphicon glyphicon-filter"></span> Activas
+                                </button>
+                   </div>
+                   <div>
+                       <button type="button" class="btn btn-warning btn-md" ng-click="filterByMe('N')">
+                                     <span class="glyphicon glyphicon-filter"></span>
+                                     Antiguas
+                                </button>
+                   </div>
                 </div>
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
                        
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-lg-12">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Identificación única</th>    
-                                <th>Cédula del huésped</th> 
-                                <th>Fecha de inicio</th> 
-                                <th>Fecha de fin</th> 
-                                <th>Hospedaje</th>
-                                <th>Información </th>
+                                <th>Identificación única  
+                                   <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('id')">
+                                     <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                </button></th>    
+        
+                                <th>Cédula del huésped 
+                                    <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('cedulaHuesped')">
+                                     <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                </button></th> 
+                                <th>Fecha de inicio <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('fechaInicio')">
+                                     <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                </button></th> 
+                                <th>Fecha de fin <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('fechaFin')">
+                                     <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                </button></th> 
+                                <th>Hospedaje <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('idHospedaje')">
+                                     <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                </button></th>
+                                <th>Información</th>
                                
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="reserva in reservasRecords">
+                            <tr ng-repeat="reserva in reservasRecords | filter : criteriaMatch(myFilter) | orderBy:myOrderBy">
                             <td id="{{$index}}-id">{{reserva.id}}</td>
                             <td id="{{$index}}-cedulaHuesped">{{reserva.cedulaHuesped}}</td>
-                            <td id="{{$index}}-fechaInicio">{{reserva.fechaInicio}}</td>
+                            <td id="{{$index}}-fechaInicio" >{{reserva.fechaInicio}}</td>
                             <td id="{{$index}}-fechaFin">{{reserva.fechaFin}}</td>
                             <td id="{{$index}}-hospedaje">{{reserva.idHospedaje}}</td>
                             <td id="{{$index}}-actions">
+                                
                                 <a class="btn btn-default btn-sm" ui-sref="reservasDetail({reservaId: reserva.id})"><span class="glyphicon glyphicon-info-sign"></span></a>
                                 <a class="btn btn-default btn-sm" ui-sref="reservaUpdate({reservaId: reserva.id})"><span class="glyphicon glyphicon-edit"></span></a>
                                 <a class="btn btn-danger btn-sm" ui-sref="reservaDelete({reservaId: reserva.id})"><span class="glyphicon glyphicon-trash"></span></a>
@@ -47,5 +73,10 @@
         </div>
     </div>
 
-
+    
 </div>
+
+
+
+
+</body>

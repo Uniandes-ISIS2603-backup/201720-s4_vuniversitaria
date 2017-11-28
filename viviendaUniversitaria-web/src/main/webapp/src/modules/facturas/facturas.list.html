@@ -14,6 +14,18 @@ and open the template in the editor.
                    <div class="btn-group mr-2" role="group" aria-label="First group">
                         <a class="btn btn-info" ui-sref="facturasCreate"><span class="glyphicon glyphicon-plus-sign"></span> Generar nueva factura</a>
                     </div>
+                    <div>
+                        <form>
+                    <input type="date"  ng-model="fechaInicio.value">
+                   
+                    <input type="date"  ng-model="fechaFin.value"> 
+                        
+                        </form>
+                         
+                   </div>
+                    
+                    
+                    
                 </div>
 
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
@@ -21,20 +33,28 @@ and open the template in the editor.
                        
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-lg-12">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Identificación única</th>    
-                                <th>Fecha de creación</th> 
-                                <th>Total</th> 
-                                <th>IVA aplicado</th> 
+                                <th>Identificación única <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('id')">
+                                     <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                </button></th>    
+                                <th>Fecha de creación <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('fecha')">
+                                     <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                </button></th> 
+                                <th>Total <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('total')">
+                                     <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                </button></th> 
+                                <th>IVA aplicado <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('iva')">
+                                     <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                </button></th> 
                                 <th>Acciones </th>
                                
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="factura in facturasRecords">
+                            <tr ng-init ng-repeat="factura in facturasRecords | filter : criteriaMatch('date') | orderBy:myOrderBy">
                             <td id="{{$index}}-id">{{factura.id}}</td>
                             <td id="{{$index}}-fecha">{{factura.fecha}}</td>
                             <td id="{{$index}}-total">{{factura.total}}</td>
@@ -49,6 +69,8 @@ and open the template in the editor.
                     </table>
                 </div>
             </div>
+            <p id="ole"> OLE PIROBO</p> 
+             <p id="oa"> OLE PIROBO</p>
         </div>
     </div>
   
