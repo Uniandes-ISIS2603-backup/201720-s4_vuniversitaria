@@ -5,24 +5,36 @@
         function ($scope, $http, loginContext, $state, $rootScope) {
 
             $rootScope.rolActivo = "No registrado";
-            $scope.estado = false;
+            $scope.estado = true;
 
             $scope.valudarUsuario = function (nombreUsuario, contrasenia) {
-                $http.get(loginContext + '/' + nombreUsuario).then(function (response) {
-                    var data = response.data;
-                    alert(data.rol);
-                    alert(data.contrasenia);
-                    if (data.rol !== 'Error') {
-                        if (data.contrasenia === contrasenia) {
-                            $rootScope.rolActivo = data.rol;
+                $http.get('resources/data/ussers.json').then(function (response) {
+                    $scope.estado = false;
+                    $rootScope.rolActivo = "No registrado";
+                    var data = response.data.admins;
+                    for (i = 0; i < data.length; i++) {
+                        if (data[i].nombreUsuario === nombreUsuario) {
+                            $rootScope.rolActivo = "Administrador";
                             $scope.estado = true;
+                        }
+                    }
+                });
+                $http.get(loginContext + '/' + nombreUsuario).then(function (response) {
+                    
+                    if (!$scope.estado) {
+                        var data = response.data;
+                        if (data.rol !== 'Error') {
+                            if (data.contrasenia === contrasenia) {
+                                $rootScope.rolActivo = data.rol;
+                                $scope.estado = true;
+                            } else {
+                                $rootScope.rolActivo = "No registrado";
+                                $scope.estado = false;
+                            }
                         } else {
                             $rootScope.rolActivo = "No registrado";
                             $scope.estado = false;
                         }
-                    } else {
-                        $rootScope.rolActivo = "No registrado";
-                        $scope.estado = false;
                     }
                 });
             };
@@ -30,3 +42,4 @@
     ]);
 }
 )(angular);
+
