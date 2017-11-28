@@ -37,7 +37,7 @@ public class ValidacionService
     public String validarUsu(@PathParam("nombreUsuario") String usuario)
     {
         String[] sep = v.validarUsuario(usuario).split(";");
-        return "{ \"rol\": \""+sep[0]+"\",\"contrasenia\": \""+sep[1]+"\"}";
+        return "{ \"rol\": \""+sep[0]+"\",\"contrasenia\": \""+sep[1]+"\",\"id\": \""+sep[2]+"\"}";
     }
     
 }

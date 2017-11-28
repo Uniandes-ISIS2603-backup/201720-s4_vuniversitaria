@@ -11,6 +11,26 @@
                     $scope.currentReserva = response.data;
                 });
             }
+            $scope.orderByMe = function(x) {
+            $scope.myOrderBy = x;
+        }
+       $scope.filterByMe = function(x) {
+            $scope.myFilter = x;
+            
+        }
+        $scope.criteriaMatch = function( criteria ) {
+    return function( item ) {
+         var ano=item.fechaFin.slice(0,4);
+         var mes=item.fechaFin.slice(5,7);
+         var dia=item.fechaFin.slice(8,10);
+        if(criteria == "Y"){
+           return ano>=2017&&mes>=11&&dia>=30;
+        }
+        else {
+            return !(ano>=2017&&mes>=11&&dia>=30);
+        }
+    };
+  };
         }
     ]);
 }

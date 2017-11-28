@@ -1,8 +1,11 @@
 <div class="container">
     <br>
     <br>
+    <div ng-show="!estado">
+        <alert type="warning" close="closeAlert()"> El usuario no es valido </alert>
+    </div>
     <br>
-    <form class="well form-horizontal" ng-submit="valudarUsuario()">
+    <form class="well form-horizontal" ng-submit="valudarUsuario(nombreUsuario, contrasenia)">
         <fieldset>
             <legend> Iniciar Sesion </legend>
 
@@ -11,7 +14,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="nombreUsuario" class="form-control" type="text">
+                        <input name="nombreUsuario" class="form-control" type="text" ng-model="nombreUsuario" required>
                     </div>
                 </div>
             </div>
@@ -20,7 +23,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
-                        <input name="contrasenia" class="form-control" type="password">
+                        <input name="contrasenia" class="form-control" type="password" ng-model="contrasenia" required>
                     </div>
                 </div>
             </div>
