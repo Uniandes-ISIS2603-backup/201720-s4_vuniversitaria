@@ -1,11 +1,11 @@
-<div ng-show="!estado">
-    <alert type="warning" close="closeAlert()"> El usuario no es valido </alert>
-</div>
 <div class="container">
     <br>
     <br>
+    <div ng-show="!estado">
+        <alert type="warning" close="closeAlert()"> El usuario no es valido </alert>
+    </div>
     <br>
-    <form class="well form-horizontal" ng-submit="valudarUsuario(nombreUsuario,contrasenia)">
+    <form class="well form-horizontal" ng-submit="valudarUsuario(nombreUsuario, contrasenia)">
         <fieldset>
             <legend> Iniciar Sesion </legend>
 
