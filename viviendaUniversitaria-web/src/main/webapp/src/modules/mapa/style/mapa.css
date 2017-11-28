@@ -12,7 +12,7 @@ html, body, #map_canvas {
     position: absolute;
     top: 0;
     bottom: 0;
-    right: 0;
+    right: 40px;
     left: 0;
     height: 400px;
 }
