@@ -14,7 +14,8 @@
         'arrendadorModule',
         'lugaresInteresModule',
         'hospedajeModule',
-        'mapaModule'
+        'mapaModule',
+        'loginModule'
     ]);
     //Resuelve problemas
     app.config(['$qProvider','uiGmapGoogleMapApiProvider', function ($qProvider,uiGmapGoogleMapApiProvider) {

@@ -30,7 +30,13 @@ public class ReservaPersistence {
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
     public ReservaEntity create(ReservaEntity entity) {
+        LOGGER.info("Creando un default nuevo");
+        /* Note que hacemos uso de un método propio de EntityManager para persistir la Default en la base de datos.
+        Es similar a "INSERT INTO table_codigo (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);" en SQL.
+         */
+        entity.setId(0L);
         em.persist(entity);
+        LOGGER.info("Creando un default nuevo");
         return entity;
     }
 
