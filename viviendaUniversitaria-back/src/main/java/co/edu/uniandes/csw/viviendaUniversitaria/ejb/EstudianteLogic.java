@@ -49,6 +49,13 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         }
         return super.update(entity, id);
     }
+    @Override
+    public EstudianteEntity create(EstudianteEntity entity) throws BusinessLogicException {
+        if (entity.getCedula() == null || entity.getNombre() == null) {
+            throw new BusinessLogicException("faltan parametros en el JSon");
+        }
+        return super.create(entity);
+    }
 
     public CalificacionEntity addCalificacion(Long idCalificacion, Long idEstudiante) throws BusinessLogicException {
         EstudianteEntity estudianteEntity = find(idEstudiante);

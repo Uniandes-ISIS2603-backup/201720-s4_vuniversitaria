@@ -30,6 +30,14 @@ public class OrigenLogic extends GenericLogic<OrigenEntity> {
         super(persistence, OrigenEntity.class);
         this.estudianteLogic=asd;
     }
+    
+    @Override
+    public OrigenEntity create(OrigenEntity entity) throws BusinessLogicException {
+        if(entity.getName() == null){
+            throw new BusinessLogicException("faltan parametros en el JSon");
+        }
+        return super.create(entity);
+    }
     //aqui creo la relacion Origen-Estudiante
     public EstudianteEntity createEstudiante(Long cedula, Long idOrigen) throws BusinessLogicException {
         OrigenEntity origenEntity = find(idOrigen);

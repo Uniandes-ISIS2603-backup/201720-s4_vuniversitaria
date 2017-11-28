@@ -5,13 +5,9 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDetailDTO;
-import co.edu.uniandes.csw.viviendaUniversitaria.dtos.HospedajeDetaillDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.ReservaDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.ReservaDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.ReservaLogic;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReservaEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -30,7 +26,7 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @author je.bejarano10
+ * @author a.eslava
  */
 @Path ("reservas")
 @Produces("application/json")
@@ -96,14 +92,15 @@ public class ReservaResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteCalificacion(@PathParam("id") Long id) throws BusinessLogicException {
+    public void deleteReserva(@PathParam("id") Long id) throws BusinessLogicException {
         ReservaEntity entity = reservaLogic.getReserva(id);
         if (entity == null) {
             throw new WebApplicationException("la reserva no existe "+id, 404);
         }
         reservaLogic.deleteReserva(id);
-    }  
-    
+    }
+   
+
     
     
     
