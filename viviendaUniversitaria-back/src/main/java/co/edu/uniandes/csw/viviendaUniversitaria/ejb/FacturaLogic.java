@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ServiciosEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.FacturaPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,16 +59,19 @@ public class FacturaLogic {
         EstudianteEntity estudiante = estudianteLogic.find(cedulaEstudiante);
         List<ServiciosEntity> serviciosOfrecidos = hospedaje.getServicios();
         double costoTotal = 0.0;
+        List<DetalleServicioEntity> serviciosPrestados = new ArrayList<>();
         for (ServiciosEntity serviciosOfrecido : serviciosOfrecidos) {
             DetalleServicioEntity nuevoDetalleServicio = new DetalleServicioEntity();
             nuevoDetalleServicio.setFactura(entity);
             nuevoDetalleServicio.setServicio(serviciosOfrecido);
             nuevoDetalleServicio.setSubTotal(serviciosOfrecido.getCosto());
             costoTotal += serviciosOfrecido.getCosto();   
+            serviciosPrestados.add(nuevoDetalleServicio);
         }
         entity.setTotal(costoTotal);
         entity.setHospedaje(hospedaje);
         entity.setEstudiante(estudiante);
+        entity.setDetalleServicio(serviciosPrestados);
         entity.setEstaPago(false);
         persistence.create(entity);
         LOGGER.info("Se creó la factura");
