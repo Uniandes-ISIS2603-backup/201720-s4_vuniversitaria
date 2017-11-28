@@ -1,44 +1,13 @@
-<div class="container-fluid">
-    <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><label>Universidades</label></div>
-            <div class="panel-body">
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="universidadCreate">
-                            <span class="glyphicon glyphicon-plus-sign"></span> 
-                            Agregar una nueva universidad
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Dirección</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="universidad in universidadesRecords">
-                                <td id="{{$index}}-name"><a ui-sref="universidadDetail({universidadId: universidad.id})">{{universidad.name}}</a></td>
-                                <td id="{{$index}}-name"><a ui-sref="ubicacionDetail({ubicacionId: universidad.id})">{{universidad.ubicacion.direccion}}</a></td>
-                                <td id="{{$index}}-actions">
-                                     <a class="btn btn-info btn-sm" ui-sref="universidadEdit({universidadId: universidad.id})">
-                                        <span class="glyphicon glyphicon-edit"></span>
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" ui-sref="universidadDelete({universidadId: universidad.id})">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                    </a>  
-                                   
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+<div class="container" >
+    <h2 class="text-center">Universidades</h2>
+    <input type="button" value="Agregar universidad" ui-sref="universidadCreate" class="btn btn-success btn-lg">
+    <br>
+    <br>
+    <div class="row">
+        <div ng-repeat=" universidad in universidadesRecords" class="col-sm-6 col-md-6 col-lg-3 col-xs-3">
+            <div class="thumbnail" >
+                <img src="{{universidad.imagen}}" class="img-responsive imagen-mostrario" ui-sref="universidadDetail({universidadId: universidad.id})">
             </div>
         </div>
     </div>
-
-
 </div>

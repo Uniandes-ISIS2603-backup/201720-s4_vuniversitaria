@@ -17,8 +17,8 @@ import java.util.logging.Logger;
  */
 public class ReservaDTO {
  private Long id;
-    private int cedulaHuesped;
-    private int idHospedaje;
+    private Long cedulaHuesped;
+    private Long idHospedaje;
     private String fechaInicio;
     private String fechaFin;
 
@@ -30,19 +30,19 @@ public class ReservaDTO {
         this.id = id;
     }
 
-    public int getCedulaHuesped() {
+    public Long getCedulaHuesped() {
         return cedulaHuesped;
     }
 
-    public void setCedulaHuesped(int cedulaHuesped) {
+    public void setCedulaHuesped(Long cedulaHuesped) {
         this.cedulaHuesped = cedulaHuesped;
     }
 
-    public int getIdHospedaje() {
+    public Long getIdHospedaje() {
         return idHospedaje;
     }
 
-    public void setIdHospedaje(int idHospedaje) {
+    public void setIdHospedaje(Long idHospedaje) {
         this.idHospedaje = idHospedaje;
     }
 

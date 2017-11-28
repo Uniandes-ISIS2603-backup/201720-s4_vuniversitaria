@@ -15,6 +15,15 @@ public class EstudianteDTO {
     private Long id;
     private Long cedula;  
     private String nombre;
+    /**
+     * Nombre de usuario
+     */
+    private String nombreUsuario;
+    
+    /**
+     * Conrasenia de usuario
+     */
+    private String contrasenia;
     
     
     public EstudianteDTO(){
@@ -26,6 +35,8 @@ public class EstudianteDTO {
             this.nombre = estudiante.getNombre();
             this.cedula = estudiante.getCedula();
             this.id = estudiante.getId();
+            nombreUsuario = estudiante.getNombreUsuario();
+            contrasenia = estudiante.getContrasenia();
         }
     }
     
@@ -34,6 +45,8 @@ public class EstudianteDTO {
         EstudianteEntity estu = new EstudianteEntity();
         estu.setNombre(this.nombre);
         estu.setCedula(this.cedula);
+        estu.setContrasenia(contrasenia);
+        estu.setNombreUsuario(nombreUsuario);
      
         return estu;
     }
@@ -60,5 +73,37 @@ public class EstudianteDTO {
 
     public void setCedula(Long cedula) {
         this.cedula = cedula;
+    }
+    
+    /**
+     * Retorna la contrasenuia de usuario.
+     * @return contrasenia
+     */
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    /**
+     * Cambia la contrasenia de usuario.
+     * @param Contrasenia nueva contrasenia.
+     */
+    public void setContrasenia(String Contrasenia) {
+        this.contrasenia = Contrasenia;
+    }
+
+    /**
+     * Retorna el nombre de usuario
+     * @return nombre de usuario
+     */
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    /**
+     * Cmbia el nombre de susario
+     * @param nombreUsuario nuevo nombre de usuario.
+     */
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 }

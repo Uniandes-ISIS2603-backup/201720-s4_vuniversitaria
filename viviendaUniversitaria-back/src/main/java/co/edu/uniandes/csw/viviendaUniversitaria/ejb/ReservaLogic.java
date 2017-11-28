@@ -5,12 +5,11 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
-
 import java.util.logging.Logger;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.*;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.ReservaPersistence;
-        
+
 import java.util.List;
 import java.util.logging.Level;
 import javax.ejb.Stateless;
@@ -20,10 +19,11 @@ import javax.inject.Inject;
  *
  * @author je.bejarano10
  */
-
 /**
- * Clase que permite gestionar y validar las reglas de negocio relacionadas con la reserva
- * */
+ * Clase que permite gestionar y validar las reglas de negocio relacionadas con
+ * la reserva
+ *
+ */
 @Stateless
 public class ReservaLogic {
 
@@ -36,15 +36,31 @@ public class ReservaLogic {
     @Inject
     private HospedajeLogic hospedajeLogic;
 
+    
+    
     public ReservaEntity createReserva(ReservaEntity entity) throws BusinessLogicException {
-        LOGGER.info("Se inició el proceso para crear la Reserva");
-
-        if (persistence.find(entity.getId()) != null) {
-            throw new BusinessLogicException("Ya existe una Reserva con ese id");
+        if (entity.getIdHospedaje() == null || entity.getCedulaHuesped() == null || entity.getId() == null) {
+            throw new BusinessLogicException("No introdujo todos los valores");
         }
+        else{
+            if (hospedajeLogic.find(entity.getIdHospedaje()) == null) {
+                throw new BusinessLogicException("No existe ese HOSPEDAJE");
+            }
+            if (estudianteLogic.find(entity.getCedulaHuesped()) == null) {
+                throw new BusinessLogicException("No existe ese ESTUDIANTE");
+            }
+            if (persistence.find(entity.getId()) != null) {
+                throw new BusinessLogicException("Ya existe una Reserva con ese id");
+            }
+        }
+        EstudianteEntity estudianteEntity = estudianteLogic.find(entity.getCedulaHuesped());
+        HospedajeEntity hospedajeEntity = hospedajeLogic.find(entity.getIdHospedaje());
+        hospedajeLogic.agregarReserva(hospedajeEntity.getId(),entity);
+        estudianteLogic.agregarReserva(estudianteEntity.getId(),entity);
         return persistence.create(entity);
     }
-       /**
+
+    /**
      *
      * Obtener todas las Reservaes existentes en la base de datos.
      *
@@ -81,8 +97,8 @@ public class ReservaLogic {
      * Actualizar una Reserva.
      *
      * @param id: id de la Reserva para buscarla en la base de datos.
-     * @param entity: Reserva con los cambios para ser actualizada, por
-     * ejemplo el nombre.
+     * @param entity: Reserva con los cambios para ser actualizada, por ejemplo
+     * el nombre.
      * @return la Reserva con los cambios actualizados en la base de datos.
      */
     public ReservaEntity updateReserva(Long id, ReservaEntity entity) {
@@ -101,108 +117,103 @@ public class ReservaLogic {
     public void deleteReserva(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar Reserva con id={0}", id);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
-            persistence.delete(id);
+        persistence.delete(id);
 
-            LOGGER.log(Level.INFO, "Termina proceso de borrar Reserva con id={0}", id);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar Reserva con id={0}", id);
+    }
+
+    public HospedajeEntity getHospedaje(Long idReserva) throws BusinessLogicException {
+        ReservaEntity reserva = persistence.find(idReserva);
+        if (reserva == null) {
+            throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
         }
-    public HospedajeEntity getHospedaje(Long idReserva) throws BusinessLogicException{
-      ReservaEntity reserva=persistence.find(idReserva);
-      if (reserva==null){
-          throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
-      }
-      return reserva.getHospedaje();
-  }
-  public HospedajeEntity setHospedaje(Long idReserva, HospedajeEntity hospedaje) throws BusinessLogicException{
-      ReservaEntity reserva=persistence.find(idReserva);
-      if (reserva==null){
-          throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
-      }
-      reserva.setHospedaje(hospedaje);
-      persistence.update(reserva);
-      return hospedaje;
-  }
-  public EstudianteEntity getEstudiante(Long idReserva) throws BusinessLogicException{
-      ReservaEntity reserva=persistence.find(idReserva);
-      if (reserva==null){
-          throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
-      }
-      return reserva.getEstudiante();
-  }
-  public EstudianteEntity setEstudiante(Long idReserva, EstudianteEntity estudiante) throws BusinessLogicException{
-      ReservaEntity reserva=persistence.find(idReserva);
-      if (reserva==null){
-          throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
-      }
-      reserva.setEstudiante(estudiante);
-      persistence.update(reserva);
-      return estudiante;
-}
-   public void asociateReservaConHospedajeYEstudiante (Long idHospedaje, Long idEstudiante, ReservaEntity reserva) throws BusinessLogicException{
-      EstudianteEntity estudiante= estudianteLogic.find(idEstudiante);
-      HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
-      if(hospedaje==null || estudiante==null){
-          throw new BusinessLogicException("Usuario u hospedaje inválido");
-      }
-      reserva.setEstudiante(estudiante);
-      reserva.setHospedaje(hospedaje);
-      persistence.update(reserva);
-      
-   }
+        return reserva.getHospedaje();
     }
 
-        /**
-         * Agregar un book a la Reserva
-         *
-         * @param estudianteId del book a asociar
-         * @param ReservaId
-         * @return
-         
-    public EstudianteEntity setEstudiante(Long estudianteId Long ReservaId) {
-        ReservaEntity ReservaEntity = getReserva(ReservaId);
-        EstudianteEntity estudianteEntity = EstudianteLogic.getEstudiante(estudianteId);
-        EstudianteEntity.setReserva(EstudianteEntity);
-        return estudianteEntity;
+    public HospedajeEntity setHospedaje(Long idReserva, HospedajeEntity hospedaje) throws BusinessLogicException {
+        ReservaEntity reserva = persistence.find(idReserva);
+        if (reserva == null) {
+            throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
+        }
+        reserva.setHospedaje(hospedaje);
+        persistence.update(reserva);
+        return hospedaje;
     }
 
-    /**
-     * Borrar un book de una Reserva
-     *
-     * @param bookId
-     * @param ReservaId
-     
-    public void removeBook(Long bookId, Long ReservaId) {
-        ReservaEntity ReservaEntity = getReserva(ReservaId);
-        BookEntity book = bookLogic.getBook(bookId);
-        book.setReserva(null);
-        ReservaEntity.getBooks().remove(book);
+    public EstudianteEntity getEstudiante(Long idReserva) throws BusinessLogicException {
+        ReservaEntity reserva = persistence.find(idReserva);
+        if (reserva == null) {
+            throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
+        }
+        return reserva.getEstudiante();
     }
 
-    /**
-     * Remplazar el estudiante de una Reserva
-     *
-     * @param 
-     * @param ReservaId
-     * @return
-     
-    public EstudianteEntity replaceEstudiante(Long ReservaId, EstudianteEntity estudiante) {
-        ReservaEntity reserva = getReserva(ReservaId);
+    public EstudianteEntity setEstudiante(Long idReserva, EstudianteEntity estudiante) throws BusinessLogicException {
+        ReservaEntity reserva = persistence.find(idReserva);
+        if (reserva == null) {
+            throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
+        }
         reserva.setEstudiante(estudiante);
-        
+        persistence.update(reserva);
         return estudiante;
     }
 
-    /**
-     * Retorna todos los books asociados a una Reserva
-     *
-     * @param ReservaId
-     * @return
-     
-    public EstudianteEntity getEstudiante(Long ReservaId) {
-        return getReserva(ReservaId).getEstudiante();
+    public void asociateReservaConHospedajeYEstudiante(Long idHospedaje, Long idEstudiante, ReservaEntity reserva) throws BusinessLogicException {
+        EstudianteEntity estudiante = estudianteLogic.find(idEstudiante);
+        HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
+        if (hospedaje == null || estudiante == null) {
+            throw new BusinessLogicException("Usuario u hospedaje inválido");
+        }
+        reserva.setEstudiante(estudiante);
+        reserva.setHospedaje(hospedaje);
+        persistence.update(reserva);
+
     }
+}
 
-    */
-
-   
-    
-
+/**
+ * Agregar un book a la Reserva
+ *
+ * @param estudianteId del book a asociar
+ * @param ReservaId
+ * @return
+ *
+ * public EstudianteEntity setEstudiante(Long estudianteId Long ReservaId) {
+ * ReservaEntity ReservaEntity = getReserva(ReservaId); EstudianteEntity
+ * estudianteEntity = EstudianteLogic.getEstudiante(estudianteId);
+ * EstudianteEntity.setReserva(EstudianteEntity); return estudianteEntity; }
+ *
+ * /**
+ * Borrar un book de una Reserva
+ *
+ * @param bookId
+ * @param ReservaId
+ *
+ * public void removeBook(Long bookId, Long ReservaId) { ReservaEntity
+ * ReservaEntity = getReserva(ReservaId); BookEntity book =
+ * bookLogic.getBook(bookId); book.setReserva(null);
+ * ReservaEntity.getBooks().remove(book); }
+ *
+ * /**
+ * Remplazar el estudiante de una Reserva
+ *
+ * @param
+ * @param ReservaId
+ * @return
+ *
+ * public EstudianteEntity replaceEstudiante(Long ReservaId, EstudianteEntity
+ * estudiante) { ReservaEntity reserva = getReserva(ReservaId);
+ * reserva.setEstudiante(estudiante);
+ *
+ * return estudiante; }
+ *
+ * /**
+ * Retorna todos los books asociados a una Reserva
+ *
+ * @param ReservaId
+ * @return
+ *
+ * public EstudianteEntity getEstudiante(Long ReservaId) { return
+ * getReserva(ReservaId).getEstudiante(); }
+ *
+ */

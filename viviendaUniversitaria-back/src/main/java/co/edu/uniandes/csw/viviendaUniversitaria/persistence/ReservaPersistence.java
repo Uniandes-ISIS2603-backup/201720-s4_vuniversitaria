@@ -34,6 +34,7 @@ public class ReservaPersistence {
         /* Note que hacemos uso de un método propio de EntityManager para persistir la Default en la base de datos.
         Es similar a "INSERT INTO table_codigo (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);" en SQL.
          */
+        entity.setId(0L);
         em.persist(entity);
         LOGGER.info("Creando un default nuevo");
         return entity;

@@ -23,14 +23,14 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author je.bejarano10
  */
 @Entity
-public class ReservaEntity implements Serializable {
+public class ReservaEntity extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
 
-    private int cedulaHuesped;
-    private int idHospedaje;
+    private Long cedulaHuesped;
+    private Long idHospedaje;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaInicio;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -80,19 +80,19 @@ public class ReservaEntity implements Serializable {
         this.id = id;
     }
 
-    public int getCedulaHuesped() {
+    public Long getCedulaHuesped() {
         return cedulaHuesped;
     }
 
-    public void setCedulaHuesped(int cedulaHuesped) {
+    public void setCedulaHuesped(Long cedulaHuesped) {
         this.cedulaHuesped = cedulaHuesped;
     }
 
-    public int getIdHospedaje() {
+    public Long getIdHospedaje() {
         return idHospedaje;
     }
 
-    public void setIdHospedaje(int idHospedaje) {
+    public void setIdHospedaje(Long idHospedaje) {
         this.idHospedaje = idHospedaje;
     }
 

@@ -30,22 +30,34 @@ ALTER TABLE UniversidadEntity ALTER COLUMN id RESTART WITH 1;
 
 --Universidad
 
-insert into UniversidadEntity (nombre) values ('Ardene');
-insert into UniversidadEntity (nombre) values ('Della');
-insert into UniversidadEntity (nombre) values ('Fredrick');
-insert into UniversidadEntity (nombre) values ('Leonora');
-insert into UniversidadEntity (nombre) values ('Emiline');
-insert into UniversidadEntity (nombre) values ('Marthe');
-insert into UniversidadEntity (nombre) values ('Alma');
-insert into UniversidadEntity (nombre) values ('Amery');
-insert into UniversidadEntity (nombre) values ('Elmira');
-insert into UniversidadEntity (nombre) values ('Roseann');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad Nacional de Colombia','http://s3-eu-west-1.amazonaws.com/rankia/images/valoraciones/0013/6061/nacional.jpg?1389192659');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad de Pamplona','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Escudo_Universidad_de_Pamplona.svg/1200px-Escudo_Universidad_de_Pamplona.svg.png');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad de Antioquia','http://portal.udea.edu.co/wps/wcm/connect/udea/3ef4bbd1-4ae7-4c87-b843-685c6f017501/logo-udea.png?MOD=AJPERES&CACHEID=ROOTWORKSPACE.Z18_L8L8H8C0LODDC0A6SSS2AD2GO4-3ef4bbd1-4ae7-4c87-b843-685c6f017501-lr.XbEn');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad Libre','http://www.unilibre.edu.co/cartagena/images/Logo/ulibre_ctg_h.png');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad de Cartagena Campus San Agustin','http://www.unicartagena.edu.co/images/identificadores/logotipo-lineal-oficial-unicartagena.png');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad Distrital Francisco José de Caldas','http://laud.udistrital.edu.co/sites/default/files/images/Escudo%20UD.jpg');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad EAN - Sede Nogal','https://upload.wikimedia.org/wikipedia/commons/e/e3/Escudo_de_la_Universidad_EAN_de_Bogot%C3%A1%2C_Colombia.jpg');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad Cooperativa de Colombia','http://equiposdevideoconferencias.com/wp-content/uploads/2017/08/logo-con-fondo-transparente.png');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad de los Andes','https://uniandes.edu.co/sites/default/files/logo-uniandes.png');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad Piloto de Colombia','http://www.unipiloto.edu.co/wp-content/uploads/2017/02/IMLogoHorizontalJPG.jpg');
+--Consulta
+
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra 45,Bógota',4.638268,-74.084003);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 5 #4-19, Pamplona, Norte de Santander', 7.386456, -72.650060);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 67 #53 - 108, Medellín, Antioquia', 6.350104, -75.560991);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 8 #580, Bogotá', 4.595211, -74.075549);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 6 #36-100, Cartagena, Bolívar',10.426046, -75.549706);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 7 #40B - 53, Bogotá', 4.628266, -74.065421);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 79 #11-45, Bogotá, Cundinamarca',4.663756, -74.055060);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 14a #40A-39, Bogotá',4.631761, -74.068707);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('a 1-99,, Cl. 22 #119,Bógota',4.604608, -74.065890);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 45a #9-77, Bogotá',4.632512, -74.065310);
 
 --pruebas EstudianteEntity
-insert into EstudianteEntity (cedula, nombre) values (1, 'amilkar');
-insert into EstudianteEntity (cedula, nombre) values (2, 'camilo');
-insert into EstudianteEntity (cedula, nombre) values (3, 'kelly');
-insert into EstudianteEntity (cedula, nombre) values (4, 'william');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (1, 'amilkar','amilkar', '123');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (2, 'camilo','camilo', '124');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (3, 'kelly','kelly', '125');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (4, 'william','william', '126');
 
 --pruebas OrigenEntity
 insert into OrigenEntity ( name) values ( 'bucaramanga');
@@ -101,17 +113,16 @@ values ('Hospedaje 7', 'Albergues', 44,0,'http://www.xochitla.org.mx/imagenes/va
 
 -- Arrendador
 
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (3177523825303, 'Milo Pimentel', 'https://cdn3.uvnimg.com/dims4/default/1463aea/2147483647/resize/860x645%3E/quality/75/?url=https%3A%2F%2Fcdn1.uvnimg.com%2Fe9%2F83%2F55755c2844dc825c1fe2b3b8c026%2Fscreen-shot-2016-11-03-at-11.54.32%20AM.png');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (968668294465, 'Bertrand Velez', 'http://i.eldiario.com.ec/fotos-manabi-ecuador/2015/12/20151211022808_a-a-tres-da-as-de-la-gran-final.jpg');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (203123592715, 'Papageno Colon', 'https://pbs.twimg.com/media/CyIndfkW8AA39Rm.jpg:large');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (7095082710217, 'Ermanno Jesus', 'https://s-media-cache-ak0.pinimg.com/originals/b6/ae/18/b6ae189c11a971a1af4d17c1188a73ed.jpg');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (8364709267017, 'Lennie Camacho', 'https://pmcvarietylatino.files.wordpress.com/2016/08/screen-shot-2016-08-02-at-6-07-35-pm.png');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (3026925437839, 'Maurie Buffay', 'https://media1.popsugar-assets.com/files/thumbor/MBHtesX6rzydLZ-5oMHGS28vzpQ/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2014/07/28/951/n/1922283/91c8d314f242e434_thumb_temp_cover_file20701441406582209/i/Phoebe-Buffay-Friends-GIFs.jpg');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (7687381485806, 'Monique Geller', 'https://friendv.files.wordpress.com/2013/08/monica-geller.jpg');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (3991096447077, 'Andeee Green', 'http://akns-images.eonline.com/eol_images/Entire_Site/2014111/rs_560x415-140211085529-560.jennifer-aniston-friends.ls.21114_copy.jpg');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (1163763388482, 'Maddalena Collins', 'https://i.pinimg.com/736x/28/a3/c2/28a3c249e7963ae6dd1063c2157a8735--lily-himym-lily-aldrin.jpg');
-insert into APP.ARRENDADORENTITY (id, nombre, rutaImagen) values (3489848653801, 'Astrix Pena', 'https://cbsb96radio.files.wordpress.com/2015/06/gettyimages-462704428.jpg');
-
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a0', 'er', 3177523825303, 'Milo Pimentel', 'https://cdn3.uvnimg.com/dims4/default/1463aea/2147483647/resize/860x645%3E/quality/75/?url=https%3A%2F%2Fcdn1.uvnimg.com%2Fe9%2F83%2F55755c2844dc825c1fe2b3b8c026%2Fscreen-shot-2016-11-03-at-11.54.32%20AM.png');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a1', 'er', 968668294465, 'Bertrand Velez', 'http://i.eldiario.com.ec/fotos-manabi-ecuador/2015/12/20151211022808_a-a-tres-da-as-de-la-gran-final.jpg');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a2', 'er', 203123592715, 'Papageno Colon', 'https://pbs.twimg.com/media/CyIndfkW8AA39Rm.jpg:large');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a3', 'er', 7095082710217, 'Ermanno Jesus', 'https://s-media-cache-ak0.pinimg.com/originals/b6/ae/18/b6ae189c11a971a1af4d17c1188a73ed.jpg');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a4', 'e12', 8364709267017, 'Lennie Camacho', 'https://pmcvarietylatino.files.wordpress.com/2016/08/screen-shot-2016-08-02-at-6-07-35-pm.png');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a5', 'e21', 3026925437839, 'Maurie Buffay', 'https://media1.popsugar-assets.com/files/thumbor/MBHtesX6rzydLZ-5oMHGS28vzpQ/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2014/07/28/951/n/1922283/91c8d314f242e434_thumb_temp_cover_file20701441406582209/i/Phoebe-Buffay-Friends-GIFs.jpg');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a6', 'e21', 7687381485806, 'Monique Geller', 'https://friendv.files.wordpress.com/2013/08/monica-geller.jpg');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a7', 'e21', 3991096447077, 'Andeee Green', 'http://akns-images.eonline.com/eol_images/Entire_Site/2014111/rs_560x415-140211085529-560.jennifer-aniston-friends.ls.21114_copy.jpg');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a8', 'e21', 1163763388482, 'Maddalena Collins', 'https://i.pinimg.com/736x/28/a3/c2/28a3c249e7963ae6dd1063c2157a8735--lily-himym-lily-aldrin.jpg');
+insert into APP.ARRENDADORENTITY (nombreUsuario, contrasenia, id, nombre, rutaImagen) values ('a9', 'e21', 3489848653801, 'Astrix Pena', 'https://cbsb96radio.files.wordpress.com/2015/06/gettyimages-462704428.jpg');
 --Calificacion
 
 insert into APP.CALIFICACIONENTITY (valoracion, fecha, comentario) values (60, '12/12/2000', 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.');
@@ -123,29 +134,6 @@ insert into APP.CALIFICACIONENTITY (valoracion, fecha, comentario) values (61, '
 insert into APP.CALIFICACIONENTITY (valoracion, fecha, comentario) values (36, '12/12/2000', 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.');
 insert into APP.CALIFICACIONENTITY (valoracion, fecha, comentario) values (46, '12/12/2000', 'Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.');
 insert into APP.CALIFICACIONENTITY (valoracion, fecha, comentario) values (43, '12/12/2000', 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.');
-
---Consulta
-
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('descipcion', 20,20);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Kamillah', 29, 61);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Ora', 13, 9);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Towny', 19, 71);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Batsheva', 25, 62);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Modestine', 17, 92);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Sande', 90, 11);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Willey', 10, 64);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Marijo', 85, 37);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Danette', 90, 23);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Gabriel', 59, 93);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Diarmid', 84, 80);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('George', 26, 33);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Aleta', 91, 30);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Vickie', 73, 8);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Ailbert', 28, 41);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Zachery', 46, 75);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Eilis', 60, 70);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Dorelle', 86, 39);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Rhoda', 62, 3);
 
 --Servicios
 insert into ServiciosEntity (descripcion, costo) values ('Marietta', 96.55);
@@ -201,17 +189,17 @@ insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje
 
 -- Ligares Interes
 
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Juan Valdez',' Perfecto lugar para un cafe 100% colombiano ', 8, 'http://www.masfranquicias.com/wp-content/uploads/2016/02/Juan_Valdez_Caf%C3%A917_Masfranquicias.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Exito','almacen de todo tipo de suministros ', 97, 'http://static.hsbnoticias.com/sites/default/files/styles/original/public/gallery/2015/03/mg-9788r.jpg?itok=khDChg30');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Banco davivienda','Banco davivienda perfecto para realizar pagos,giros,etc', 25, 'https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto,w_1200/v1470935784/entity/image/file/512/000/57acb2e82f41f3703b000512.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Parque la colina','centro comercial que cuenta con salas de cine, bancos, zona de comidas y diferentes almacenes de marca', 62, 'http://pyd.com.co/wp-content/uploads/2017/08/internet-parque-colina.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('MacDonalds',' restaurante MacDonalds con parqueadero y auto mac', 30, 'http://www.rchconstructores.com/wp-content/uploads/2011/08/mcdonalds01.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Clinica Colina','hospital privado', 67, 'https://imgcdn.larepublica.co/cms/2013/05/06224016/colina0507-1000.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('abraham lincoln','colegio privado bilingue ', 17, 'http://locationcolombia.com/wp-content/uploads/2014/05/BOGOTA-Colegio-Abraham-Lincoln-CIELITO-LINDO-1.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Petrobras','estacion de gasolina', 89, 'http://cdn.colombia.com/sdi/2014/03/07/a4a5db94d8bc431e98b54c02ade342af.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Comercial Papelera','papeleria con servicio de 24 horas', 77, 'https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto,w_1200/v1404939232/entity/image/file/022/000/53bdabdfb9dd5d74fb000022.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Bogota beer company','Bar', 74, 'http://cr00.epimg.net/radio/imagenes/2015/09/22/nacional/1442956730_087930_1442957047_noticia_normal.jpg');
-insert into LugaresInteresEntity (name,descripcion, distancia, rutaImagen) values ('Subway','restaurante de sandwich', 28, 'http://www.impulsonegocios.com/resources/original/IN_2015/-norberto20152/000subway070415.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Juan Valdez',' Perfecto lugar para un cafe 100% colombiano ', 'http://www.masfranquicias.com/wp-content/uploads/2016/02/Juan_Valdez_Caf%C3%A917_Masfranquicias.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Exito','almacen de todo tipo de suministros ', 'http://static.hsbnoticias.com/sites/default/files/styles/original/public/gallery/2015/03/mg-9788r.jpg?itok=khDChg30');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Banco davivienda','Banco davivienda perfecto para realizar pagos,giros,etc', 'https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto,w_1200/v1470935784/entity/image/file/512/000/57acb2e82f41f3703b000512.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Parque la colina','centro comercial que cuenta con salas de cine, bancos, zona de comidas y diferentes almacenes de marca', 'http://pyd.com.co/wp-content/uploads/2017/08/internet-parque-colina.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('MacDonalds',' restaurante MacDonalds con parqueadero y auto mac', 'http://www.rchconstructores.com/wp-content/uploads/2011/08/mcdonalds01.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Clinica Colina','hospital privado', 'https://imgcdn.larepublica.co/cms/2013/05/06224016/colina0507-1000.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('abraham lincoln','colegio privado bilingue ', 'http://locationcolombia.com/wp-content/uploads/2014/05/BOGOTA-Colegio-Abraham-Lincoln-CIELITO-LINDO-1.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Petrobras','estacion de gasolina', 'http://cdn.colombia.com/sdi/2014/03/07/a4a5db94d8bc431e98b54c02ade342af.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Comercial Papelera','papeleria con servicio de 24 horas', 'https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto,w_1200/v1404939232/entity/image/file/022/000/53bdabdfb9dd5d74fb000022.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Bogota beer company','Bar', 'http://cr00.epimg.net/radio/imagenes/2015/09/22/nacional/1442956730_087930_1442957047_noticia_normal.jpg');
+insert into LugaresInteresEntity (name,descripcion, rutaImagen) values ('Subway','restaurante de sandwich', 'http://www.impulsonegocios.com/resources/original/IN_2015/-norberto20152/000subway070415.jpg');
 
 -- Reglas
 insert into REGLAENTITY (regla,hospedaje_id) values ('Se pohiben las mascotas',1);
@@ -282,12 +270,16 @@ update ServiciosEntity set hospedaje_id =19 where id =19;
 update ServiciosEntity set hospedaje_id =19 where id =20;
 
 
-update UniversidadEntity set UBICACION_ID = 7 where id = 1;
-update UniversidadEntity set UBICACION_ID = 8 where id = 2;
-update UniversidadEntity set UBICACION_ID = 9 where id = 3;
-update UniversidadEntity set UBICACION_ID = 10 where id = 4;
-update UniversidadEntity set UBICACION_ID = 11 where id = 5;
-update UniversidadEntity set UBICACION_ID = 12 where id = 6;
+update UniversidadEntity set UBICACION_ID = 1 where id = 1;
+update UniversidadEntity set UBICACION_ID = 2 where id = 2;
+update UniversidadEntity set UBICACION_ID = 3 where id = 3;
+update UniversidadEntity set UBICACION_ID = 4 where id = 4;
+update UniversidadEntity set UBICACION_ID = 5 where id = 5;
+update UniversidadEntity set UBICACION_ID = 6 where id = 6;
+update UniversidadEntity set UBICACION_ID = 7 where id = 7;
+update UniversidadEntity set UBICACION_ID = 8 where id = 8;
+update UniversidadEntity set UBICACION_ID = 9 where id = 9;
+update UniversidadEntity set UBICACION_ID = 10 where id = 10;
 
 select * from APP.HospedajeEntity;
 select * from APP.ARRENDADORENTITY;

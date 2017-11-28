@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("universidadModule", ['ui.router']);
+    var mod = ng.module("universidadModule", ['ui.router','uiGmapgoogle-maps']);
     mod.constant("universidadesContext", "api/universidades");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/universidades/';
@@ -33,6 +33,11 @@
                     'detailView': {
                         templateUrl: basePath + 'universidades.detail.html',
                         controller: 'universidadCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'mapaView': {
+                        templateUrl: 'src/modules/mapa/mapa.html',
+                        controller: 'mapaCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

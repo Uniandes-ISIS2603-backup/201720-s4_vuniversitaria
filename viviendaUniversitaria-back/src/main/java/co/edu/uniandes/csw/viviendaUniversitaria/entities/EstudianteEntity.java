@@ -46,6 +46,16 @@ public class EstudianteEntity extends BaseEntity implements Serializable //exten
     
     private String nombre;
     
+    /**
+     * Nombre de usuario
+     */
+    private String nombreUsuario;
+    
+    /**
+     * Conrasenia de usuario
+     */
+    private String contrasenia;
+    
     @PodamExclude
     @ManyToOne
     private OrigenEntity origen;
@@ -112,6 +122,37 @@ public class EstudianteEntity extends BaseEntity implements Serializable //exten
         this.facturas = facturas;
     }
 
+    /**
+     * Retorna la contrasenuia de usuario.
+     * @return contrasenia
+     */
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    /**
+     * Cambia la contrasenia de usuario.
+     * @param Contrasenia nueva contrasenia.
+     */
+    public void setContrasenia(String Contrasenia) {
+        this.contrasenia = Contrasenia;
+    }
+
+    /**
+     * Retorna el nombre de usuario
+     * @return nombre de usuario
+     */
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    /**
+     * Cmbia el nombre de susario
+     * @param nombreUsuario nuevo nombre de usuario.
+     */
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
     
     @Override
     public boolean equals(Object obj) {
