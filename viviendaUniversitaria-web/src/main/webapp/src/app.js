@@ -14,7 +14,6 @@
         'arrendadorModule',
         'lugaresInteresModule',
         'hospedajeModule',
-        'mapaModule',
         'loginModule',
         'homeModule'
     ]);
