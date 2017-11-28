@@ -5,14 +5,10 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -20,14 +16,10 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author je.bejarano10
+ * @author a.eslava
  */
 @Entity
 public class ReservaEntity extends BaseEntity{
-
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
 
     private Long cedulaHuesped;
     private Long idHospedaje;
@@ -37,7 +29,7 @@ public class ReservaEntity extends BaseEntity{
     private Date fechaFin;
 
     @PodamExclude
-    @OneToOne(mappedBy = "reserva", fetch = FetchType.LAZY)
+    @OneToOne
     private EstudianteEntity estudiante;
     
     @PodamExclude

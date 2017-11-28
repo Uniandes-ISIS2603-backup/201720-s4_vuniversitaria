@@ -30,7 +30,12 @@ public class OrigenLogic extends GenericLogic<OrigenEntity> {
         super(persistence, OrigenEntity.class);
         this.estudianteLogic=asd;
     }
-    
+    /**
+     * valida el JSON
+     * @param entity
+     * @return
+     * @throws BusinessLogicException 
+     */
     @Override
     public OrigenEntity create(OrigenEntity entity) throws BusinessLogicException {
         if(entity.getName() == null){
@@ -38,7 +43,13 @@ public class OrigenLogic extends GenericLogic<OrigenEntity> {
         }
         return super.create(entity);
     }
-    //aqui creo la relacion Origen-Estudiante
+    /**
+     * aqui creo la relacion Origen-Estudiante
+     * @param cedula
+     * @param idOrigen
+     * @return
+     * @throws BusinessLogicException 
+     */
     public EstudianteEntity createEstudiante(Long cedula, Long idOrigen) throws BusinessLogicException {
         OrigenEntity origenEntity = find(idOrigen);
         EstudianteEntity estudianteEntity = estudianteLogic.find(cedula);
@@ -61,7 +72,14 @@ public class OrigenLogic extends GenericLogic<OrigenEntity> {
         list.clear();
     }
     
-    //este es el get para un estudiante en la relacion Origen-Estudiante
+    
+    /**
+     * este es el get para un estudiante en la relacion Origen-Estudiante
+     * @param origenId
+     * @param id
+     * @return
+     * @throws BusinessLogicException 
+     */
     public EstudianteEntity findEstudiantes(Long origenId, Long id) throws BusinessLogicException {
         List<EstudianteEntity> estudiantes = find(origenId).getEstudiantes();
         EstudianteEntity estudiante = estudianteLogic.find(id);
@@ -72,7 +90,12 @@ public class OrigenLogic extends GenericLogic<OrigenEntity> {
         throw new BusinessLogicException("El estudiante no está asociado al origen");
 
     }
-    //Este es el getAll 
+    /**
+     * Este es el getAll 
+     * @param idOrigen
+     * @return
+     * @throws BusinessLogicException 
+     */
     public List<EstudianteEntity> findAllEstudiantes(Long idOrigen) throws BusinessLogicException {
         return find(idOrigen).getEstudiantes();
     }
