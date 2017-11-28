@@ -7,7 +7,7 @@
             $http.get(universidadesContext).then(function (response) {
                 $scope.universidadesRecords = response.data;
             });
-            
+
             var lat = $scope.latitud;
             var long = $scope.longitud;
             if ((idUni !== undefined) && (idUni !== null)) {
@@ -16,24 +16,29 @@
                     $scope.currentUniversidad = response.data;
                     lat = response.data.ubicacion.latitud;
                     long = response.data.ubicacion.longitud;
-                    
-                   $scope.map = {center: {latitude: lat, longitude: long}, zoom: 17, markers: [
-                    {
-                        id: 1,
-                        latitude: lat,
-                        longitude: long,
-                        showWindow: false,
-                        options: {
-                            animation: 1,
-                            labelAnchor: "22 0",
-                            labelClass: "marker-labels"
-                        }
-                    }],
-            };
-            $scope.show = true;
+
+
+                    $scope.map = {
+                        center: {latitude: lat, longitude: long},
+                        zoom: 17,
+                        bound:{},
+                        markers: [
+                            {
+                                id: 1,
+                                latitude: lat,
+                                longitude: long,
+                                showWindow: false,
+                                options: {
+                                    animation: 1,
+                                    labelAnchor: "22 0",
+                                    labelClass: "marker-labels"
+                                }
+                            }],
+                    };
+                    $scope.show = true;
                 });
             }
-            
+
 
         }
     ]);
