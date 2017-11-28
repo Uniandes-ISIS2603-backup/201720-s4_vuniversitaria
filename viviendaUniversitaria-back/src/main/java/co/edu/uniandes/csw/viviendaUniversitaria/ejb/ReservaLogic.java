@@ -17,7 +17,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author je.bejarano10
+ * @author a.eslava
  */
 /**
  * Clase que permite gestionar y validar las reglas de negocio relacionadas con
@@ -57,7 +57,8 @@ public class ReservaLogic {
         HospedajeEntity hospedajeEntity = hospedajeLogic.find(entity.getIdHospedaje());
         hospedajeLogic.agregarReserva(hospedajeEntity.getId(),entity);
         estudianteLogic.agregarReserva(estudianteEntity.getId(),entity);
-        return persistence.create(entity);
+        ReservaEntity rta = persistence.create(entity);
+        return rta;
     }
 
     /**
@@ -113,13 +114,13 @@ public class ReservaLogic {
      * Borrar un Reserva
      *
      * @param id: id de la Reserva a borrar
+     * @throws co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException
      */
     public void deleteReserva(Long id) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar Reserva con id={0}", id);
-        // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
+        ReservaEntity entity = getReserva(id);
+        
+        
         persistence.delete(id);
-
-        LOGGER.log(Level.INFO, "Termina proceso de borrar Reserva con id={0}", id);
     }
 
     public HospedajeEntity getHospedaje(Long idReserva) throws BusinessLogicException {
