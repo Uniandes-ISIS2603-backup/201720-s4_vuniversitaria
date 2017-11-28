@@ -34,7 +34,7 @@ insert into UniversidadEntity (nombre,imagen) values ('Universidad Nacional de C
 insert into UniversidadEntity (nombre,imagen) values ('Universidad de Pamplona','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Escudo_Universidad_de_Pamplona.svg/1200px-Escudo_Universidad_de_Pamplona.svg.png');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad de Antioquia','http://portal.udea.edu.co/wps/wcm/connect/udea/3ef4bbd1-4ae7-4c87-b843-685c6f017501/logo-udea.png?MOD=AJPERES&CACHEID=ROOTWORKSPACE.Z18_L8L8H8C0LODDC0A6SSS2AD2GO4-3ef4bbd1-4ae7-4c87-b843-685c6f017501-lr.XbEn');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad Libre','http://www.unilibre.edu.co/cartagena/images/Logo/ulibre_ctg_h.png');
-insert into UniversidadEntity (nombre,imagen) values ('Universidad de Cartagena Campus San Agustin','http://www.unicartagena.edu.co/images/identificadores/logotipo-lineal-oficial-unicartagena.png');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad de Cartagena','http://www.unicartagena.edu.co/images/identificadores/logotipo-lineal-oficial-unicartagena.png');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad Distrital Francisco José de Caldas','http://laud.udistrital.edu.co/sites/default/files/images/Escudo%20UD.jpg');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad EAN - Sede Nogal','https://upload.wikimedia.org/wikipedia/commons/e/e3/Escudo_de_la_Universidad_EAN_de_Bogot%C3%A1%2C_Colombia.jpg');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad Cooperativa de Colombia','http://equiposdevideoconferencias.com/wp-content/uploads/2017/08/logo-con-fondo-transparente.png');
@@ -43,10 +43,10 @@ insert into UniversidadEntity (nombre,imagen) values ('Universidad Piloto de Col
 --Consulta
 
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra 45,Bógota',4.638268,-74.084003);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 5 #4-19, Pamplona, Norte de Santander', 7.386456, -72.650060);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 67 #53 - 108, Medellín, Antioquia', 6.350104, -75.560991);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 8 #580, Bogotá', 4.595211, -74.075549);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 6 #36-100, Cartagena, Bolívar',10.426046, -75.549706);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 5 #4-19, Pamplona, Norte de Santander',7.108983, -73.110102);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 67 #53 - 108, Medellín, Antioquia', 4.625176, -74.074887);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 8 #580, Bogotá', 4.594794, -74.075559);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 6 #36-100, Cartagena, Bolívar',10.425718, -75.549864);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 7 #40B - 53, Bogotá', 4.628266, -74.065421);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 79 #11-45, Bogotá, Cundinamarca',4.663756, -74.055060);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 14a #40A-39, Bogotá',4.631761, -74.068707);

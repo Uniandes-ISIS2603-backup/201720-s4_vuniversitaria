@@ -37,7 +37,7 @@
                     },
                     'mapaView': {
                         templateUrl: 'src/modules/mapa/mapa.html',
-                        controller: 'mapaCtrl',
+                        controller: 'universidadCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
