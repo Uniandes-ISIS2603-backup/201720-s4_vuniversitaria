@@ -83,13 +83,10 @@ public class ReservaLogic {
      * @return la Reserva solicitada por medio de su id.
      */
     public ReservaEntity getReserva(Long id) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar Reserva con id={0}", id);
-        // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
         ReservaEntity Reserva = persistence.find(id);
         if (Reserva == null) {
             LOGGER.log(Level.SEVERE, "La Reserva con el id {0} no existe", id);
         }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar Reserva con id={0}", id);
         return Reserva;
     }
 
@@ -117,9 +114,12 @@ public class ReservaLogic {
      * @throws co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException
      */
     public void deleteReserva(Long id) throws BusinessLogicException {
-        ReservaEntity entity = getReserva(id);
-        
-        
+        if (getReserva(id) == null) {
+            throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
+
+        }       
+        estudianteLogic.removeReserva(getEstudiante(id).getId(), id);
+        hospedajeLogic.removeReserva(getHospedaje(id).getId(),id);
         persistence.delete(id);
     }
 

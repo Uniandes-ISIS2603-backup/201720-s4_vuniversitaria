@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReservaEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.HospedajePersistence;
+import java.util.List;
 import java.util.logging.Level;
 import javax.ws.rs.WebApplicationException;
 import javax.ejb.Stateless;
@@ -133,5 +134,22 @@ public class HospedajeLogic extends GenericLogic<HospedajeEntity> {
         hospedaje.getReservas().add(reservaEntity);
         reservaEntity.setHospedaje(hospedaje);
         return find(idHospedaje);
+    }
+
+/**
+ * 
+ * @param idHospedaje
+ * @param idReserva
+ * @throws BusinessLogicException 
+ */
+    public void removeReserva(Long idHospedaje, Long idReserva) throws BusinessLogicException {
+        ReservaEntity reservaEntity = new ReservaEntity();
+        reservaEntity.setId(idReserva);
+        List<ReservaEntity> list = find(idHospedaje).getReservas();
+        int i = list.indexOf(reservaEntity);
+        if (i < 0) {
+            throw new BusinessLogicException("no existe "+idReserva);
+        }
+        list.remove(reservaEntity);
     }
 }
