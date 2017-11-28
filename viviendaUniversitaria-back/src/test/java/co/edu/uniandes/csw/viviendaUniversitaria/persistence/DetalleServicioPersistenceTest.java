@@ -112,7 +112,7 @@ public class DetalleServicioPersistenceTest {
         Assert.assertNotNull(result);
         DetalleServicioEntity entity = em.find(DetalleServicioEntity.class, result.getId());
         Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getCantidad(), entity.getCantidad());
+        Assert.assertEquals(newEntity.getSubTotal(), entity.getSubTotal());
     }
 
     /**
@@ -126,7 +126,7 @@ public class DetalleServicioPersistenceTest {
         newEntity.setId(entity.getId());
         persistence.update(newEntity);
         DetalleServicioEntity resp = em.find(DetalleServicioEntity.class, entity.getId());
-        Assert.assertEquals(newEntity.getCantidad(), resp.getCantidad());
+        Assert.assertEquals(newEntity.getSubTotal(), resp.getSubTotal());
     }
 
     /**
@@ -148,7 +148,7 @@ public class DetalleServicioPersistenceTest {
         DetalleServicioEntity entity = data.get(0);
         DetalleServicioEntity newEntity = persistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getCantidad(), entity.getCantidad());
+        Assert.assertEquals(newEntity.getSubTotal(), entity.getSubTotal());
     }
 
     /**
