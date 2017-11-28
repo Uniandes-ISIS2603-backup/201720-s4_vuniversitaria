@@ -11,30 +11,33 @@
     <br>
     <br>
     <div class="row">
-        <div class="center-block col-sm-7 col-md-7 col-lg-7 col-xs-7">
+        <div class="center-block col-sm-6 col-md-6 col-lg-6 col-xs-6">
             <img class="imagen-detalle" src="{{hospedajeActivo.rutaImagen}}"  >
         </div>
-        <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
-            <input type="button" value="Editar" class="btn btn-warning btn-lg" ui-sref="hospedajeActualizar({idHospedaje: hospedajeActivo.id})">
+        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador' || true">
+            <div class="row">
+                <input type="button" value="Editar" class="btn btn-warning btn-lg col-sm-5 col-md-5 col-lg-5 col-xs-5" ui-sref="hospedajeActualizar({idHospedaje: hospedajeActivo.id})">
+                <p class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></p>
+                <input type="button" value="ELiminar" ui-sref="hospedajeEliminar({idHospedaje: hospedajeActivo.id})" class="btn btn-danger btn-lg col-sm-5 col-md-5 col-lg-5 col-xs-5">
+            </div>
             <br>
             <br>
-            <input type="button" value="ELiminar" ui-sref="hospedajeEliminar({idHospedaje: hospedajeActivo.id})" class="btn btn-danger btn-lg">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4>Información general</h4>
+                </div>
+                <div class="panel-body">
+                    TIPO ARRENDAMIENTO: {{hospedajeActivo.tipoArrendamiento}} <br>
+                    VALORACION: {{hospedajeActivo.valoracion}} <br>
+                    DESCRIPCION: {{hospedajeActivo.descripcion}} <br>
+                    DIRECCION: ????
+                </div>
+            </div>
         </div>
     </div>
     <br>
     <br>
-    <br>
-    <br>
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h4>Información general</h4>
-        </div>
-        <div class="panel-body">
-            TIPO ARRENDAMIENTO: {{hospedajeActivo.tipoArrendamiento}} <br>
-            VALORACION: {{hospedajeActivo.valoracion}} <br>
-            DESCRIPCION: {{hospedajeActivo.descripcion}}
-        </div>
-    </div>
+    <br>    
     <br>
     <div class="panel panel-info">
         <div class="panel-heading">
@@ -45,66 +48,66 @@
         </div>
     </div>
     <br>
-    
+
     <br>
     <div class="panel panel-info">
         <div class="panel-heading">
             <h4>Servicios</h4>
             <br>
-            <a class="btn btn-info" ui-sref="serviciosCreate({idHospedaje:hospedajeActivo.id})"><span class="glyphicon glyphicon-plus-sign"></span> Add new servicio</a>
+            <a class="btn btn-info" ui-sref="serviciosCreate({idHospedaje:hospedajeActivo.id})" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'"><span class="glyphicon glyphicon-plus-sign"></span> Add new servicio</a>
         </div>
-  <table class="table table-striped">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Descripcion</th>
-      <th scope="col">Costo</th>
-      <th scope="col" class="col-lg-offset-12">Actions</th>
-    </tr>
-  </thead>
-  <tbody ng-repeat="servicios in hospedajeActivo.servicios">
-      <tr>
-          <td>{{servicios.id}}</td>
-          <td>{{servicios.descripcion}}</td>
-          <td>{{servicios.costo}}</td>
-          <td><a class="btn btn-default btn-sm" ui-sref="serviciosUpdate({idHospedaje:hospedajeActivo.id, idServicio:servicios.id})">
-                  <span class="glyphicon glyphicon-edit"></span></a>
-              <a class="btn btn-danger btn-sm" ui-sref="serviciosDelete({idHospedaje:hospedajeActivo.id, idServicio:servicios.id})">
-                  <span class="glyphicon glyphicon-trash"></span></a>
-          </td>
-      </tr>    
-  </tbody>
-</table>
+        <table class="table table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Costo</th>
+                    <th scope="col" class="col-lg-offset-12">Actions</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="servicios in hospedajeActivo.servicios">
+                <tr>
+                    <td>{{servicios.id}}</td>
+                    <td>{{servicios.descripcion}}</td>
+                    <td>{{servicios.costo}}</td>
+                    <td><a class="btn btn-default btn-sm" ui-sref="serviciosUpdate({idHospedaje:hospedajeActivo.id, idServicio:servicios.id})" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
+                            <span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn btn-danger btn-sm" ui-sref="serviciosDelete({idHospedaje:hospedajeActivo.id, idServicio:servicios.id})" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
+                            <span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>    
+            </tbody>
+        </table>
     </div>
     <br>
     <div class="panel panel-info">
         <div class="panel-heading">
             <h4>Calificaciones</h4>
             <br>
-            <a class="btn btn-info" ui-sref="calificacionesCreate({idHospedaje:hospedajeActivo.id})"><span class="glyphicon glyphicon-plus-sign"></span> Agregar nueva calificacion</a>
+            <a class="btn btn-info" ui-sref="calificacionesCreate({idHospedaje:hospedajeActivo.id})" ng-show="rolActivo === 'Estudiante' || rolActivo === 'Administrador'"><span class="glyphicon glyphicon-plus-sign"></span> Agregar nueva calificacion</a>
         </div>
-  <table class="table table-striped">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">   </th>
-      <th scope="col">Id</th>
-      <th scope="col">Valoracion</th>
-      <th scope="col">Comentario</th>
-      <th scope="col" class="col-lg-offset-12">Acciones</th>
-    </tr>
-  </thead>
-  <tbody ng-repeat="calificaciones in hospedajeActivo.calificaciones">
-      <tr>
-          <td rowspan="4"><img src="https://icon-icons.com/icons2/1154/PNG/512/1486564400-account_81513.png" width="50" height="50" class="img-responsive"></td>
-          <td>{{calificaciones.id}}</td>
-          <td>{{calificaciones.valoracion}}</td>
-          <td>{{calificaciones.comentario}}</td>
-          <td><a class="btn btn-danger btn-sm" ui-sref="calificacionesDelete({idHospedaje:hospedajeActivo.id, idCalificacion:calificaciones.id})">
-                  <span class="glyphicon glyphicon-trash"></span></a>
-          </td>
-      </tr>    
-  </tbody>
-</table>
+        <table class="table table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">   </th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Valoracion</th>
+                    <th scope="col">Comentario</th>
+                    <th scope="col" class="col-lg-offset-12">Acciones</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="calificaciones in hospedajeActivo.calificaciones">
+                <tr>
+                    <td rowspan="4"><img src="https://icon-icons.com/icons2/1154/PNG/512/1486564400-account_81513.png" width="50" height="50" class="img-responsive"></td>
+                    <td>{{calificaciones.id}}</td>
+                    <td>{{calificaciones.valoracion}}</td>
+                    <td>{{calificaciones.comentario}}</td>
+                    <td><a class="btn btn-danger btn-sm" ui-sref="calificacionesDelete({idHospedaje:hospedajeActivo.id, idCalificacion:calificaciones.id})" ng-show="rolActivo === 'Administrador' || rolActivo === 'Administrador'">
+                            <span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>    
+            </tbody>
+        </table>
     </div>
     <br>
     <div class="panel panel-info">
@@ -115,7 +118,7 @@
                 <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">
                     <p class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></p>
                     <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7 container">
-                        <button type="button" class="btn color-transparente" ui-sref="crearRegla({idHospedaje: hospedajeActivo.id})"><span class="glyphicon glyphicon-plus"></span> Agregar</button>
+                        <button type="button" class="btn color-transparente" ui-sref="crearRegla({idHospedaje: hospedajeActivo.id})" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'"><span class="glyphicon glyphicon-plus"></span> Agregar</button>
                     </div>
                 </div>
             </div>
@@ -126,10 +129,10 @@
                     <tr>
                         <td> {{r.regla}}</td>
                         <td>
-                            <button class="btn btn-warning" ui-sref="modificarRegla({idHospedaje: hospedajeActivo.id,idRegla: r.id})">
+                            <button class="btn btn-warning" ui-sref="modificarRegla({idHospedaje: hospedajeActivo.id,idRegla: r.id})" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
                                 <span class="glyphicon glyphicon-pencil" ></span>
                             </button>
-                            <button class="btn btn-danger" ng-click="eliminarRegla(hospedajeActivo.id, r.id)">
+                            <button class="btn btn-danger" ng-click="eliminarRegla(hospedajeActivo.id, r.id)" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
                         </td>
