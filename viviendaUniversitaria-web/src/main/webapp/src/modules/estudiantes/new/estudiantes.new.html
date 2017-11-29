@@ -24,6 +24,24 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="estudianteNombreUsuario" class="col-sm-2">Nombre de usuario</label>
+                            <input id="estudianteNombreUsuario" required ng-model="estudianteUsuario" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="nombreContrasenia" class="col-sm-2">Contrasenia</label>
+                            <input id="nombreContrasenia" required ng-model="estudianteContrasenia1" class="col-sm-6" type="password"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="nombreContrasenia" class="col-sm-2">Confirmar conraeña</label>
+                            <input id="nombreContrasenia" required ng-model="estudianteContrasenia2" class="col-sm-6" type="password"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!estudiante.$valid">
 
                             <div class="alert alert-warning" >

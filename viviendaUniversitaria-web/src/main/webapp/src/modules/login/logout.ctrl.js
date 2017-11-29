@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("hospedajeModule");
+    var mod = ng.module("loginModule");
     mod.controller('logoutControlador', ['$scope', '$http', 'loginContext', '$state', '$rootScope',
         function ($scope, $http, loginContext, $state, $rootScope) {
 

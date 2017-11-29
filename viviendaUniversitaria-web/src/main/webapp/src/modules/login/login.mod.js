@@ -19,6 +19,14 @@
                         controller: 'logoutControlador'
                     }
                 }
+            }).state('sigin', {
+                url: '/registrar',
+                views:{
+                    'mainView':{
+                        templateUrl: 'src/modules/home/home.html',
+                        controller: 'singinCtrl'
+                    }
+                }
             })
             ;
         }]);
