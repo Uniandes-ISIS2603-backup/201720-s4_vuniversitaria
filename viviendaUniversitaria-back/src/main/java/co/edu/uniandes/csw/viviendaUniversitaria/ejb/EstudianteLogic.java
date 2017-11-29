@@ -6,6 +6,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReservaEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.EstudiantePersistence;
+import co.edu.uniandes.csw.viviendaUniversitaria.persistence.OrigenPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ import javax.ws.rs.WebApplicationException;
 @Stateless
 public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
     private CalificacionLogic calificacionLogic;
+    private OrigenPersistence origenPersistence;
     
     public EstudianteLogic() {
         super();
