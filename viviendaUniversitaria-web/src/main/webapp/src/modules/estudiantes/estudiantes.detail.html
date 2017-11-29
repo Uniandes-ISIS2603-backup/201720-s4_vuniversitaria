@@ -1,23 +1,46 @@
-<div class="panel panel-default"> 
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="thumb">
-                    <img class="img-responsive" ng-src="{{currentEstudiante.rutaImagen}}"/>
-                </div>
+<div class="panel-heading">
+    <h4><b>PERFIL</b></h4>
+</div>
+<div class="panel-body">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="thumb">
+                <img class="img-responsive" ng-src="{{currentEstudiante.rutaImagen}}"/>
+            </div>
 
-            </div>
-            <div class="col-md-3">
-                <dl>     
-                    <dt>{{currentEstudiante.name}}</dt>
-                    <ul ng-repeat="origen in currentEstudiante.origenes">
-                        <a ui-sref="origenDetail({origenId: origen.id})">{{origen.name}}</a>
-                    </ul>
-                    <dt class="bold">Cedula</dt>
-                    <dd>{{currentEstudiante.cedula}}</dd>
-                </dl>
-            </div>
         </div>
+        <div class="col-md-3">
+            <dl>   
+                <hr>
+                <dt class="bold">Nombre:</dt>
+                <dd>{{currentEstudiante.nombre}}</dd>
+
+                <hr>
+                <dt class="bold">Cedula:</dt>
+                <dd>{{currentEstudiante.cedula}}</dd>
+
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4>Reservas asociadas a un estudiante</h4>
+    </div>
+    <div class="panel-body">
+        <table class="table" >
+            <tbody>
+                <tr>
+                    <td class="well">Id: {{currentEstudiante.reserva.tipoArrendamiento}} </td>
+                </tr>
+                <tr>
+                    <td class="well">Fecha inicio {{currentEstudiante.reserva.id}}</td>
+                </tr>
+                <tr>
+                    <td class="well">Fecha fin {{currentEstudiante.reserva.valoracion}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 

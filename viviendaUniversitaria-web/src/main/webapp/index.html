@@ -112,7 +112,7 @@
 
         
     </head>
-    <body class="span4" style="background-image:url(https://image.ibb.co/mFiNNw/Building_HD_3_D_Architecture.jpg)">
+    <body class="span4" style="background-image:url()">
         <div class="container-fluid">
             <div class="row mainHeader">
                 <div class="col-lg-12-3"> 
@@ -131,7 +131,7 @@
                         <div class="col-lg-12">
                             <ul class="nav nav-tabs">
                                 <li><a ui-sref="home">Home</a></li>
-                                <li ng-show="rolActivo === 'Administrador'"><a ui-sref="estudiantesList">Estudiantes</a></li>
+                                <li ng-show="rolActivo === 'Administrador' || rolActivo === 'Estudiante'"><a ui-sref="estudiantesList">Estudiantes</a></li>
                                 <li ng-show="rolActivo === 'Administrador' "><a ui-sref="facturasList">Facturas</a></li>
                                 <li ng-show="rolActivo === 'Administrador'"><a ui-sref="reservasList">Reservas</a></li>
                                 <li ng-show="rolActivo === 'Estudiante' || rolActivo === 'Administrador'"><a ui-sref="origenesList">Origenes</a></li>
