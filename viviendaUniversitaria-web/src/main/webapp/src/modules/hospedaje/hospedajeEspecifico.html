@@ -71,7 +71,7 @@
                     <td>{{servicios.costo}}</td>
                     <td><a class="btn btn-default btn-sm" ui-sref="serviciosUpdate({idHospedaje:hospedajeActivo.id, idServicio:servicios.id})" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
                             <span class="glyphicon glyphicon-edit"></span></a>
-                        <a class="btn btn-danger btn-sm" ui-sref="serviciosDelete({idHospedaje:hospedajeActivo.id, idServicio:servicios.id})" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
+                        <a class="btn btn-danger btn-sm" ng-click="eliminarServicio(servicios.id)" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
                             <span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>    

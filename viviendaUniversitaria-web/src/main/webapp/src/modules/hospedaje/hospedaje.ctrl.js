@@ -41,12 +41,13 @@
                 });
             }
             ;
-            
+
             if ($state.params.idHospedaje !== undefined && $state.params.idRegla !== undefined) {
-                $http.get(hospedajeContext + '/' + $state.params.idHospedaje+'/reglas/'+$state.params.idRegla).then(function (response) {
+                $http.get(hospedajeContext + '/' + $state.params.idHospedaje + '/reglas/' + $state.params.idRegla).then(function (response) {
                     $scope.regla = response.data.regla;
                 });
-            };
+            }
+            ;
             if ($state.params.idServicio !== undefined) {
                 $http.get(hospedajeContext + '/' + $state.params.idHospedaje + '/servicios/' + $state.params.idServicio).then(function (response) {
                     $scope.servicioActivo = response.data;
@@ -108,12 +109,31 @@
                 });
             };
             $scope.actualServicioId = $state.params.idServicio;
-            $scope.eliminarServicio = function ()
+            $scope.eliminarServicio = function (idServicio)
             {
-                $http.delete(hospedajeContext + '/' + $state.params.idHospedaje + '/servicios/' + $state.params.idServicio
-                        ).then(function (response) {
-                    $state.go('hospedajeEspecifico', {idHospedaje: $state.params.idHospedaje});
+                swal({
+                    title: 'Eliminar servicio',
+                    text: "¿Esta seguro de que quiere eliminar el servicio?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        $http.delete(hospedajeContext + '/' + $state.params.idHospedaje + '/servicios/' + idServicio
+                                ).then(function (response) {
+                            $state.go('hospedajeEspecifico', {idHospedaje: $state.params.idHospedaje});
+                            $state.reload();
+                        });
+                        swal(
+                                'Servicio eliminado!',
+                                'El servicio fue eliminado correctamente',
+                                'success'
+                                );
+                    }
                 });
+
             };
             $scope.crearServicio = function () {
                 $http.post(hospedajeContext + '/' + $state.params.idHospedaje + '/servicios', {
@@ -128,6 +148,7 @@
             $scope.actualCalificacionId = $state.params.idCalificacion;
             $scope.eliminarCalificacion = function ()
             {
+
                 $http.delete(hospedajeContext + '/' + $state.params.idHospedaje + '/calificaciones/' + $state.params.idCalificacion
                         ).then(function (response) {
                     $state.go('hospedajeEspecifico', {idHospedaje: $state.params.idHospedaje});
