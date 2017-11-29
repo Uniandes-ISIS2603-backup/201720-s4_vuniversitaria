@@ -5,8 +5,8 @@
             <div class="panel-body">
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="ubicacionCreate">
-                            <span class="glyphicon glyphicon-plus-sign"></span> 
+                        <a class="btn btn-success btn-lg" ui-sref="ubicacionCreate" ng-show="rolActivo==='Administrador'||rolActivo==='Arrendador'">
+                            
                             Agregar una nueva ubicación
                         </a>
                     </div>

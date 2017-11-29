@@ -3,7 +3,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>                      
+                    <th>Nombre</th>                      
                 </tr>
             </thead>
             <tbody>
@@ -14,13 +14,13 @@
         </table>
         <br>
         <div class="btn-group mr-2" role="group" aria-label="First group">
-        <a class="btn btn-success btn-sm" ui-sref="origenUpdate({origenId: currentOrigen.id})" ng-show="rolActivo === 'Administrador'"><span class="glyphicon glyphicon-edit" ></span>Edit Origin</a>
+        <a class="btn btn-warning btn-sm" ui-sref="origenUpdate({origenId: currentOrigen.id})" ng-show="rolActivo === 'Administrador'"><span class="glyphicon glyphicon-edit" ></span>Edit Origin</a>
         </div>
         <br>
         <br>
         <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label>Estudiantes list</label></div>
+            <div class="panel-heading"><label>Lista de Estudiantes</label></div>
             <div class="panel-body">
          <div class="col-md-8">
                     <table class="table table-striped">
@@ -43,7 +43,7 @@
         </div>
     </div>
         <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="agregarEstudiante({origenesId: currentOrigen.id})" ng-show="rolActivo === 'Administrador'"><span class="glyphicon glyphicon-plus-sign"></span>Add Student</a>
+                        <a class="btn btn-success btn-sm" ui-sref="agregarEstudiante({origenesId: currentOrigen.id})" ng-show="rolActivo === 'Administrador'"><span class="glyphicon glyphicon-plus-sign"></span>Agregar estudiante</a>
                     </div>
     </div>
 </div>

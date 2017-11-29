@@ -4,7 +4,7 @@
             <div class="panel-body">
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="estudiantesCreate"><span class="glyphicon glyphicon-plus-sign"></span> Add new estudiante</a>
+                        <a class="btn btn-success btn-lg" ui-sref="estudiantesCreate">Registrar estudiante</a>
                     </div>
                 </div>
                 <form ng-submit="crearFiltro(origenId)" name="filtro">
@@ -34,7 +34,7 @@
                                 <td id="{{$index}}-Origen">{{estudiante.origenDTO.name}}</td>
 
                                 <td id="{{$index}}-actions">
-                                    <a class="btn btn-default btn-sm" ui-sref="estudianteUpdate({idEstudiante: estudiante.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-warning btn-sm" ui-sref="estudianteUpdate({idEstudiante: estudiante.id})"><span class="glyphicon glyphicon-edit"></span></a>
                                     <a class="btn btn-danger btn-sm" ui-sref="estudianteDelete({estudianteId: estudiante.id})"><span class="glyphicon glyphicon-trash"></span></a>
                                 </td>
                             </tr>
