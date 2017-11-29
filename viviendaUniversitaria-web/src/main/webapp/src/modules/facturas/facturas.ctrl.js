@@ -3,8 +3,11 @@
     mod.constant("facturasContext", "api/facturas");
     mod.controller('facturaCtrl', ['$scope', '$http', 'facturasContext', '$state',
         function ($scope, $http, facturasContext, $state) {
-            $scope.fechaInicio={value:new Date(2000,01,01)};
-            $scope.fechaFin={value : new Date(2099,12,12)};
+            $scope.fechaInicio={value:new Date(2010,01,01)};
+            $scope.fechaFin={value : new Date(2017,12,12)};
+            $scope.isNavCollapsed = true;
+            $scope.isCollapsed = false;
+            $scope.isCollapsedHorizontal = false;
             $scope.myFilter="date";
             $http.get(facturasContext).then(function (response) {
                 $scope.facturasRecords = response.data;

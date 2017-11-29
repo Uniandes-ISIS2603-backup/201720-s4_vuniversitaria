@@ -11,18 +11,22 @@ and open the template in the editor.
             <div class="panel-heading"><label>Lista consolidada de facturas</label></div>
             <div class="panel-body">
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                   <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="facturasCreate"><span class="glyphicon glyphicon-plus-sign"></span> Generar nueva factura</a>
-                    </div>
+                   
+                    
                     <div>
+                        <p> <span class="glyphicon glyphicon-filter"></span> Filtrar por rango de fechas: </p>   
                         <form>
                     <input type="date"  ng-model="fechaInicio.value">
                    
-                    <input type="date"  ng-model="fechaFin.value"> 
+                    <input type="date"  ng-model="fechaFin.value" style="height: 20px"> 
                         
                         </form>
                          
                    </div>
+                    
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="facturasCreate"><span class="glyphicon glyphicon-plus-sign"></span> Generar nueva factura</a>
+                    </div>
                     
                     
                     
