@@ -154,7 +154,9 @@
                 if (result.value) {
                     $scope.eliminarLugarInteres = function () {
                         $http.delete(hospedajeContext + '/' + idHospedaje + '/lugaresInteres/' + idLugarInteres).then(function (response)
-                        {
+                        {$http.get(hospedajeContext + '/' + $state.params.idHospedaje).then(function (response) {
+                                $scope.hospedajeActivo = response.data;
+                            });
                             $state.reload();
                         });
                     };

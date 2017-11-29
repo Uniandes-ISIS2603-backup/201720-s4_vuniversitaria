@@ -11,7 +11,7 @@
                 rutaImagen: $scope.rutaImagen
             }).then(function (response)
             {
-                $state.go("lugarInteresEspecifico",{idLugarInteres:response.data.id});  
+                $state.go("hospedajeEspecifico",{idHospedaje:$state.params.idHospedaje}, {reload:true}); 
             });
         };
         }]);
