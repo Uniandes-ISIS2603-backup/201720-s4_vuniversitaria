@@ -107,7 +107,7 @@ public class ReservaResource {
     
     
     
-    //ESTO FUE LO QUE HIZO JORGE, ESTA MAL TODO
+  
 //    
 //    /*private List<DetalleReservaDetailDTO> detalleReservaListEntity2DTO(List<DetalleReservaEntity> entityList){
 //        *  List<DetalleReservaDetailDTO> list = new ArrayList();
@@ -168,16 +168,16 @@ public class ReservaResource {
 //        reservaLogic.asociateReservaConHospedajeYEstudiante(idHospedaje, idEstudiante, reservaEntity);
 //        return reserva;
 //    }
-//    @PUT
-//    @Path("{id: \\d+}")
-//    public ReservaDetailDTO updateReserva (@PathParam("id") Long id, ReservaDetailDTO reserva) throws BusinessLogicException {
-//        reserva.setId(id);
-//        ReservaEntity entity = reservaLogic.getReserva(id);
-//        if (entity == null) {
-//            throw new WebApplicationException("El recurso /books/" + id + " no existe.", 404);
-//        }
-//        return new ReservaDetailDTO(reservaLogic.updateReserva(id, reserva.toEntity()));
-//    }
+    @PUT
+   @Path("{id: \\d+}")
+   public ReservaDetailDTO updateReserva (@PathParam("id") Long id, ReservaDetailDTO reserva) throws BusinessLogicException {
+        reserva.setId(id);
+        ReservaEntity entity = reservaLogic.getReserva(id);
+      if (entity == null) {
+            throw new WebApplicationException("El recurso /reservas/" + id + " no existe.", 404);
+       }
+      return new ReservaDetailDTO(reservaLogic.updateReserva(id, reserva.toEntity()));
+   }
 //    @DELETE
 //    @Path("{id: \\d+}")
 //    public void deleteReserva(@PathParam("id") Long id) throws BusinessLogicException {
