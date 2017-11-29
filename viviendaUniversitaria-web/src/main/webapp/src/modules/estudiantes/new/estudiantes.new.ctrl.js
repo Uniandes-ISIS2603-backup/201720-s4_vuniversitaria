@@ -36,7 +36,8 @@
                                 cedula: $scope.estudianteCedula,
                                 rutaImagen: $scope.estudianteRutaImagen,
                                 nombreUsuario: $scope.estudianteUsuario,
-                                contrasenia: $scope.estudianteContrasenia1
+                                contrasenia: $scope.estudianteContrasenia1,
+                                nombreOrigen: $scope.nombreOrigen
                             }).then(function (response) {
                                 $state.go('home');
                             });
