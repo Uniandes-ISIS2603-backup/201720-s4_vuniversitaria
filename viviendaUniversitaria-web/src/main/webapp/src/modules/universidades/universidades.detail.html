@@ -16,8 +16,8 @@
                 {{currentUniversidad.ubicacion.direccion}}<br><br><hr>
                 <p>
                 <div>
-                    <input type="button" value="Editar" ui-sref="universidadEdit({universidadId: currentUniversidad.id})" class="btn btn-warning btn-lg">
-                    <input type="button" value="Eliminar" ui-sref="universidadDelete({universidadId: currentUniversidad.id})" class="btn btn-danger btn-lg">
+                    <input type="button" value="Editar" ui-sref="universidadEdit({universidadId: currentUniversidad.id})" class="btn btn-warning btn-lg" ng-show="rolActivo === 'Administrador'">
+                    <input type="button" value="Eliminar" ui-sref="universidadDelete({universidadId: currentUniversidad.id})" class="btn btn-danger btn-lg" ng-show="rolActivo === 'Administrador'">
                 </div>
             </div>
             <div class="img-responsive col-md-6">

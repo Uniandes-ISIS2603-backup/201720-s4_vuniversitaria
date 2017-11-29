@@ -23,7 +23,7 @@ public class EstudianteDetailDTO extends EstudianteDTO {
     //relacion uno a muchos con calificacion
     private List<CalificacionDTO> calificaciones;
     
-    private ReservaDTO reserva;
+    private ReservaDetailDTO reserva;
     
     private List<FacturaDTO> facturas;
 
@@ -44,7 +44,7 @@ public class EstudianteDetailDTO extends EstudianteDTO {
             entity.setOrigen(null);
         }
         if (entity.getReserva()!= null) {
-            this.reserva = new ReservaDTO(entity.getReserva());
+            this.reserva = new ReservaDetailDTO(entity.getReserva());
         } else {
             entity.setReserva(null);
         }
@@ -99,11 +99,11 @@ public class EstudianteDetailDTO extends EstudianteDTO {
         this.facturas = facturas;
     }
   
-    public ReservaDTO getReserva() {
+    public ReservaDetailDTO getReserva() {
         return reserva;
     }
 
-    public void setReserva(ReservaDTO reserva) {
+    public void setReserva(ReservaDetailDTO reserva) {
         this.reserva = reserva;
     }
     
