@@ -15,11 +15,15 @@ import java.util.List;
  *
  * @author je.bejarano10
  */
-public class FacturaDetailDTO extends FacturaDTO{
+public class FacturaDetailDTO extends FacturaDTO {
+
     private EstudianteDTO estudiante;
+
     private HospedajeDTO hospedaje;
-    private List <DetalleServicioDTO> detalleServicio;
-    private List <DetalleReservaDTO> detalleReserva;
+
+    private List<DetalleServicioDTO> detalleServicio;
+
+    private List<DetalleReservaDTO> detalleReserva;
 
     public EstudianteDTO getEstudiante() {
         return estudiante;
@@ -37,6 +41,7 @@ public class FacturaDetailDTO extends FacturaDTO{
         this.detalleServicio = detalleServicio;
     }
 
+
     public List<DetalleReservaDTO> getDetalleReserva() {
         return detalleReserva;
     }
@@ -52,64 +57,68 @@ public class FacturaDetailDTO extends FacturaDTO{
     public void setHospedaje(HospedajeDTO hospedaje) {
         this.hospedaje = hospedaje;
     }
-    
-    
-    public FacturaDetailDTO(){
+
+    public FacturaDetailDTO() {
         super();
     }
-    public FacturaDetailDTO(FacturaEntity facturaEntity){
-       super(facturaEntity);
-        if(facturaEntity!= null){
-            if(facturaEntity.getEstudiante()!=null){
-           estudiante= new EstudianteDTO(facturaEntity.getEstudiante());
+    public FacturaDetailDTO(FacturaEntity facturaEntity) {
+        super(facturaEntity);
+        if (facturaEntity != null) {
+            if (facturaEntity.getEstudiante() != null) {
+                estudiante = new EstudianteDTO(facturaEntity.getEstudiante());
+            } else {
+                estudiante = null;
             }
-            else{
-                facturaEntity.setEstudiante(null);
+            if (facturaEntity.getHospedaje() != null) {
+                hospedaje = new HospedajeDTO(facturaEntity.getHospedaje());
+            } else {
+                hospedaje = null;
             }
-            if(facturaEntity.getHospedaje()!=null){
-           hospedaje=new HospedajeDTO(facturaEntity.getHospedaje());
+            detalleServicio = new ArrayList<>();
+            for (DetalleServicioEntity entityDetalleServicio : facturaEntity.getDetalleServicio()) {
+                detalleServicio.add(new DetalleServicioDetailDTO(entityDetalleServicio));
             }
-            else{
-            facturaEntity.setHospedaje(null);
-        }
-           detalleServicio= new ArrayList<>();
-           for (DetalleServicioEntity entityDetalleServicio : facturaEntity.getDetalleServicio()) {
-                detalleServicio.add(new DetalleServicioDTO(entityDetalleServicio));
-            }
-           detalleReserva= new ArrayList<>();
-           for (DetalleReservaEntity entityDetalleReserva : facturaEntity.getDetallesReserva()) {
+            detalleReserva = new ArrayList<>();
+            for (DetalleReservaEntity entityDetalleReserva : facturaEntity.getDetallesReserva()) {
                 detalleReserva.add(new DetalleReservaDTO(entityDetalleReserva));
             }
-           
+
         }
     }
-    @Override 
-    public FacturaEntity toEntity(){
-        FacturaEntity entity= super.toEntity();
-        if(estudiante!=null){
+
+    @Override
+    public FacturaEntity toEntity() {
+        FacturaEntity entity = super.toEntity();
+        if (estudiante != null) {
             entity.setEstudiante(estudiante.toEntity());
         }
-        if(hospedaje!=null){
+        if (hospedaje != null) {
             entity.setHospedaje(hospedaje.toEntity());
         }
-        if(detalleServicio!=null){
-            List<DetalleServicioEntity> detalleServicioEntity= new ArrayList<>();
-            for(DetalleServicioDTO dtoDetalleServicio : detalleServicio){
+        if( detalleServicio != null){
+            List<DetalleServicioEntity> detalleServicioEntity = new ArrayList<>();
+            for (DetalleServicioDTO dtoDetalleServicio : detalleServicio) {
                 detalleServicioEntity.add(dtoDetalleServicio.toEntity());
             }
-            entity.setDetalleServicio(detalleServicioEntity);     
+            entity.setDetalleServicio(detalleServicioEntity);
         }
-        if(detalleReserva!=null){
-            List<DetalleReservaEntity> detalleReservaEntity= new ArrayList<>();
-            for(DetalleReservaDTO dtoDetalleReserva : detalleReserva){
+        else
+        {
+            detalleServicio = new ArrayList<>();
+        }
+        if (detalleReserva != null) {
+            List<DetalleReservaEntity> detalleReservaEntity = new ArrayList<>();
+            for (DetalleReservaDTO dtoDetalleReserva : detalleReserva) {
                 detalleReservaEntity.add(dtoDetalleReserva.toEntity());
             }
-            entity.setDetallesReserva(detalleReservaEntity);     
+            entity.setDetallesReserva(detalleReservaEntity);
         }
+        else
+        {
+            detalleReserva = new ArrayList<>();
+        }
+        
         return entity;
     }
-    
-    
-    
-    
+
 }
