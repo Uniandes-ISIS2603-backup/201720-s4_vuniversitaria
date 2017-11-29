@@ -3,7 +3,6 @@
     mod.constant("ubicacionesContext", "api/ubicaciones");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/ubicacion/';
-            $urlRouterProvider.otherwise("/ubicacionesList");
            
             $stateProvider.state('ubicaciones', {
                 url: '/ubicaciones',

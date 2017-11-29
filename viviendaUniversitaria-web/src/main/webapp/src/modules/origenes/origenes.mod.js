@@ -3,7 +3,6 @@
     mod.constant("origenesContext", "api/origenes");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/origenes/';
-            $urlRouterProvider.otherwise("/origenesList");
             
             $stateProvider.state('origenes', {
                 url: '/origenes',
