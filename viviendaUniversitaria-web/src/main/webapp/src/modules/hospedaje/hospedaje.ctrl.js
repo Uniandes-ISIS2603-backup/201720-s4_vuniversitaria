@@ -140,6 +140,34 @@
                     }
                 });
             };
+            
+            $scope.eliminarLugarInteres = function (idHospedaje, idLugarInteres) {
+            swal({
+                title: 'Eliminar lugarInteres',
+                text: "¿Esta seguro de que quiere eliminar el lugar de Interes?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $scope.eliminarLugarInteres = function () {
+                        $http.delete(hospedajeContext + '/' + idHospedaje + '/lugaresInteres/' + idLugarInteres).then(function (response)
+                        {
+                            $state.reload();
+                        });
+                    };
+                    swal(
+                            'Lugar de Interes eliminado!',
+                            'El lugar de interes fue eliminado correctamente',
+                            'success'
+                            );
+                }
+            });
+        };
+            
+            
             $scope.crearRegla = function () {
                 $http.post(hospedajeContext + '/' + $state.params.idHospedaje + '/reglas', {
                     regla: $scope.regla

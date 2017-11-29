@@ -7,11 +7,11 @@
             $scope.create = function(){
             $http.post(hospedajeContext + '/' + $state.params.idHospedaje + '/'+ 'lugaresInteres', {
                 descripcion : $scope.descripcion,
-                distancia: $scope.distancia,
+                name: $scope.name,
                 rutaImagen: $scope.rutaImagen
             }).then(function (response)
             {
-                $state.go("lugarInteresEspecifico",{idLugarInteres:response.data.id}, {reload:true});  
+                $state.go("lugarInteresEspecifico",{idLugarInteres:response.data.id});  
             });
         };
         }]);

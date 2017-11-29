@@ -139,7 +139,6 @@
                 },
                 views:{
                     'mainView':{
-                        templateUrl: basePath+'servicios/servicios.delete.html',
                         controller: 'hospedajeCtrl'
                     }
                 }
@@ -155,7 +154,7 @@
                     }
                 }
             }).state('lugarInteresEspecifico',{
-             url: '{idHospedaje:int}/lugaresInteres/{idLugarInteres:int}',
+             url: '/hospedajes/{idHospedaje:int}/lugarInteres/{idLugarInteres:int}',
               param:{
                     idHospedaje:null,
                     idLugarInteres: null
@@ -167,23 +166,23 @@
                     }
                 }
             }).state('lugarInteresEliminar',{
-             url: '{idHospedaje:int}/lugaresInteres/{idLugarInteresDelete:int}',
+             url: 'hospedajes/{idHospedaje:int}',
               param:{
                     idHospedaje:null,
                     idLugarInteresDelete: null
                 },
                 views:{
                     'mainView':{
-                        templateUrl: basePathLugar+'lugaresInteres.delete.html',
+                        templateUrl: basePath+'hospedajeEspecifico.html',
                         controller : 'lugaresInteresDeleteCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
             }).state('lugarInteresUpdate',{
-             url: '{idHospedaje:int}/lugaresInteres/{idLugarInteresUpdate:int}',
+             url: '/hospedajes/{idHospedaje:int}/lugaresInteres/update/{idLugarInteresUpdate:int}',
               param:{
                     idHospedaje:null,
-                    idLugarInteresUpdate: 0
+                    idLugarInteresUpdate: null
                 },
                 views:{
                     'mainView':{
@@ -193,15 +192,15 @@
                     }
                 }
             }).state('lugarInteresCreate',{
-             url: '{idHospedaje:int}/lugaresInteres',
+             url: '/hospedajes/{idHospedaje:int}/lugaresInteres/create',
               param:{
                     idHospedaje:null
                 },
                 views:{
                     'mainView':{
                         templateUrl: basePathLugar+'lugaresInteres.create.html',
-                        controller : 'lugaresInteresCreateCtrl',
-                        controllerAs: 'ctrl'
+                        controller : 'lugaresInteresCreateCtrl'
+
                     }
                 }
             })
