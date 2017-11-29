@@ -72,43 +72,43 @@ http://www4.congreso.gob.pe/comisiones/1999/turismo/normas/DS12.94.HTML
 */
 
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Sunny', 'Hoteles', 27,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
+values ('Sunny', 'Hoteles', 5,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Lauryn', 'Hoteles', 99,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
+values ('Lauryn', 'Hoteles', 5,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Mariette', 'Apart-Hoteles', 14,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
+values ('Mariette', 'Apart-Hoteles', 4,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Violet', 'Apart-Hoteles', 44,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
+values ('Violet', 'Apart-Hoteles', 4,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Roseline', 'Apart-Hoteles', 42,0,'https://s-ec.bstatic.com/images/hotel/max1024x768/715/71566660.jpg');
+values ('Roseline', 'Apart-Hoteles', 4,0,'https://s-ec.bstatic.com/images/hotel/max1024x768/715/71566660.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Shelby', 'Apart-Hoteles', 82,0,'https://www.mexicanbusinessweb.mx/wp-content/uploads/2016/02/CNS.jpg');
+values ('Shelby', 'Apart-Hoteles', 3,0,'https://www.mexicanbusinessweb.mx/wp-content/uploads/2016/02/CNS.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Erwin', 'Hostales', 22,0,'https://media-cdn.tripadvisor.com/media/photo-s/04/bb/4a/0b/hospedaje-magallanes.jpg');
+values ('Erwin', 'Hostales', 3,0,'https://media-cdn.tripadvisor.com/media/photo-s/04/bb/4a/0b/hospedaje-magallanes.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Robinette', 'Hostales', 76,0,'http://www.chirripo.org/wp-content/uploads/2016/05/Hospedaje-Albergue-Chirripo.jpg');
+values ('Robinette', 'Hostales', 5,0,'http://www.chirripo.org/wp-content/uploads/2016/05/Hospedaje-Albergue-Chirripo.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Carley', 'Hostales', 49,0,'https://images.adsttc.com/media/images/56d0/b2f0/e58e/ce01/c200/0006/large_jpg/17.jpg?1456517863');
+values ('Carley', 'Hostales', 5,0,'https://images.adsttc.com/media/images/56d0/b2f0/e58e/ce01/c200/0006/large_jpg/17.jpg?1456517863');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Karine', 'Hostales', 4,0,'https://media-cdn.tripadvisor.com/media/photo-s/08/2a/65/e3/hospedaje-la-bonita.jpg');
+values ('Karine', 'Hostales', 0,0,'https://media-cdn.tripadvisor.com/media/photo-s/08/2a/65/e3/hospedaje-la-bonita.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Albie', 'Hostales', 35,0,'https://media-cdn.tripadvisor.com/media/photo-s/05/2d/53/e3/hospedaje-dimar-inn.jpg');
+values ('Albie', 'Hostales', 0,0,'https://media-cdn.tripadvisor.com/media/photo-s/05/2d/53/e3/hospedaje-dimar-inn.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Bonita', 'Albergues', 53,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/278/27831940.jpg');
+values ('Bonita', 'Albergues', 1,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/278/27831940.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 1', 'Albergues', 25,0,'http://www.guiaejecafetero.com/wp-content/uploads/photo-gallery/Alojamientos/46.CampingMonteroca/rasta-house-camping-boquia-salento3.jpg');
+values ('Hospedaje 1', 'Albergues', 1,0,'http://www.guiaejecafetero.com/wp-content/uploads/photo-gallery/Alojamientos/46.CampingMonteroca/rasta-house-camping-boquia-salento3.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 2', 'Hostales', 27,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
+values ('Hospedaje 2', 'Hostales', 2,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 3', 'Hostales', 99,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
+values ('Hospedaje 3', 'Hostales', 5,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 4', 'Apart-Hoteles', 14,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
+values ('Hospedaje 4', 'Apart-Hoteles', 3,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 5', 'Albergues', 44,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
+values ('Hospedaje 5', 'Albergues', 4,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 6', 'Apart-Hoteles', 14,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
+values ('Hospedaje 6', 'Apart-Hoteles', 3,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 7', 'Albergues', 44,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
+values ('Hospedaje 7', 'Albergues', 0,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
 
 
 -- Arrendador

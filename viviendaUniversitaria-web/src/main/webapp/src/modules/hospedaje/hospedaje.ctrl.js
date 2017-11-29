@@ -4,6 +4,39 @@
     mod.controller('hospedajeCtrl', ['$scope', '$http', 'hospedajeContext', '$state',
         function ($scope, $http, hospedajeContext, $state) {
 
+            $scope.filtroActivo = false;
+            $scope.listaFiltro = [];
+
+            $scope.filtrarValoracion = function (valoracion) {
+                $http.get(hospedajeContext).then(function (response) {
+                    $scope.hospedajeList = response.data;
+                });
+                $scope.filtroActivo = true;
+                $scope.listaFiltro = [];
+                var aux = 0;
+                for (var i = 0; i < $scope.hospedajeList.length; i++) {
+                    if ($scope.hospedajeList[i].valoracion >= valoracion && $scope.hospedajeList[i].valoracion < (valoracion + 1)) {
+                        $scope.listaFiltro[aux] = $scope.hospedajeList[i];
+                        aux = aux + 1;
+                    }
+                }
+            };
+
+            $scope.filtrartipo = function (tipo) {
+                $http.get(hospedajeContext).then(function (response) {
+                    $scope.hospedajeList = response.data;
+                });
+                $scope.filtroActivo = true;
+                $scope.listaFiltro = [];
+                var aux = 0;
+                for (var i = 0; i < $scope.hospedajeList.length; i++) {
+                    if ($scope.hospedajeList[i].tipoArrendamiento === tipo) {
+                        $scope.listaFiltro[aux] = $scope.hospedajeList[i];
+                        aux = aux + 1;
+                    }
+                }
+            };
+
             $http.get(hospedajeContext).then(function (response) {
                 $scope.hospedajeList = response.data;
             });
