@@ -34,10 +34,14 @@
             $http.get(hospedajeContext).then(function (response) {
                 $scope.hospedajeList = response.data;
             });
-
+            var lugares = [];
             var lat = $scope.latitud;
             var long = $scope.longitud;
             if ($state.params.idHospedaje !== undefined) {
+                $http.get(hospedajeContext + '/' + $state.params.idHospedaje + '/lugaresInteres'
+                        ).then(function (response) {
+                    lugares = response.data;
+                });
                 $http.get(hospedajeContext + '/' + $state.params.idHospedaje).then(function (response) {
                     $scope.hospedajeActivo = response.data;
                     lat = response.data.ubicacion.latitud;
@@ -47,7 +51,7 @@
                         zoom: 17,
                         markers: [
                             {
-                                id: 1,
+                                id:100,
                                 latitude: lat,
                                 longitude: long,
                                 showWindow: false,
@@ -60,7 +64,29 @@
                                 }
                             }]
                     };
+                    var mapa = $scope.map;
                     $scope.show = true;
+                    for (var i = 0; i < lugares.length; i++) {
+                        for (var j = 0; j < lugares[i].hospedajeLugar.length; j++) {
+                            if (lugares[i].hospedajeLugar[j].distancia < 20) {
+                                
+                                var marker = {
+                                    id:i,
+                                    coords: {
+                                        latitude: lugares[i].ubicacion.latitud,
+                                        longitude: lugares[i].ubicacion.longitud
+                                    }, options: {
+                                        icon: "resources/images/icoLugar.png",
+                                        animation: 2,
+                                        labelAnchor: "22 0",
+                                        labelClass: "marker-labels"
+                                    },title:'m' + i
+                                };
+                                marker.setMap(mapa);
+                            }
+                        }
+                    }
+                    
                 });
             }
             ;
@@ -84,12 +110,6 @@
                 });
             }
             ;
-            $scope.darLugares = function () {
-                $http.get(hospedajeContext + '/' + $state.params.idHospedaje + 'lugaresInteres'
-                        ).then(function (response) {
-                    $scope.lugares = response.data;
-                });
-            };
             $scope.eliminarRegla = function (idHospedaje, idRegla) {
                 swal({
                     title: 'Eliminar regla',

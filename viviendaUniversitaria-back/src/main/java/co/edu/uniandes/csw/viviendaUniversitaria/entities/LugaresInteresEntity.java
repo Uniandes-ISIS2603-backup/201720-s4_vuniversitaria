@@ -23,19 +23,17 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class LugaresInteresEntity extends BaseEntity implements Serializable {
-
-    /**
-     * Atributo donde se describe la ubicacion de un lugar de interes
-     */
-    @PodamExclude
-    @OneToOne
-    private UbicacionEntity ubicacion;
-    /**
+/**
      * Asociacion con hospedajeLugares
      */
     @PodamExclude
     @OneToMany(mappedBy = "lugarInteres",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     private List<HospedajeLugarEntity> hospedajeLugar;
+    /**
+     * Atributo donde se describe la ubicacion de un lugar de interes
+     */
+    private UbicacionEntity ubicacion;
+    
     /**
      * Atributo que modela algunos comentarios del propietario sobre su
      * hospedaje
@@ -164,6 +162,7 @@ public class LugaresInteresEntity extends BaseEntity implements Serializable {
         hash = 97 * hash + Objects.hashCode(this.descripcion);
         hash = 97 * hash + Objects.hashCode(this.name);
         hash = 97 * hash + Objects.hashCode(this.rutaImagen);
+        hash = 97 * hash + Objects.hashCode(this.ubicacion);
         return hash;
     }
 }
