@@ -53,10 +53,10 @@ insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 14a
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('a 1-99,, Cl. 22 #119,Bógota',4.604608, -74.065890);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 45a #9-77, Bogotá',4.632512, -74.065310);
 --pruebas EstudianteEntity
-insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (1, 'amilkar','amilkar', '123');
-insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (2, 'camilo','camilo', '124');
-insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (3, 'kelly','kelly', '125');
-insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (4, 'william','william', '126');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia, rutaImagen) values (1, 'amilkar','amilkar', '123','http://deimageneschidas.com/wp-content/uploads/2016/04/imagenes-para-perfil-de-facebook-1.jpg');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia, rutaImagen) values (2, 'camilo','camilo', '124','https://images7.memedroid.com/images/UPLOADED43/5385438d7a708.jpeg');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia, rutaImagen) values (3, 'kelly','kelly', '125','https://s-media-cache-ak0.pinimg.com/originals/9e/61/23/9e6123e27bd3cf2f04463070220f7d7d.jpg');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia, rutaImagen) values (4, 'william','william', '126','https://k37.kn3.net/taringa/6/8/7/7/7/3/1/agushhhhh/FAD.jpg?7748');
 
 --pruebas OrigenEntity
 insert into OrigenEntity ( name) values ( 'bucaramanga');
