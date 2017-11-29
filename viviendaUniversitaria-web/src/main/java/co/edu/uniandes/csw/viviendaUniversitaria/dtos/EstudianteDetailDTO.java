@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.FacturaEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,8 @@ public class EstudianteDetailDTO extends EstudianteDTO {
     private List<CalificacionDTO> calificaciones;
     
     private ReservaDTO reserva;
+    
+    private List<FacturaDTO> facturas;
 
     public EstudianteDetailDTO() {
         super();
@@ -52,6 +55,12 @@ public class EstudianteDetailDTO extends EstudianteDTO {
                 calificaciones.add(new CalificacionDTO(cali));
             }
         }
+        if (entity.getFacturas()!= null) {
+            facturas = new ArrayList<>();
+            for (FacturaEntity factu : entity.getFacturas()) {
+                facturas.add(new FacturaDTO(factu));
+            }
+        }
     }
 
     @Override
@@ -68,6 +77,13 @@ public class EstudianteDetailDTO extends EstudianteDTO {
             }
             entity.setCalificaciones(calificacionEntity);
         }
+        if (this.getFacturas()!= null) {
+            List<FacturaEntity> facturaEntity = new ArrayList<>();
+            for (FacturaDTO facturaDTO : getFacturas()) {
+                facturaEntity.add(facturaDTO.toEntity());
+            }
+            entity.setFacturas(facturaEntity);
+        }
         if (this.getReserva()!= null) {
             entity.setReserva(this.getReserva().toEntity());
         }
@@ -75,6 +91,14 @@ public class EstudianteDetailDTO extends EstudianteDTO {
         return null;
     }
 
+    public List<FacturaDTO> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<FacturaDTO> facturas) {
+        this.facturas = facturas;
+    }
+  
     public ReservaDTO getReserva() {
         return reserva;
     }
