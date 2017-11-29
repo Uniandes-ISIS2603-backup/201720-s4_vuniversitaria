@@ -57,6 +57,7 @@ public class EstudianteEntity extends BaseEntity implements Serializable //exten
      * Conrasenia de usuario
      */
     private String contrasenia;
+    private String nombreOrigen;
     
     @PodamExclude
     @ManyToOne
@@ -114,6 +115,14 @@ public class EstudianteEntity extends BaseEntity implements Serializable //exten
 
     public void setOrigen(OrigenEntity origen) {
         this.origen = origen;
+    }
+
+    public String getNombreOrigen() {
+        return nombreOrigen;
+    }
+
+    public void setNombreOrigen(String nombreOrigen) {
+        this.nombreOrigen = nombreOrigen;
     }
 
     public List<FacturaEntity> getFacturas() {

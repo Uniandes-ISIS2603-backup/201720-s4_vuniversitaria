@@ -42,6 +42,7 @@ public class EstudianteDTO {
             nombreUsuario = estudiante.getNombreUsuario();
             contrasenia = estudiante.getContrasenia();
             rutaImagen = estudiante.getRutaImagen();
+            nombreOrigen = estudiante.getNombreOrigen();
         }
     }
 
@@ -62,6 +63,7 @@ public class EstudianteDTO {
         estu.setContrasenia(contrasenia);
         estu.setNombreUsuario(nombreUsuario);
         estu.setRutaImagen(rutaImagen);
+        estu.setNombreOrigen(nombreOrigen);
 
      
         return estu;
