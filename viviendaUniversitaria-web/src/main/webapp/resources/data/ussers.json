@@ -1,0 +1,20 @@
+{
+  "admins": [
+    {
+      "nombreUsuario":"Admin1",
+      "contrasenia":"contrasenia"
+    },
+    {
+      "nombreUsuario":"Admin2",
+      "contrasenia":"contrasenia"
+    },
+    {
+      "nombreUsuario":"Admin3",
+      "contrasenia":"contrasenia"
+    },
+    {
+      "nombreUsuario":"Admin4",
+      "contrasenia":"contrasenia"
+    }
+    ]
+}

@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class ArrendadorDetailDTO extends ArrendadorDTO{
     
-    private List<HospedajeDTO> hospedajes;
+    private List<HospedajeDetaillDTO> hospedajes;
             
      /**
      * Constructor 
@@ -31,7 +31,7 @@ public class ArrendadorDetailDTO extends ArrendadorDTO{
         if(arrendador!= null){
             this.hospedajes = new ArrayList<>();
             for(HospedajeEntity entity: arrendador.getHospedajes()){
-                hospedajes.add(new HospedajeDTO(entity));
+                hospedajes.add(new HospedajeDetaillDTO(entity));
             }
         }
     }
@@ -54,11 +54,11 @@ public class ArrendadorDetailDTO extends ArrendadorDTO{
         return arrendadorEntity;
     }
     
-    public List<HospedajeDTO> getHospedajes(){
+    public List<HospedajeDetaillDTO> getHospedajes(){
         return this.hospedajes;
     }
     
-    public void setHospedajes(List<HospedajeDTO> hospedajes){
+    public void setHospedajes(List<HospedajeDetaillDTO> hospedajes){
         this.hospedajes= hospedajes;
     }
 }

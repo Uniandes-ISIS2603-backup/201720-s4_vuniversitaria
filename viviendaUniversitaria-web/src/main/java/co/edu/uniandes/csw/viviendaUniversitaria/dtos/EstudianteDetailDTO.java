@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
+import co.edu.uniandes.csw.viviendaUniversitaria.entities.FacturaEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,10 @@ public class EstudianteDetailDTO extends EstudianteDTO {
 
     //relacion uno a muchos con calificacion
     private List<CalificacionDTO> calificaciones;
+    
+    private ReservaDetailDTO reserva;
+    
+    private List<FacturaDTO> facturas;
 
     public EstudianteDetailDTO() {
         super();
@@ -38,11 +43,22 @@ public class EstudianteDetailDTO extends EstudianteDTO {
         } else {
             entity.setOrigen(null);
         }
+        if (entity.getReserva()!= null) {
+            this.reserva = new ReservaDetailDTO(entity.getReserva());
+        } else {
+            entity.setReserva(null);
+        }
 
         if (entity.getCalificaciones() != null) {
             calificaciones = new ArrayList<>();
             for (CalificacionEntity cali : entity.getCalificaciones()) {
                 calificaciones.add(new CalificacionDTO(cali));
+            }
+        }
+        if (entity.getFacturas()!= null) {
+            facturas = new ArrayList<>();
+            for (FacturaEntity factu : entity.getFacturas()) {
+                facturas.add(new FacturaDTO(factu));
             }
         }
     }
@@ -61,9 +77,38 @@ public class EstudianteDetailDTO extends EstudianteDTO {
             }
             entity.setCalificaciones(calificacionEntity);
         }
+        if (this.getFacturas()!= null) {
+            List<FacturaEntity> facturaEntity = new ArrayList<>();
+            for (FacturaDTO facturaDTO : getFacturas()) {
+                facturaEntity.add(facturaDTO.toEntity());
+            }
+            entity.setFacturas(facturaEntity);
+        }
+        if (this.getReserva()!= null) {
+            entity.setReserva(this.getReserva().toEntity());
+        }
 
         return null;
     }
+
+    public List<FacturaDTO> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<FacturaDTO> facturas) {
+        this.facturas = facturas;
+    }
+  
+    public ReservaDetailDTO getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(ReservaDetailDTO reserva) {
+        this.reserva = reserva;
+    }
+    
+    
+    
     /**
      * 
      * @return origen

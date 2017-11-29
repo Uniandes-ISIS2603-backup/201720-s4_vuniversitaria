@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author je.bejarano10
+ * @author a.eslava
  */
 public class ReservaDTO {
  private Long id;
@@ -21,6 +21,35 @@ public class ReservaDTO {
     private Long idHospedaje;
     private String fechaInicio;
     private String fechaFin;
+    
+    
+    /**
+     * 
+     */
+    public ReservaDTO() {
+        //dsf
+    }
+
+    /**
+     * Crea un objeto AuthorDTO a partir de un objeto AuthorEntity.
+     *
+     * @param entity Entidad AuthorEntity desde la cual se va a crear el nuevo
+     * objeto.
+     * 
+     */
+    public ReservaDTO(ReservaEntity entity) {
+        if (entity != null) {
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            
+            this.id = entity.getId();
+            this.cedulaHuesped = entity.getCedulaHuesped();
+            this.idHospedaje = entity.getIdHospedaje();
+          
+            this.fechaInicio = formato.format(entity.getFechaInicio());
+            this.fechaFin = formato.format(entity.getFechaFin());
+        }
+    }
+
 
     public Long getId() {
         return id;
@@ -63,32 +92,6 @@ public class ReservaDTO {
         this.fechaFin = fechaFin;
     }
     
-
-    /**
-     * 
-     */
-    public ReservaDTO() {
-    }
-
-    /**
-     * Crea un objeto AuthorDTO a partir de un objeto AuthorEntity.
-     *
-     * @param entity Entidad AuthorEntity desde la cual se va a crear el nuevo
-     * objeto.
-     * 
-     */
-    public ReservaDTO(ReservaEntity entity) {
-        if (entity != null) {
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-            
-            this.id = entity.getId();
-            this.cedulaHuesped = entity.getCedulaHuesped();
-            this.idHospedaje = entity.getIdHospedaje();
-          
-            this.fechaInicio = formato.format(entity.getFechaInicio());
-            this.fechaFin = formato.format(entity.getFechaFin());
-        }
-    }
 
     /**
      * Convierte un objeto AuthorDTO a AuthorEntity.

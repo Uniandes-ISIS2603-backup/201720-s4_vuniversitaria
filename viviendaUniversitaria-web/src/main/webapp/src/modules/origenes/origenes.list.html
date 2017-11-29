@@ -5,7 +5,7 @@
             <div class="panel-body">
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="origenCreate"><span class="glyphicon glyphicon-plus-sign"></span> Crear nuevo Origen</a>
+                        <a class="btn btn-info" ui-sref="origenCreate" ng-show=" rolActivo === 'Administrador'"><span class="glyphicon glyphicon-plus-sign"></span> Crear nuevo Origen</a>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -20,7 +20,7 @@
                 <tr ng-repeat="origen in origenesRecords">
                     <td id="{{$index}}-name"><a ui-sref="origenDetail({origenesId: origen.id})">{{origen.name}}</a></td>
                      <td  id="{{$index}}-Actions"> 
-                    <a class="btn btn-danger btn-sm" ui-sref="origenDelete({origenId: origen.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a class="btn btn-danger btn-sm" ui-sref="origenDelete({origenId: origen.id})" ng-show="rolActivo === 'Administrador'"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                     
                 </tr>
@@ -31,3 +31,4 @@
             </div>
         </div>
     </div>
+</div>>

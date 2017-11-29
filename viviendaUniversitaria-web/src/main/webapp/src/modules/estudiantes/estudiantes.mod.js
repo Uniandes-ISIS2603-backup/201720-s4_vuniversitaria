@@ -26,12 +26,9 @@
             }).state('estudianteDetail', {
                 url: '/{estudianteId:int}/detail',
                 parent: 'estudiantes',
-                param: {
-                    estudianteId: null
-                },
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'estudiantes.list.html'
+                        templateUrl: basePath
                     },
                     'detailView': {
                         templateUrl: basePath + 'estudiantes.detail.html',

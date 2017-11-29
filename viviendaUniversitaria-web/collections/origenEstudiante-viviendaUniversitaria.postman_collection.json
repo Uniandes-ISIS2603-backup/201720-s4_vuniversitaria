@@ -21,7 +21,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/viviendaUniversitaria-web/api/origenes/1/estudiantes/123",
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/origenes/1/estudiantes/1",
 				"method": "POST",
 				"header": [
 					{
@@ -54,37 +54,6 @@
 			"request": {
 				"url": "http://localhost:8080/viviendaUniversitaria-web/api/origenes/1/estudiantes",
 				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "delete origenEstudiante validar",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 204\"] = responseCode.code === 204;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/viviendaUniversitaria-web/api/origenes/1/estudiantes/123",
-				"method": "DELETE",
 				"header": [
 					{
 						"key": "Content-Type",

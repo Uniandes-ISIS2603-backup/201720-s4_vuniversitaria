@@ -14,16 +14,22 @@
         'arrendadorModule',
         'lugaresInteresModule',
         'hospedajeModule',
-        'mapaModule',
-        'loginModule'
+        'loginModule',
+        'homeModule'
     ]);
     //Resuelve problemas
     app.config(['$qProvider','uiGmapGoogleMapApiProvider', function ($qProvider,uiGmapGoogleMapApiProvider) {
                uiGmapGoogleMapApiProvider.configure({
                  key: 'AIzaSyAGX2fd-BcdoHwrTtZbtrcxNM9j7WUrxSY',
                  v: '3.20', //defaults to latest 3.X anyhow
-                 libraries: 'weather,geometry,visualization'
+                 libraries: 'weather,geometry,visualization,places'
         });
             $qProvider.errorOnUnhandledRejections(false);
         }]);
+    
+    app.controller('appCtrl', ['$scope', '$http', '$state', '$rootScope',
+        function ($scope, $http, $state, $rootScope) {
+            $state.go('home');
+        }
+    ]);
 })(window.angular);

@@ -5,8 +5,6 @@
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.resources;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.dtos.EstudianteDetailDTO;
-import co.edu.uniandes.csw.viviendaUniversitaria.dtos.HospedajeDetaillDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.ReservaDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.dtos.ReservaDetailDTO;
 import co.edu.uniandes.csw.viviendaUniversitaria.ejb.ReservaLogic;
@@ -28,7 +26,7 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @author je.bejarano10
+ * @author a.eslava
  */
 @Path ("reservas")
 @Produces("application/json")
@@ -55,7 +53,6 @@ public class ReservaResource {
     }
     /**
      * Crea una nueva reserva asociandola a un hospedaje
-     * @param idHospedaje
      * @param reservaDetail
      * @return reserva hecha
      * @throws BusinessLogicException 
@@ -64,105 +61,52 @@ public class ReservaResource {
     public ReservaDetailDTO createReserva(ReservaDTO reservaDetail) throws BusinessLogicException {
         return new ReservaDetailDTO(reservaLogic.createReserva(reservaDetail.toEntity()));
     }
+    /**
+     * encuentra una reserva
+     * @param id
+     * @return
+     * @throws BusinessLogicException 
+     */
+     @GET
+    @Path("{id: \\d+}")
+    public ReservaDetailDTO find(@PathParam("id") Long id) throws BusinessLogicException {
+        ReservaEntity entity = reservaLogic.getReserva(id);
+        if (entity == null) {
+            throw new WebApplicationException("no existe" + id, 404);
+        }
+        return new ReservaDetailDTO(entity);
+    }
+    /**
+     * encuentra reservas
+     * @return
+     * @throws BusinessLogicException 
+     */
+    @GET
+    public List<ReservaDetailDTO> finds() throws BusinessLogicException {
+        return listReservaEntity2DTO(reservaLogic.getReservas());
+    }
     
+     private List<ReservaDetailDTO> listReservaEntity2DTO(List<ReservaEntity> entityList) {
+        List<ReservaDetailDTO> list = new ArrayList<>();
+        for (ReservaEntity entity : entityList) {
+            list.add(new ReservaDetailDTO(entity));
+        }
+        return list;
+    }
     
-    
-    
- 
-    
-    
-    
-    
-    
-    
-    
-    //ESTO FUE LO QUE HIZO JORGE, ESTA MAL TODO
-//    
-//    /*private List<DetalleReservaDetailDTO> detalleReservaListEntity2DTO(List<DetalleReservaEntity> entityList){
-//        *  List<DetalleReservaDetailDTO> list = new ArrayList();
-//        * for(DetalleReservaEntity entity : entityList){
-//        *    list.add(new DetalleReservaDetailDTO(entity));
-//        *}
-//        *return list;
-//    *}
-//**/
-//    private List<ReservaDetailDTO> reservaListEntity2DetailDTO(List<ReservaEntity> entityList){
-//        List<ReservaDetailDTO> list = new ArrayList();
-//        for(ReservaEntity entity : entityList){
-//            list.add(new ReservaDetailDTO(entity));
-//        }
-//        return list;
-//    }
-//       
-//    @GET
-//    public List <ReservaDetailDTO> getReservas(){
-//    List<ReservaEntity> reserva=reservaLogic.getReservas();
-//     if (reserva == null) {
-//            throw new WebApplicationException("No existan facturas", 404);
-//        }
-//    return reservaListEntity2DetailDTO(reservaLogic.getReservas());
-//    }
-//    
-//    @GET 
-//    @Path("{id: \\d+}")
-//    public ReservaDetailDTO getReserva(@PathParam("id") Long id) throws BusinessLogicException {
-//       ReservaEntity  entity = reservaLogic.getReserva(id);
-//        if (entity == null) {
-//            throw new WebApplicationException("El recurso " + id + " no existe.", 404);
-//        }
-//        return new ReservaDetailDTO(entity);
-//    }
-//    @GET
-//    @Path("{id: \\d+}/hospedaje")
-//    public HospedajeDetaillDTO getHospedaje( @PathParam("id") Long id) throws BusinessLogicException {
-//    ReservaEntity  entity = reservaLogic.getReserva(id);
-//        if (entity == null) {
-//            throw new WebApplicationException("El recurso " + id + " no existe.", 404);
-//        }
-//        return new HospedajeDetaillDTO(entity.getHospedaje());
-//    }
-//    @GET
-//    @Path("{id: \\d+}/estudiante")
-//    public EstudianteDetailDTO getEstudiante( @PathParam("id") Long id) throws BusinessLogicException {
-//        ReservaEntity  entity = reservaLogic.getReserva(id);
-//        if (entity == null) {
-//            throw new WebApplicationException("El recurso " + id + " no existe.", 404);
-//        }
-//        return new EstudianteDetailDTO(entity.getEstudiante());
-//    }
-//    @POST
-//    @Path("{idEstudiante: \\d+}/{idHospedaje: \\d+}")
-//    public ReservaDetailDTO createReserva(@PathParam("idEstudiante")Long idEstudiante,@PathParam("idHospedaje") Long idHospedaje, ReservaDetailDTO reserva) throws BusinessLogicException {
-//         ReservaEntity reservaEntity=reservaLogic.createReserva(reserva.toEntity());
-//        reservaLogic.asociateReservaConHospedajeYEstudiante(idHospedaje, idEstudiante, reservaEntity);
-//        return reserva;
-//    }
-//    @PUT
-//    @Path("{id: \\d+}")
-//    public ReservaDetailDTO updateReserva (@PathParam("id") Long id, ReservaDetailDTO reserva) throws BusinessLogicException {
-//        reserva.setId(id);
-//        ReservaEntity entity = reservaLogic.getReserva(id);
-//        if (entity == null) {
-//            throw new WebApplicationException("El recurso /books/" + id + " no existe.", 404);
-//        }
-//        return new ReservaDetailDTO(reservaLogic.updateReserva(id, reserva.toEntity()));
-//    }
-//    @DELETE
-//    @Path("{id: \\d+}")
-//    public void deleteReserva(@PathParam("id") Long id) throws BusinessLogicException {
-//        ReservaEntity entity = reservaLogic.getReserva(id);
-//        if (entity == null) {
-//            throw new WebApplicationException("El recurso /Reservas/" + id + " no existe.", 404);
-//        }
-//        reservaLogic.deleteReserva(id);
-//    }
-//    @Path("{id: \\d+}/detalleServicio")
-//    public Class<DetalleServicioResourse> getDetalleServicioResource(@PathParam("id") Long id) {
-//        ReservaEntity entity = reservaLogic.getReserva(id);
-//        if (entity == null) {
-//            throw new WebApplicationException("El recurso no existe.", 404);
-//        }
-//        return DetalleServicioResourse.class;
-//    }
-    
+    /**
+     * Elimina una reserva de un hospedaje
+     * @param id
+     * @throws BusinessLogicException 
+     */
+    @DELETE
+    @Path("{id: \\d+}")
+    public void deleteReserva(@PathParam("id") Long id) throws BusinessLogicException {
+        ReservaEntity entity = reservaLogic.getReserva(id);
+        if (entity == null) {
+            throw new WebApplicationException("la reserva no existe "+id, 404);
+        }
+        reservaLogic.deleteReserva(id);
+    }
+
 }

@@ -34,7 +34,7 @@ insert into UniversidadEntity (nombre,imagen) values ('Universidad Nacional de C
 insert into UniversidadEntity (nombre,imagen) values ('Universidad de Pamplona','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Escudo_Universidad_de_Pamplona.svg/1200px-Escudo_Universidad_de_Pamplona.svg.png');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad de Antioquia','http://portal.udea.edu.co/wps/wcm/connect/udea/3ef4bbd1-4ae7-4c87-b843-685c6f017501/logo-udea.png?MOD=AJPERES&CACHEID=ROOTWORKSPACE.Z18_L8L8H8C0LODDC0A6SSS2AD2GO4-3ef4bbd1-4ae7-4c87-b843-685c6f017501-lr.XbEn');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad Libre','http://www.unilibre.edu.co/cartagena/images/Logo/ulibre_ctg_h.png');
-insert into UniversidadEntity (nombre,imagen) values ('Universidad de Cartagena Campus San Agustin','http://www.unicartagena.edu.co/images/identificadores/logotipo-lineal-oficial-unicartagena.png');
+insert into UniversidadEntity (nombre,imagen) values ('Universidad de Cartagena','http://www.unicartagena.edu.co/images/identificadores/logotipo-lineal-oficial-unicartagena.png');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad Distrital Francisco José de Caldas','http://laud.udistrital.edu.co/sites/default/files/images/Escudo%20UD.jpg');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad EAN - Sede Nogal','https://upload.wikimedia.org/wikipedia/commons/e/e3/Escudo_de_la_Universidad_EAN_de_Bogot%C3%A1%2C_Colombia.jpg');
 insert into UniversidadEntity (nombre,imagen) values ('Universidad Cooperativa de Colombia','http://equiposdevideoconferencias.com/wp-content/uploads/2017/08/logo-con-fondo-transparente.png');
@@ -43,27 +43,27 @@ insert into UniversidadEntity (nombre,imagen) values ('Universidad Piloto de Col
 --Consulta
 
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra 45,Bógota',4.638268,-74.084003);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 5 #4-19, Pamplona, Norte de Santander', 7.386456, -72.650060);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 67 #53 - 108, Medellín, Antioquia', 6.350104, -75.560991);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 8 #580, Bogotá', 4.595211, -74.075549);
-insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 6 #36-100, Cartagena, Bolívar',10.426046, -75.549706);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 5 #4-19, Pamplona, Norte de Santander',7.108983, -73.110102);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 67 #53 - 108, Medellín, Antioquia', 4.625176, -74.074887);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 8 #580, Bogotá', 4.594794, -74.075559);
+insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 6 #36-100, Cartagena, Bolívar',10.425718, -75.549864);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 7 #40B - 53, Bogotá', 4.628266, -74.065421);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 79 #11-45, Bogotá, Cundinamarca',4.663756, -74.055060);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 14a #40A-39, Bogotá',4.631761, -74.068707);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('a 1-99,, Cl. 22 #119,Bógota',4.604608, -74.065890);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 45a #9-77, Bogotá',4.632512, -74.065310);
-
 --pruebas EstudianteEntity
-insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (1, 'amilkar','amilkar', '123');
-insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (2, 'camilo','camilo', '124');
-insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (3, 'kelly','kelly', '125');
-insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (4, 'william','william', '126');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia, rutaImagen) values (1, 'amilkar','amilkar', '123','http://deimageneschidas.com/wp-content/uploads/2016/04/imagenes-para-perfil-de-facebook-1.jpg');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia, rutaImagen) values (2, 'camilo','camilo', '124','https://images7.memedroid.com/images/UPLOADED43/5385438d7a708.jpeg');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia, rutaImagen) values (3, 'kelly','kelly', '125','https://s-media-cache-ak0.pinimg.com/originals/9e/61/23/9e6123e27bd3cf2f04463070220f7d7d.jpg');
+insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia, rutaImagen) values (4, 'william','william', '126','https://k37.kn3.net/taringa/6/8/7/7/7/3/1/agushhhhh/FAD.jpg?7748');
 
 --pruebas OrigenEntity
 insert into OrigenEntity ( name) values ( 'bucaramanga');
 insert into OrigenEntity ( name) values ( 'cali');
 insert into OrigenEntity ( name) values ('bogota');
 insert into OrigenEntity ( name) values ( 'ibague');
+
 
 --Hopedaje
 
@@ -72,43 +72,43 @@ http://www4.congreso.gob.pe/comisiones/1999/turismo/normas/DS12.94.HTML
 */
 
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Sunny', 'Hoteles', 27,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
+values ('Sunny', 'Hoteles', 5,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Lauryn', 'Hoteles', 99,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
+values ('Lauryn', 'Hoteles', 5,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Mariette', 'Apart-Hoteles', 14,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
+values ('Mariette', 'Apart-Hoteles', 4,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Violet', 'Apart-Hoteles', 44,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
+values ('Violet', 'Apart-Hoteles', 4,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Roseline', 'Apart-Hoteles', 42,0,'https://s-ec.bstatic.com/images/hotel/max1024x768/715/71566660.jpg');
+values ('Roseline', 'Apart-Hoteles', 4,0,'https://s-ec.bstatic.com/images/hotel/max1024x768/715/71566660.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Shelby', 'Apart-Hoteles', 82,0,'https://www.mexicanbusinessweb.mx/wp-content/uploads/2016/02/CNS.jpg');
+values ('Shelby', 'Apart-Hoteles', 3,0,'https://www.mexicanbusinessweb.mx/wp-content/uploads/2016/02/CNS.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Erwin', 'Hostales', 22,0,'https://media-cdn.tripadvisor.com/media/photo-s/04/bb/4a/0b/hospedaje-magallanes.jpg');
+values ('Erwin', 'Hostales', 3,0,'https://media-cdn.tripadvisor.com/media/photo-s/04/bb/4a/0b/hospedaje-magallanes.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Robinette', 'Hostales', 76,0,'http://www.chirripo.org/wp-content/uploads/2016/05/Hospedaje-Albergue-Chirripo.jpg');
+values ('Robinette', 'Hostales', 5,0,'http://www.chirripo.org/wp-content/uploads/2016/05/Hospedaje-Albergue-Chirripo.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Carley', 'Hostales', 49,0,'https://images.adsttc.com/media/images/56d0/b2f0/e58e/ce01/c200/0006/large_jpg/17.jpg?1456517863');
+values ('Carley', 'Hostales', 5,0,'https://images.adsttc.com/media/images/56d0/b2f0/e58e/ce01/c200/0006/large_jpg/17.jpg?1456517863');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Karine', 'Hostales', 4,0,'https://media-cdn.tripadvisor.com/media/photo-s/08/2a/65/e3/hospedaje-la-bonita.jpg');
+values ('Karine', 'Hostales', 0,0,'https://media-cdn.tripadvisor.com/media/photo-s/08/2a/65/e3/hospedaje-la-bonita.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Albie', 'Hostales', 35,0,'https://media-cdn.tripadvisor.com/media/photo-s/05/2d/53/e3/hospedaje-dimar-inn.jpg');
+values ('Albie', 'Hostales', 0,0,'https://media-cdn.tripadvisor.com/media/photo-s/05/2d/53/e3/hospedaje-dimar-inn.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Bonita', 'Albergues', 53,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/278/27831940.jpg');
+values ('Bonita', 'Albergues', 1,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/278/27831940.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 1', 'Albergues', 25,0,'http://www.guiaejecafetero.com/wp-content/uploads/photo-gallery/Alojamientos/46.CampingMonteroca/rasta-house-camping-boquia-salento3.jpg');
+values ('Hospedaje 1', 'Albergues', 1,0,'http://www.guiaejecafetero.com/wp-content/uploads/photo-gallery/Alojamientos/46.CampingMonteroca/rasta-house-camping-boquia-salento3.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 2', 'Hostales', 27,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
+values ('Hospedaje 2', 'Hostales', 2,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 3', 'Hostales', 99,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
+values ('Hospedaje 3', 'Hostales', 5,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 4', 'Apart-Hoteles', 14,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
+values ('Hospedaje 4', 'Apart-Hoteles', 3,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 5', 'Albergues', 44,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
+values ('Hospedaje 5', 'Albergues', 4,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 6', 'Apart-Hoteles', 14,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
+values ('Hospedaje 6', 'Apart-Hoteles', 3,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 7', 'Albergues', 44,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
+values ('Hospedaje 7', 'Albergues', 0,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
 
 
 -- Arrendador
@@ -160,10 +160,10 @@ insert into ServiciosEntity (descripcion, costo) values ('Berte', 27.24);
 
 
 -- Reservas
-insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje) values (1,123,'02/02/2009','03/02/2021',2);
-insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje) values (2,1235,'03/05/2008','03/02/2031',3);
-insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje) values (3,1236,'04/08/2005','03/02/2011',4);
-insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje) values (4,1234,'05/07/2003','03/02/2020',5);
+insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10000,'02/02/2019','03/02/2009');
+insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10001,'03/05/2018','03/02/2011');
+insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10002,'04/08/2015','03/02/2001');
+insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10003,'05/07/2013','03/02/2001');
 
 
 -- Ligares Interes
@@ -292,6 +292,19 @@ update CALIFICACIONENTITY set estudiante_id = 2 where id = 4;
 update CALIFICACIONENTITY set estudiante_id = 3 where id = 3;
 update CALIFICACIONENTITY set estudiante_id = 4 where id = 2;
 
+update EstudianteEntity set origen_id = 1 where id = 1;
+update EstudianteEntity set origen_id = 2 where id = 2;
+update EstudianteEntity set origen_id = 3 where id = 3;
+update EstudianteEntity set origen_id = 4 where id = 4;
+
+update ReservaEntity set estudiante_id = 1 where id = 10000; 
+update ReservaEntity set hospedaje_id = 1 where id = 10000;
+update ReservaEntity set estudiante_id = 2 where id = 10001; 
+update ReservaEntity set hospedaje_id = 2 where id = 10001;
+update ReservaEntity set estudiante_id = 3 where id = 10002; 
+update ReservaEntity set hospedaje_id = 3 where id = 10002;
+update ReservaEntity set estudiante_id = 4 where id = 10003; 
+update ReservaEntity set hospedaje_id = 4 where id = 10003; 
 
 update ServiciosEntity set hospedaje_id =1 where id =1;
 update ServiciosEntity set hospedaje_id =2 where id =2;

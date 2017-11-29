@@ -49,12 +49,21 @@ public class EstudianteResource {
     }
 
     
-
+/**
+ * retorna estudiantes
+ * @return
+ * @throws BusinessLogicException 
+ */
     @GET
     public List<EstudianteDetailDTO> finds() throws BusinessLogicException {
         return listEstudianteEntity2DTO(estudiante.findAll());
     }
-
+/**
+ * retorna un estudiante
+ * @param cedula
+ * @return
+ * @throws BusinessLogicException 
+ */
     @GET
     @Path("{cedula: \\d+}")
     public EstudianteDetailDTO find(@PathParam("cedula") Long cedula) throws BusinessLogicException {
@@ -64,12 +73,21 @@ public class EstudianteResource {
         }
         return new EstudianteDetailDTO(entity);
     }
-
+/**
+ * crea un estudiante
+ * @param estudiante
+ * @return
+ * @throws BusinessLogicException 
+ */
     @POST
     public EstudianteDTO createEstudiante(EstudianteDTO estudiante) throws BusinessLogicException {
         return new EstudianteDTO(this.estudiante.create(estudiante.toEntity()));
     }
-
+/**
+ * borra un estudiante
+ * @param cedula
+ * @throws BusinessLogicException 
+ */
     @DELETE
     @Path("{estudiantesCedula: \\d+}")
     public void deleteEstudiante(@PathParam("estudiantesCedula") Long cedula) throws BusinessLogicException {
@@ -79,7 +97,13 @@ public class EstudianteResource {
         }
         estudiante.delete(cedula);
     }
-
+/**
+ * actualiza un estudiante
+ * @param cedula
+ * @param estu
+ * @return
+ * @throws BusinessLogicException 
+ */
     @PUT
     @Path("{cedula: \\d+}")
     public EstudianteDTO updateEstudiante(@PathParam("cedula") Long cedula, EstudianteDTO estu) throws BusinessLogicException {
@@ -89,7 +113,12 @@ public class EstudianteResource {
         }
         return new EstudianteDTO(estudiante.update(estu.toEntity(), cedula));
     }
-
+/**
+ * da las calificaciones
+ * @param cedulaEstudiante
+ * @return
+ * @throws BusinessLogicException 
+ */
     @Path("{cedulaEstudiante: \\d+}/calificaciones")
     public Class<CalificacionResource> getCalificacionResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.find(cedulaEstudiante);
@@ -98,7 +127,11 @@ public class EstudianteResource {
         }
         return CalificacionResource.class;
     }
-
+/**
+ * entity a dto
+ * @param entityList
+ * @return 
+ */
     private List<EstudianteDetailDTO> listEstudianteEntity2DTO(List<EstudianteEntity> entityList) {
         List<EstudianteDetailDTO> list = new ArrayList<>();
         for (EstudianteEntity entity : entityList) {
@@ -106,13 +139,23 @@ public class EstudianteResource {
         }
         return list;
     }
-
+/**
+ * da el origen
+ * @param cedula
+ * @return
+ * @throws BusinessLogicException 
+ */
     @GET
     @Path("{cedula: \\d+}/origenes")
     public OrigenDTO getOrigen(@PathParam("cedula") Long cedula) throws BusinessLogicException {
         return new OrigenDTO(estudiante.getOrigen(cedula));
     }
-
+/**
+ * da la reserva
+ * @param cedulaEstudiante
+ * @return
+ * @throws BusinessLogicException 
+ */
     @Path("{cedulaEstudiante: \\d+}/reservas")
     public Class<ReservaResource> getReservaResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.find(cedulaEstudiante);
@@ -121,7 +164,12 @@ public class EstudianteResource {
         }
         return ReservaResource.class;
     }
-    
+    /**
+     * da las facturas
+     * @param cedulaEstudiante
+     * @return
+     * @throws BusinessLogicException 
+     */
     @Path("{cedulaEstudiante: \\d+}/factura")
     public Class<FacturaResource> getFacturasResource(@PathParam("cedulaEstudiante") Long cedulaEstudiante) throws BusinessLogicException {
         EstudianteEntity entity = estudiante.find(cedulaEstudiante);
@@ -130,5 +178,4 @@ public class EstudianteResource {
         }
         return FacturaResource.class;
     }
-
 }

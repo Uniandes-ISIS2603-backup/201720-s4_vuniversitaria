@@ -25,17 +25,12 @@ public class Validacion {
      * Logica de arrendador
      */
     private ArrendadorLogic al;
-    
-    public static Long id;
-    public static String rol;
 
     /**
      * Constructor por defecto
      */
     public Validacion() {
         super();
-        id = 0L;
-        rol = "No registrado";
     }
 
     /**
@@ -48,8 +43,6 @@ public class Validacion {
     public Validacion(EstudianteLogic el, ArrendadorLogic al) {
         this.el = el;
         this.al = al;
-        id = 0L;
-        rol = "No registrado";
     }
 
     /**
@@ -61,18 +54,13 @@ public class Validacion {
     public String validarUsuario(String usuario) {
         EstudianteEntity est = el.buscarUsusario(usuario);
         if(est != null) {
-            id = est.getId();
-            rol = "Estudiante";
-            return rol+";"+est.getContrasenia();
+            return "Estudiante;"+est.getContrasenia()+";"+est.getId();
         } else {
             ArrendadorEntity arr = al.buscarUsusario(usuario);
             if(arr != null) {
-                id = arr.getId();
-                rol = "Arrendador";
-                return rol+";"+arr.getContrasenia();
+                return "Arrendador;"+arr.getContrasenia()+";"+arr.getId();
             } else {
-                rol = "No registrado";
-                return "Error;Error";
+                return "Error;Error;Error";
             }
         }
     }

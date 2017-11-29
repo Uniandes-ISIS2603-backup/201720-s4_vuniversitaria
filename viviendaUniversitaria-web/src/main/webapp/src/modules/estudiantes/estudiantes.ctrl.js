@@ -11,6 +11,12 @@
                 $scope.origenesRecords = response.data;
             });
             
+            if (($scope.idActivo !== undefined) && ($scope.idActivo !== null)) {
+                $http.get(estudiantesContext + '/' + $scope.idActivo).then(function (response) {
+                    $scope.currentEstudiante = response.data;
+                });}
+        
+            
             $scope.crearFiltro = function (origenId) {
                 $http.get(origenContext + '/' + origenId + "/estudiantes").then(function (response) {
                     $scope.estudiantesRecords = response.data;
