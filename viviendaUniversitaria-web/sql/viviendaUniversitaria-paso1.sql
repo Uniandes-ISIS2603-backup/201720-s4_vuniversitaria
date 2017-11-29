@@ -52,7 +52,6 @@ insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 79 #
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cra. 14a #40A-39, Bogotá',4.631761, -74.068707);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('a 1-99,, Cl. 22 #119,Bógota',4.604608, -74.065890);
 insert into APP.UBICACIONENTITY (direccion, latitud, longitud) values ('Cl. 45a #9-77, Bogotá',4.632512, -74.065310);
-
 --pruebas EstudianteEntity
 insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (1, 'amilkar','amilkar', '123');
 insert into EstudianteEntity (cedula, nombre, nombreUsuario, contrasenia) values (2, 'camilo','camilo', '124');
@@ -64,6 +63,7 @@ insert into OrigenEntity ( name) values ( 'bucaramanga');
 insert into OrigenEntity ( name) values ( 'cali');
 insert into OrigenEntity ( name) values ('bogota');
 insert into OrigenEntity ( name) values ( 'ibague');
+
 
 --Hopedaje
 
@@ -181,10 +181,10 @@ insert into FacturaEntity (fecha, total, iva) values ('12/13/2016', 6.0, 42.73);
 insert into FacturaEntity (fecha, total, iva) values ('4/21/2017', 41.4, 94.23);
 
 -- Reservas
-insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje) values (1,123,'02/02/2009','03/02/2021',2);
-insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje) values (2,1235,'03/05/2008','03/02/2031',3);
-insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje) values (3,1236,'04/08/2005','03/02/2011',4);
-insert into APP.RESERVAENTITY (id,cedulaHuesped,fechaFin,fechaInicio,idHospedaje) values (4,1234,'05/07/2003','03/02/2020',5);
+insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10000,'02/02/2009','03/02/2021');
+insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10001,'03/05/2008','03/02/2031');
+insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10002,'04/08/2005','03/02/2011');
+insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10003,'05/07/2003','03/02/2020');
 
 
 -- Ligares Interes
@@ -247,6 +247,19 @@ update CALIFICACIONENTITY set estudiante_id = 2 where id = 4;
 update CALIFICACIONENTITY set estudiante_id = 3 where id = 3;
 update CALIFICACIONENTITY set estudiante_id = 4 where id = 2;
 
+update EstudianteEntity set origen_id = 1 where id = 1;
+update EstudianteEntity set origen_id = 2 where id = 2;
+update EstudianteEntity set origen_id = 3 where id = 3;
+update EstudianteEntity set origen_id = 4 where id = 4;
+
+update ReservaEntity set estudiante_id = 1 where id = 10000; 
+update ReservaEntity set hospedaje_id = 1 where id = 10000;
+update ReservaEntity set estudiante_id = 2 where id = 10001; 
+update ReservaEntity set hospedaje_id = 2 where id = 10001;
+update ReservaEntity set estudiante_id = 3 where id = 10002; 
+update ReservaEntity set hospedaje_id = 3 where id = 10002;
+update ReservaEntity set estudiante_id = 4 where id = 10003; 
+update ReservaEntity set hospedaje_id = 4 where id = 10003; 
 
 update ServiciosEntity set hospedaje_id =1 where id =1;
 update ServiciosEntity set hospedaje_id =2 where id =2;
