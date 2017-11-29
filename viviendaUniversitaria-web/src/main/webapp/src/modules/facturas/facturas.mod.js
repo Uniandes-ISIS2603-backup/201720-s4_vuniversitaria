@@ -3,7 +3,6 @@
     mod.constant("facturasContext", "api/facturas");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/facturas/';
-            $urlRouterProvider.otherwise("/facturasList");
 
             $stateProvider.state('facturas', {
                 url: '/facturas',

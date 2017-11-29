@@ -4,16 +4,11 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.entities;
-
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -24,25 +19,27 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author je.bejarano10
  */
 @Entity
-public class FacturaEntity implements Serializable {
+public class FacturaEntity extends BaseEntity{
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     
     @Temporal (javax.persistence.TemporalType.DATE)
+    
     private Date fecha;
+    
     private double total;
+    
     private double iva;
+            
+    private boolean estaPago;
     
     @PodamExclude
     @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetalleReservaEntity> detallesReserva;
-//    
+    
     @PodamExclude
     @ManyToOne
-    private HospedajeEntity hospedaje;
-//    
+    private HospedajeEntity hospedaje;   
+    
     @PodamExclude
     @ManyToOne
     private EstudianteEntity estudiante;
@@ -82,17 +79,6 @@ public class FacturaEntity implements Serializable {
     public void setEstudiante(EstudianteEntity estudiante) {
         this.estudiante = estudiante;
     }
-
-    
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Date getFecha() {
         return fecha;
     }
@@ -117,6 +103,14 @@ public class FacturaEntity implements Serializable {
 
     public void setIva(double iva) {
         this.iva = iva;
+    }
+
+    public boolean isEstaPago() {
+        return estaPago;
+    }
+
+    public void setEstaPago(boolean estaPago) {
+        this.estaPago = estaPago;
     }
     
 }

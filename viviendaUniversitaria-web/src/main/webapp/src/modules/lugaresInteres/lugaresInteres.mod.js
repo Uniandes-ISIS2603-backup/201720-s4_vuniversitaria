@@ -3,7 +3,6 @@
     mod.constant("lugaresInteresContext", "api/lugaresInteres");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/lugaresInteres/';
-            $urlRouterProvider.otherwise("/lugaresInteres");
             $stateProvider.state('lugaresInteres', {
                 url: '/lugaresInteres',
                 views:{

@@ -78,29 +78,6 @@ public class DetalleServicioEntityTest {
         detalle.setId(detalleT.getId());
         Assert.assertTrue(detalle.getId().equals(detalleT.getId()));
     }
-
-    /**
-     * Test of getCantidad method, of class DetalleServicioEntity.
-     */
-    @Test
-    public void testGetCantidad() {
-        DetalleServicioEntity detalleT = data.get(0);
-        DetalleServicioEntity detalle = new DetalleServicioEntity();
-        detalle.setCantidad(detalleT.getCantidad());
-        Assert.assertTrue(detalle.getCantidad().equals(detalleT.getCantidad()));
-    }
-
-    /**
-     * Test of setCantidad method, of class DetalleServicioEntity.
-     */
-    @Test
-    public void testSetCantidad() {
-        DetalleServicioEntity detalleT = data.get(0);
-        DetalleServicioEntity detalle = new DetalleServicioEntity();
-        detalle.setCantidad(detalleT.getCantidad());
-        Assert.assertTrue(detalle.getCantidad().equals(detalleT.getCantidad()));
-    }
-
     /**
      * Test of getSubTotal method, of class DetalleServicioEntity.
      */

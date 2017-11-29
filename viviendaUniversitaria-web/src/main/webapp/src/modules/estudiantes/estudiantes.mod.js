@@ -3,7 +3,6 @@
     mod.constant("estudiantesContext", "api/estudiantes");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/estudiantes/';
-            $urlRouterProvider.otherwise("/estudiantesList");
 
             $stateProvider.state('estudiantes', {
                 url: '/estudiantes',

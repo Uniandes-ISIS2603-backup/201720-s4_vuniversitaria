@@ -112,22 +112,43 @@
 
         
     </head>
-    <body class="span4" style="background-image:url()">
+    <body class="span4" style="background-image:url(https://image.ibb.co/eusu2w/BD.jpg)">
+        <style>
+            .nav-tabs{
+  background-color:#45cea2
+}
+
+           
+  
+
+.tab-content{
+    background-color:#45cea2;
+    color:#39aaf1;
+    padding:5px
+}
+.nav-tabs > li > a{
+  border: medium none;
+}
+.nav-tabs > li > a:hover{
+  background-color: #459a70 !important;
+    border: medium none;
+    border-radius: 5px;
+    color:#fff;
+}</style>
         <div class="container-fluid">
-            <div class="row mainHeader">
+            <div class="row mainHeader" >
                 <div class="col-lg-12-3"> 
                     <br><img src="resources/images/vvu.PNG" alt="logo" style="display: block; margin: auto;" class="img-responsive logo"/>
                 </div>
                 
-                <div class="col-md-7">
-                    <label ng-show="!(rolActivo === 'No registrado' || rolActivo === undefined)"> ROL: {{rolActivo}} </label>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li ng-show="rolActivo === 'No registrado' || rolActivo === undefined"><a><span class="glyphicon glyphicon-user" ></span> Sign Up</a></li>
+                <div class="col-md-7" >
+                    <ul class="nav navbar-nav navbar-right" style="background-color:#45cea2; color:#39aaf1; border-radius: 5px; margin-bottom:15px;">
+                        <li><a><span class="glyphicon glyphicon-user" ></span> Sign Up</a></li>
                         <li ng-show="rolActivo === 'No registrado' || rolActivo === undefined" ><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesion</a></li>
                         <li ng-show="!(rolActivo === 'No registrado' || rolActivo === undefined)" ><a ui-sref="logout"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesion</a></li>
                     </ul>
-                </div>                    
-                <div class="container-fluid"> 
+                </div>
+                <div class="container-fluid" > 
                     <div class="row">
                         <div class="col-lg-12">
                             <ul class="nav nav-tabs">

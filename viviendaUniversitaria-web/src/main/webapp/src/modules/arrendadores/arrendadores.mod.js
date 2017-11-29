@@ -3,7 +3,6 @@
     mod.constant("arrendadoresContext", "api/arrendadores");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/arrendadores/';
-            $urlRouterProvider.otherwise("/arrendadoresList");
 
             $stateProvider.state('arrendadores', {
                 url: '/arrendadores',
