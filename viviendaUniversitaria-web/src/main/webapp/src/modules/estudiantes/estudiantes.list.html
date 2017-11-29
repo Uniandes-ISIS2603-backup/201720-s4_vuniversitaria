@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-show="rolActivo === 'Administrador'">
     <div class="panel-group">
         <div class="panel panel-primary">
             <div class="panel-body">
@@ -44,6 +44,51 @@
             </div>
         </div>
     </div>
+</div>
+<div ng-show="rolActivo === 'Estudiante'">
+    <div class="panel-heading">
+    <h4><b>PERFIL</b></h4>
+</div>
+<div class="panel-body">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="thumb">
+                <img class="img-responsive" ng-src="{{currentEstudiante.rutaImagen}}"/>
+            </div>
 
+        </div>
+        <div class="col-md-3">
+            <dl>   
+                <hr>
+                <dt class="bold">Nombre:</dt>
+                <dd>{{currentEstudiante.nombre}}</dd>
 
+                <hr>
+                <dt class="bold">Cedula:</dt>
+                <dd>{{currentEstudiante.cedula}}</dd>
+
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4>Reservas asociadas a un estudiante</h4>
+    </div>
+    <div class="panel-body">
+        <table class="table" >
+            <tbody>
+                <tr>
+                    <td class="well">Id: {{currentEstudiante.reserva.id}} </td>
+                </tr>
+                <tr>
+                    <td class="well">Fecha inicio {{currentEstudiante.reserva.fechaInicio}}</td>
+                </tr>
+                <tr>
+                    <td class="well">Fecha fin {{currentEstudiante.reserva.fechaFin}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </div>

@@ -21,6 +21,8 @@ public class EstudianteDetailDTO extends EstudianteDTO {
 
     //relacion uno a muchos con calificacion
     private List<CalificacionDTO> calificaciones;
+    
+    private ReservaDTO reserva;
 
     public EstudianteDetailDTO() {
         super();
@@ -37,6 +39,11 @@ public class EstudianteDetailDTO extends EstudianteDTO {
             this.origen = new OrigenDTO(entity.getOrigen());
         } else {
             entity.setOrigen(null);
+        }
+        if (entity.getReserva()!= null) {
+            this.reserva = new ReservaDTO(entity.getReserva());
+        } else {
+            entity.setReserva(null);
         }
 
         if (entity.getCalificaciones() != null) {
@@ -61,9 +68,23 @@ public class EstudianteDetailDTO extends EstudianteDTO {
             }
             entity.setCalificaciones(calificacionEntity);
         }
+        if (this.getReserva()!= null) {
+            entity.setReserva(this.getReserva().toEntity());
+        }
 
         return null;
     }
+
+    public ReservaDTO getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(ReservaDTO reserva) {
+        this.reserva = reserva;
+    }
+    
+    
+    
     /**
      * 
      * @return origen
