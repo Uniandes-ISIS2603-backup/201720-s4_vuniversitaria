@@ -8,9 +8,6 @@
             $scope.listaFiltro = [];
 
             $scope.filtrarValoracion = function (valoracion) {
-                $http.get(hospedajeContext).then(function (response) {
-                    $scope.hospedajeList = response.data;
-                });
                 $scope.filtroActivo = true;
                 $scope.listaFiltro = [];
                 var aux = 0;
@@ -23,9 +20,6 @@
             };
 
             $scope.filtrartipo = function (tipo) {
-                $http.get(hospedajeContext).then(function (response) {
-                    $scope.hospedajeList = response.data;
-                });
                 $scope.filtroActivo = true;
                 $scope.listaFiltro = [];
                 var aux = 0;
@@ -47,6 +41,12 @@
                 });
             }
             ;
+            
+            if ($state.params.idHospedaje !== undefined && $state.params.idRegla !== undefined) {
+                $http.get(hospedajeContext + '/' + $state.params.idHospedaje+'/reglas/'+$state.params.idRegla).then(function (response) {
+                    $scope.regla = response.data.regla;
+                });
+            };
             if ($state.params.idServicio !== undefined) {
                 $http.get(hospedajeContext + '/' + $state.params.idHospedaje + '/servicios/' + $state.params.idServicio).then(function (response) {
                     $scope.servicioActivo = response.data;
