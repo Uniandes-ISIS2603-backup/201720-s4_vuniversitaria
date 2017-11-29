@@ -28,11 +28,12 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
     }
     
     @Inject
-    public EstudianteLogic(EstudiantePersistence persistence, CalificacionLogic calificacionLogic) {
+    public EstudianteLogic(EstudiantePersistence persistence, CalificacionLogic calificacionLogic, OrigenPersistence per) {
         super(persistence, EstudianteEntity.class);
         this.persistence = persistence;
         this.calificacionLogic = calificacionLogic;
-    }
+        this.origenPersistence = per;
+    }   
     /**
      * da el origen
      * @param cedula
@@ -72,7 +73,15 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         if (entity.getCedula() == null || entity.getNombre() == null) {
             throw new BusinessLogicException("faltan parametros en el JSon");
         }
-        return super.create(entity);
+        if(entity.getNombreOrigen() == null){
+                throw new BusinessLogicException("falto el origen");
+        }
+        if (origenPersistence.findByName(entity.getNombreOrigen()) == null) {
+                throw new BusinessLogicException("no existe ese origen");
+        }
+        EstudianteEntity rta = persistence.create(entity);
+        rta.setOrigen(origenPersistence.findByName(entity.getNombreOrigen()));
+        return rta;
     }
 
 /**
