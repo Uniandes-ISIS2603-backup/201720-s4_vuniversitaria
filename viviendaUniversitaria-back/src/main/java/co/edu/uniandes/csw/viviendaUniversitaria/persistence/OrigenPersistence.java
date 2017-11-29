@@ -18,4 +18,7 @@ public class OrigenPersistence extends GenericPresistence<OrigenEntity>{
     public OrigenPersistence() {
         super(OrigenEntity.class);
     }
+    
+    
+    //public findByName(String )
 }

@@ -15,6 +15,8 @@ public class EstudianteDTO {
     private Long id;
     private Long cedula;  
     private String nombre;
+    private OrigenDTO origenDTO;
+    private String nombreOrigen;
     /**
      * Nombre de usuario
      */
@@ -63,6 +65,14 @@ public class EstudianteDTO {
 
      
         return estu;
+    }
+
+    public OrigenDTO getOrigenDTO() {
+        return origenDTO;
+    }
+
+    public void setOrigenDTO(OrigenDTO origenDTO) {
+        this.origenDTO = origenDTO;
     }
 
     public Long getId() {
@@ -120,4 +130,13 @@ public class EstudianteDTO {
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
+
+    public String getNombreOrigen() {
+        return nombreOrigen;
+    }
+
+    public void setNombreOrigen(String nombreOrigen) {
+        this.nombreOrigen = nombreOrigen;
+    }
+    
 }
