@@ -14,34 +14,51 @@
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="iva" class="col-sm-2">IVA a aplicar:</label>
-                            <input id="estudianteCedula" required ng-model="iva" class="col-sm-6"/>                        
+                            <form>
+                            <select ng-model="iva">
+         
+                            <option value="19"> IVA vigente
+                            <option value="23"> IVA + Penalización por mora 
+                            <option value="13"> IVA + Descuento gubernamental
+                            
+                            </select>
+                            
+                        </form>                        
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="total" class="col-sm-2">Selecciona el total de la factura:</label>
-                            <input id="total" required ng-model="total" class="col-sm-6"/>                        
-                        </div>
-                    </div>
+                    
                     <div class="panel-body" >
                 <div class="col-md-8">
                     <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Identificador de la reserva</th>    
-                                <th>Agregar reserva</th>  
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="reserva in reservasRecords">
-                            <td id="{{$index}}-Id">{{reserva.id}}</td>
+                        <p> Selecciona la reserva a facturar </p>
+                        <form>
+                            <select ng-model="reservaSeleccionada">
+                            <option ng-repeat="reserva in reservasRecords" value="{{reserva}}"> {{reserva.id}} Estudiante: {{reserva.estudiante.nombre}} Desde: {{reserva.fechaInicio}} hasta: {{reserva.fechaFin}}
+                            </select>
+                            
+                        </form>
+                        <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="total" class="col-sm-2">Selecciona el total de la factura:</label>
+                            <br>
+                            <form>
+                            <select ngModel="total">
+                            <option value="(Math.random()*11587)+1"> Tarifa calculada
                                 
-                                <td id="{{$index}}-actions">
-                                    <button id="confirm-add" ng-click="createFactura()" class="btn btn-info">Agregar</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                }}
+                            <option value="11025"> Estadía básica + Servicio de telefonía
+                            <option value="13012"> Estadía básica + Servicio de telefonía + Servicio de luz
+                            
+                            </select>
+                            
+                        </form>
+                                                  
+                        </div>
+                    </div>
+                        
+                            
+                         
+                                    
                     <br>
                 
                 </div>
