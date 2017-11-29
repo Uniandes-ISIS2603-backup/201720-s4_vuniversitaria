@@ -12,44 +12,17 @@ import java.util.List;
 
 /**
  *
- * @author je.bejarano10
+ * @author a.eslava
  */
 public class ReservaDetailDTO extends ReservaDTO{
     
     private List<DetalleReservaDTO> detalleReserva;
-
-    public List<DetalleReservaDTO> getDetalleReserva() {
-        return detalleReserva;
-    }
-
-    public void setDetalleReserva(List<DetalleReservaDTO> detalleReserva) {
-        this.detalleReserva = detalleReserva;
-    }
+    
     private HospedajeDTO hospedaje;
     
     private EstudianteDTO estudiante;
-
-    public EstudianteDTO getEstudiante() {
-        return estudiante;
-    }
-
-    public void setEstudiante(EstudianteDTO estudiante) {
-        this.estudiante = estudiante;
-    }
-
     
-
-   
-
-    public HospedajeDTO getHospedaje() {
-        return hospedaje;
-    }
-
-    public void setHospedaje(HospedajeDTO hospedaje) {
-        this.hospedaje = hospedaje;
-    }
-    
-    public ReservaDetailDTO(){
+        public ReservaDetailDTO(){
         super();
     }
      public ReservaDetailDTO(ReservaEntity reservaEntity){
@@ -72,11 +45,35 @@ public class ReservaDetailDTO extends ReservaDTO{
                 for(DetalleReservaEntity entityDetalleReserva :reservaEntity.getDetalleReserva()){
                     detalleReserva.add(new DetalleReservaDTO(entityDetalleReserva));
                 }
-            }
-        
-           
+            }          
         }
     }
+
+    public List<DetalleReservaDTO> getDetalleReserva() {
+        return detalleReserva;
+    }
+
+    public void setDetalleReserva(List<DetalleReservaDTO> detalleReserva) {
+        this.detalleReserva = detalleReserva;
+    }
+    
+
+    public EstudianteDTO getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(EstudianteDTO estudiante) {
+        this.estudiante = estudiante;
+    }
+
+    public HospedajeDTO getHospedaje() {
+        return hospedaje;
+    }
+
+    public void setHospedaje(HospedajeDTO hospedaje) {
+        this.hospedaje = hospedaje;
+    }
+    
      @Override
      public ReservaEntity toEntity(){
          ReservaEntity reservaEntity = super.toEntity();
