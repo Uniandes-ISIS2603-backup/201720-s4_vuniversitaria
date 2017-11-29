@@ -14,34 +14,22 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.DetalleServicioEntity;
 public class DetalleServicioDTO 
 {
     private Long id;
-    private Integer cantidad;
     private Double subTotal;
 
     public DetalleServicioDTO() {
         //Constructor por defecto
-    }
-    
+    }    
     public DetalleServicioDTO(DetalleServicioEntity entidad) 
     {
-        this.cantidad = entidad.getCantidad();
         this.id = entidad.getId();
         this.subTotal = entidad.getSubTotal();
     }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
     }
 
     public Double getSubTotal() {
@@ -51,13 +39,9 @@ public class DetalleServicioDTO
     public void setSubTotal(Double subTotal) {
         this.subTotal = subTotal;
     }
-    
-    
-    
     public DetalleServicioEntity toEntity()
     {
         DetalleServicioEntity ret = new DetalleServicioEntity();
-        ret.setCantidad(cantidad);
         ret.setId(id);
         ret.setSubTotal(subTotal);
         return ret;

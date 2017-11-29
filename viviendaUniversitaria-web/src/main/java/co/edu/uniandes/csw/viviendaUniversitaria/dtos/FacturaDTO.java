@@ -21,7 +21,15 @@ public class FacturaDTO {
     private String fecha;
     private double total;
     private double iva;
+    private boolean estaPago;
 
+    public boolean isEstaPago() {
+        return estaPago;
+    }
+
+    public void setEstaPago(boolean estaPago) {
+        this.estaPago = estaPago;
+    }
     public Long getId() {
         return id;
     }
@@ -68,9 +76,13 @@ public class FacturaDTO {
         if (entity != null) {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             this.id = entity.getId();
+            if(entity.getFecha()!=null)
+            {
             this.fecha=formato.format(entity.getFecha());
+            }
             this.iva=entity.getIva();
             this.total=entity.getTotal();
+            this.estaPago=entity.isEstaPago();
         }
     }
 
@@ -86,10 +98,14 @@ public class FacturaDTO {
         entity.setId(this.id);
         entity.setIva(this.iva);
         entity.setTotal(this.total);
+        entity.setEstaPago(estaPago);
+        if(entity.getFecha() != null)
+        {
         try {
             entity.setFecha(formato.parse(fecha));
         } catch (ParseException ex) {
             Logger.getLogger(FacturaDTO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
         return entity;
     }

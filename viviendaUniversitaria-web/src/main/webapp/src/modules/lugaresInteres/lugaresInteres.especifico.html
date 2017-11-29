@@ -1,8 +1,6 @@
 <div class="container" >
     <br>
-    <input type="button" value="Anterior" ui-sref="lugarInteresEspecifico({idLugarInteres: lugarInteresActivo.id-1})" class="btn btn-info btn-lg">
-    <input type="button" value="Regresar" ui-sref="lugaresInteres" class="btn btn-info btn-lg">
-    <input type="button" value="Siguiente" ui-sref="lugarInteresEspecifico({idLugarInteres: lugarInteresActivo.id+1})" class="btn btn-info btn-lg">
+    <input type="button" value="Regresar" ui-sref="hospedajeEspecifico({idHospedaje:idHospedajeActual})" class="btn btn-info btn-lg">
     <br>
     <br>
     <br>
@@ -19,16 +17,10 @@
             </div>
             <div class="panel-body">
                  ID: {{lugarInteresActivo.id}} <br>
-                    DISTANCIA: {{lugarInteresActivo.distancia}} <br>
-                    DESCRIPCION: {{lugarInteresActivo.descripcion}}<BR>
-                    UBICACION : {{lugarInteresActivo.ubicacion.id}}
+                 NOMBRE: {{lugarInteresActivo.name}} <br>
+                 DESCRIPCION: {{lugarInteresActivo.descripcion}}
             </div>
         </div>
-    </div>
-    <br>
-    <div>
-        <input type="button" value="Editar" ui-sref="lugarInteresUpdate({idLugarInteresUpdate: lugarInteresActivo.id})" class="btn btn-warning btn-lg">
-        <input type="button" value="Eliminar" ui-sref="lugarInteresEliminar({idLugarInteresDelete: lugarInteresActivo.id})" class="btn btn-danger btn-lg">
     </div>
     <br>
     <br>

@@ -23,7 +23,7 @@ public class HospedajeDetaillDTO extends HospedajeDTO {
 
     private List<ReglaDTO> reglas;
     private List<ServiciosDTO> servicios;
-    private List<HospedajeLugarDTO> hospedajeLugares;
+    private List<HospedajeLugarInteresDTO> hospedajeLugares;
     private List<FacturaDTO> facturas;
     private List<ReservaDTO> reservas;
     private List<CalificacionDTO> calificaciones;
@@ -53,7 +53,7 @@ public class HospedajeDetaillDTO extends HospedajeDTO {
         if (entidad.getHospedajesLugares() != null) {
             this.hospedajeLugares = new ArrayList<>();
             for (HospedajeLugarEntity hospedajeL : entidad.getHospedajesLugares()) {
-                hospedajeLugares.add(new HospedajeLugarDTO(hospedajeL));
+                hospedajeLugares.add(new HospedajeLugarInteresDTO(hospedajeL));
             }
         }
         //else {entidad.setHospedajesLugares(null);}
@@ -106,13 +106,13 @@ public class HospedajeDetaillDTO extends HospedajeDTO {
             }
             ret.setServicios(add);
         }
-        if (hospedajeLugares != null) {
-            List<HospedajeLugarEntity> add = new ArrayList<>();
-            for (HospedajeLugarDTO ho : hospedajeLugares) {
-                add.add(ho.toEntity());
-            }
-            ret.setHospedajesLugares(add);
-        }
+//        if (hospedajeLugares != null) {
+//            List<HospedajeLugarEntity> add = new ArrayList<>();
+//            for (HospedajeLugarDTO ho : hospedajeLugares) {
+//                add.add(ho.toEntity());
+//            }
+//            ret.setHospedajesLugares(add);
+//        }
         if (calificaciones != null) {
             List<CalificacionEntity> add = new ArrayList<>();
             for (CalificacionDTO ca : calificaciones) {
@@ -163,11 +163,11 @@ public class HospedajeDetaillDTO extends HospedajeDTO {
         this.servicios = servicios;
     }
 
-    public List<HospedajeLugarDTO> getHospedajeLugares() {
+    public List<HospedajeLugarInteresDTO> getHospedajeLugares() {
         return hospedajeLugares;
     }
 
-    public void setHospedajeLugares(List<HospedajeLugarDTO> hospedajeLugares) {
+    public void setHospedajeLugares(List<HospedajeLugarInteresDTO> hospedajeLugares) {
         this.hospedajeLugares = hospedajeLugares;
     }
 

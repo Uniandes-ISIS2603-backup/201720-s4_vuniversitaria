@@ -3,7 +3,7 @@
     mod.constant("hospedajeContext", "api/hospedajes");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/hospedaje/';
-            $urlRouterProvider.otherwise("/hospedajes");
+            var basePathLugar = 'src/modules/lugaresInteres/';
             $stateProvider.state('hospedaje', {
                 url: '/hospedajes',
                 views:{
@@ -148,6 +148,56 @@
                     'mainView':{
                         templateUrl: basePath+'servicios/servicios.create.html',
                         controller: 'hospedajeCtrl'
+                    }
+                }
+            }).state('lugarInteresEspecifico',{
+             url: '{idHospedaje:int}/lugaresInteres/{idLugarInteres:int}',
+              param:{
+                    idHospedaje:null,
+                    idLugarInteres: null
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePathLugar+'lugaresInteres.especifico.html',
+                        controller : 'lugaresInteresCtrl'
+                    }
+                }
+            }).state('lugarInteresEliminar',{
+             url: '{idHospedaje:int}/lugaresInteres/{idLugarInteresDelete:int}',
+              param:{
+                    idHospedaje:null,
+                    idLugarInteresDelete: null
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePathLugar+'lugaresInteres.delete.html',
+                        controller : 'lugaresInteresDeleteCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('lugarInteresUpdate',{
+             url: '{idHospedaje:int}/lugaresInteres/{idLugarInteresUpdate:int}',
+              param:{
+                    idHospedaje:null,
+                    idLugarInteresUpdate: 0
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePathLugar+'lugaresInteres.update.html',
+                        controller : 'lugaresInteresUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('lugarInteresCreate',{
+             url: '{idHospedaje:int}/lugaresInteres',
+              param:{
+                    idHospedaje:null
+                },
+                views:{
+                    'mainView':{
+                        templateUrl: basePathLugar+'lugaresInteres.create.html',
+                        controller : 'lugaresInteresCreateCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
             })

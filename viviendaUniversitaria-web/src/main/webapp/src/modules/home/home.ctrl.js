@@ -18,7 +18,6 @@
                     text: "CONVIERTETE EN PARTE DE NUESTRA GRAN FAMILIA"
                 }
             ];
-
         }
     ]);
 }

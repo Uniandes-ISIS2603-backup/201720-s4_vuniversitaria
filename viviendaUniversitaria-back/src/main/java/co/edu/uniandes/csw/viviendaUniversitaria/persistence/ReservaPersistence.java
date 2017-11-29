@@ -14,7 +14,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class ReservaPersistence extends GenericPresistence<ReservaEntity>{
-
+/**
+ * llamo al generico
+ */
     public ReservaPersistence(){
         super(ReservaEntity.class);
     }

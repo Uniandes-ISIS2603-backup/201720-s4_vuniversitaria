@@ -12,7 +12,6 @@
         'universidadModule',
         'ubicacionModule',
         'arrendadorModule',
-        'lugaresInteresModule',
         'hospedajeModule',
         'loginModule',
         'homeModule'
@@ -26,4 +25,11 @@
         });
             $qProvider.errorOnUnhandledRejections(false);
         }]);
+    
+    app.controller('appCtrl', ['$scope', '$http', '$state', '$rootScope','$stateProvider','$urlRouterProvider',
+        function ($scope, $http, $state, $rootScope, $stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('/home');
+            
+        }
+    ]);
 })(window.angular);

@@ -1,0 +1,191 @@
+{
+	"variables": [],
+	"info": {
+		"name": "FacturaTests",
+		"_postman_id": "411973da-05e7-d724-7ae0-b0ef282f390c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/",
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"id\":50,\n\"fecha\":\"2016-12-03\",\n\"iva\":20,\n\"total\":20\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/123/1",
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/123/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"id\":50,\n\"fecha\":\"2016-12-03\",\n\"iva\":20,\n\"total\":20\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/123/1",
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/123/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"fecha\":\"2016-12-03\",\n\"iva\":20,\n\"total\":20\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/1",
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"id\":50,\n\"fecha\":\"2016-12-03\",\n\"iva\":20,\n\"total\":20\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/0/1",
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/0/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\"fecha\":\"2016-12-03\",\n\"iva\":20,\n\"total\":20\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/0/1",
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/0/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"id\":50,\n\"fecha\":\"2016-12-03\",\n\"iva\":20,\n\"total\":20\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/0/1",
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/0/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"id\":500,\n\"fecha\":\"2016-12-03\",\n\"iva\":20,\n\"total\":20\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/0/1",
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/0/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"id\":5,\n\"fecha\":\"2016-12-03\",\n\"iva\":20,\n\"total\":20\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/0/1",
+			"request": {
+				"url": "http://localhost:8080/viviendaUniversitaria-web/api/facturas/0/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"id\":10,\n\"fecha\":\"2016-12-03\",\n\"iva\":20,\n\"total\":20\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

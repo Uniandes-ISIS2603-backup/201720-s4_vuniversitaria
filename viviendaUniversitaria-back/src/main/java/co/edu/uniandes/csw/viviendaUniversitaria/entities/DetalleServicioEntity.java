@@ -15,11 +15,6 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class DetalleServicioEntity extends BaseEntity {
 
     /**
-     * Cantidad de servicios pedidos.
-     */
-    private Integer cantidad;
-
-    /**
      * Total generado por la prestación del servicio.
      */
     private Double subTotal;
@@ -37,24 +32,6 @@ public class DetalleServicioEntity extends BaseEntity {
     @PodamExclude
     @ManyToOne
     private ServiciosEntity servicio;
-
-    /**
-     * Retorna la cantidad de servicios pedidos.
-     *
-     * @return Cantidad de servicios pedidos.
-     */
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
-    /**
-     * Cambia la cantidad de servicios pedidos.
-     *
-     * @param cantidad Nueva cantidad de servicios pedidos.
-     */
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
-    }
 
     /**
      * Retorna el total generado por el servicio.
@@ -131,7 +108,6 @@ public class DetalleServicioEntity extends BaseEntity {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 37 * hash + Objects.hashCode(this.cantidad);
         hash = 37 * hash + Objects.hashCode(this.subTotal);
         return hash;
     }

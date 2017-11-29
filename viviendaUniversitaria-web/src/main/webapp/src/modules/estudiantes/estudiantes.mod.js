@@ -3,7 +3,6 @@
     mod.constant("estudiantesContext", "api/estudiantes");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/estudiantes/';
-            $urlRouterProvider.otherwise("/estudiantesList");
 
             $stateProvider.state('estudiantes', {
                 url: '/estudiantes',
@@ -26,12 +25,9 @@
             }).state('estudianteDetail', {
                 url: '/{estudianteId:int}/detail',
                 parent: 'estudiantes',
-                param: {
-                    estudianteId: null
-                },
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'estudiantes.list.html'
+                        templateUrl: basePath
                     },
                     'detailView': {
                         templateUrl: basePath + 'estudiantes.detail.html',

@@ -37,7 +37,11 @@ public class OrigenEstudianteResource {
     @Inject public OrigenEstudianteResource(OrigenLogic origenLogic) {
         this.origenLogic = origenLogic;
     }
-    
+    /**
+     * entity a dto
+     * @param entityList
+     * @return 
+     */
     private List<EstudianteDetailDTO> estudiantesListEntity2DTO(List<EstudianteEntity> entityList) {
         List<EstudianteDetailDTO> list = new ArrayList<>();
         for (EstudianteEntity entity : entityList) {

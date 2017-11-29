@@ -26,18 +26,18 @@
         }
         $scope.filterByMe = function(x) {
             $scope.myFilter = x;
-             document.getElementById("ole").innerHTML=$scope.fechaInicio+$scope.fechaFin;
+             
             
         }
         $scope.myFunc = function () {
       $scope.filterByMe("date");
-       document.getElementById("oa").innerHTML=$scope.fechaInicio+$scope.fechaFin;
+      
   }
          $scope.criteriaMatch = function(criteria) {
              
              
                return function( item ) {
-                   if(criteria == "date"){
+                   if(criteria === "date"){
          var ano=item.fecha.slice(0,4);
          var mes=item.fecha.slice(5,7);
          var dia=item.fecha.slice(8,10);
@@ -51,11 +51,11 @@
          var fechaInicio=anoInicio+"-"+mesInicio+"-"+diaInicio;
          var fechaFin=anoFin+"-"+mesFin+"-"+diaFin;
         if(fechaInicio<fecha && fecha<fechaFin){
-            document.getElementById("oa").innerHTML=fecha+"ola"+fechaInicio+"ola"+fechaFin;
+            
            return  true;
         }
         else {
-            document.getElementById("ole").innerHTML=fecha+"ola"+fechaInicio+"ola"+fechaFin;
+           
             return false;
         }
                    }

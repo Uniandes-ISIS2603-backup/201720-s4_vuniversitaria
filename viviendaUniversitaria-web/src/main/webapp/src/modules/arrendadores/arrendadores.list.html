@@ -1,4 +1,5 @@
-<div class="container-fluid">
+
+<div class="container-fluid" ng-show="rolActivo === 'Administrador'">
     <div class="panel-group">
         <div class="panel panel-primary">
             <div class="panel-heading"><label>Lista de arrendadores</label></div>
@@ -32,6 +33,83 @@
             </div>
         </div>
     </div>
-
-
 </div>
+<div>
+    <div class="panel panel-info" ng-show="rolActivo === 'Arrendador'"> 
+        <div class="panel-heading">
+            <h4><b>Información general de nuestros arrendadores</b></h4>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="thumb">
+                        <img class="img-responsive" ng-src="{{paraRolesArrendador.ruta}}"/>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <dl>   
+                        <hr>
+                        <dt class="bold">Nombre:</dt>
+                        <dd>{{paraRolesArrendador.nombre}}</dd>
+
+                        <hr>
+                        <dt class="bold">Cedula:</dt>
+                        <dd>{{paraRolesArrendador.id}}</dd>
+
+                    </dl>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4>Hospedajes asociados al arrendador</h4>
+                </div>
+                <div class="panel-body">
+                    <table class="table" >
+                        <tbody ng-repeat=" a in paraRolesArrendador.hospedajes">
+                            <tr>
+                                <td rowspan="4"><img src="{{a.rutaImagen}}" width="350" height="350" class="img-responsive"></td>
+                                <td class="well">Tipo de arrendamiento: {{a.tipoArrendamiento}} </td>
+                            </tr>
+                            <tr>
+                                <td class="well">Identificador: {{a.id}}</td>
+                            </tr>
+                            <tr>
+                                <td class="well">Valoracion: {{a.valoracion}}</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" class="well">Descripcion: {{a.descripcion}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> 
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4>Reservas en mis hospedajes</h4>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table" >
+                            <tbody ng-repeat=" r in paraRolesArrendador.hospedajes">
+                            <tr ng-repeat="c in r.reservas">
+                                <td>
+                                    <p class="well">Id: {{c.id}} </p>
+                                </td>
+                                <td>
+                                    <p class="well">Fecha inicio: {{c.fechaInicio}}</p>
+                                </td>
+                                <td>
+                                    <p class="well">Fecha fin: {{c.fechaFin}}</p>
+                                </td>
+                                </tr>
+                                
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>

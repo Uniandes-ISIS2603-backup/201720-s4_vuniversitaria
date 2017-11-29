@@ -37,7 +37,12 @@ public class ReservaLogic {
     private HospedajeLogic hospedajeLogic;
 
     
-    
+    /**
+     * crea una reserva
+     * @param entity
+     * @return
+     * @throws BusinessLogicException 
+     */
     public ReservaEntity createReserva(ReservaEntity entity) throws BusinessLogicException {
         if (entity.getIdHospedaje() == null || entity.getCedulaHuesped() == null || entity.getId() == null) {
             throw new BusinessLogicException("No introdujo todos los valores");
@@ -90,22 +95,6 @@ public class ReservaLogic {
         return Reserva;
     }
 
-    /**
-     *
-     * Actualizar una Reserva.
-     *
-     * @param id: id de la Reserva para buscarla en la base de datos.
-     * @param entity: Reserva con los cambios para ser actualizada, por ejemplo
-     * el nombre.
-     * @return la Reserva con los cambios actualizados en la base de datos.
-     */
-    public ReservaEntity updateReserva(Long id, ReservaEntity entity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar Reserva con id={0}", id);
-        // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
-        ReservaEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar Reserva con id={0}", entity.getId());
-        return newEntity;
-    }
 
     /**
      * Borrar un Reserva
@@ -122,7 +111,12 @@ public class ReservaLogic {
         hospedajeLogic.removeReserva(getHospedaje(id).getId(),id);
         persistence.delete(id);
     }
-
+/**
+ * da hospedaje
+ * @param idReserva
+ * @return
+ * @throws BusinessLogicException 
+ */
     public HospedajeEntity getHospedaje(Long idReserva) throws BusinessLogicException {
         ReservaEntity reserva = persistence.find(idReserva);
         if (reserva == null) {
@@ -130,7 +124,13 @@ public class ReservaLogic {
         }
         return reserva.getHospedaje();
     }
-
+/**
+ * set hospedaje
+ * @param idReserva
+ * @param hospedaje
+ * @return
+ * @throws BusinessLogicException 
+ */
     public HospedajeEntity setHospedaje(Long idReserva, HospedajeEntity hospedaje) throws BusinessLogicException {
         ReservaEntity reserva = persistence.find(idReserva);
         if (reserva == null) {
@@ -140,7 +140,12 @@ public class ReservaLogic {
         persistence.update(reserva);
         return hospedaje;
     }
-
+/**
+ * da estudiante
+ * @param idReserva
+ * @return
+ * @throws BusinessLogicException 
+ */
     public EstudianteEntity getEstudiante(Long idReserva) throws BusinessLogicException {
         ReservaEntity reserva = persistence.find(idReserva);
         if (reserva == null) {
@@ -148,7 +153,13 @@ public class ReservaLogic {
         }
         return reserva.getEstudiante();
     }
-
+/**
+ * set estudiante
+ * @param idReserva
+ * @param estudiante
+ * @return
+ * @throws BusinessLogicException 
+ */
     public EstudianteEntity setEstudiante(Long idReserva, EstudianteEntity estudiante) throws BusinessLogicException {
         ReservaEntity reserva = persistence.find(idReserva);
         if (reserva == null) {
@@ -159,62 +170,4 @@ public class ReservaLogic {
         return estudiante;
     }
 
-    public void asociateReservaConHospedajeYEstudiante(Long idHospedaje, Long idEstudiante, ReservaEntity reserva) throws BusinessLogicException {
-        EstudianteEntity estudiante = estudianteLogic.find(idEstudiante);
-        HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
-        if (hospedaje == null || estudiante == null) {
-            throw new BusinessLogicException("Usuario u hospedaje inválido");
-        }
-        reserva.setEstudiante(estudiante);
-        reserva.setHospedaje(hospedaje);
-        persistence.update(reserva);
-
-    }
 }
-
-/**
- * Agregar un book a la Reserva
- *
- * @param estudianteId del book a asociar
- * @param ReservaId
- * @return
- *
- * public EstudianteEntity setEstudiante(Long estudianteId Long ReservaId) {
- * ReservaEntity ReservaEntity = getReserva(ReservaId); EstudianteEntity
- * estudianteEntity = EstudianteLogic.getEstudiante(estudianteId);
- * EstudianteEntity.setReserva(EstudianteEntity); return estudianteEntity; }
- *
- * /**
- * Borrar un book de una Reserva
- *
- * @param bookId
- * @param ReservaId
- *
- * public void removeBook(Long bookId, Long ReservaId) { ReservaEntity
- * ReservaEntity = getReserva(ReservaId); BookEntity book =
- * bookLogic.getBook(bookId); book.setReserva(null);
- * ReservaEntity.getBooks().remove(book); }
- *
- * /**
- * Remplazar el estudiante de una Reserva
- *
- * @param
- * @param ReservaId
- * @return
- *
- * public EstudianteEntity replaceEstudiante(Long ReservaId, EstudianteEntity
- * estudiante) { ReservaEntity reserva = getReserva(ReservaId);
- * reserva.setEstudiante(estudiante);
- *
- * return estudiante; }
- *
- * /**
- * Retorna todos los books asociados a una Reserva
- *
- * @param ReservaId
- * @return
- *
- * public EstudianteEntity getEstudiante(Long ReservaId) { return
- * getReserva(ReservaId).getEstudiante(); }
- *
- */

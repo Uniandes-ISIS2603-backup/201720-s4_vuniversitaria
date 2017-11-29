@@ -13,6 +13,11 @@
                     $scope.currentArrendador = response.data;
                 });
             }
+            if (($scope.idActivo !== undefined) && ($scope.idActivo !== null)) {
+                $http.get(arrendadoresContext + '/' + $scope.idActivo).then(function (response) {
+                    $scope.paraRolesArrendador = response.data;
+                });
+            }
         }
     ]);
 }

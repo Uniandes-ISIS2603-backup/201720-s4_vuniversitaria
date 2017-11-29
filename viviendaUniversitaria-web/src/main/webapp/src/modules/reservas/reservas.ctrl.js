@@ -22,12 +22,12 @@
     return function( item ) {
          var ano=item.fechaFin.slice(0,4);
          var mes=item.fechaFin.slice(5,7);
-         var dia=item.fechaFin.slice(8,10);
-        if(criteria == "Y"){
-           return ano>=2017&&mes>=11&&dia>=30;
+         var fecha=""+ano+""+mes;
+        if(criteria === "Y"){
+           return fecha>=201711;
         }
         else {
-            return !(ano>=2017&&mes>=11&&dia>=30);
+            return !(ano>=201711);
         }
     };
   };

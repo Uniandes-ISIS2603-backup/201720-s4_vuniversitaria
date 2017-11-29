@@ -72,43 +72,43 @@ http://www4.congreso.gob.pe/comisiones/1999/turismo/normas/DS12.94.HTML
 */
 
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Sunny', 'Hoteles', 27,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
+values ('Sunny', 'Hoteles', 5,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Lauryn', 'Hoteles', 99,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
+values ('Lauryn', 'Hoteles', 5,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Mariette', 'Apart-Hoteles', 14,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
+values ('Mariette', 'Apart-Hoteles', 4,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Violet', 'Apart-Hoteles', 44,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
+values ('Violet', 'Apart-Hoteles', 4,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Roseline', 'Apart-Hoteles', 42,0,'https://s-ec.bstatic.com/images/hotel/max1024x768/715/71566660.jpg');
+values ('Roseline', 'Apart-Hoteles', 4,0,'https://s-ec.bstatic.com/images/hotel/max1024x768/715/71566660.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Shelby', 'Apart-Hoteles', 82,0,'https://www.mexicanbusinessweb.mx/wp-content/uploads/2016/02/CNS.jpg');
+values ('Shelby', 'Apart-Hoteles', 3,0,'https://www.mexicanbusinessweb.mx/wp-content/uploads/2016/02/CNS.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Erwin', 'Hostales', 22,0,'https://media-cdn.tripadvisor.com/media/photo-s/04/bb/4a/0b/hospedaje-magallanes.jpg');
+values ('Erwin', 'Hostales', 3,0,'https://media-cdn.tripadvisor.com/media/photo-s/04/bb/4a/0b/hospedaje-magallanes.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Robinette', 'Hostales', 76,0,'http://www.chirripo.org/wp-content/uploads/2016/05/Hospedaje-Albergue-Chirripo.jpg');
+values ('Robinette', 'Hostales', 5,0,'http://www.chirripo.org/wp-content/uploads/2016/05/Hospedaje-Albergue-Chirripo.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Carley', 'Hostales', 49,0,'https://images.adsttc.com/media/images/56d0/b2f0/e58e/ce01/c200/0006/large_jpg/17.jpg?1456517863');
+values ('Carley', 'Hostales', 5,0,'https://images.adsttc.com/media/images/56d0/b2f0/e58e/ce01/c200/0006/large_jpg/17.jpg?1456517863');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Karine', 'Hostales', 4,0,'https://media-cdn.tripadvisor.com/media/photo-s/08/2a/65/e3/hospedaje-la-bonita.jpg');
+values ('Karine', 'Hostales', 0,0,'https://media-cdn.tripadvisor.com/media/photo-s/08/2a/65/e3/hospedaje-la-bonita.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Albie', 'Hostales', 35,0,'https://media-cdn.tripadvisor.com/media/photo-s/05/2d/53/e3/hospedaje-dimar-inn.jpg');
+values ('Albie', 'Hostales', 0,0,'https://media-cdn.tripadvisor.com/media/photo-s/05/2d/53/e3/hospedaje-dimar-inn.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Bonita', 'Albergues', 53,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/278/27831940.jpg');
+values ('Bonita', 'Albergues', 1,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/278/27831940.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 1', 'Albergues', 25,0,'http://www.guiaejecafetero.com/wp-content/uploads/photo-gallery/Alojamientos/46.CampingMonteroca/rasta-house-camping-boquia-salento3.jpg');
+values ('Hospedaje 1', 'Albergues', 1,0,'http://www.guiaejecafetero.com/wp-content/uploads/photo-gallery/Alojamientos/46.CampingMonteroca/rasta-house-camping-boquia-salento3.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 2', 'Hostales', 27,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
+values ('Hospedaje 2', 'Hostales', 2,0,'http://02e0385.netsolhost.com/crownparadise/web/uploads/imagenes/109/p18gk5m791ja918ts1rr2193o1ic64.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 3', 'Hostales', 99,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
+values ('Hospedaje 3', 'Hostales', 5,0,'http://www.gdlgo.com/wp-content/uploads/2015/03/Habitacion.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 4', 'Apart-Hoteles', 14,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
+values ('Hospedaje 4', 'Apart-Hoteles', 3,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 5', 'Albergues', 44,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
+values ('Hospedaje 5', 'Albergues', 4,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 6', 'Apart-Hoteles', 14,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
+values ('Hospedaje 6', 'Apart-Hoteles', 3,0,'https://t-ec.bstatic.com/images/hotel/max1024x768/833/83345518.jpg');
 insert into APP.HOSPEDAJEENTITY (DESCRIPCION, TIPOARRENDAMIENTO, VALORACION, CANTIDADVOTACIONES, RUTAIMAGEN) 
-values ('Hospedaje 7', 'Albergues', 44,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
+values ('Hospedaje 7', 'Albergues', 0,0,'http://www.xochitla.org.mx/imagenes/varios/hotel-city-express-tepotzotlan.jpg');
 
 
 -- Arrendador
@@ -157,28 +157,7 @@ insert into ServiciosEntity (descripcion, costo) values ('Corrinne', 7.73);
 insert into ServiciosEntity (descripcion, costo) values ('Liza', 32.34);
 insert into ServiciosEntity (descripcion, costo) values ('Berte', 27.24);
 
--- Facturas
 
-insert into FacturaEntity (fecha, total, iva) values ('10/5/2016', 64.81, 11.15);
-insert into FacturaEntity (fecha, total, iva) values ('12/23/2016', 50.81, 21.57);
-insert into FacturaEntity (fecha, total, iva) values ('5/20/2017', 56.99, 34.11);
-insert into FacturaEntity (fecha, total, iva) values ('5/2/2017', 96.69, 31.06);
-insert into FacturaEntity (fecha, total, iva) values ('12/24/2016', 13.38, 78.64);
-insert into FacturaEntity (fecha, total, iva) values ('5/6/2017', 51.17, 48.42);
-insert into FacturaEntity (fecha, total, iva) values ('7/16/2017', 6.26, 63.93);
-insert into FacturaEntity (fecha, total, iva) values ('7/15/2017', 84.58, 96.49);
-insert into FacturaEntity (fecha, total, iva) values ('10/16/2016', 81.67, 44.0);
-insert into FacturaEntity (fecha, total, iva) values ('10/22/2016', 69.23, 38.07);
-insert into FacturaEntity (fecha, total, iva) values ('11/9/2016', 49.36, 10.3);
-insert into FacturaEntity (fecha, total, iva) values ('11/24/2016', 73.03, 71.63);
-insert into FacturaEntity (fecha, total, iva) values ('1/25/2017', 2.79, 53.55);
-insert into FacturaEntity (fecha, total, iva) values ('2/24/2017', 40.74, 51.5);
-insert into FacturaEntity (fecha, total, iva) values ('4/23/2017', 85.23, 14.01);
-insert into FacturaEntity (fecha, total, iva) values ('1/10/2017', 37.12, 5.26);
-insert into FacturaEntity (fecha, total, iva) values ('11/30/2016', 99.47, 26.8);
-insert into FacturaEntity (fecha, total, iva) values ('2/7/2017', 81.88, 97.86);
-insert into FacturaEntity (fecha, total, iva) values ('12/13/2016', 6.0, 42.73);
-insert into FacturaEntity (fecha, total, iva) values ('4/21/2017', 41.4, 94.23);
 
 -- Reservas
 insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10000,'02/02/2019','03/02/2009');
@@ -224,6 +203,29 @@ insert into APP.HOSPEDAJELUGARENTITY (DISTANCIA, HOSPEDAJE_ID, LUGARINTERES_ID) 
 insert into APP.HOSPEDAJELUGARENTITY (DISTANCIA, HOSPEDAJE_ID, LUGARINTERES_ID) values (8.045, 8, 8);
 insert into APP.HOSPEDAJELUGARENTITY (DISTANCIA, HOSPEDAJE_ID, LUGARINTERES_ID) values (9.68, 9, 9);
 insert into APP.HOSPEDAJELUGARENTITY (DISTANCIA, HOSPEDAJE_ID, LUGARINTERES_ID) values (5.715, 10, 10);
+
+-- Facturas
+
+insert into FacturaEntity (fecha, total, iva,estapago) values ('10/5/2016', 64.81, 11.15, 1);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('12/23/2016', 50.81, 21.57, 0);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('5/20/2017', 56.99, 34.11,1);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('5/2/2017', 96.69, 31.06,0);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('12/24/2016', 13.38, 78.64,1);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('5/6/2017', 51.17, 48.42, 1);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('7/16/2017', 6.26, 63.93,1);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('7/15/2017', 84.58, 96.49, 0);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('10/16/2016', 81.67, 44.0, 1);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('10/22/2016', 69.23, 38.07, 0);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('11/9/2016', 49.36, 10.3, 1);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('11/24/2016', 73.03, 71.63, 0);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('1/25/2017', 2.79, 53.55, 1);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('2/24/2017', 40.74, 51.5, 0);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('4/23/2017', 85.23, 14.01,1);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('1/10/2017', 37.12, 5.26, 0);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('11/30/2016', 99.47, 26.8,1);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('2/7/2017', 81.88, 97.86,1);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('12/13/2016', 6.0, 42.73,1);
+insert into FacturaEntity (fecha, total, iva,estapago) values ('4/21/2017', 41.4, 94.23,1);
 -- Asociaciones
 
 update HOSPEDAJEENTITY set arrendador_id = 3177523825303 where id = 1;
@@ -238,6 +240,49 @@ update HOSPEDAJEENTITY set arrendador_id = 3991096447077 where id = 9;
 update HOSPEDAJEENTITY set arrendador_id = 3489848653801 where id = 10;
 update HOSPEDAJEENTITY set arrendador_id = 1163763388482 where id = 11;
 update HOSPEDAJEENTITY set arrendador_id = 1163763388482 where id = 12;
+
+update FacturaEntity set estudiante_id = 1 where id =1;
+update FacturaEntity set estudiante_id = 1 where id =2;
+update FacturaEntity set estudiante_id = 1 where id =3;
+update FacturaEntity set estudiante_id = 1 where id =4;
+update FacturaEntity set estudiante_id = 1 where id =5;
+update FacturaEntity set estudiante_id = 2 where id =6;
+update FacturaEntity set estudiante_id = 2 where id =7;
+update FacturaEntity set estudiante_id = 2 where id =8;
+update FacturaEntity set estudiante_id = 2 where id =9;
+update FacturaEntity set estudiante_id = 2 where id =10;
+update FacturaEntity set estudiante_id = 3 where id =11;
+update FacturaEntity set estudiante_id = 3 where id =12;
+update FacturaEntity set estudiante_id = 3 where id =13;
+update FacturaEntity set estudiante_id = 3 where id =14;
+update FacturaEntity set estudiante_id = 3 where id =15;
+update FacturaEntity set estudiante_id = 4 where id =16;
+update FacturaEntity set estudiante_id = 4 where id =17;
+update FacturaEntity set estudiante_id = 4 where id =18;
+update FacturaEntity set estudiante_id = 4 where id =19;
+update FacturaEntity set estudiante_id = 4 where id =20;
+
+update FacturaEntity set hospedaje_id = 1 where id =1;
+update FacturaEntity set hospedaje_id = 2 where id =2;
+update FacturaEntity set hospedaje_id = 3 where id =3;
+update FacturaEntity set hospedaje_id = 4 where id =4;
+update FacturaEntity set hospedaje_id = 5 where id =5;
+update FacturaEntity set hospedaje_id = 6 where id =6;
+update FacturaEntity set hospedaje_id = 7 where id =7;
+update FacturaEntity set hospedaje_id = 8 where id =8;
+update FacturaEntity set hospedaje_id = 9 where id =9;
+update FacturaEntity set hospedaje_id = 10 where id =10;
+update FacturaEntity set hospedaje_id = 11 where id =11;
+update FacturaEntity set hospedaje_id = 12 where id =12;
+update FacturaEntity set hospedaje_id = 13 where id =13;
+update FacturaEntity set hospedaje_id = 14 where id =14;
+update FacturaEntity set hospedaje_id = 15 where id =15;
+update FacturaEntity set hospedaje_id = 16 where id =16;
+update FacturaEntity set hospedaje_id = 17 where id =17;
+update FacturaEntity set hospedaje_id = 18 where id =18;
+update FacturaEntity set hospedaje_id = 19 where id =19;
+update FacturaEntity set hospedaje_id = 19 where id =20;
+
 update CALIFICACIONENTITY set hospedaje_id = 1 where id = 1;
 update CALIFICACIONENTITY set hospedaje_id = 1 where id = 2;
 update CALIFICACIONENTITY set hospedaje_id = 2 where id = 3;

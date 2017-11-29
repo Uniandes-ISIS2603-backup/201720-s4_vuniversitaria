@@ -10,23 +10,32 @@ and open the template in the editor.
         <div class="panel panel-primary">
             <div class="panel-heading"><label>Lista consolidada de facturas</label></div>
             <div class="panel-body">
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="border: 2px solid #a1a1a1;
+    padding: 10px 40px; 
+    background: #dddddd;
+    width: 540px;
+    border-radius: 8px;
+    display: block;
+    margin: auto;
+    margin-bottom: 50px;
+    ">
                    
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
                     
-                    <div>
                         <p> <span class="glyphicon glyphicon-filter"></span> Filtrar por rango de fechas: </p>   
                         <form>
-                    <input type="date"  ng-model="fechaInicio.value">
+                            <p> Desde: </p><span class="glyphicon glyphicon-calendar"></span> <input type="date"  ng-model="fechaInicio.value">
                    
-                    <input type="date"  ng-model="fechaFin.value" style="height: 20px"> 
+                            <p> Hasta: </p><span class="glyphicon glyphicon-calendar"></span> <input type="date"  ng-model="fechaFin.value" style="margin-bottom: 50px;"> 
                         
                         </form>
-                         
-                   </div>
                     
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="facturasCreate"><span class="glyphicon glyphicon-plus-sign"></span> Generar nueva factura</a>
-                    </div>
+                           </div>
+                    <div>
+                        
+                            <a class="btn btn-info" ui-sref="facturasCreate" style=" margin-top:100px;margin-bottom:auto;margin-left: 80px; "><span class="glyphicon glyphicon-plus-sign"></span> Generar factura</a></div>
+                 
+                    
                     
                     
                     
@@ -41,16 +50,16 @@ and open the template in the editor.
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Identificación única <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('id')">
+                                <th>Identificación única <button type="button" class="btn btn-success btn-sm" ng-click="orderByMe('id')">
                                      <span class="glyphicon glyphicon-sort-by-attributes"></span>
                                 </button></th>    
-                                <th>Fecha de creación <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('fecha')">
+                                <th>Fecha de creación <button type="button" class="btn btn-success btn-sm" ng-click="orderByMe('fecha')">
                                      <span class="glyphicon glyphicon-sort-by-attributes"></span>
                                 </button></th> 
-                                <th>Total <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('total')">
+                                <th>Total <button type="button" class="btn btn-success btn-sm" ng-click="orderByMe('total')">
                                      <span class="glyphicon glyphicon-sort-by-attributes"></span>
                                 </button></th> 
-                                <th>IVA aplicado <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('iva')">
+                                <th>IVA aplicado <button type="button" class="btn btn-success btn-sm" ng-click="orderByMe('iva')">
                                      <span class="glyphicon glyphicon-sort-by-attributes"></span>
                                 </button></th> 
                                 <th>Acciones </th>
@@ -64,8 +73,8 @@ and open the template in the editor.
                             <td id="{{$index}}-total">{{factura.total}}</td>
                             <td id="{{$index}}-iva">{{factura.iva}}</td>
                             <td id="{{$index}}-actions">
-                                    <a class="btn btn-default btn-sm" ui-sref="facturasDetail({facturaId: factura.id})"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                    <a class="btn btn-default btn-sm" ui-sref="facturaUpdate({facturaId: factura.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-info btn-sm" ui-sref="facturasDetail({facturaId: factura.id})"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                    <a class="btn btn-warning btn-sm" ui-sref="facturaUpdate({facturaId: factura.id})"><span class="glyphicon glyphicon-edit"></span></a>
                                     <a class="btn btn-danger btn-sm" ui-sref="facturaDelete({facturaId: factura.id})"><span class="glyphicon glyphicon-trash"></span></a>
                                 </td>
                             </tr>
@@ -73,8 +82,7 @@ and open the template in the editor.
                     </table>
                 </div>
             </div>
-            <p id="ole"> OLE PIROBO</p> 
-             <p id="oa"> OLE PIROBO</p>
+       
         </div>
     </div>
   
