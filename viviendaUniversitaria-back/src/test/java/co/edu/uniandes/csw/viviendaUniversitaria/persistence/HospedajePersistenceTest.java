@@ -138,36 +138,7 @@ public class HospedajePersistenceTest {
         persistence.delete(entity.getId());
         HospedajeEntity deleted = em.find(HospedajeEntity.class, entity.getId());
         Assert.assertNull(deleted);
-    }
-
-    /**
-     * Test of findId method, of class HospedajePersistence.
-     */
-    @Test
-    public void testFindId() throws Exception {
-        HospedajeEntity entity = data.get(0);
-        HospedajeEntity newEntity = persistence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());
-    }
-
-    /**
-     * Test of findAll method, of class HospedajePersistence.
-     */
-    @Test
-    public void testFindAll() throws Exception {
-        List<HospedajeEntity> list = persistence.findAll();
-        Assert.assertEquals(data.size(), list.size());
-        for (HospedajeEntity ent : list) {
-            boolean found = false;
-            for (HospedajeEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            Assert.assertTrue(found);
-        }
-    }
+    }   
 
     /**
      * Test of updateServicio method, of class HospedajePersistence.

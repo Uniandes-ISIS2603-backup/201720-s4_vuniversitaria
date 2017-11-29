@@ -350,16 +350,16 @@ update HOSPEDAJEENTITY set UBICACION_ID = 8 where id = 8;
 update HOSPEDAJEENTITY set UBICACION_ID = 9 where id = 9;
 update HOSPEDAJEENTITY set UBICACION_ID = 10 where id = 10;
 
-update LugaresInteresEntity set UBICACION_ID = 1 where id = 1;
-update LugaresInteresEntity set UBICACION_ID = 2 where id = 2;
-update LugaresInteresEntity set UBICACION_ID = 3 where id = 3;
-update LugaresInteresEntity set UBICACION_ID = 4 where id = 4;
-update LugaresInteresEntity set UBICACION_ID = 5 where id = 5;
-update LugaresInteresEntity set UBICACION_ID = 6 where id = 6;
-update LugaresInteresEntity set UBICACION_ID = 7 where id = 7;
-update LugaresInteresEntity set UBICACION_ID = 8 where id = 8;
-update LugaresInteresEntity set UBICACION_ID = 9 where id = 9;
-update LugaresInteresEntity set UBICACION_ID = 10 where id = 10;
+update LugaresInteresEntity set UBICACION_ID = 1 where id = 10;
+update LugaresInteresEntity set UBICACION_ID = 2 where id = 9;
+update LugaresInteresEntity set UBICACION_ID = 3 where id = 8;
+update LugaresInteresEntity set UBICACION_ID = 4 where id = 7;
+update LugaresInteresEntity set UBICACION_ID = 5 where id = 6;
+update LugaresInteresEntity set UBICACION_ID = 6 where id = 5;
+update LugaresInteresEntity set UBICACION_ID = 7 where id = 4;
+update LugaresInteresEntity set UBICACION_ID = 8 where id = 3;
+update LugaresInteresEntity set UBICACION_ID = 9 where id = 2;
+update LugaresInteresEntity set UBICACION_ID = 10 where id = 1;
 
 select * from APP.HospedajeEntity;
 select * from APP.ARRENDADORENTITY;
