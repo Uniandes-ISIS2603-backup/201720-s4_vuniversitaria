@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -45,19 +45,33 @@ public class OrigenResource {
     }
     
     
-    
+    /**
+     * crea un origen
+     * @param origen
+     * @return
+     * @throws BusinessLogicException 
+     */
     @POST
     public OrigenDTO createOrigen(OrigenDTO origen) throws BusinessLogicException {
         OrigenEntity origenEntity = origen.toEntity();
         OrigenEntity nuevoOrigen = origenLogic.create(origenEntity);
         return new OrigenDTO(nuevoOrigen);
     }
-
+/**
+ * da la lista de origenes
+ * @return
+ * @throws BusinessLogicException 
+ */
     @GET
     public List<OrigenDTO> getOrigens() throws BusinessLogicException {
         return listEntity2DTO(origenLogic.findAll());
     }
-    
+    /**
+     * da un origen
+     * @param id
+     * @return
+     * @throws BusinessLogicException 
+     */
     @GET
     @Path("{id: \\d+}")
     public OrigenDTO getOrigen(@PathParam("id") Long id) throws BusinessLogicException {
@@ -67,7 +81,12 @@ public class OrigenResource {
         }
         return new OrigenDTO(origenLogic.find(id));
     }
-    
+    /**
+     * va a la clase intermedia
+     * @param idOrigen
+     * @return
+     * @throws BusinessLogicException 
+     */
     @Path("{OrigenesId: \\d+}/estudiantes")
     public Class<OrigenEstudianteResource> getOrigenEstudianteResource(@PathParam("OrigenesId") Long idOrigen) throws BusinessLogicException {
         OrigenEntity entity = origenLogic.find(idOrigen);
@@ -77,16 +96,13 @@ public class OrigenResource {
         return OrigenEstudianteResource.class;
     }
 
-//    @PUT
-//    @Path("{id: \\d+}")
-//    public OrigenDTO updateOrigen(@PathParam("id") Long id, OrigenDTO origen) throws BusinessLogicException {
-//        origen.setId(id);
-//        OrigenEntity entity = origenLogic.find(id);
-//        if (entity == null) {
-//            throw new WebApplicationException(ALGO1 + id + ALGO2, 404);
-//        }
-//        return new OrigenDTO(origenLogic.update(origen.toEntity(),id));
-//    }
+/**
+ * acutaliza un origen
+ * @param id
+ * @param dto
+ * @return
+ * @throws BusinessLogicException 
+ */
     @PUT
     @Path("{id: \\d+}")
     public OrigenDTO updateOrigen(@PathParam("id") Long id, OrigenDTO dto) throws BusinessLogicException {
@@ -101,7 +117,11 @@ public class OrigenResource {
         return new OrigenDTO(origenLogic.update(entity,id));
     }
 
-    
+    /**
+     * borra un origen
+     * @param id
+     * @throws BusinessLogicException 
+     */
     @DELETE
     @Path("{id: \\d+}")
     public void deleteOrigen(@PathParam("id") Long id) throws BusinessLogicException {
@@ -112,6 +132,11 @@ public class OrigenResource {
         origenLogic.delete(id);
 
     }
+    /**
+     * pasa de entity a DTO
+     * @param entityList
+     * @return 
+     */
     private List<OrigenDTO> listEntity2DTO(List<OrigenEntity> entityList) {
         List<OrigenDTO> list = new ArrayList<>();
         for (OrigenEntity entity : entityList) {

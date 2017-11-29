@@ -17,7 +17,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author je.bejarano10
+ * @author a.eslava
  */
 /**
  * Clase que permite gestionar y validar las reglas de negocio relacionadas con
@@ -57,7 +57,8 @@ public class ReservaLogic {
         HospedajeEntity hospedajeEntity = hospedajeLogic.find(entity.getIdHospedaje());
         hospedajeLogic.agregarReserva(hospedajeEntity.getId(),entity);
         estudianteLogic.agregarReserva(estudianteEntity.getId(),entity);
-        return persistence.create(entity);
+        ReservaEntity rta = persistence.create(entity);
+        return rta;
     }
 
     /**
@@ -82,13 +83,10 @@ public class ReservaLogic {
      * @return la Reserva solicitada por medio de su id.
      */
     public ReservaEntity getReserva(Long id) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar Reserva con id={0}", id);
-        // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
         ReservaEntity Reserva = persistence.find(id);
         if (Reserva == null) {
             LOGGER.log(Level.SEVERE, "La Reserva con el id {0} no existe", id);
         }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar Reserva con id={0}", id);
         return Reserva;
     }
 
@@ -113,13 +111,16 @@ public class ReservaLogic {
      * Borrar un Reserva
      *
      * @param id: id de la Reserva a borrar
+     * @throws co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException
      */
     public void deleteReserva(Long id) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar Reserva con id={0}", id);
-        // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
-        persistence.delete(id);
+        if (getReserva(id) == null) {
+            throw new BusinessLogicException("No se pudo encontrar una reserva con ese id");
 
-        LOGGER.log(Level.INFO, "Termina proceso de borrar Reserva con id={0}", id);
+        }       
+        estudianteLogic.removeReserva(getEstudiante(id).getId(), id);
+        hospedajeLogic.removeReserva(getHospedaje(id).getId(),id);
+        persistence.delete(id);
     }
 
     public HospedajeEntity getHospedaje(Long idReserva) throws BusinessLogicException {

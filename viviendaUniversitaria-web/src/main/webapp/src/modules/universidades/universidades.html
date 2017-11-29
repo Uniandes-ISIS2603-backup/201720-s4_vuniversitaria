@@ -1,10 +1,16 @@
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
 
-        <div ui-view="detailView"></div>
-    <div class="row">
-        <div ui-view="listView"></div>
-    </div>
-        <div class="row">
-            <div ui-view="mapaView"></div>
-        </div>
+<div ui-view="detailView"></div>
+<div class="row">
+    <div ui-view="listView"></div>
+</div>
+<div class="col-md-5">
+    <div ui-view="mapaView"></div>
+</div>
+<div class="row">
+    <div ui-view="mapaCreateView"></div>
+</div>
+<div class="row">
+    <div ui-view="mapaEditView"></div>
+</div>
 

@@ -7,8 +7,8 @@
         function ($scope, $http, $state, reservasContext, $rootScope,estudiantesContext) {
   
                 $scope.createReserva = function () {
-                $http.post("api/reservas/123/1", {
-                    id:Math.floor((Math.random() * 100) + 1),
+                $http.post("api/reservas/", {
+                    id:Math.floor((Math.random() * 1000) + 1),
                     cedulaHuesped: $scope.cedulaHuesped,
                     fechaInicio: $scope.fechaInicio,
                     fechaFin: $scope.fechaFin,

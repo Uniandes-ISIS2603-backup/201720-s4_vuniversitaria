@@ -12,6 +12,14 @@
                         controller: 'loginControlador'
                     }
                 }
+            }).state('logout', {
+                url: '/cerrar',
+                views:{
+                    'mainView':{
+                        templateUrl: 'src/modules/home/home.html',
+                        controller: 'logoutControlador'
+                    }
+                }
             })
             ;
         }]);

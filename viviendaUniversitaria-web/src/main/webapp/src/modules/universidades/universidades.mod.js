@@ -48,6 +48,9 @@
                     'detailView': {
                         templateUrl: basePath + '/new/universidades.new.html',
                         controller: 'universidadNewCtrl'
+                    },'mapaCreateView':{
+                        templateUrl: 'src/modules/mapa/mapa.create.html',
+                        controller: 'universidadNewCtrl'
                     }
                 }
             }).state('universidadEdit',{
@@ -61,6 +64,10 @@
                         templateUrl:basePath + '/'+'/edit/universidades.edit.html',
                         controller: 'universidadEditCtrl',
                         'controllerAs': 'editctrl'
+                    },
+                    'mapaEditView':{
+                        templateUrl: 'src/modules/mapa/mapa.search.html',
+                        controller: 'universidadEditCtrl'
                     }
                 }
             }).state('universidadDelete',{

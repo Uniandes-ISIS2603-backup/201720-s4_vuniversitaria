@@ -2,7 +2,6 @@ package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.CalificacionEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
-import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.OrigenEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.ReservaEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
@@ -21,7 +20,6 @@ import javax.ws.rs.WebApplicationException;
 @Stateless
 public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
     private CalificacionLogic calificacionLogic;
-    private ReservaLogic reservaLogic;
     
     public EstudianteLogic() {
         super();
@@ -33,11 +31,22 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         this.persistence = persistence;
         this.calificacionLogic = calificacionLogic;
     }
-    
+    /**
+     * da el origen
+     * @param cedula
+     * @return
+     * @throws BusinessLogicException 
+     */
     public OrigenEntity getOrigen(Long cedula) throws BusinessLogicException {
         return find(cedula).getOrigen();
     }
-    
+    /**
+     * revisa el JSON
+     * @param entity
+     * @param id
+     * @return
+     * @throws WebApplicationException 
+     */
     @Override
     public EstudianteEntity update(EstudianteEntity entity, Long id) throws WebApplicationException {
         try {
@@ -50,7 +59,26 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         }
         return super.update(entity, id);
     }
-
+    /**
+     * valida el JSON
+     * @param entity
+     * @return
+     * @throws BusinessLogicException 
+     */
+    @Override
+    public EstudianteEntity create(EstudianteEntity entity) throws BusinessLogicException {
+        if (entity.getCedula() == null || entity.getNombre() == null) {
+            throw new BusinessLogicException("faltan parametros en el JSon");
+        }
+        return super.create(entity);
+    }
+/**
+ * añade una calificaicon al estudiante
+ * @param idCalificacion
+ * @param idEstudiante
+ * @return
+ * @throws BusinessLogicException 
+ */
     public CalificacionEntity addCalificacion(Long idCalificacion, Long idEstudiante) throws BusinessLogicException {
         EstudianteEntity estudianteEntity = find(idEstudiante);
         CalificacionEntity calificacionEntity = calificacionLogic.getCalificacion(idCalificacion);
@@ -60,7 +88,13 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         calificacionEntity.setEstudiante(estudianteEntity);
         return calificacionEntity;
     }
-
+/**
+ * dar una calificacion
+ * @param estudianteId
+ * @param idCalificacion
+ * @return
+ * @throws BusinessLogicException 
+ */
     public CalificacionEntity getCalificacion(Long estudianteId, Long idCalificacion) throws BusinessLogicException {
         List<CalificacionEntity> calificaciones = find(estudianteId).getCalificaciones();
         CalificacionEntity calificacion = calificacionLogic.getCalificacion(idCalificacion);
@@ -71,15 +105,41 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         throw new BusinessLogicException("la calificacion no está asociada al estudiante");
 
     }
-
+    
+    
+/**
+ * 
+ * @param idCalificacion
+ * @return
+ * @throws BusinessLogicException 
+ */
     public List<CalificacionEntity> getCalificaciones(Long idCalificacion) throws BusinessLogicException {
         return find(idCalificacion).getCalificaciones();
     }
-
+    /**
+     * da una reserva
+     * @param idReserva
+     * @return
+     * @throws BusinessLogicException 
+     */
+    public ReservaEntity getReserva(Long idReserva) throws BusinessLogicException {
+        return find(idReserva).getReserva();
+    }
+/**
+ * da lista de calificaciones
+ * @param cedula
+ * @return
+ * @throws BusinessLogicException 
+ */
     public List<CalificacionEntity> listCalificaciones(Long cedula) throws BusinessLogicException {
         return find(cedula).getCalificaciones();
     }
-
+/**
+ * remueve una calificaicon
+ * @param idCalificacion
+ * @param id
+ * @throws BusinessLogicException 
+ */
     public void removeCalificaciones(Long idCalificacion, Long id) throws BusinessLogicException {
         CalificacionEntity calificacionEntity = new CalificacionEntity();
         calificacionEntity.setId(idCalificacion);
@@ -90,7 +150,14 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         }
         list.remove(calificacionEntity);
     }
-
+/**
+ * actualizacion
+ * @param idOrigen
+ * @param entity
+ * @param id
+ * @return
+ * @throws BusinessLogicException 
+ */
     public EstudianteEntity update(Long idOrigen, EstudianteEntity entity,long id) throws BusinessLogicException {
         EstudianteEntity old = find(entity.getId());
         if (!old.getOrigen().getId().equals(idOrigen)) {
@@ -117,6 +184,15 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         estudiante.setReserva(reservaEntity);
         reservaEntity.setEstudiante(estudiante);
         return find(idEstudiante);
+    }
+    
+    public void removeReserva(Long idEstudiante, Long idReserva) throws BusinessLogicException {
+        EstudianteEntity estudianteEntity = find(idEstudiante);
+        ReservaEntity reservaEntity = estudianteEntity.getReserva();
+        if (reservaEntity == null) {
+            throw new BusinessLogicException("El recurso /estudiante/" + idEstudiante + "/Estudiante no existe.");
+        }
+        estudianteEntity.setReserva(null);
     }
     
      public EstudianteEntity buscarUsusario(String usuario) {         

@@ -46,6 +46,8 @@ public class EstudianteEntity extends BaseEntity implements Serializable //exten
     
     private String nombre;
     
+    private String rutaImagen;
+    
     /**
      * Nombre de usuario
      */
@@ -65,7 +67,7 @@ public class EstudianteEntity extends BaseEntity implements Serializable //exten
     private List<FacturaEntity> facturas;
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "estudiante", fetch = FetchType.LAZY)
     private ReservaEntity reserva;
     
     @PodamExclude
@@ -153,6 +155,16 @@ public class EstudianteEntity extends BaseEntity implements Serializable //exten
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
+
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+    
+    
     
     @Override
     public boolean equals(Object obj) {

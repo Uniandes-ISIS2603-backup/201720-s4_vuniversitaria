@@ -25,6 +25,8 @@ public class EstudianteDTO {
      */
     private String contrasenia;
     
+    private String rutaImagen;
+    
     
     public EstudianteDTO(){
         //Constructor por defecto        
@@ -37,8 +39,18 @@ public class EstudianteDTO {
             this.id = estudiante.getId();
             nombreUsuario = estudiante.getNombreUsuario();
             contrasenia = estudiante.getContrasenia();
+            rutaImagen = estudiante.getRutaImagen();
         }
     }
+
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+    
     
      public EstudianteEntity toEntity() {
 
@@ -47,6 +59,8 @@ public class EstudianteDTO {
         estu.setCedula(this.cedula);
         estu.setContrasenia(contrasenia);
         estu.setNombreUsuario(nombreUsuario);
+        estu.setRutaImagen(rutaImagen);
+
      
         return estu;
     }

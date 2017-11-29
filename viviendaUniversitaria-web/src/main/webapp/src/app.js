@@ -14,7 +14,6 @@
         'arrendadorModule',
         'lugaresInteresModule',
         'hospedajeModule',
-        'mapaModule',
         'loginModule',
         'homeModule'
     ]);
@@ -23,7 +22,7 @@
                uiGmapGoogleMapApiProvider.configure({
                  key: 'AIzaSyAGX2fd-BcdoHwrTtZbtrcxNM9j7WUrxSY',
                  v: '3.20', //defaults to latest 3.X anyhow
-                 libraries: 'weather,geometry,visualization'
+                 libraries: 'weather,geometry,visualization,places'
         });
             $qProvider.errorOnUnhandledRejections(false);
         }]);
