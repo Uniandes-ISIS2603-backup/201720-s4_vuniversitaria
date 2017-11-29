@@ -26,4 +26,10 @@
         });
             $qProvider.errorOnUnhandledRejections(false);
         }]);
+    
+    app.controller('appCtrl', ['$scope', '$http', '$state', '$rootScope',
+        function ($scope, $http, $state, $rootScope) {
+            $state.go('home');
+        }
+    ]);
 })(window.angular);
