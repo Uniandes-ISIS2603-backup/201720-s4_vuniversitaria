@@ -73,7 +73,7 @@
     </div>
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h4>Reservas asociadas a un estudiante</h4>
+            <h4>Reserva asociadas a un estudiante</h4>
         </div>
         <div class="panel-body">
             <table class="table" >
@@ -111,6 +111,32 @@
                     </tr>
                 <td class="well">Tipo Arrendamiento: {{currentEstudiante.reserva.hospedaje.tipoArrendamiento}}</td>
                 </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4>Facturas asociadas a un estudiante</h4>
+        </div>
+        <div class="panel-body">
+            <table class="table" >
+                <tbody  ng-repeat="factura in currentEstudiante.facturas">
+                    <tr>
+                        <td class="well">Id: {{factura.id}} </td>
+                    </tr>
+                    <tr>
+                        <td class="well"> Ya esta pago? {{factura.estaPago}}</td>
+                    </tr>
+                    <tr>
+                        <td class="well">Fecha: {{factura.fecha}}</td>
+                    </tr>
+                    <tr>
+                        <td class="well">IVA: {{factura.iva}}</td>
+                    </tr>
+                    <tr>
+                        <td class="well">Total: {{factura.total}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
