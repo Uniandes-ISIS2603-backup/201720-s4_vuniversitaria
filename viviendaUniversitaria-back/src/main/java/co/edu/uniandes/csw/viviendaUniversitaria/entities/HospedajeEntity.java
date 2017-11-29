@@ -46,6 +46,10 @@ public class HospedajeEntity extends BaseEntity {
      * Ruta de la image asociada a este hospedaje.
      */
     private String rutaImagen;
+    /**
+     * Relacion ubicacion.
+     */
+    private UbicacionEntity ubicacion;
 
     /**
      * Relación con regla.
@@ -95,13 +99,6 @@ public class HospedajeEntity extends BaseEntity {
     @PodamExclude
     @ManyToOne(fetch = FetchType.LAZY)
     private ArrendadorEntity arrendador;
-
-    /**
-     * Relación con ubicación.
-     */
-    @PodamExclude
-    @OneToOne(fetch = FetchType.LAZY)
-    private UbicacionEntity ubicacion;
 
     /**
      * Retorna la ruta de la imagen del hospedaje.
@@ -340,6 +337,7 @@ public class HospedajeEntity extends BaseEntity {
         hash = 97 * hash + Objects.hashCode(this.descripcion);
         hash = 97 * hash + Objects.hashCode(this.valoracion);
         hash = 97 * hash + Objects.hashCode(this.cantidadVotaciones);
+        hash = 97 * hash + Objects.hashCode(this.ubicacion);
         return hash;
     }
 
