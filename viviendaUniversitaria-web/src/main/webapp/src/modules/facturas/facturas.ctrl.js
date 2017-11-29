@@ -37,7 +37,7 @@
              
              
                return function( item ) {
-                   if(criteria == "date"){
+                   if(criteria === "date"){
          var ano=item.fecha.slice(0,4);
          var mes=item.fecha.slice(5,7);
          var dia=item.fecha.slice(8,10);

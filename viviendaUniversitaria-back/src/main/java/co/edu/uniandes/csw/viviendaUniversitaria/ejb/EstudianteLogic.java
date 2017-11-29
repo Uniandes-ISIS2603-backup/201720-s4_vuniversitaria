@@ -72,22 +72,7 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         }
         return super.create(entity);
     }
-/**
- * añade una calificaicon al estudiante
- * @param idCalificacion
- * @param idEstudiante
- * @return
- * @throws BusinessLogicException 
- */
-    public CalificacionEntity addCalificacion(Long idCalificacion, Long idEstudiante) throws BusinessLogicException {
-        EstudianteEntity estudianteEntity = find(idEstudiante);
-        CalificacionEntity calificacionEntity = calificacionLogic.getCalificacion(idCalificacion);
-        if (calificacionEntity == null) {
-            throw new BusinessLogicException("no existe la calificacion");
-        }
-        calificacionEntity.setEstudiante(estudianteEntity);
-        return calificacionEntity;
-    }
+
 /**
  * dar una calificacion
  * @param estudianteId
@@ -185,7 +170,12 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         reservaEntity.setEstudiante(estudiante);
         return find(idEstudiante);
     }
-    
+    /**
+     * borra la relacion
+     * @param idEstudiante
+     * @param idReserva
+     * @throws BusinessLogicException 
+     */
     public void removeReserva(Long idEstudiante, Long idReserva) throws BusinessLogicException {
         EstudianteEntity estudianteEntity = find(idEstudiante);
         ReservaEntity reservaEntity = estudianteEntity.getReserva();
@@ -194,7 +184,11 @@ public class EstudianteLogic extends GenericLogic<EstudianteEntity>{
         }
         estudianteEntity.setReserva(null);
     }
-    
+    /**
+     * busca un usuario
+     * @param usuario
+     * @return 
+     */
      public EstudianteEntity buscarUsusario(String usuario) {         
         return ((EstudiantePersistence)persistence).buscarUsiario(usuario);
     }
