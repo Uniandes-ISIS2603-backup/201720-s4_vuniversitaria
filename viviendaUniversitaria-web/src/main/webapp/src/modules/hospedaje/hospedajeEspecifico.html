@@ -18,7 +18,7 @@
             <div class="row" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
                 <input type="button" value="Editar" class="btn btn-warning btn-lg col-sm-5 col-md-5 col-lg-5 col-xs-5" ui-sref="hospedajeActualizar({idHospedaje: hospedajeActivo.id})">
                 <p class="col-sm-2 col-md-2 col-lg-2 col-xs-2"></p>
-                <input type="button" value="ELiminar" ui-sref="hospedajeEliminar({idHospedaje: hospedajeActivo.id})" class="btn btn-danger btn-lg col-sm-5 col-md-5 col-lg-5 col-xs-5">
+                <input type="button" value="Eliminar" ui-sref="hospedajeEliminar({idHospedaje: hospedajeActivo.id})" class="btn btn-danger btn-lg col-sm-5 col-md-5 col-lg-5 col-xs-5">
             </div>
             <br>
             <br>
@@ -28,8 +28,9 @@
                 </div>
                 <div class="panel-body">
                     TIPO ARRENDAMIENTO: {{hospedajeActivo.tipoArrendamiento}} <br>
-                    VALORACION: {{hospedajeActivo.valoracion}} <br>
-                    DESCRIPCION: {{hospedajeActivo.descripcion}} <br>
+                    VALORACIÓN: {{hospedajeActivo.valoracion}} <br>
+                    DESCRIPCIÓN: {{hospedajeActivo.descripcion}} <br>
+                    DIRECCIÓN:  {{hospedajeActivo.ubicacion.direccion}} <br>
                 </div>
             </div>
         </div>
@@ -71,7 +72,7 @@
                     <td>{{servicios.costo}}</td>
                     <td><a class="btn btn-default btn-sm" ui-sref="serviciosUpdate({idHospedaje:hospedajeActivo.id, idServicio:servicios.id})" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
                             <span class="glyphicon glyphicon-edit"></span></a>
-                        <a class="btn btn-danger btn-sm" ui-sref="serviciosDelete({idHospedaje:hospedajeActivo.id, idServicio:servicios.id})" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
+                        <a class="btn btn-danger btn-sm" ng-click="eliminarServicio(servicios.id)" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
                             <span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>    
@@ -173,6 +174,8 @@
             </table>
         </div>
     </div>
-</div>    
+    <div ui-view="mapaHospView"></div>
+</div> 
+
 <br>
 <br>

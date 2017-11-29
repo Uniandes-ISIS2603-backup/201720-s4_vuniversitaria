@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("hospedajeModule", ['ui.router']);
+    var mod = ng.module("hospedajeModule", ['ui.router','uiGmapgoogle-maps']);
     mod.constant("hospedajeContext", "api/hospedajes");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/hospedaje/';
@@ -21,6 +21,10 @@
                     'mainView':{
                         templateUrl: basePath+'hospedajeEspecifico.html',
                         controller: 'hospedajeCtrl'
+                    },'mapaHospView':{
+                        templateUrl: 'src/modules/mapa/mapaHosp.html',
+                        controller: 'hospedajeCtrl'
+                        
                     }
                 }
             }).state('elimiarRegla', {

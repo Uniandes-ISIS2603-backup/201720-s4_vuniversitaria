@@ -16,19 +16,18 @@
                     $scope.currentUniversidad = response.data;
                     lat = response.data.ubicacion.latitud;
                     long = response.data.ubicacion.longitud;
-
-
                     $scope.map = {
                         center: {latitude: lat, longitude: long},
                         zoom: 17,
-                        bound:{},
                         markers: [
                             {
                                 id: 1,
                                 latitude: lat,
                                 longitude: long,
                                 showWindow: false,
+
                                 options: {
+                                    icon:"resources/images/icoUni.png",
                                     animation: 1,
                                     labelAnchor: "22 0",
                                     labelClass: "marker-labels"

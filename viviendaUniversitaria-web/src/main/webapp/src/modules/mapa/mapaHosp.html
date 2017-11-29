@@ -3,7 +3,7 @@
         <ui-gmap-layer type="TransitLayer" show="show"></ui-gmap-layer>
         <ui-gmap-marker ng-repeat="m in map.markers" coords="m" icon="m.icon" click="onMarkerClicked(m)" idKey="m.id" options="m.options">
             <ui-gmap-window ng-cloak  coords="m.coords" isIconVisibleOnClick="false" >
-                <img width="100" height="120" ng-src="{{currentUniversidad.imagen}}" alt="{{currentUniversidad.name}} Imagen"/>    
+                   
             </ui-gmap-window>
         </ui-gmap-marker>
     </ui-gmap-google-map>
