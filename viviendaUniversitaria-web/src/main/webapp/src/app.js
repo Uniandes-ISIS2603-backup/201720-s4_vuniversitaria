@@ -12,7 +12,6 @@
         'universidadModule',
         'ubicacionModule',
         'arrendadorModule',
-        'lugaresInteresModule',
         'hospedajeModule',
         'loginModule',
         'homeModule'

@@ -1,13 +1,14 @@
 (function (ng) {
-    var mod = ng.module("lugaresInteresModule");
-    mod.constant("lugaresInteresContext", "api/lugaresInteres");
-    mod.controller('lugaresInteresDeleteCtrl', ['$scope', '$http', 'lugaresInteresContext', '$state',
-        function ($scope, $http, lugaresInteresContext, $state) {
+    var mod = ng.module("hospedajeModule");
+    mod.constant("hospedajeContext", "api/hospedajes");   
+    mod.controller('lugaresInteresDeleteCtrl', ['$scope', '$http', 'hospedajeContext', '$state',
+        function ($scope, $http, hospedajeContext, $state) {
             $scope.idActual = $state.params.idLugarInteresDelete;
+            $scope.idHospedajeActual = $state.params.idHospedaje;
             $scope.eliminarLugarInteres = function (){
-            $http.delete(lugaresInteresContext + '/' + $state.params.idLugarInteresDelete).then(function (response)
+            $http.delete(hospedajeContext + '/' + $state.params.idHospedaje + '/lugaresInteres'+ $state.params.idLugarInteresDelete).then(function (response)
             {
-                $state.go("lugaresInteres");
+                $state.go("hospedajeEspecifico",{idHospedaje:idHospedajeActual},{reload:true});
             });
         };
         }

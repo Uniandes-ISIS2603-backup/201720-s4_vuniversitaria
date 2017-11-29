@@ -79,6 +79,38 @@
             </tbody>
         </table>
     </div>
+        <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4>Lugares Interes</h4>
+            <br>
+            <a class="btn btn-info" ui-sref="serviciosCreate({idHospedaje:hospedajeActivo.id})" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'"><span class="glyphicon glyphicon-plus-sign"></span> Add new lugar Interes</a>
+        </div>
+        <table class="table table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Distancia</th>
+                    <th scope="col" class="col-lg-offset-12">Actions</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="lugares in hospedajeActivo.hospedajeLugares">
+                <tr>
+                    <td>{{lugares.idLugarInteres.id}}</td>
+                    <td>{{lugares.idLugarInteres.name}}</td>
+                    <td>{{lugares.idLugarInteres.descripcion}}</td>
+                    <td>{{lugares.distancia}}
+                    <td><a class="btn btn-default btn-sm" ui-sref="lugarInteresUpdate({idHospedaje:hospedajeActivo.id, idLugarInteresUpdate:lugares.idLugarInteres.id})" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
+                            <span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn btn-danger btn-sm" ui-sref="lugarInteresEliminar({idHospedaje:hospedajeActivo.id, idLugarInteresDelete:lugares.idLugarInteres.id})" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
+                            <span class="glyphicon glyphicon-trash"></span></a>
+                        <a class="btn btn-info btn-sm" ui-sref="lugarInteresEspecifico({idHospedaje:hospedajeActivo.id, idLugarInteres:lugares.idLugarInteres.id})" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'"></a>
+                    </td>
+                </tr>    
+            </tbody>
+        </table>
+    </div>
     <br>
     <div class="panel panel-info">
         <div class="panel-heading">
