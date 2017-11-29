@@ -46,48 +46,53 @@
                     $scope.hospedajeActivo = response.data;
                     lat = response.data.ubicacion.latitud;
                     long = response.data.ubicacion.longitud;
-                    $scope.map = {
-                        center: {latitude: lat, longitude: long},
-                        zoom: 17,
-                        markers: [
-                            {
-                                id:100,
-                                latitude: lat,
-                                longitude: long,
-                                showWindow: false,
 
-                                options: {
-                                    icon: "resources/images/icoHosp.png",
-                                    animation: 1,
-                                    labelAnchor: "22 0",
-                                    labelClass: "marker-labels"
-                                }
-                            }]
+                    var marcadorActual = [];
+                    var marcadorcito = {
+                        id: 100,
+                        coords: {
+                            latitude: lat,
+                            longitude: long,
+                        },
+                        showWindow: false,
+                        options: {
+                            icon: "resources/images/icoHosp.png",
+                            animation: 1,
+                            labelAnchor: "22 0",
+                            labelClass: "marker-labels"
+                        }
                     };
-                    var mapa = $scope.map;
-                    $scope.show = true;
+                    marcadorActual.push(marcadorcito);
                     for (var i = 0; i < lugares.length; i++) {
                         for (var j = 0; j < lugares[i].hospedajeLugar.length; j++) {
                             if (lugares[i].hospedajeLugar[j].distancia < 20) {
-                                
+
                                 var marker = {
-                                    id:i,
+                                    id: i,
                                     coords: {
                                         latitude: lugares[i].ubicacion.latitud,
                                         longitude: lugares[i].ubicacion.longitud
                                     }, options: {
                                         icon: "resources/images/icoLugar.png",
-                                        animation: 2,
+                                        animation: 1,
                                         labelAnchor: "22 0",
                                         labelClass: "marker-labels"
-                                    },title:'m' + i
+                                    }
+
                                 };
-                                marker.setMap(mapa);
+                                marcadorActual.push(marker);
                             }
                         }
                     }
-                    
+
+                    $scope.map = {
+                        center: {latitude: lat, longitude: long},
+                        zoom: 17,
+                        markers: marcadorActual
+                    };
+                    $scope.show = true;
                 });
+
             }
             ;
 
