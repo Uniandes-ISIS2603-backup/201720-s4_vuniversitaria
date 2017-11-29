@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.viviendaUniversitaria.dtos;
 
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.HospedajeLugarEntity;
+import java.util.List;
 
 /**
  *
@@ -20,7 +21,7 @@ public class HospedajeLugarInteresDTO {
     /**
      * 
      */
-    private Long idLugarInteres;
+    private LugaresInteresDTO lugarInteres;
     /**
      * 
      */
@@ -35,7 +36,7 @@ public class HospedajeLugarInteresDTO {
     {
         this.distancia = entity.getDistancia();
         this.idHospedaje= entity.getHospedaje().getId();
-        this.idLugarInteres = entity.getLugarInteres().getId();
+        this.lugarInteres = new LugaresInteresDTO(entity.getLugarInteres());
     }
 
     public Long getIdHospedaje() {
@@ -46,12 +47,12 @@ public class HospedajeLugarInteresDTO {
         this.idHospedaje = idHospedaje;
     }
 
-    public Long getIdLugarInteres() {
-        return idLugarInteres;
+    public LugaresInteresDTO getIdLugarInteres() {
+        return lugarInteres;
     }
 
-    public void setIdLugarInteres(Long idLugarInteres) {
-        this.idLugarInteres = idLugarInteres;
+    public void setIdLugarInteres(LugaresInteresDTO idLugarInteres) {
+        this.lugarInteres = idLugarInteres;
     }
 
     public Double getDistancia() {

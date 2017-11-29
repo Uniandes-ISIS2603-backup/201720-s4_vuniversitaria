@@ -1,9 +1,9 @@
 <br>
 <form>
   <div class="form-group row">
-    <label class="col-sm-2 col-form-label col-lg-offset-1">Distancia</label>
+    <label class="col-sm-2 col-form-label col-lg-offset-1">Nombre</label>
     <div class="col-sm-12 col-lg-5  ">
-        <input type="number" min="0" class="form-control" ng-model="distancia" ng-init="lugarInteresActivo.distancia" ng-value="lugarInteresActivo.distancia">
+        <input type="text" class="form-control" ng-model="name" ng-init="lugarInteresActivo.name" ng-value="lugarInteresActivo.name">
     </div>
    </div> 
     <div class="form-group row">
@@ -20,7 +20,7 @@
   <div>
       <div class="form-group row">
     <div class="col-sm-10 col-lg-offset-1">
-      <button class="btn btn-danger" ui-sref="lugarInteresEspecifico({idLugarInteres:lugarInteresActivo.id})">Cancelar</button>
+      <button class="btn btn-danger" ui-sref="hospedajeEspecifico({idHospedaje:idHospedajeActual})">Cancelar</button>
       <button type="submit" class="btn btn-primary" ng-click="actualizarLugar()">Sign in</button>
     </div>
 </form>  

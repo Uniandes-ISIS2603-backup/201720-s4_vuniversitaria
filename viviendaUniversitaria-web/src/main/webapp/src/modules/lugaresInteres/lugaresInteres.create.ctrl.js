@@ -1,11 +1,11 @@
 (function (ng) {
-    var mod = ng.module("lugaresInteresModule");
-    mod.constant("lugaresInteresContext", "api/lugaresInteres");
-    mod.controller('lugaresInteresCreateCtrl', ['$scope', '$http', 'lugaresInteresContext', '$state',
-        function ($scope, $http, lugaresInteresContext, $state) {   
-            
+    var mod = ng.module("hospedajeModule");
+     mod.constant("hospedajeContext", "api/hospedajes");
+    mod.controller('lugaresInteresCreateCtrl', ['$scope', '$http', 'hospedajeContext', '$state',
+        function ($scope, $http, hospedajeContext, $state) {   
+            $scope.idHospedajeActual = $state.params.idHospedaje;
             $scope.create = function(){
-            $http.post(lugaresInteresContext + '/' + $scope.idUb, {
+            $http.post(hospedajeContext + '/' + $state.params.idHospedaje + '/'+ 'lugaresInteres', {
                 descripcion : $scope.descripcion,
                 distancia: $scope.distancia,
                 rutaImagen: $scope.rutaImagen
