@@ -18,7 +18,9 @@ public class DetalleServicioDetailDTO extends DetalleServicioDTO{
     public DetalleServicioDetailDTO (DetalleServicioEntity entity)
     {
         super(entity);
+        if(entity.getServicio()!=null){
         servicio = new ServiciosDTO(entity.getServicio());
+        }
     }
     
 
@@ -34,7 +36,10 @@ public class DetalleServicioDetailDTO extends DetalleServicioDTO{
     public DetalleServicioEntity toEntity()
     {
         DetalleServicioEntity entity = super.toEntity();
+        if(servicio!=null)
+        {
         entity.setServicio(servicio.toEntity());
+        }
         return entity;
     }
     

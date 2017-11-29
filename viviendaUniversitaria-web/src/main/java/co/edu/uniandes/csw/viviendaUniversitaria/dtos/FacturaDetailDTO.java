@@ -21,7 +21,7 @@ public class FacturaDetailDTO extends FacturaDTO {
 
     private HospedajeDTO hospedaje;
 
-    private List<DetalleServicioDetailDTO> detalleServicio;
+    private List<DetalleServicioDTO> detalleServicio;
 
     private List<DetalleReservaDTO> detalleReserva;
 
@@ -33,11 +33,11 @@ public class FacturaDetailDTO extends FacturaDTO {
         this.estudiante = estudiante;
     }
 
-    public List<DetalleServicioDetailDTO> getDetalleServicio() {
+    public List<DetalleServicioDTO> getDetalleServicio() {
         return detalleServicio;
     }
 
-    public void setDetalleServicio(List<DetalleServicioDetailDTO> detalleServicio) {
+    public void setDetalleServicio(List<DetalleServicioDTO> detalleServicio) {
         this.detalleServicio = detalleServicio;
     }
 
