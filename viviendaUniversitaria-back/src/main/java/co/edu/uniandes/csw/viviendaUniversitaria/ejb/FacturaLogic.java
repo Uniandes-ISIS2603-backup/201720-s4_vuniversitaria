@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.viviendaUniversitaria.ejb;
+
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.DetalleServicioEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.EstudianteEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.entities.FacturaEntity;
@@ -12,6 +13,7 @@ import co.edu.uniandes.csw.viviendaUniversitaria.entities.ServiciosEntity;
 import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.viviendaUniversitaria.persistence.FacturaPersistence;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,9 +21,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
- * @author je.bejarano10
- *
+ * @ jc.sanguino10
  */
 /**
  * Clase que permite gestionar y validar las reglas de negocio
@@ -40,8 +40,6 @@ public class FacturaLogic {
     private EstudianteLogic estudianteLogic;
     @Inject
     private HospedajeLogic hospedajeLogic;
-    @Inject
-    private DetalleServicioLogic detalleServicioLog;
 
     /**
      * Método que permite crear y guardar una nueva factura
@@ -57,17 +55,19 @@ public class FacturaLogic {
         validarHospedajeYEstudiante(idHospedaje, cedulaEstudiante);
         HospedajeEntity hospedaje = hospedajeLogic.find(idHospedaje);
         EstudianteEntity estudiante = estudianteLogic.find(cedulaEstudiante);
-        List<ServiciosEntity> serviciosOfrecidos = hospedaje.getServicios();
+        java.util.Date fecha = new Date();
+        entity.setFecha(fecha);
         double costoTotal = 0.0;
+        List<ServiciosEntity> serviciosOfrecidos = hospedaje.getServicios();
         List<DetalleServicioEntity> serviciosPrestados = new ArrayList<>();
-        for (ServiciosEntity serviciosOfrecido : serviciosOfrecidos) {
-            DetalleServicioEntity nuevoDetalleServicio = new DetalleServicioEntity();
-            nuevoDetalleServicio.setFactura(entity);
-            nuevoDetalleServicio.setServicio(serviciosOfrecido);
-            nuevoDetalleServicio.setSubTotal(serviciosOfrecido.getCosto());
-            costoTotal += serviciosOfrecido.getCosto();   
-            serviciosPrestados.add(nuevoDetalleServicio);
-        }
+            for (ServiciosEntity serviciosSolicitado : serviciosOfrecidos) {
+                DetalleServicioEntity nuevoDetalleServicio = new DetalleServicioEntity();
+                nuevoDetalleServicio.setFactura(entity);
+                nuevoDetalleServicio.setServicio(serviciosSolicitado);
+                nuevoDetalleServicio.setSubTotal(serviciosSolicitado.getCosto());
+                costoTotal += serviciosSolicitado.getCosto();
+                serviciosPrestados.add(nuevoDetalleServicio);
+            }
         entity.setTotal(costoTotal);
         entity.setHospedaje(hospedaje);
         entity.setEstudiante(estudiante);
@@ -78,6 +78,7 @@ public class FacturaLogic {
 
         return entity;
     }
+
     /**
      * Obtener todas las Facturas existentes en la base de datos.
      *
@@ -90,8 +91,10 @@ public class FacturaLogic {
         LOGGER.info("Termina proceso de consultar todas las Facturas");
         return Facturas;
     }
-        /**
-     * Obtener todas las Facturas existentes en la base de datos por idEstudiante.
+
+    /**
+     * Obtener todas las Facturas existentes en la base de datos por
+     * idEstudiante.
      *
      * @param idEstudiante
      * @return una lista de Facturas.
@@ -103,7 +106,8 @@ public class FacturaLogic {
         LOGGER.info("Termina proceso de consultar todas las Facturas por idEstudiante");
         return Facturas;
     }
-        /**
+
+    /**
      * Obtener todas las Facturas existentes en la base de datos.
      *
      * @param idHospedaje
@@ -123,7 +127,8 @@ public class FacturaLogic {
      *
      * @param id: id de la Factura para ser buscada.
      * @return la Factura solicitada por medio de su id.
-     * @throws co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException
+     * @throws
+     * co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException
      *
      */
     public FacturaEntity getFactura(Long id) throws BusinessLogicException {
@@ -132,6 +137,7 @@ public class FacturaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar Factura con id={0}", id);
         return factura;
     }
+
     /**
      *
      * Actualizar una Factura.
@@ -140,13 +146,13 @@ public class FacturaLogic {
      * @param entity: Factura con los cambios para ser actualizada, por ejemplo
      * el nombre.
      * @return la Factura con los cambios actualizados en la base de datos.
-     * @throws co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException
+     * @throws
+     * co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException
      */
     public FacturaEntity updateFactura(Long id, FacturaEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Factura con id={0}", id);
-        FacturaEntity old =validarExistenciaDelRecurso(id);
-        if(old.isEstaPago()==false)
-        {
+        FacturaEntity old = validarExistenciaDelRecurso(id);
+        if (old.isEstaPago() == true) {
             throw new BusinessLogicException("no puede modificar una factura que ya esta pagada");
         }
         entity.setId(id);
@@ -154,22 +160,20 @@ public class FacturaLogic {
         entity.setDetallesReserva(old.getDetallesReserva());
         entity.setEstudiante(old.getEstudiante());
         entity.setHospedaje(old.getHospedaje());
-        if(entity.getIva()==0)
-        {
+        if (entity.getIva() == 0) {
             entity.setIva(old.getIva());
         }
-        if(entity.getFecha()==null)
-        {
+        if (entity.getFecha() == null) {
             entity.setFecha(old.getFecha());
         }
-        if(entity.getTotal()==0)
-        {
+        if (entity.getTotal() == 0) {
             entity.setTotal(old.getTotal());
         }
         FacturaEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Factura con id={0}", entity.getId());
         return newEntity;
     }
+
     /**
      * Borrar un Factura
      *
@@ -180,7 +184,7 @@ public class FacturaLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar Factura con id={0}", id);
     }
-    
+
     public void validarHospedajeYEstudiante(Long idHospedaje, Long cedulaEstudiante) throws BusinessLogicException {
         if (estudianteLogic.find(cedulaEstudiante) == null) {
             throw new BusinessLogicException("no existe un estudiante con esta cedula ");
@@ -189,11 +193,11 @@ public class FacturaLogic {
             throw new BusinessLogicException("No existe un hospedaje con este id ");
         }
     }
-    public FacturaEntity validarExistenciaDelRecurso(Long id) throws BusinessLogicException
-    {
+
+    public FacturaEntity validarExistenciaDelRecurso(Long id) throws BusinessLogicException {
         FacturaEntity factura = persistence.find(id);
         if (factura == null) {
-            throw new BusinessLogicException("La Factura con el id " + id +" no existe");
+            throw new BusinessLogicException("La Factura con el id " + id + " no existe");
         }
         return factura;
     }

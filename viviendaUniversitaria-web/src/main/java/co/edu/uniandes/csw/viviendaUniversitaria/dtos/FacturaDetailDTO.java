@@ -21,7 +21,7 @@ public class FacturaDetailDTO extends FacturaDTO {
 
     private HospedajeDTO hospedaje;
 
-    private List<DetalleServicioDTO> detalleServicio;
+    private List<DetalleServicioDetailDTO> detalleServicio;
 
     private List<DetalleReservaDTO> detalleReserva;
 
@@ -33,13 +33,14 @@ public class FacturaDetailDTO extends FacturaDTO {
         this.estudiante = estudiante;
     }
 
-    public List<DetalleServicioDTO> getDetalleServicio() {
+    public List<DetalleServicioDetailDTO> getDetalleServicio() {
         return detalleServicio;
     }
 
-    public void setDetalleServicio(List<DetalleServicioDTO> detalleServicio) {
+    public void setDetalleServicio(List<DetalleServicioDetailDTO> detalleServicio) {
         this.detalleServicio = detalleServicio;
     }
+
 
     public List<DetalleReservaDTO> getDetalleReserva() {
         return detalleReserva;
@@ -75,7 +76,7 @@ public class FacturaDetailDTO extends FacturaDTO {
             }
             detalleServicio = new ArrayList<>();
             for (DetalleServicioEntity entityDetalleServicio : facturaEntity.getDetalleServicio()) {
-                detalleServicio.add(new DetalleServicioDTO(entityDetalleServicio));
+                detalleServicio.add(new DetalleServicioDetailDTO(entityDetalleServicio));
             }
             detalleReserva = new ArrayList<>();
             for (DetalleReservaEntity entityDetalleReserva : facturaEntity.getDetallesReserva()) {
