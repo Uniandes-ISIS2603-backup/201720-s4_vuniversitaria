@@ -14,10 +14,15 @@
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="estudianteCedula" class="col-sm-2">Cedula:</label>
-                            <textarea id="estudianteCedula" required ng-model="estudianteCedula" class="col-sm-6"></textarea>                        
+                            <input id="estudianteCedula" required ng-model="estudianteCedula" class="col-sm-6"/>
                         </div>
                     </div>
-
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="estudianteRutaImagen" class="col-sm-2">RutaImagen</label>
+                            <input id="estudianteRutaImagen" required ng-model="estudianteRutaImagen" class="col-sm-6"/>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!estudiante.$valid">
 
@@ -28,10 +33,10 @@
                     </div> 
                     <div class="form-group row">
                         <div class="col-sm-5 col-md-5 col-lg-5 col-xs-5">
-                <input type="button" value="Cancelar" ui-sref="estudiantesList" class="col-sm-5 col-md-5 col-lg-5 col-xs-5 btn btn-info btn-group-lg">
-                <p class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></p>
-                <input type="submit" ng-click="estudianteNewCtrl.createEstudiante()" value="Crear"  class="col-sm-5 col-md-5 col-lg-5 col-xs-5 btn btn-success">
-            </div>
+                            <input type="button" value="Cancelar" ui-sref="estudiantesList" class="col-sm-5 col-md-5 col-lg-5 col-xs-5 btn btn-info btn-group-lg">
+                            <p class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></p>
+                            <input type="submit" ng-click="estudianteNewCtrl.createEstudiante()" value="Crear"  class="col-sm-5 col-md-5 col-lg-5 col-xs-5 btn btn-success">
+                        </div>
                     </div>
                 </form>
 
