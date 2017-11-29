@@ -27,6 +27,7 @@
                                 showWindow: false,
 
                                 options: {
+                                    icon:"resources/images/icoUni.png",
                                     animation: 1,
                                     labelAnchor: "22 0",
                                     labelClass: "marker-labels"

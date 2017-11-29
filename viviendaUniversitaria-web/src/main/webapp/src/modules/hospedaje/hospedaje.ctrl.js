@@ -35,9 +35,32 @@
                 $scope.hospedajeList = response.data;
             });
 
+            var lat = $scope.latitud;
+            var long = $scope.longitud;
             if ($state.params.idHospedaje !== undefined) {
                 $http.get(hospedajeContext + '/' + $state.params.idHospedaje).then(function (response) {
                     $scope.hospedajeActivo = response.data;
+                    lat = response.data.ubicacion.latitud;
+                    long = response.data.ubicacion.longitud;
+                    $scope.map = {
+                        center: {latitude: lat, longitude: long},
+                        zoom: 17,
+                        markers: [
+                            {
+                                id: 1,
+                                latitude: lat,
+                                longitude: long,
+                                showWindow: false,
+
+                                options: {
+                                    icon: "resources/images/icoHosp.png",
+                                    animation: 1,
+                                    labelAnchor: "22 0",
+                                    labelClass: "marker-labels"
+                                }
+                            }]
+                    };
+                    $scope.show = true;
                 });
             }
             ;
@@ -61,7 +84,12 @@
                 });
             }
             ;
-
+            $scope.darLugares = function () {
+                $http.get(hospedajeContext + '/' + $state.params.idHospedaje + 'lugaresInteres'
+                        ).then(function (response) {
+                    $scope.lugares = response.data;
+                });
+            };
             $scope.eliminarRegla = function (idHospedaje, idRegla) {
                 swal({
                     title: 'Eliminar regla',
