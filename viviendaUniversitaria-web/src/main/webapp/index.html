@@ -131,14 +131,14 @@
                         <div class="col-lg-12">
                             <ul class="nav nav-tabs">
                                 <li><a ui-sref="home">Home</a></li>
-                                <li><a ui-sref="estudiantesList">Estudiantes</a></li>
-                                <li><a ui-sref="facturasList">Facturas</a></li>
-                                <li><a ui-sref="reservasList">Reservas</a></li>
-                                <li><a ui-sref="origenesList">Origenes</a></li>
+                                <li ng-show="rolActivo === 'Administrador'"><a ui-sref="estudiantesList">Estudiantes</a></li>
+                                <li ng-show="rolActivo === 'Administrador' "><a ui-sref="facturasList">Facturas</a></li>
+                                <li ng-show="rolActivo === 'Administrador'"><a ui-sref="reservasList">Reservas</a></li>
+                                <li ng-show="rolActivo === 'Estudiante' || rolActivo === 'Administrador'"><a ui-sref="origenesList">Origenes</a></li>
                                 <li><a ui-sref="universidadesList">Universidad</a></li>
-                                <li><a ui-sref="ubicacionesList">Ubicación</a></li>
-                                <li><a ui-sref="hospedaje" >Hospedajes</a></li>
-                                <li><a ui-sref="arrendadoresList" >Arrendadores</a></li>
+                                <li ng-show = "rolActivo === 'Administrador'"><a ui-sref="ubicacionesList">Ubicación</a></li>
+                                <li ng-hide="rolActivo === 'Arrendador'"><a ui-sref="hospedaje" >Hospedajes</a></li>
+                                <li ng-show="rolActivo === 'Administrador'"><a ui-sref="arrendadoresList" >Arrendadores</a></li>
 
                             </ul>                   
                         </div>

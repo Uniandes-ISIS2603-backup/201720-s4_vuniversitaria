@@ -1,6 +1,6 @@
 <div class="container" >
     <h2 class="text-center">Hospedajes</h2>
-    <input type="button" value="Agregar un nuevo hospedaje" ui-sref="hospedajeCrear" class="btn btn-success btn-lg">
+    <input type="button" value="Agregar un nuevo hospedaje" ui-sref="hospedajeCrear" class="btn btn-success btn-lg" ng-show="rolActivo === 'Arrendador' || rolActivo === 'Administrador'">
     <br>
     <br>
     <div class="row">
