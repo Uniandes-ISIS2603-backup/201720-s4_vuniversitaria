@@ -4,18 +4,26 @@
         <div class="panel panel-primary">
             <div class="panel-heading"><label>Lista consolidada de reserva</label></div>
             <div class="panel-body">
-               <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                   <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="reservasCreate"><span class="glyphicon glyphicon-plus-sign"></span> Crear reserva</a>
+               <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="border: 2px solid #a1a1a1;
+    padding: 10px 40px; 
+    background: #dddddd;
+    width: 500px;
+    border-radius: 8px;
+    
+    display: block;
+    margin: auto;
+    margin-bottom: 50px;">
+                   <div class="btn-group mr-2" role="group" aria-label="First group" >
+                        <a class="btn btn-info" ui-sref="reservasCreate" style="margin-right: 20px;"><span class="glyphicon glyphicon-plus-sign"></span> Crear reserva</a>
                       
                    </div>
                    <div>
-                       <button type="button" class="btn btn-success btn-md" ng-click="filterByMe('Y')">
+                       <button type="button" class="btn btn-success btn-md" ng-click="filterByMe('Y')" style="margin-right: 20px;">
                                      <span class="glyphicon glyphicon-filter"></span> Activas
                                 </button>
                    </div>
                    <div>
-                       <button type="button" class="btn btn-warning btn-md" ng-click="filterByMe('N')">
+                       <button type="button" class="btn btn-warning btn-md" ng-click="filterByMe('N')" style="margin-right: 20px;">
                                      <span class="glyphicon glyphicon-filter"></span>
                                      Antiguas
                                 </button>
@@ -31,21 +39,21 @@
                         <thead>
                             <tr>
                                 <th>Identificación única  
-                                   <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('id')">
+                                   <button type="button" class="btn btn-success btn-sm" ng-click="orderByMe('id')">
                                      <span class="glyphicon glyphicon-sort-by-attributes"></span>
                                 </button></th>    
         
                                 <th>Cédula del huésped 
-                                    <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('cedulaHuesped')">
+                                    <button type="button" class="btn btn-success btn-sm" ng-click="orderByMe('cedulaHuesped')">
                                      <span class="glyphicon glyphicon-sort-by-attributes"></span>
                                 </button></th> 
-                                <th>Fecha de inicio <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('fechaInicio')">
+                                <th>Fecha de inicio <button type="button" class="btn btn-success btn-sm" ng-click="orderByMe('fechaInicio')">
                                      <span class="glyphicon glyphicon-sort-by-attributes"></span>
                                 </button></th> 
-                                <th>Fecha de fin <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('fechaFin')">
+                                <th>Fecha de fin <button type="button" class="btn btn-success btn-sm" ng-click="orderByMe('fechaFin')">
                                      <span class="glyphicon glyphicon-sort-by-attributes"></span>
                                 </button></th> 
-                                <th>Hospedaje <button type="button" class="btn btn-default btn-sm" ng-click="orderByMe('idHospedaje')">
+                                <th>Hospedaje <button type="button" class="btn btn-success btn-sm" ng-click="orderByMe('idHospedaje')">
                                      <span class="glyphicon glyphicon-sort-by-attributes"></span>
                                 </button></th>
                                 <th>Información</th>
@@ -61,8 +69,8 @@
                             <td id="{{$index}}-hospedaje">{{reserva.idHospedaje}}</td>
                             <td id="{{$index}}-actions">
                                 
-                                <a class="btn btn-default btn-sm" ui-sref="reservasDetail({reservaId: reserva.id})"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a class="btn btn-default btn-sm" ui-sref="reservaUpdate({reservaId: reserva.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a class="btn btn-info btn-sm" ui-sref="reservasDetail({reservaId: reserva.id})"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a class="btn btn-warning btn-sm" ui-sref="reservaUpdate({reservaId: reserva.id})"><span class="glyphicon glyphicon-edit"></span></a>
                                 <a class="btn btn-danger btn-sm" ui-sref="reservaDelete({reservaId: reserva.id})"><span class="glyphicon glyphicon-trash"></span></a>
                             </td>
                             </tr>
