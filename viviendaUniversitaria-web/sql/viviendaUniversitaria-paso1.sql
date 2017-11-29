@@ -181,10 +181,10 @@ insert into FacturaEntity (fecha, total, iva) values ('12/13/2016', 6.0, 42.73);
 insert into FacturaEntity (fecha, total, iva) values ('4/21/2017', 41.4, 94.23);
 
 -- Reservas
-insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10000,'02/02/2009','03/02/2021');
-insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10001,'03/05/2008','03/02/2031');
-insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10002,'04/08/2005','03/02/2011');
-insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10003,'05/07/2003','03/02/2020');
+insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10000,'02/02/2019','03/02/2009');
+insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10001,'03/05/2018','03/02/2011');
+insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10002,'04/08/2015','03/02/2001');
+insert into APP.RESERVAENTITY (id,fechaFin,fechaInicio) values (10003,'05/07/2013','03/02/2001');
 
 
 -- Ligares Interes
